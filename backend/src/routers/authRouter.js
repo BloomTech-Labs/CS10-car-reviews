@@ -1,5 +1,7 @@
-// importing express and our User Model
+// importing dependencies
 const express = require('express');
+
+// importing our user model to allow for registration
 const UserModel = require('../models/UserModel');
 
 // importing middleware
@@ -10,6 +12,8 @@ const router = express.Router();
 // creating the routes
 router.get('/', (req, res) => res.send('The auth router is working!')); // test route
 
+// * TODO: Need to issue some form of authorization after the user is saved
+// ** OPTIONAL: Could externalize the form checking with a custom middleware
 router.post('/register', (req, res) => { // route that handles registering a user
     const { fullname, username, email, password } = req.body;
     const newUser = new UserModel({ fullname, username, email, password });
@@ -20,6 +24,11 @@ router.post('/register', (req, res) => { // route that handles registering a use
         else res.status(201).send(`The user has successfully registered!`);
     });
 });
+
+// * TODO: Implement a login route
+router.post('/login', (req, res) => {
+    const 
+})
 
 // exporting the router
 module.exports = router;
