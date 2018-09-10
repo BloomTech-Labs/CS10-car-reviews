@@ -27,7 +27,7 @@ router.post('/register', (req, res) => { // route that handles registering a use
 
 // * TODO: Implement a login route
 router.post('/login', (req, res) => {
-    const 
+    
 })
 
 // exporting the router

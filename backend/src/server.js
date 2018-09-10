@@ -1,12 +1,13 @@
 // importing dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // importing routers
 const authRouter = require('./routers/authRouter');
 
 // setting up the server
-const port = process.env.PORT || 3001; // uses the port provided by the server & defaults to 3001 if none is provided
+const port = process.env.PORT || 3002; // uses the port provided by the server & defaults to 3001 if none is provided
 const server = express();
 
 // configuring the database
