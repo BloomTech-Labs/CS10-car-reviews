@@ -16,7 +16,8 @@ const CarModel = mongoose.Schema({
     edition: {
         type: String,
         required: true
-    }
+    },
+    reviews: [{ type: ObjectId, ref: 'ReviewModel' }]
 });
 
 module.exports = mongoose.model('cars', CarModel);

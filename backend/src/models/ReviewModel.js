@@ -4,12 +4,12 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const ReviewModel = mongoose.Schema({
     car: { 
         type: ObjectId, 
-        ref: 'Car',
+        ref: 'CarModel',
         required: true
     },
     user: { 
         type: ObjectId, 
-        ref: 'User',
+        ref: 'UserModel',
         required: true
     },
     content: {
