@@ -1,5 +1,6 @@
 // importing dependencies
 const express = require('express');
+const JWT = require('jsonwebtoken');
 
 // importing our user model to allow for registration
 const UserModel = require('../models/UserModel');

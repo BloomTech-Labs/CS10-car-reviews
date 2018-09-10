@@ -7,14 +7,15 @@ require('dotenv').config();
 const authRouter = require('./routers/authRouter');
 
 // setting up the server
-const port = process.env.PORT || 3002; // uses the port provided by the server & defaults to 3001 if none is provided
+const port = process.env.PORT || 3002; // uses the port provided by the process.env & defaults to 3002 if none is provided
 const server = express();
 
 // configuring the database
-mongoose.Promise = global.Promise; // mongoose's promise library is depreciated, so we sub in the general ES6 promises here
+mongoose.Promise = global.Promise; // mongoose's promise library is deprecated, so we sub in the general ES6 promises here
 const databaseOptions = {
-    useNewUrlParser: true // mongoose's URL parser is also depreciated, so we pass this in as a option to use the new one
+    useNewUrlParser: true, // mongoose's URL parser is also deprecated, so we pass this in as a option to use the new one
 };
+mongoose.set('useCreateIndex', true); // collection.ensureIndex is also deprecated so we use 'useCreateIndex' instead
 
 // connecting to the database
 mongoose.connect('mongodb://localhost:27017/store', databaseOptions);
