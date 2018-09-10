@@ -1,6 +1,7 @@
 // importing dependencies
 const express = require('express');
 const JWT = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 // importing our user model to allow for registration
 const UserModel = require('../models/UserModel');
@@ -26,9 +27,25 @@ router.post('/register', (req, res) => { // route that handles registering a use
     });
 });
 
-// * TODO: Implement a login route
+// ** OPTIONAL: Create a middleware that handles the issuing of a JWT
 router.post('/login', (req, res) => {
-    
+    const { email, password, username } = req.body;
+    // ** OPTIONAL: Find a way to structure conditional so user can enter email or username
+    if (!email || !password) return res.status(400).send({loginError: 'Please provide a username or email and a password to login.'});
+
+    UserModel.findOne({ email: email })
+        .then(userRecord => {
+            if (!userRecord) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
+            
+            // ** OPTIONAL: Add a password reset feature
+            if (bcrypt.compareSync(password, userRecord.password)){
+                const newJWT = JWT.sign({ email, password, username }, process.env.JWT_SECRET);
+                res.status(200).json({ JWT: newJWT });
+            } else {
+                res.status(401).json({ loginError: `The password you provided didn't match the one stored in our database, please try again`})
+            }
+            
+        })
 })
 
 // exporting the router
