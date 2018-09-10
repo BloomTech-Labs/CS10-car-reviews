@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 // importing routers
+const authRouter = require('./routers/authRouter');
 
 // setting up the server
 const port = process.env.PORT || 3001; // uses the port provided by the server & defaults to 3001 if none is provided
@@ -24,10 +25,10 @@ mongoose.connection
 server.use(express.json());
 
 // test route
-server.use('/', (req, res) => res.send(`The server is up and running!`));
+server.get('/', (req, res) => res.send(`The server is up and running!`));
 
 // setting up routers
-
+server.use('/auth', authRouter); // router for handling auth related requests, such as login and register
 
 // initializing the server
 server.listen(port, () => console.log(`The server is listening on port ${port}`));

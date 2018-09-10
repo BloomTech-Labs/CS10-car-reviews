@@ -2,17 +2,29 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserModel = mongoose.Schema({
+    fullname: {
+      type: String,
+      unique: true,
+      required: true,
+      lowercase: true,
+    },
     username: {
         type: String,
         unique: true,
         required: true,
         lowercase: true,
     },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+      lowercase: true,
+  },
     password: {
         type: String,
         required: true,
         minlength: 4,
-    },
+    }
 });
 
 // before being saved, a instance of the UserModel will automatically have it's password hashed via bcrypt
