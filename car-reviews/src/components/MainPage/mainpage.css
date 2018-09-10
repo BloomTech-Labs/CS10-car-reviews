@@ -1,3 +1,5 @@
+/* Search Bar Styles */
+
 .searchbar {
     border: 2px solid black;
 }
@@ -32,4 +34,5 @@
 .review {
     margin-right: 25px;
 }
-  
+
+/* End of Search Bar Styles */
