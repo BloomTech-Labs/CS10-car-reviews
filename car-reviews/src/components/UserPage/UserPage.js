@@ -5,7 +5,7 @@ class UserPage extends Component {
     render() { 
         return ( 
             <div>
-                PLACEHOLDER FOR USERPAGE COMPONENTS
+                {/* PLACEHOLDER FOR USERPAGE COMPONENTS */}
             </div>
          );
     }

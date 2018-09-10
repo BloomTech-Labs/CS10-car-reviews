@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './searchbar';
+import MainContent from './maincontent';
 
 class MainPage extends Component {
 
@@ -7,6 +8,8 @@ class MainPage extends Component {
         return ( 
             <div className="search-container">
                 <SearchBar />
+                <MainContent />
+                <a href="https://lambdaschool.com">About The Team</a>
             </div>
          );
     }

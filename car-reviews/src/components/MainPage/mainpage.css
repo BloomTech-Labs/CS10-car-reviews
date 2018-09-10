@@ -1,11 +1,11 @@
 /* Search Bar Styles */
 
-.searchbar {
+/* .searchbar {
     border: 2px solid black;
-}
+} */
 
 .login {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
     justify-content: flex-end;
 }
@@ -15,7 +15,7 @@
 }
 
 .searchfields {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     margin-top: 30px;
@@ -27,12 +27,24 @@
     margin-left: 35px;
 }
 
-.review-and-search {
+/* .review-and-search {
     border: 1px solid blue;
-}
+} */
 
 .review {
     margin-right: 25px;
 }
 
 /* End of Search Bar Styles */
+
+/* Main Content Styles */
+.main-content-border {
+    border: 1px solid black;
+    text-align: left;
+}
+
+.main-card {
+    height: 220px;
+    width: 200px;
+}
+/* End of Main Content Styles */
