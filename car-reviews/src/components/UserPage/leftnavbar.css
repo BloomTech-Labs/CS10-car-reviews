@@ -1,0 +1,20 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 20px 25px 20px;
+  border: 2px solid black;
+  width: 225px;
+  min-width: 225px;
+  background-color: white;
+  height: 90vh;
+}
+
+.headerStyle {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.hoverStyle:hover {
+  background-color: rgb(238, 235, 235);
+  border-left: solid black;
+}
