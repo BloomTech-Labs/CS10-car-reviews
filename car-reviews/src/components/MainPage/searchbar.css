@@ -1,0 +1,35 @@
+.searchbar {
+    border: 2px solid black;
+}
+
+.login {
+    border: 1px solid green;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.signup {
+    margin-right: 25px;
+}
+
+.searchfields {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.dropdowns {
+    margin-right: 35px;
+    margin-left: 35px;
+}
+
+.review-and-search {
+    border: 1px solid blue;
+}
+
+.review {
+    margin-right: 25px;
+}
+  
