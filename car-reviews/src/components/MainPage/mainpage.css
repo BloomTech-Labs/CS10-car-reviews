@@ -1,11 +1,6 @@
 /* Search Bar Styles */
 
-/* .searchbar {
-    border: 2px solid black;
-} */
-
 .login {
-    /* border: 1px solid green; */
     display: flex;
     justify-content: flex-end;
 }
@@ -15,7 +10,6 @@
 }
 
 .searchfields {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     margin-top: 30px;
@@ -27,16 +21,12 @@
     margin-left: 35px;
 }
 
-/* .review-and-search {
-    border: 1px solid blue;
-} */
-
 .review {
     margin-right: 25px;
 }
 
 /* End of Search Bar Styles */
-
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Main Content Styles */
 .main-content-border {
     border: 1px solid black;
@@ -48,3 +38,25 @@
     width: 200px;
 }
 /* End of Main Content Styles */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Search Results Styles */
+.filter-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.filters {
+    display: flex;
+}
+
+.sort-by {
+    display: flex;
+}
+.review-results {
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+}
+/* End of Search Results Styles */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
