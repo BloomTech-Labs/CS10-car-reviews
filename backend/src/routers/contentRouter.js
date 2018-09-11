@@ -9,7 +9,9 @@ const UserModel = require('../models/UserModel');
 const ReviewModel = require('../models/ReviewModel');
 const CarModel = require('../models/CarModel');
 
-const homeRouter = require('./content/homeRouter');
+// importing routers
+const popularRouter = require('./content/popularRouter');
+const userRouter = require('./content/userRouter');
 
 // initializing the server
 const router = express.Router();
@@ -18,7 +20,9 @@ const router = express.Router();
 router.get('/', (req, res) => res.send(`The content router is working!`)); // test route
 
 // using the sub-routers
-router.use('/homepage', homeRouter);
+router.use('/popular', popularRouter);
+
+router.use('/users', userRouter);
 
 
 // exporting the router
