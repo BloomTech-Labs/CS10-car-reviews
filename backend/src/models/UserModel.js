@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const UserModel = mongoose.Schema({
     fullname: {
@@ -24,6 +25,8 @@ const UserModel = mongoose.Schema({
         required: true,
         minlength: 4,
     }
+    reviews: [{ type: ObjectId, ref: 'ReviewModel' }]
+
 });
 
 // before being saved, a instance of the UserModel will automatically have it's password hashed via bcrypt
