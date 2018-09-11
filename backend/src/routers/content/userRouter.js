@@ -9,16 +9,20 @@ const UserModel = require('../../models/UserModel');
 const router = express.Router();
 
 // importing middleware
-const loginMiddleware = require('../routing_middleware/loginMiddleware');
+const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware');
 
 // adding the routes
 router.get('/', (req, res) => res.send(`The home router is working!`)); // test router
 
-// * TODO: Change to a get and allow for the JWT to be passed via URL or HTML headers
+// * TODO: Figure out how to pass review data from here
+// * TODO: Decide between passing the email from the JWT or getting the username via URL
 // * QUESTION: How should I look the user up from here?
 // gets all of the user's information -- particularly their reviews
-router.post('/data/:username', loginMiddleware, (req, res) => {
-    res.send(`welcome`);
+router.post('/data/', verifyJWTMiddleware, (req, res) => {
+    const { email } = req;
+    
+    UserModel.findOne({ email })
+        .then(record => res.send(record));
 });
 
 
