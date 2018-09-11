@@ -1,22 +1,12 @@
 const assert = require('assert');
 const UserModel = require('../../..//models/UserModel');
+const ReviewModel = require('../../..//models/ReviewModel');
 
+// * NOTE: Because each user document has to be unique, we create a new user for each test here
+// * TODO: Find a way to test relational data
 // ** OPTIONAL: Make the testing less repetitive with declaring newUser in each test
 // ** OPTIONAL: Add .catch handlers for catching errors
 describe('Testing the User Models on the DB', () => {
-    // initialize the user so it can be accessed in all of the It Blocks
-
-    // creating an new user before each test
-    // beforeEach((done) => {
-    //     newUser = new UserModel({
-    //         fullname: 'macgruber',
-    //         username: 'doobs',
-    //         email: 'grubes@grubes.com',
-    //         password: 'thisisapassword'
-    //     });
-    //     done();
-    // });
-    
     // saves the user model, then makes sure it is stored properly
     it('adds a new user to the database', (done) => {
         const newUser = new UserModel({
@@ -56,5 +46,25 @@ describe('Testing the User Models on the DB', () => {
                             })
                     })
             })         
-    })
+    });
+
+    it('adds a user to the database then updates the user', (done) => {
+        const newUser = new UserModel({
+            fullname: 'user3',
+            username: 'user3',
+            email: 'user3@user.com',
+            password: 'user3'
+        });
+
+        newUser.save()
+            .then(() => {
+                // here we pass in the { new: true } option so that the method returns the updated model
+                // * OPTIONAL: Deprecation warning on the next line
+                UserModel.findOneAndUpdate({ username: newUser.username }, { username: 'testing' }, { new: true })
+                    .then(({ username }) => {
+                        assert(username === 'testing');
+                        done();
+                    })
+            })
+    });
 })
