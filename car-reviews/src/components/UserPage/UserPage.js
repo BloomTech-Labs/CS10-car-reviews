@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import ReviewModal from './reviewmodal';
 
 class UserPage extends Component {
 
     render() { 
         return ( 
             <div>
-                {/* PLACEHOLDER FOR USERPAGE COMPONENTS */}
+                <ReviewModal />
             </div>
          );
     }
