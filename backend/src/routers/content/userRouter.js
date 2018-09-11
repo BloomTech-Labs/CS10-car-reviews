@@ -18,7 +18,7 @@ router.get('/', (req, res) => res.send(`The home router is working!`)); // test 
 // * TODO: Decide between passing the email from the JWT or getting the username via URL
 // * QUESTION: How should I look the user up from here?
 // gets all of the user's information -- particularly their reviews
-router.post('/data/', verifyJWTMiddleware, (req, res) => {
+router.post('/data', verifyJWTMiddleware, (req, res) => {
     const { email } = req;
     
     UserModel.findOne({ email })
