@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Lambda-School-Labs/CS10-car-reviews#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "mocha": "^5.2.0",
