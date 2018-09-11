@@ -20,6 +20,10 @@ const ReviewModel = mongoose.Schema({
         type: Number, 
         required: true
     },
+    timesViewed: {
+        type: Number,
+        required: true
+    },
     createOn: {
         type: Date,
         default: Date.now()
