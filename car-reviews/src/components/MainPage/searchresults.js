@@ -41,7 +41,7 @@ class SearchResults extends Component {
                                 <DropdownItem>FordStrong</DropdownItem>
                                 <DropdownItem>ToyotaJim</DropdownItem>
                                 <DropdownItem>MommaJeep</DropdownItem>
-                                <DropdownItem>2004sucked</DropdownItem>
+                                <DropdownItem>BMWsRcool</DropdownItem>
                                 <DropdownItem divider />
                             </DropdownMenu>
                         </UncontrolledDropdown>
