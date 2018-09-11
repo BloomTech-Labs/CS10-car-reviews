@@ -17,10 +17,7 @@ before(done => {
         .on('error', (err) => console.warn(`There was an error connecting to the database: \n${err}`));
 });
 
-// drops the users database before every test file runs
-beforeEach(done => {
-    mongoose.connection.collections.users.drop(() => {
-        console.log(`The database was dropped`);
-        done();
-    })
+// drops the users database after every test file runs
+afterEach(done => {
+    mongoose.connection.collections.users.drop(() => done())
 })

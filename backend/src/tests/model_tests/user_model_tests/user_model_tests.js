@@ -15,12 +15,6 @@ describe('Testing the User Models on the DB', () => {
         });
         done();
     });
-
-    // removing the new user after each test
-    afterEach((done) => {
-        newUser.remove()
-            .then(() => done());
-    })
     
     // saves the user model, then makes sure it is stored properly
     it('adds a new user to the database', (done) => {
