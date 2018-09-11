@@ -1,7 +1,8 @@
 // NOTE: This router handles requests related to the content displayed on the home page
 // importing dependencies
 const express = require('express');
-const ReviewModel = require('../../models/ReviewModel.js');
+const ReviewModel = require('../../models/ReviewModel');
+const CarModel = require('../../models/CarModel')
 
 // intializing the router
 const router = express.Router();
@@ -19,7 +20,9 @@ router.get('/featured_reviews', (req, res) => {
 
 // * TODO: Implement popular car sorting
 router.get('/popular_cars', (req, res) => {
-    res.send(`popular cars go here`);
+    CarModel.find({}).sort({averageScore: -1})
+    .then(car => res.json(car.slice(0,7)))
+    .catch(err => res.status(500).json({ error: err.message }))
 });
 
 // * TODO: Implement popular reviewers sorting
