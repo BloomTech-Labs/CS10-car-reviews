@@ -26,5 +26,5 @@ describe('Testing the User Models on the DB', () => {
                         done();
                     })
             })
-    })
+    });
 })
