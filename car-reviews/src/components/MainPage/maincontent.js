@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import { Button } from 'reactstrap';
 
+// This component generates Review and Reviewer cards. I chose to make the cards using buttons
+// because they will need to be clicked on to open the review page. This is rendered in MainPage.
+
 class MainContent extends Component {
     render() { 
         return ( 
