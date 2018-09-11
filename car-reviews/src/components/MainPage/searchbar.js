@@ -1,5 +1,5 @@
 import React from 'react';
-import './searchbar.css';
+import './mainpage.css';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown} from 'reactstrap';
 
 export default class Searchbar extends React.Component {
