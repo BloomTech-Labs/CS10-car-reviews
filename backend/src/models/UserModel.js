@@ -24,9 +24,8 @@ const UserModel = mongoose.Schema({
         type: String,
         required: true,
         minlength: 4,
-    }
+    },
     reviews: [{ type: ObjectId, ref: 'ReviewModel' }]
-
 });
 
 // before being saved, a instance of the UserModel will automatically have it's password hashed via bcrypt
