@@ -5,7 +5,7 @@ const ReviewModel = mongoose.Schema({
     car: { 
         type: ObjectId, 
         ref: 'CarModel',
-        required: true
+        required: false
     },
     user: { 
         type: ObjectId, 

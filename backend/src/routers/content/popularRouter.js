@@ -13,7 +13,7 @@ router.get('/', (req, res) => res.send(`The home router is working!`)); // test 
 // * TODO: Implement a list of featured reviews
 router.get('/featured_reviews', (req, res) => {
     ReviewModel.find({}).sort({timesViewed: -1})
-    .then(review => res.json(review))
+    .then(review => res.json(review.slice(0,4)))
     .catch(err => res.status(500).json({ error: err.message }))
 });
 

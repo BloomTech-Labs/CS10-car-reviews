@@ -2,7 +2,7 @@
 
 // importing dependencies
 const express = require('express');
-const ReviewModel = require('../../models/ReviewModel.js');
+const ReviewModel = require('../../models/ReviewModel');
 
 // intializing the router
 const router = express.Router();
@@ -11,13 +11,16 @@ const router = express.Router();
 // adding the routes
 router.get('/', (req, res) => res.send(`The reviews router is working!`)); // test router
 
-router.post('/reviews', (req, res) => {
+router.post('/', (req, res) => {
     const { car, user, content, score } = req.body;
-    if (!car || !user || !content || !score) {
-        res.status(400).json({ errorMessage: "Please provide title, body, and user for the note." })
+    if (!user || !content || !score) {
+        res.status(400).json({ errorMessage: "Please provide user, review, and score." })
         return;
     }
     ReviewModel.create(req.body)
         .then(result => res.status(201).json(result))
         .catch(err => res.status(500).json({ error: err.message }));
 });
+
+// exporting the router
+module.exports = router;
