@@ -1,6 +1,7 @@
 // NOTE: This router handles requests related to the content displayed on the home page
 // importing dependencies
 const express = require('express');
+const ReviewModel = require('../../models/ReviewModel.js');
 
 // intializing the router
 const router = express.Router();
@@ -11,7 +12,9 @@ router.get('/', (req, res) => res.send(`The home router is working!`)); // test 
 
 // * TODO: Implement a list of featured reviews
 router.get('/featured_reviews', (req, res) => {
-    res.send(`featured reviews go here`);
+    ReviewModel.find({}).sort({timesViewed: -1})
+    .then(review => res.json(review))
+    .catch(err => res.status(500).json({ error: err.message }))
 });
 
 // * TODO: Implement popular car sorting

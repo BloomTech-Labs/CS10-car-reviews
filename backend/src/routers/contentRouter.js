@@ -12,6 +12,7 @@ const CarModel = require('../models/CarModel');
 // importing routers
 const popularRouter = require('./content/popularRouter');
 const userRouter = require('./content/userRouter');
+const reviewsRouter = require('./content/reviewsRouter')
 
 // initializing the server
 const router = express.Router();
@@ -21,9 +22,8 @@ router.get('/', (req, res) => res.send(`The content router is working!`)); // te
 
 // using the sub-routers
 router.use('/popular', popularRouter);
-
 router.use('/users', userRouter);
-
+router.use('/reviews', reviewsRouter)
 
 // exporting the router
 module.exports = router;
