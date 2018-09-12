@@ -1,7 +1,7 @@
 const assert = require('assert');
 const CarModel = require('../../models/CarModel');
 
-describe('Testing the User Models on the DB', () => {
+describe('Testing the CarModel', () => {
     let newCar;
 
     beforeEach(done => {
@@ -32,13 +32,13 @@ describe('Testing the User Models on the DB', () => {
             })
     });
 
-    // saves a new user model then makes sure it can be removed
+    // saves a new car record then makes sure it can be removed
     it('adds and removes a new user from the database', (done) => {
         newCar.save()
             .then(() => {
                 newCar.remove()
-                    .then(({ username }) => { // destructuring the username prop off of the deleted record
-                        CarModel.find({ username })
+                    .then(({ model }) => { // destructuring the username prop off of the deleted record
+                        CarModel.find({ model })
                             .then(response => {
                                 assert(response.length === 0);
                                 done();
