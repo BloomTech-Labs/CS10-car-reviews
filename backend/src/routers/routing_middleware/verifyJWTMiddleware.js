@@ -11,4 +11,18 @@ const verifyJWT = (req, res, next) => {
     })
 }
 
-module.exports = verifyJWT;
+const checkIfCar = (req, res, next) => {
+    const { year, make, model, trim } = req.car;
+    CarModel.find({year: year, make: make, model: model, edition: trim}, function (err, cars) {
+        if (cars.length) {
+            req.carID = cars._id
+            next()
+        } else if (err) {
+            next()
+        } else {
+            next()
+        }
+    });
+}
+
+module.exports = verifyJWT, checkIfCar;
