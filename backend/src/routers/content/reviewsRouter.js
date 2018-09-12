@@ -3,7 +3,8 @@
 // importing dependencies
 const express = require('express');
 const ReviewModel = require('../../models/ReviewModel');
-const UserModel = require('../../models/UserModel')
+const UserModel = require('../../models/UserModel');
+const CarModel = require('../../models/CarModel');
 
 // intializing the router
 const router = express.Router();
@@ -38,5 +39,27 @@ router.get('/:id', (req, res) => {
         .catch(err => res.status(500).json({ error: err.message }));
 })
 
+// search router:
+router.get('/search', (req, res) => {
+    const { year, make, model, trim, reviewer} = req.body;
+    if (reviewer) {
+        CarModel.find({year: year, make: make, model: model, edition: trim}).select('make model year -_id')
+            .populate({
+                path: 'reviews', 
+                match: { user: reviewer },
+                select: 'content score user -_id'
+            })
+            .then(cars=> res.json(cars))
+            .catch(err => res.status(500).json({ error: err.message }));
+    } else {
+        CarModel.find({year: year, make: make, model: model, edition: trim}).select('make model year -_id')
+            .populate({
+                path: 'reviews', 
+                select: 'content score user -_id'
+            })
+            .then(cars=> res.json(cars))
+            .catch(err => res.status(500).json({ error: err.message }));
+    }
+})
 // exporting the router
 module.exports = router;
