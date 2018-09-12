@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const assert = require('assert');
 const server = require('../../server');
+const UserModel = require('../../models/UserModel');
 
 chai.use(chaiHttp);
 
@@ -18,6 +19,11 @@ describe('testing the authRouter', () => {
             };
     
             done();
+    });
+
+    after(done => {
+        UserModel.deleteMany({ testEntry: true })
+            .then(() => done());
     })
 
     it(`POST to '/auth/register' registers a user and returns a JWT through the response body`, (done) => {
