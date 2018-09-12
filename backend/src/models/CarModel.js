@@ -18,6 +18,11 @@ const CarModel = mongoose.Schema({
         type: String,
         required: true
     },
+    averageScore: {
+        type: Number,
+        default: 0, 
+        index: true
+    },
     reviews: [{ type: ObjectId, ref: 'ReviewModel' }]
 });
 

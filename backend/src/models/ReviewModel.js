@@ -6,7 +6,7 @@ const ReviewSchema = new Schema({
     car: { 
         type: ObjectId, 
         ref: 'CarModel',
-        required: true
+        required: false
     },
     user: { 
         type: ObjectId, 
@@ -20,6 +20,11 @@ const ReviewSchema = new Schema({
     score: {
         type: Number, 
         required: true
+    },
+    timesViewed: {
+        type: Number,
+        default: 0, 
+        index: true
     },
     createOn: {
         type: Date,
