@@ -23,7 +23,11 @@ const CarModel = mongoose.Schema({
         default: 0, 
         index: true
     },
-    reviews: [{ type: ObjectId, ref: 'ReviewModel' }]
+    testEntry: {
+        type: Boolean,
+        default: false
+    },
+    reviews: [{ type: ObjectId, ref: 'ReviewModel' }],
 });
 
 module.exports = mongoose.model('cars', CarModel);

@@ -25,7 +25,7 @@ before(done => {
 
 // ** OPTIONAL: Get this beforeEach working in place of the individual remove statements in the individual test files
 beforeEach(done => {
-    Promise.all([ UserModel.remove({}), ReviewModel.remove({}), CarModel.remove({}) ])
+    Promise.all([ UserModel.deleteMany({}), ReviewModel.deleteMany({}), CarModel.deleteMany({}) ])
         .then(response => done())
         .catch(err => console.warn(err));
 })
