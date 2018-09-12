@@ -24,11 +24,11 @@ Properties:
 General Notes: 
 
 Properties:
-- car: ObjectID, required, one-to-one relation to the review
-- user: ObjectID, required, one-to-one relation to the review
-- content: String, required
-- score: String, required
-- createOn: Date, defaults to the Date.now()
+- `car`: ObjectID, required, one-to-one relation to the review
+- `user`: ObjectID, required, one-to-one relation to the review
+- `content`: String, required
+- `score`: String, required
+- `createOn`: Date, defaults to the Date.now()
 
 ### CarModel
 General Notes:
