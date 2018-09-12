@@ -12,7 +12,7 @@ describe('Testing the User Models on the DB', () => {
         newUser.remove()
             .then(() => done());
     })
-    // saves the user model, then makes sure it is stored properly
+    // saves the user record then makes sure it is stored properly
     it('adds a new user to the database', (done) => {
         newUser = new UserModel({
             fullname: 'user1',
@@ -31,7 +31,7 @@ describe('Testing the User Models on the DB', () => {
             })
     });
 
-    // saves a new user model then makes sure it can be removed
+    // saves a new user record then makes sure it can be removed
     it('adds and removes a new user from the database', (done) => {
         newUser = new UserModel({
             fullname: 'user2',
