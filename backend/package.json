@@ -4,7 +4,8 @@
   "description": "Backend for the Car Reviews Capstone project.",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon --exec 'mocha src/tests/model_tests/'",
+    "test_db": "nodemon --exec 'mocha src/tests/model_tests/'", 
+    "test_routes": "nodemon --exec 'mocha/scr/tests/routing_tests/'",
     "start": "nodemon src/server"
   },
   "repository": {

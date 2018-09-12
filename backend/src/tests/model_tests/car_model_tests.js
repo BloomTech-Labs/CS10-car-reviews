@@ -11,7 +11,15 @@ describe('Testing the CarModel', () => {
             year: 2019,
             edition: 'SEL'
         });
-        done();
+        
+        CarModel.findOne({ model: newCar.model})
+        .then(carRecord => {
+            if (!carRecord) done();
+            else {
+                carRecord.remove()
+                .then(() => done());
+            }
+        })
     })
 
     // drops the car from the database after each test
@@ -21,7 +29,7 @@ describe('Testing the CarModel', () => {
     })
 
     // saves the car record and then makes sure it is stored properly
-    it('adds a new user to the database', (done) => {
+    it('adds a new car to the database', (done) => {
         newCar.save()
             .then(() => {
                 CarModel.findOne({ model: 'Eclipse Cross' })
@@ -34,6 +42,7 @@ describe('Testing the CarModel', () => {
 
     // saves a new car record then makes sure it can be removed
     it('adds and removes a new user from the database', (done) => {
+        console.log('car test running')
         newCar.save()
             .then(() => {
                 newCar.remove()
@@ -47,7 +56,8 @@ describe('Testing the CarModel', () => {
             })         
     });
 
-    it('adds a user to the database then updates the user', (done) => {
+    // saves a new car record and then makes sure that it's year property can be modified
+    it('adds a car record to the database then updates it', (done) => {
         newCar.save()
             .then(() => {
                 // here we pass in the { new: true } option so that the method returns the updated model
