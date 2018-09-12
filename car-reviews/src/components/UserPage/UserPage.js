@@ -10,16 +10,13 @@ class UserPage extends Component {
     render() { 
         return ( 
             <div>
-                <Header/>
-                <LeftNavBar/>
-                <UserSettings/>
-                <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
-                <div className="example">
-                  <Elements>
-                    <Billing />
-                  </Elements>
+                 <div className = "Header">
+                    <Header/>
                 </div>
-                </StripeProvider>
+                <LeftNavBar/>
+                <div>
+                    {this.props}
+                </div>
             </div>
          );
     }
