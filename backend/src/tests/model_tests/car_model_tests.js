@@ -22,12 +22,6 @@ describe('Testing the CarModel', () => {
         })
     })
 
-    // drops the car from the database after each test
-    afterEach((done) => {
-        newCar.remove()
-            .then(() => done());
-    })
-
     // saves the car record and then makes sure it is stored properly
     it('adds a new car to the database', (done) => {
         newCar.save()
@@ -37,12 +31,13 @@ describe('Testing the CarModel', () => {
                         assert(carRecord.model === newCar.model)
                         done();
                     })
+                    .catch(err => console.warn(err));
             })
+            
     });
 
     // saves a new car record then makes sure it can be removed
     it('adds and removes a new user from the database', (done) => {
-        console.log('car test running')
         newCar.save()
             .then(() => {
                 newCar.remove()
