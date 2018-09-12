@@ -11,7 +11,8 @@ class Settings extends Component {
     return (
       <div>
         <div>
-          <Header />
+          <Header section={'Settings'} />{' '}
+          {/*Passing in the section Settings as props to the Header component*/}
         </div>
         <div className="settingsContainer">
           <LeftNavBar />
