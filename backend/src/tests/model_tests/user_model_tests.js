@@ -1,15 +1,20 @@
 const assert = require('assert');
-const UserModel = require('../../..//models/UserModel');
-const ReviewModel = require('../../..//models/ReviewModel');
+const UserModel = require('../../models/UserModel');
 
 // * NOTE: Because each user document has to be unique, we create a new user for each test here
 // * TODO: Find a way to test relational data
 // ** OPTIONAL: Make the testing less repetitive with declaring newUser in each test
 // ** OPTIONAL: Add .catch handlers for catching errors
 describe('Testing the User Models on the DB', () => {
+    let newUser;
+
+    afterEach((done) => {
+        newUser.remove()
+            .then(() => done());
+    })
     // saves the user model, then makes sure it is stored properly
     it('adds a new user to the database', (done) => {
-        const newUser = new UserModel({
+        newUser = new UserModel({
             fullname: 'user1',
             username: 'user1',
             email: 'user1@user.com',
@@ -28,7 +33,7 @@ describe('Testing the User Models on the DB', () => {
 
     // saves a new user model then makes sure it can be removed
     it('adds and removes a new user from the database', (done) => {
-        const newUser = new UserModel({
+        newUser = new UserModel({
             fullname: 'user2',
             username: 'user2',
             email: 'user2@user.com',
@@ -49,7 +54,7 @@ describe('Testing the User Models on the DB', () => {
     });
 
     it('adds a user to the database then updates the user', (done) => {
-        const newUser = new UserModel({
+        newUser = new UserModel({
             fullname: 'user3',
             username: 'user3',
             email: 'user3@user.com',
