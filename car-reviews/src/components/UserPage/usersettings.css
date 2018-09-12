@@ -1,0 +1,31 @@
+.userinfoContainer {
+  width: 75%;
+  margin-top: 25px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.inputBox1 {
+  margin-left: 80px;
+}
+
+.inputBox2 {
+  margin-left: 24px;
+}
+
+.inputBox3 {
+  margin-left: 18px;
+}
+
+.inputBox4 {
+  margin-left: 84px;
+}
+
+.saveButton {
+  background-color: white;
+  margin: 40px auto;
+}
