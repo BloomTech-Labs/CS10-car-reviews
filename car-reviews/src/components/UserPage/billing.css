@@ -1,0 +1,27 @@
+.BillingBox {
+    border: 1px solid black;
+    text-align: left;
+}
+
+.PurchaseCard {
+    border: 1px solid black;
+    /* display: flex !important; */
+    /* display: inline-block; */
+    min-height: 100px;
+}
+
+.BillingContainer {
+    text-align: left;
+}
+
+.BuyButton{
+    
+    text-align: center;
+    
+}
+
+button {
+    width: 200px;
+    height: 100px;
+    margin-top: 20px;
+}

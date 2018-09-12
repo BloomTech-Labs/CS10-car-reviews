@@ -34,12 +34,6 @@ describe('Testing the ReviewModel', () => {
         done();
     })
 
-    // drops the car from the database after each test
-    afterEach((done) => {
-        Promise.all([ newReview.remove(), newUser.remove(), newCar.remove() ])
-            .then(() => done());
-    })
-
     // saves the review record and then makes sure it is stored properly
     it('adds a new review to the database', (done) => {
         Promise.all([ newReview.save(), newUser.save(), newCar.save() ])

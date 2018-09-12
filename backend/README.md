@@ -3,7 +3,7 @@
 ## Technologies Used
  - Main Technologies: NodeJS with Express
  - Database: MongoDB with Mongoose
- - Testing: Mocha
+ - Testing: Mocha, Chai, and Chai-HTTP
  - Authentication: BcryptJS, JSONWebToken
 
 ## Data Models
@@ -94,3 +94,14 @@ Properties:
 ##### POST to '/api/users/data'
 - returns the entire user record
 - populates the reviews relational data for the record
+
+## Testing: COMPLETED
+- All testing is run through Mocha and Chai
+
+### Database Tests
+- tests CRUD operations, as well as the population of relational data on all models
+- run with `yarn test_db`
+
+### Routing Tests
+- tests all routes currently implemented
+- run with `yarn test_routing`

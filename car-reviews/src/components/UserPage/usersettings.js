@@ -32,7 +32,7 @@ class UserSettings extends Component {
             <span className="inputBox1">
               <input
                 type="text"
-                name="username"
+                name="name" // changed this to name from username so that handleChange() can work properly
                 placeholder="Logged in user Name here"
                 value={this.state.name}
                 onChange={this.handleChange}

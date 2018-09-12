@@ -12,21 +12,21 @@ const router = express.Router();
 // adding the routes
 router.get('/', (req, res) => res.send(`The home router is working!`)); // test router
 
-// * TODO: Implement a list of featured reviews
+// sorts and returns popular reviews
 router.get('/featured_reviews', (req, res) => {
     ReviewModel.find({}).sort({timesViewed: -1}).limit(4)
     .then(review => res.json(review))
     .catch(err => res.status(500).json({ error: err.message }))
 });
 
-// * TODO: Implement popular car sorting
+// sorts and returns popular cars
 router.get('/popular_cars', (req, res) => {
     CarModel.find({}).sort({averageScore: -1}).limit(8)
     .then(car => res.json(car))
     .catch(err => res.status(500).json({ error: err.message }))
 });
 
-// * TODO: Implement popular reviewers sorting
+// sorts and returns popular reviewers
 router.get('/popular_reviewers', (req, res) => {
     UserModel.find({}).select('username -_id').sort({reviews: -1}).limit(8)
     .then(users => res.json(users))

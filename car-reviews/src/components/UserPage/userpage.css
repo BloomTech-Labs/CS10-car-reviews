@@ -1,0 +1,12 @@
+.MainContainer {
+    display: flex;
+    /* align-content: center; */
+    
+}
+
+.billing{
+    border: 1px solid black;
+    /* display:flex;*/
+    align-content: center;
+    margin-top: 50px;
+}
