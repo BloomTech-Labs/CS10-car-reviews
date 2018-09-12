@@ -44,3 +44,5 @@ server.use('/api', contentRouter); // router for making requests for data once a
 
 // initializing the server
 server.listen(port, () => console.log(`The server is listening on port ${port}`));
+
+module.exports = server;

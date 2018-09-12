@@ -2,8 +2,6 @@ const assert = require('assert');
 const UserModel = require('../../models/UserModel');
 
 // * NOTE: Because each user document has to be unique, we create a new user for each test here
-// * TODO: Find a way to test relational data
-// ** OPTIONAL: Make the testing less repetitive with declaring newUser in each test
 // ** OPTIONAL: Add .catch handlers for catching errors
 describe('Testing the User Models on the DB', () => {
     let newUser;
