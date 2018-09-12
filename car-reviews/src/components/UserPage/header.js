@@ -7,7 +7,8 @@ class Header extends Component {
       <div className="headerContainer">
         <div className="idContainer">
           <a href="/">Home</a>
-          <span> > Settings</span>
+          <span> > {this.props.section}</span>{' '}
+          {/*Will display the section that we are currently in passed down as props from that respective Component (ie. Settings, Billing, My Reviews, etc.)*/}
         </div>
         <div className="signoutContainer">
           <a href="/">Sign Out</a>
