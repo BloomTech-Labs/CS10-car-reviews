@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test_db": "nodemon --exec 'mocha src/tests/model_tests/'", 
-    "test_routes": "nodemon --exec 'mocha/scr/tests/routing_tests/'",
+    "test": "nodemon --exec 'mocha src/tests/routing_tests/'",
     "start": "nodemon src/server"
   },
   "repository": {

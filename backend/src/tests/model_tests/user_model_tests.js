@@ -8,19 +8,18 @@ const UserModel = require('../../models/UserModel');
 describe('Testing the User Models on the DB', () => {
     let newUser;
 
-    afterEach((done) => {
-        newUser.remove()
-            .then(() => done());
-    })
-    // saves the user record then makes sure it is stored properly
-    it('adds a new user to the database', (done) => {
+    beforeEach(done => {
         newUser = new UserModel({
             fullname: 'user1',
             username: 'user1',
             email: 'user1@user.com',
             password: 'user1'
         });
+        done();
+    })
 
+    // saves the user record then makes sure it is stored properly
+    it('adds a new user to the database', (done) => {
         newUser.save()
             .then(() => {
                 UserModel.findOne({ email: newUser.email })
@@ -33,13 +32,6 @@ describe('Testing the User Models on the DB', () => {
 
     // saves a new user record then makes sure it can be removed
     it('adds and removes a new user from the database', (done) => {
-        newUser = new UserModel({
-            fullname: 'user2',
-            username: 'user2',
-            email: 'user2@user.com',
-            password: 'user2'
-        });
-
         newUser.save()
             .then(() => {
                 newUser.remove()
@@ -54,13 +46,6 @@ describe('Testing the User Models on the DB', () => {
     });
 
     it('adds a user to the database then updates the user', (done) => {
-        newUser = new UserModel({
-            fullname: 'user3',
-            username: 'user3',
-            email: 'user3@user.com',
-            password: 'user3'
-        });
-
         newUser.save()
             .then(() => {
                 // here we pass in the { new: true } option so that the method returns the updated model

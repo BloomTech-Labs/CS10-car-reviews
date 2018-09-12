@@ -12,14 +12,7 @@ describe('Testing the CarModel', () => {
             edition: 'SEL'
         });
         
-        CarModel.findOne({ model: newCar.model})
-        .then(carRecord => {
-            if (!carRecord) done();
-            else {
-                carRecord.remove()
-                .then(() => done());
-            }
-        })
+        done();
     })
 
     // saves the car record and then makes sure it is stored properly

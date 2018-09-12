@@ -3,6 +3,10 @@
 // here we setup and initialize Mongoose just like we would normally:
 const mongoose = require('mongoose');
 
+const UserModel = require('../../models/UserModel');
+const ReviewModel = require('../../models/ReviewModel');
+const CarModel = require('../../models/CarModel');
+
 // configuring the database
 mongoose.Promise = global.Promise
 const databaseOptions = {
@@ -20,12 +24,8 @@ before(done => {
 
 
 // ** OPTIONAL: Get this beforeEach working in place of the individual remove statements in the individual test files
-// beforeEach(done => {
-//     const { users, cars, reviews } = mongoose.connection.collections;
-//     Promise.all([ users.drop(), cars.drop(), reviews.drop() ])
-//         .then(response => {
-//             console.log(response);
-//             done();
-//         })
-//         .catch(err => console.warn(err));
-// })
+beforeEach(done => {
+    Promise.all([ UserModel.remove({}), ReviewModel.remove({}), CarModel.remove({}) ])
+        .then(response => done())
+        .catch(err => console.warn(err));
+})
