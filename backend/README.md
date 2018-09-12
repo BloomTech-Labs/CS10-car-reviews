@@ -21,7 +21,7 @@ Properties:
 - reviews: array of objects, many-to-one relation to the user
 
 ### ReviewModel
-General Notes: 
+__General Notes__
 
 Properties:
 - `car`: ObjectID, required, one-to-one relation to the review
@@ -31,11 +31,11 @@ Properties:
 - `createOn`: Date, defaults to the Date.now()
 
 ### CarModel
-General Notes:
+__General Notes__
 
 Properties:
-- make: String, required
-- model: String, required
+- `make`: String, required
+- `model: String, required
 - year: Number, required
 - edition: String, required
 - reviews: array of objects, one-to-many relation to the car
