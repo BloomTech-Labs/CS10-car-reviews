@@ -23,8 +23,8 @@ router.get('/', (req, res) => res.send('The auth router is working!')); // test 
 // ** OPTIONAL: Externalize the form checking with a custom middleware
 // ** OPTIONAL: Modify the payload to hold more/other data
 router.post('/register', (req, res) => { // route that handles registering a user
-    const { fullname, username, email, password } = req.body;
-    const newUser = new UserModel({ fullname, username, email, password });
+    const { fullname, username, email, password, reviews } = req.body;
+    const newUser = new UserModel({ fullname, username, email, password, reviews });
     
     // the UserModel has a pre-save hook on it that hashes the password with Bcrypt
     newUser.save(err => {
