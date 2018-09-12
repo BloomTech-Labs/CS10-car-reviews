@@ -8,7 +8,7 @@ const CarModel = require('../../models/CarModel')
 
 chai.use(chaiHttp);
 
-describe('Tests the content router', () => {
+describe('Tests the popular router', () => {
     let newReview, newUser, newCar;
 
     // creates new entries before each test so that we can get a review back

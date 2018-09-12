@@ -6,7 +6,7 @@ const ReviewSchema = new Schema({
     car: { 
         type: ObjectId, 
         ref: 'CarModel',
-        required: false
+        required: true
     },
     user: { 
         type: ObjectId, 

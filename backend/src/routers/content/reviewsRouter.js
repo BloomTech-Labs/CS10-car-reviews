@@ -13,8 +13,8 @@ router.get('/', (req, res) => res.send(`The reviews router is working!`)); // te
 
 router.post('/', (req, res) => {
     const { car, user, content, score } = req.body;
-    if (!user || !content || !score) {
-        res.status(400).json({ errorMessage: "Please provide user, review, and score." })
+    if (!user || !content || !score || !car) {
+        res.status(400).json({ errorMessage: "Please provide user, review, car, and score." })
         return;
     }
     ReviewModel.create(req.body)
