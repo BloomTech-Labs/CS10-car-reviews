@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MainPage from './components/MainPage/MainPage';
 import UserPage from './components/UserPage/UserPage';
+import MyReviews from './components/UserPage/myreviews';
 import {Switch, Route} from 'react-router-dom';
 import Billing from './components/UserPage/billing'
 
@@ -12,13 +13,14 @@ class App extends Component {
       <div className="App">
       <Switch>
         <Route exact path='/' component = {MainPage}/>
-          {/* <Route exact path='/searchpage' component = {SearchPage}/> */}
-        <Route exact path='/UserPage' component = {UserPage}/>
-        <Route exact path='/UserPage/Billing'/>
-        <Route exact path='/UserPage/MyReviews'/>
-        <Route exact path='/UserPage/Settings'/>
+          {/* <Route path='/searchpage' component = {SearchPage}/> */}
+        <Route path='/UserPage' component = {UserPage}/>
+        <Route path='/UserPage/Billing'/>
+        {/* I removed /UserPage before /MyReviews because something is bugged in UserPage in this build */}
+        <Route path='/MyReviews' component = {MyReviews}/>
+        <Route path='/UserPage/Settings'/>
       </Switch>  
-      </div>
+      </div> 
     );
   }
 }
