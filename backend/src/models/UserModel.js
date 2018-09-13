@@ -25,6 +25,10 @@ const UserModel = mongoose.Schema({
         required: true,
         minlength: 4,
     },
+    testEntry: {
+      type: Boolean,
+      default: false
+    },
     reviews: [{ type: ObjectId, ref: 'ReviewModel' }]
 });
 
