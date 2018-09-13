@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from './searchbar';
 import MainContent from './maincontent';
 import SearchResults from './searchresults';
+
 // This file contains the various components that make up the landing page 
 // and search results. This file is rendered in App.
 
