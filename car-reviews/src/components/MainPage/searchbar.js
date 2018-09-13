@@ -1,6 +1,7 @@
 import React from 'react';
 import './mainpage.css';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
@@ -25,8 +26,14 @@ export default class Searchbar extends React.Component {
     return (
         <div className="searchbar">
             <div className="login">
+            <Link to= {
+                {
+                    pathname: "/login"
+                }
+            }>
                 <Button className="signup">Sign Up</Button>
                 <Button className="signin">Sign In</Button>
+            </Link>
             </div>
             <div className="searchfields">
                 <UncontrolledDropdown className="dropdowns">
@@ -95,8 +102,20 @@ export default class Searchbar extends React.Component {
                 </UncontrolledDropdown>
             </div>
             <div className="review-and-search">
+            <Link to= {
+                {
+                    pathname: "/"
+                }
+            }>
                 <Button className="review">Review</Button>
+            </Link>
+            <Link to= {
+                {
+                    pathname: "/search"
+                }
+            }>
                 <Button className="search">Search</Button>
+            </Link>
             </div>
         </div>
     );
