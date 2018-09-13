@@ -7,6 +7,8 @@ const verifyJWT = (req, res, next) => {
     JWT.verify(jwt, JWT_SECRET, (err, decoded) => {
         if (err) return res.status(500).json({ loginMiddlewareError: "There was an error while verifying the users' JWT" }); // if this kind of error is received, the user needs to be redirected
         req.email = decoded.email;
+        req.username = decoded.username;
+        req.fullname = decoded.fullname;
         next();
     })
 }
