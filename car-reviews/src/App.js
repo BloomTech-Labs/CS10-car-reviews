@@ -4,6 +4,7 @@ import MainPage from './components/MainPage/MainPage';
 import UserPage from './components/UserPage/UserPage';
 import {Switch, Route} from 'react-router-dom';
 import Billing from './components/UserPage/billing'
+import Login from './components/MainPage/loginRegister';
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route exact path='/UserPage/Billing'/>
         <Route exact path='/UserPage/MyReviews'/>
         <Route exact path='/UserPage/Settings'/>
+        <Route exact path='/Login' component = {Login}/>
       </Switch>  
       </div>
     );
