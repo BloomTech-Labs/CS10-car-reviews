@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../UserPage/leftnavbar.css';
 
 class LeftNavBar extends Component {
@@ -6,16 +7,24 @@ class LeftNavBar extends Component {
     return (
       <nav className="mainContainer">
         <div className="hoverStyle">
-          <h1 className="headerStyle">Search</h1>
+          <Link to="/searchpage" style={{ textDecoration: 'none', color: 'black' }}>
+            <h1 className="headerStyle">Search</h1>
+          </Link>
         </div>
         <div className="hoverStyle">
-          <h1 className="headerStyle">My Reviews</h1>
+          <Link to="/MyReviews" style={{ textDecoration: 'none', color: 'black' }}>
+            <h1 className="headerStyle">My Reviews</h1>
+          </Link>
         </div>
         <div className="hoverStyle">
-          <h1 className="headerStyle">Billing</h1>
+          <Link to="/UserPage/Billing" style={{ textDecoration: 'none', color: 'black' }}>
+            <h1 className="headerStyle">Billing</h1>
+          </Link>
         </div>
         <div className="hoverStyle">
-          <h1 className="headerStyle">Settings</h1>
+          <Link to="/UserPage/Settings" style={{ textDecoration: 'none', color: 'black' }}>
+            <h1 className="headerStyle">Settings</h1>
+          </Link>
         </div>
       </nav>
     );
