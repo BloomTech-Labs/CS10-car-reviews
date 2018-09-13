@@ -25,10 +25,10 @@ router.post('/', checkIfCar, (req, res) => {
         ReviewModel.create({ user, content, score, car })
         .then(newReview => {  // adds review id to the user document of the author
             const id  = newReview.user;
-            return UserModel.findOneAndUpdate(id, { "$push": { reviews: newReview._id }}, {new: true})
+            return UserModel.findByIdAndUpdate(id, { "$push": { reviews: newReview._id }}, {new: true})
         }) 
         .then(updatedUser => {
-            return CarModel.findOneAndUpdate(req.carID, { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1] }}, {new: true})
+            return CarModel.findByIdAndUpdate(req.carID, { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1] }}, {new: true})
         })
         .then(updatedCar => {
             res.json(updatedCar);
