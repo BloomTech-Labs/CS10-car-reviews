@@ -136,6 +136,16 @@ No parameters expected
 - returns the entire user record
 - populates the reviews relational data for the record
 
+##### POST to '/api/reviews'
+- adds new review to 'reviews' collection
+- populates relavent fields in 'users' and 'cars' collection
+- returns a JSON response TBD by front-end needs
+
+##### GET to '/api/reviews/:id'
+- expects id variable consistent with the id of a user stored in the MongoDB user collection
+- returns all reviews of the given user as a JSON response
+- for each review: returns the make and model of the car, the review, and the year
+
 ## Testing: COMPLETED
 - All testing is run through Mocha and Chai
 
