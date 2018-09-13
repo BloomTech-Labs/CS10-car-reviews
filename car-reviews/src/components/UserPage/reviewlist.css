@@ -11,7 +11,7 @@
   height: 90vh;
 }
 
-button {
+.plusButton {
   width: 45px;
   height: 45px;
   border-radius: 25px;

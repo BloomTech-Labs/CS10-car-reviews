@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 're
 import placeholder from '../../logo.svg';
 import data from '../../data';
 
-// This component is the review modal. Currently it is a placeholder, 
+// This component is the review modal. Currently it is a placeholder,
 
 class ModalExample extends Component {
   constructor(props) {
@@ -28,20 +28,20 @@ class ModalExample extends Component {
         <div className="modal-button">
           {this.state.reviews.map(review => {
             return (
-              <Button onClick={this.toggle} className="main-card" key={review.username}>
-                  <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                  <p>Star Rating</p> 
-                  <p>{`${review.year} ${review.make} ${review.model}`}</p>
-                  <p>{review.edition}</p>
-                  <CardText className="cardText">{`Updated ${review.updated_on}`}</CardText>
+              <Button onClick={this.toggle} className={this.props.className} key={review.username}>
+                <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+                <p>Star Rating</p>
+                <p>{`${review.year} ${review.make} ${review.model}`}</p>
+                <p>{review.edition}</p>
+                <CardText className="cardText">{`Updated ${review.updated_on}`}</CardText>
               </Button>
-            )
+            );
           })}
         </div>
         <div>
           {this.state.reviews.map(review => {
             return (
-              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} key={review.username}>
+              <Modal isOpen={this.state.modal} toggle={this.toggle} key={review.username}>
                 <ModalHeader toggle={this.toggle}>
                   <h2>{`${review.year} ${review.make} ${review.model} ${review.edition}`}</h2>
                   <h5>{`Review by: ${review.username}`}</h5>
@@ -52,10 +52,10 @@ class ModalExample extends Component {
                 </ModalBody>
                 <ModalFooter>
                   <p>{review.title}</p>
-                  <p>{review.content}</p>                 
-                  </ModalFooter>
+                  <p>{review.content}</p>
+                </ModalFooter>
               </Modal>
-            )
+            );
           })}
         </div>
       </div>

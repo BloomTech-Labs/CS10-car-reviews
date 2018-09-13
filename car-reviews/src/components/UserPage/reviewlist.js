@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
 import data from '../../data.js';
-import ReviewModal from'../Modals/reviewmodal';
+import ReviewModal from '../Modals/reviewmodal';
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
+import NewReviewModal from '../Modals/newreview';
 
 class ReviewList extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class ReviewList extends Component {
       <div className="fullScreenReview">
         <div>
           <h4>Add a new review</h4>
-          <button>+</button>
+          <NewReviewModal className={'plusButton'} buttonLabel={'+'} />
         </div>
       </div>
     );
@@ -37,10 +38,10 @@ class ReviewList extends Component {
             </Card>
           );
         })} */}
-        <ReviewModal />
+        <ReviewModal className={'review'} />
         <div className="reviewSpecial">
           <h4>New review</h4>
-          <button>+</button>
+          <NewReviewModal className={'plusButton'} buttonLabel={'+'} />
         </div>
       </div>
     );
