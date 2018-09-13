@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
 import data from '../../data.js';
+import ReviewModal from'../Modals/reviewmodal';
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 
 class ReviewList extends Component {
@@ -23,7 +24,7 @@ class ReviewList extends Component {
 
     const reviewListCards = (
       <div className="reviewCardContainer">
-        {this.state.reviews.map(review => {
+        {/* {this.state.reviews.map(review => {
           return (
             <Card key={review.username} className="review">
               <CardBody>
@@ -35,7 +36,8 @@ class ReviewList extends Component {
               </CardBody>
             </Card>
           );
-        })}
+        })} */}
+        <ReviewModal />
         <div className="reviewSpecial">
           <h4>New review</h4>
           <button className="plusButton">+</button>

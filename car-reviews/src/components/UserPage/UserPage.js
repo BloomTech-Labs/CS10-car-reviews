@@ -4,7 +4,7 @@ import Billing from './billing';
 import Header from './header';
 import LeftNavBar from './leftnavbar';
 import UserSettings from './usersettings';
-import ReviewModal from './reviewmodal';
+import ReviewModal from '../Modals/reviewmodal';
 
 
 class UserPage extends Component {
