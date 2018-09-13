@@ -23,7 +23,7 @@ mongoose.set('useCreateIndex', true); // collection.ensureIndex is also deprecat
 
 
 // connecting to the database
-mongoose.connect('mongodb://localhost:27017/store', databaseOptions);
+mongoose.connect('process.env.MONGO_URI', databaseOptions);
 mongoose.connection
     .once('open', () => console.log(`The database is connected`))
     .on('error', (err) => console.warn(err));

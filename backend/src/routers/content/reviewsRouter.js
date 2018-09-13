@@ -9,12 +9,14 @@ const CarModel = require('../../models/CarModel');
 // intializing the router
 const router = express.Router();
 const checkIfCar = require('../routing_middleware/checkIfCar');
+const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware');
 
 // adding the routes
 router.get('/', (req, res) => res.send(`The reviews router is working!`)); // test router
 
-router.post('/', checkIfCar, (req, res) => {
-    const { user, content, score, year, make, model, edition } = req.body;
+router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
+    const { content, score, year, make, model, edition } = req.body;
+    const user = req._id;
     let carID;
     if (!user || !content || !score) {
         res.status(400).json({ errorMessage: "Please provide user, review, and score." })
