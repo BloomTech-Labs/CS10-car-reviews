@@ -16,7 +16,7 @@ class ReviewList extends Component {
       <div className="fullScreenReview">
         <div>
           <h4>Add a new review</h4>
-          <button>+</button>
+          <button className="plusButton">+</button>
         </div>
       </div>
     );
@@ -38,7 +38,7 @@ class ReviewList extends Component {
         })}
         <div className="reviewSpecial">
           <h4>New review</h4>
-          <button>+</button>
+          <button className="plusButton">+</button>
         </div>
       </div>
     );
