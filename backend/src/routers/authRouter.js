@@ -21,17 +21,17 @@ router.get('/', (req, res) => res.send('The auth router is working!')); // test 
 // route registers a user
 // * TODO: Need to check that email is in the correct format
 // ** OPTIONAL: Externalize the form checking with a custom middleware
-// ** OPTIONAL: Modify the payload to hold more/other data
 router.post('/register', (req, res) => { // route that handles registering a user
     const { fullname, username, email, password, testEntry } = req.body;
     const newUser = new UserModel({ fullname, username, email, password, testEntry });
+    const { _id } = newUser;
     
     // the UserModel has a pre-save hook on it that hashes the password with Bcrypt
     newUser.save(err => {
         if (err) return res.status(500).json({ registerError: `An account with those credentials already exists, please sign in.` });
         
         // NOTE: JWTs are signed with the fullname, username, and email as the payload
-        JWT.sign({ fullname, username, email }, JWT_SECRET, (err, token) => {
+        JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, token) => {
             if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
             res.status(200).json({ JWT: token });
         })
@@ -47,12 +47,12 @@ router.post('/login', (req, res) => {
 
     UserModel.findOne({ email: credentials.email })
         .then(userRecord => {
-            const { fullname, username, email } = userRecord;
+            const { fullname, username, email, _id } = userRecord;
             if (!userRecord) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
             
             // ** OPTIONAL: Add a password reset feature
             if (bcrypt.compareSync(credentials.password, userRecord.password)){
-                JWT.sign({ fullname, username, email }, JWT_SECRET, (err, decoded) => {
+                JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, decoded) => {
                     if (err) return res.status(500).json({ loginError: `There was an error when trying to generate a JWT for the user--please try again.` });
                     res.status(200).json({ JWT: decoded });
                 });
