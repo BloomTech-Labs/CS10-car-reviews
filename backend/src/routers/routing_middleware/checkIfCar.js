@@ -5,7 +5,6 @@ const checkIfCar = (req, res, next) => {
     CarModel.findOne({year: year, make: make, model: model, edition: edition})
         .then(car => {
             if (car != null) {
-                console.log(car);
                 req.carID = car._id;
                 next();
             } else {
