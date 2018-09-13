@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import './mainpage.css';
+import SearchBar from './searchbar';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown} from 'reactstrap';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
@@ -27,6 +28,7 @@ class SearchResults extends Component {
     render() { 
         return (
             <div>
+                <SearchBar />
                 <div className="filter-row">
                     <div className="filters"> 
                         <h5>Filter by:</h5>

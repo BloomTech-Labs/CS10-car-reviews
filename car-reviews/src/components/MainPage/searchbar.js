@@ -26,8 +26,14 @@ export default class Searchbar extends React.Component {
     return (
         <div className="searchbar">
             <div className="login">
+            <Link to= {
+                {
+                    pathname: "/login"
+                }
+            }>
                 <Button className="signup">Sign Up</Button>
                 <Button className="signin">Sign In</Button>
+            </Link>
             </div>
             <div className="searchfields">
                 <UncontrolledDropdown className="dropdowns">
