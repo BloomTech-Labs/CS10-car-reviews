@@ -102,20 +102,20 @@ export default class Searchbar extends React.Component {
                 </UncontrolledDropdown>
             </div>
             <div className="review-and-search">
-            <Link to= {
-                {
-                    pathname: "/"
-                }
-            }>
+                <Link to= {
+                    {
+                        pathname: './'
+                    }
+                }>
                 <Button className="review">Review</Button>
-            </Link>
-            <Link to= {
-                {
-                    pathname: "/search"
-                }
-            }>
+                </Link>
+                <Link to= {
+                    {
+                        pathname: './SearchPage'
+                    }
+                }>
                 <Button className="search">Search</Button>
-            </Link>
+                </Link>
             </div>
         </div>
     );

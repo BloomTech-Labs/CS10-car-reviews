@@ -41,11 +41,6 @@ describe('Testing relational data', () => {
             .then(() => done())
     })
 
-    afterEach(done => {
-        Promise.all([ newUser.remove(), newReview.remove(), newCar.remove() ])
-            .then(() => done());
-    })
-
     // tests that you can access all of the records created above via query with .populate
     it(`Tests that deeply nested data can be created and accessed`, (done) => {
         UserModel.findOne({ username: 'user4' })
