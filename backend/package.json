@@ -6,8 +6,7 @@
   "scripts": {
     "test_db": "nodemon --exec 'mocha src/tests/model_tests/'",
     "test_routing": "nodemon --exec 'mocha src/tests/routing_tests/'",
-    "start": "nodemon src/server",
-    "postinstall": "cd backend && yarn install"
+    "start": "nodemon src/server"
   },
   "repository": {
     "type": "git",
