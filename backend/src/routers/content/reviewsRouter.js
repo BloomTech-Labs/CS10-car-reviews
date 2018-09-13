@@ -1,7 +1,5 @@
 // NOTE: This router handles requests related to reviews
 
-const checkIfCar = require('../routing_middleware/verifyJWTMiddleware');
-
 // importing dependencies
 const express = require('express');
 const ReviewModel = require('../../models/ReviewModel');
@@ -10,51 +8,64 @@ const CarModel = require('../../models/CarModel');
 
 // intializing the router
 const router = express.Router();
-
+const checkIfCar = require('../routing_middleware/checkIfCar');
 
 // adding the routes
 router.get('/', (req, res) => res.send(`The reviews router is working!`)); // test router
 
 router.post('/', checkIfCar, (req, res) => {
     const { user, content, score, year, make, model, edition } = req.body;
-    const { userId } = req.body.user;
-    const { car } = req.carID
+    //console.log(req.carID);
     if (!user || !content || !score) {
         res.status(400).json({ errorMessage: "Please provide user, review, and score." })
         return;
     }
-    if (car) {
-        ReviewModel.create(user, content, score, car)
+    if (req.carID != null) {
+        const car = req.carID;
+        //console.log(car);
+        ReviewModel.create({ user, content, score, car })
         .then(result => {
-             res.status(201).json(result);
-             newReviewID = result._id;
+             //console.log(result, 'line28');
              return result;
         })
-        .then(newReviewID => {  // adds review id to the user document of the author
-            UserModel.findOneAndUpdate(userId, { "$push": { reviews: newReviewID }})
+        .then(newReview => {  // adds review id to the user document of the author
+            //console.log(newReview, 'line33');
+            const id  = newReview.user;
+            //console.log(id);
+            return UserModel.findByIdAndUpdate(id, { "$push": { reviews: newReview._id }}, {new: true})
         }) 
-        .then(car => {
-            CarModel.findOneAndUpdate(carID, { "$push": { reviews: car }})
+        .then(foo => {
+            //res.status(201).json(result);
+            //console.log(result, 'line38');
+            return foo;
+        })
+        .then(bar => {
+            //console.log(bar);
+            return CarModel.findOneAndUpdate(req.carID, { "$push": { reviews: bar.reviews[bar.reviews.length - 1] }}, {new: true})
+        })
+        .then(yes => {
+            res.json(yes);
         })
         .catch(err => res.status(500).json({ error: err.message }))
-    } else {
-        CarModel.create(year, make, model, edition)
-        .then(newCar => {
-            car = newCar._id;
-            return newCar;
-        })
-        .then(car => {
-            ReviewModel.create(user, content, score, car)
-        })
-        .then(result => {
-             res.status(201).json(result);
-             newReviewID = result._id;
-             return result;
-        })
-        .then(newReviewID => {  // adds review id to the user document of the author
-            UserModel.findOneAndUpdate(userId, { "$push": { reviews: newReviewID }})
-        }) 
-        .catch(err => res.status(500).json({ error: err.message }))
+} else {
+        // CarModel.create({ year, make, model, edition })
+        // .then(newCar => {
+        //     car = newCar._id;
+        //     return newCar;
+        // })
+        // .then(car => {
+        //     ReviewModel.create({ user, content, score, car })
+        // })
+        // .then(result => {
+        //      res.status(201).json(result);
+        //      newReviewID = result._id;
+        //      return result;
+        // })
+        // .then(newReviewID => {  // adds review id to the user document of the author
+        //     UserModel.findOneAndUpdate(userId, { "$push": { reviews: newReviewID }})
+        // }) 
+        // .catch(err => res.status(500).json({ error: err.message }))
+        console.log('fuck');
     } 
 });
 
