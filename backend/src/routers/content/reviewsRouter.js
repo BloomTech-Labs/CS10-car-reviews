@@ -14,7 +14,7 @@ const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware')
 // adding the routes
 router.get('/', (req, res) => res.send(`The reviews router is working!`)); // test router
 
-//TODO: implement averageScore in cars model to update when new review is created. 
+//TODO: implement averageScore in cars model to update when new review is created. DONE
 
 router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
     const { content, score, year, make, model, edition } = req.body;
@@ -72,15 +72,24 @@ router.get('/', verifyJWTMiddleware, (req, res) => {
         .catch(err => res.status(500).json({ error: err.message }));
 });
 
-// route for editing an individual review:
+// route for editing and getting an individual review:
 
-router.put('/:id', verifyJWTMiddleware, (req, res) => {
-    const { id } = req.params;
-    const { content, score } = req.body;
-    ReviewModel.findByIdAndUpdate(id, { content, score })
-        .then(reviews => res.status(200).json(reviews))
-        .catch(err => res.status(500).json({ error: err.message }));
-})
+router
+    .route('/:id', verifyJWTMiddleware)
+        .put((req, res) => {
+            const { id } = req.params;
+            const { content, score } = req.body;
+            ReviewModel.findByIdAndUpdate(id, { content, score })
+                .then(reviews => res.status(200).json(reviews))
+                .catch(err => res.status(500).json({ error: err.message }));
+        })
+        .get((req, res) => {
+            const { id } = req.params;
+            ReviewModel.findById(id)
+            .then(review => res.json(review))
+            .catch(err => res.status(500).json({ error: err.message }));
+        });
+
 
 // search router:
 router.get('/search', (req, res) => {
