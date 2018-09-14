@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import {
     Col,
-    Form,
-    Input,
     Label,
-    FormGroup,
     Button,
-    Container,
-    Row,
 } from 'reactstrap'; 
 import './LoginRegister.css';
 
@@ -31,9 +27,29 @@ class Login extends Component {
         this.setState(newState);
     }
 
-    handleSubmitForm = (formType) => {
-        // * TODO: Submit form with axios
-        console.log(formType);
+    handleSubmitForm = (formType) => (event) => {
+        // * TODO: Add a redirect here
+        console.log('running!');
+        event.preventDefault();
+        const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
+        const userForm = Object.assign({}, this.state[formType]);
+        axios.post(requestURL, userForm)
+            .then(response => {
+                localStorage.setItem('jwt', response.data.JWT);
+                this.setState({
+                    login: {
+                        email: '',
+                        password: ''
+                    },
+                    register: {
+                        fullname: '',
+                        username: '',
+                        email: '',
+                        password: ''
+                    }
+                })
+            })
+            .catch(err => console.warn(err));
     }
 
     render(){
@@ -41,7 +57,7 @@ class Login extends Component {
             <div className="login-container">
                 {/* Left pane: Login */}
                     <Col sm="6">
-                        <form onSubmit={this.handleSubmitForm}>
+                        <form onSubmit={this.handleSubmitForm('login')}>
                         <Label>Login Please!</Label>
                             <input 
                                 value={this.state.login.email} 
@@ -50,11 +66,12 @@ class Login extends Component {
                             />
                             <input 
                                 // * NOTE: Hide characters
+                                type='password'
                                 value={this.state.login.password} 
                                 placeholder='Enter your password...' 
                                 onChange={this.handleUpdateForms('login', 'password')}   
                             />
-                            <Button color ="primary" onClick={() => {this.handleSubmitForm('login')}}>Login</Button>
+                            <Button type='submit' color ="primary">Login</Button>
                         </form>
                     </Col>
                
@@ -64,7 +81,7 @@ class Login extends Component {
                 <Col sm="6">
                     {/* Right pane: Login */}
                     { /* * TODO: Add logic to hide register fields until a button is clicked */}
-                    <form onSubmit={this.handleSubmitForm}>
+                    <form onSubmit={this.handleSubmitForm('register')}>
                     <Label>Register if you do not have an account yet!</Label>
                         <input 
                             value={this.state.register.fullname} 
@@ -85,10 +102,11 @@ class Login extends Component {
                         <input 
                             // * NOTE: Hide characters
                             value={this.state.register.password} 
+                            type='password'
                             placeholder='Enter your password...' 
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
-                         <Button color ="primary" onClick={() => {this.handleSubmitForm('register')}}>Register</Button>
+                         <Button color ="primary">Register</Button>
                     </form>
                 </Col>
                 
