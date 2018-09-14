@@ -6,7 +6,8 @@
   "scripts": {
     "test_db": "nodemon --exec 'mocha src/tests/model_tests/'",
     "test_routing": "nodemon --exec 'mocha src/tests/routing_tests/'",
-    "start": "nodemon src/server"
+    "start": "nodemon src/server",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "repository": {
     "type": "git",
