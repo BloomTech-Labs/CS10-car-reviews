@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './reviewlist.css';
 import data from '../../data.js';
 import ReviewModal from '../Modals/reviewmodal';
-import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 import NewReviewModal from '../Modals/newreview';
 
 class ReviewList extends Component {
@@ -25,19 +24,6 @@ class ReviewList extends Component {
 
     const reviewListCards = (
       <div className="reviewCardContainer">
-        {/* {this.state.reviews.map(review => {
-          return (
-            <Card key={review.username} className="review">
-              <CardBody>
-                <CardTitle className="cardTitle">
-                  <p>{`${review.year} ${review.make} ${review.model}`}</p>
-                  <p>{review.edition}</p>
-                </CardTitle>
-                <CardText className="cardText">{`Updated ${review.updated_on}`}</CardText>
-              </CardBody>
-            </Card>
-          );
-        })} */}
         <ReviewModal className={'review'} />
         <div className="reviewSpecial">
           <h4>New review</h4>
