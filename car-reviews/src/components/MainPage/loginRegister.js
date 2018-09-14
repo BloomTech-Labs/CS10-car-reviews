@@ -66,6 +66,7 @@ class Login extends Component {
                             />
                             <input 
                                 // * NOTE: Hide characters
+                                type='password'
                                 value={this.state.login.password} 
                                 placeholder='Enter your password...' 
                                 onChange={this.handleUpdateForms('login', 'password')}   
@@ -101,6 +102,7 @@ class Login extends Component {
                         <input 
                             // * NOTE: Hide characters
                             value={this.state.register.password} 
+                            type='password'
                             placeholder='Enter your password...' 
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
