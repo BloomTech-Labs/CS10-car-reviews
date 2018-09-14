@@ -32,14 +32,14 @@ router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
             return UserModel.findByIdAndUpdate(id, { "$push": { reviews: newReview._id }}, {new: true})
         }) 
         .then(updatedUser => {
-            return CarModel.findByIdAndUpdate(req.carID, { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1] }}, {new: true})
+            return CarModel.findByIdAndUpdate(req.carID, { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1] }, averageScore: req.avgScore}, {new: true})
         })
         .then(updatedCar => {
             res.json(updatedCar);
         })
         .catch(err => res.status(500).json({ error: err.message }))
     } else {
-        CarModel.create({ year, make, model, edition })
+        CarModel.create({ year, make, model, edition, averageScore: score })
         .then(newCar => {
             const car = newCar._id;
             carID = newCar._id;
