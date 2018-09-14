@@ -1,6 +1,7 @@
 // importing dependencies
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 
@@ -31,7 +32,7 @@ mongoose.connection
 
 // setting up middleware
 server.use(express.json());
-
+server.use(cors());
 
 // test route
 server.get('/', (req, res) => res.send(`The server is up and running!`));
