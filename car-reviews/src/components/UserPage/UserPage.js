@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Elements, StripeProvider} from 'react-stripe-elements';
 import Billing from './billing';
 import Header from './header';
 import LeftNavBar from './leftnavbar';
@@ -19,9 +18,6 @@ class UserPage extends Component {
 
                 <Header/>
                 <LeftNavBar/>
-                <div>
-                    {this.props}
-                </div>
                 <ReviewModal />
 
             </div>

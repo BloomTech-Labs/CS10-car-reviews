@@ -19,10 +19,10 @@ class App extends Component {
         <Route exact path='/' component = {MainPage}/> 
         <Route path='/searchpage' component = {SearchResults}/>
         <Route path='/UserPage' component = {UserPage}/>
-        <Route path='/UserPage/Billing'/>
+        <Route path='/Billing' component = {Billing}/>
         {/* I removed /UserPage before /MyReviews because something is bugged in UserPage in this build */}
         <Route path='/MyReviews' component = {MyReviews}/>
-        <Route path='/UserPage/Settings'/>
+        <Route path='/Settings'/>
         <Route path='/Login' component = {Login}/>
       </Switch>  
       </div> 
