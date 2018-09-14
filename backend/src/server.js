@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const cors = require('cors');
 
 // importing routers
 const authRouter = require('./routers/authRouter');
@@ -31,7 +31,7 @@ mongoose.connection
 
 // setting up middleware
 server.use(express.json());
-
+server.use(cors());
 
 // test route
 server.get('/', (req, res) => res.send(`The server is up and running!`));
