@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios'
 import {
     Col,
@@ -6,7 +6,7 @@ import {
     Button,
 } from 'reactstrap'; 
 import './LoginRegister.css';
-
+import {Redirect} from 'react-router-dom';
 class Login extends Component {
     state = {
         login: {
@@ -18,15 +18,16 @@ class Login extends Component {
             username: '',
             email: '',
             password: ''
+        },
+        redirect: {
+            status:false
         }
     }
-
     handleUpdateForms = (type, field) => (event) => {
         const newState = Object.assign({}, this.state);
         newState[type][field] = event.target.value;
         this.setState(newState);
     }
-
     handleSubmitForm = (formType) => (event) => {
         // * TODO: Add a redirect here
         console.log('running!');
@@ -46,17 +47,20 @@ class Login extends Component {
                         username: '',
                         email: '',
                         password: ''
+                    },
+                    redirect: {
+                        status:true
                     }
                 })
             })
             .catch(err => console.warn(err));
     }
-
-    render(){
-        return(
-            <div className="login-container">
-                {/* Left pane: Login */}
-                    <Col sm="6">
+    handleRedirect =() => {
+        if(this.state.redirect.status){
+          return  <Redirect to='/'  />
+        } else {
+           return <div className="login-container">
+            <Col sm="6">
                         <form onSubmit={this.handleSubmitForm('login')}>
                         <Label>Login Please!</Label>
                             <input 
@@ -109,10 +113,16 @@ class Login extends Component {
                          <Button color ="primary">Register</Button>
                     </form>
                 </Col>
-                
-            </div>
+                </div>
+        }
+        
+    }
+    render(){
+        return(
+            <Fragment>
+               {this.handleRedirect()} 
+            </Fragment>
         )
     }
 }
-
-export default Login;
+export default Login; 
