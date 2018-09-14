@@ -17,12 +17,12 @@ class LeftNavBar extends Component {
           </Link>
         </div>
         <div className="hoverStyle">
-          <Link to="/UserPage/Billing" style={{ textDecoration: 'none', color: 'black' }}>
+          <Link to="/Billing" style={{ textDecoration: 'none', color: 'black' }}>
             <h1 className="headerStyle">Billing</h1>
           </Link>
         </div>
         <div className="hoverStyle">
-          <Link to="/UserPage/Settings" style={{ textDecoration: 'none', color: 'black' }}>
+          <Link to="/Settings" style={{ textDecoration: 'none', color: 'black' }}>
             <h1 className="headerStyle">Settings</h1>
           </Link>
         </div>
