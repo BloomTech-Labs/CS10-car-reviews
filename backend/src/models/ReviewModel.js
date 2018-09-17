@@ -30,6 +30,9 @@ const ReviewSchema = new Schema({
         type: Date,
         default: Date.now()
     },
+    updatedOn: {
+        type: Date
+    },
     testEntry: {
         type: Boolean,
         default: false

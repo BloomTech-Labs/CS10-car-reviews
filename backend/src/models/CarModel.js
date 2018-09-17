@@ -20,7 +20,7 @@ const CarModel = mongoose.Schema({
     },
     averageScore: {
         type: Number,
-        default: 0, 
+        required: true, 
         index: true
     },
     testEntry: {
