@@ -10,13 +10,19 @@
 
 # Styles
 ![Image of Color Scheme](http://blog.visme.co/wp-content/uploads/2016/09/website42-1024x512.jpg)
+After doing research, we decided to use the color scheme above because the standard Blue, Gray, and White scheme is a standard that works. This particular comination of colors is useful for what is called 'flat-design', meaning very minimal and subtle 3D effects. 
 
 * Color Scheme:
     - #77A6F7 - light blue
-    - #D3E3FC - light blue/gray
+        - This, in combination with white, will be our 'dominant color', used for backgrounds of the search bar, nav bar, and other backgrounds. Blue evokes trust, security, and calmness, which are feelings we want our Users to feel when reading reviews.
     - #FFFFFF - white
-    - #FFCCBC - beige/salmon
+        - White will be our other 'dominant color', being the default background for the majority of the app.
+    - #D3E3FC - light blue/gray
+        - This color should be used for Modal Buttons, and perhaps borders as well. This complements both Blue and White.
     - #00887A- turquoise
+        - This color will be our main go-to for Buttons and Components that need to "pop" or have attention drawn to it without standing out in 'loud' way. 
+    - #FFCCBC - beige/salmon
+        - This color will be used for components that need to standout, but need to be differentiated from turquoise. This color should be used sparingly. 
 
 * Fonts:
     - Julius Sans One - headers
