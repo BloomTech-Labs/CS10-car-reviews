@@ -29,7 +29,11 @@ const UserModel = mongoose.Schema({
       type: Boolean,
       default: false
     },
-    reviews: [{ type: ObjectId, ref: 'ReviewModel' }]
+    reviews: [{ type: ObjectId, ref: 'ReviewModel' }],
+    paid: {
+      type: Boolean,
+      default: false
+    }
 });
 
 // before being saved, a instance of the UserModel will automatically have it's password hashed via bcrypt
