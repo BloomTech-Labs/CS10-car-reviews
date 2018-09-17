@@ -75,7 +75,7 @@ router.get('/', verifyJWTMiddleware, (req, res) => {
         .populate({
             path: 'car', 
             model: 'cars',
-            select: 'make model year edition -_id'
+            select: 'make model year edition averageScore -_id'
         })
         .then(reviews => res.status(200).json(reviews))
         .catch(err => res.status(500).json({ error: err.message }));
