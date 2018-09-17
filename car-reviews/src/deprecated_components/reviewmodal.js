@@ -1,9 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
 import data from '../../data';
-import ContentCard from '../MainPage/ContentCard';
-import "./ReviewModal.css";
 
 // This component is the review modal. Currently it is a placeholder,
 
@@ -26,15 +24,18 @@ class ModalExample extends Component {
 
   render() {
     return (
-      <div className='reviewModal'>
-        <div className="cardContainer">
+      <div>
+        <div className="modal-button">
           {this.state.reviews.map(review => {
             return (
-              <div onClick={this.toggle}>
-                <ContentCard 
-                  content={review} 
-                  cardType='featured_review'
-                />
+              <div>
+                <Button onClick={this.toggle} className={this.props.className} key={review.username}>
+                <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+                <p>Star Rating</p>
+                <p>{`${review.year} ${review.make} ${review.model}`}</p>
+                <p>{review.edition}</p>
+                <CardText className="cardText">{`Updated ${review.updated_on}`}</CardText>
+              </Button>
               </div>
             );
           })}
