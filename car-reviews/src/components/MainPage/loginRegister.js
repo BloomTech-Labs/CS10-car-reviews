@@ -6,8 +6,11 @@ import {
     Button,
 } from 'reactstrap'; 
 import './LoginRegister.css';
-import {Redirect} from 'react-router-dom';
-class Login extends Component {
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { changeLoginStatus } from '../../redux/actions/actionCreators';
+
+class LoginRegister extends Component {
     state = {
         login: {
             email: '',
@@ -30,13 +33,16 @@ class Login extends Component {
     }
     handleSubmitForm = (formType) => (event) => {
         // * TODO: Add a redirect here
-        console.log('running!');
         event.preventDefault();
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
+        const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
-        axios.post(requestURL, userForm)
+        axios.post(localRequests, userForm)
             .then(response => {
+                // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
                 localStorage.setItem('jwt', response.data.JWT);
+                // here the login status of the user is changed to 'true' when the login/register is successful
+                this.props.changeLoginStatus();
                 this.setState({
                     login: {
                         email: '',
@@ -125,4 +131,5 @@ class Login extends Component {
         )
     }
 }
-export default Login; 
+
+export default connect(null, { changeLoginStatus })(LoginRegister);
