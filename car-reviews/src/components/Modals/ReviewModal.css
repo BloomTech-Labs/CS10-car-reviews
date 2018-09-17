@@ -1,9 +1,6 @@
-.reviewModal{
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-
-.cardContainer {
+.cardsContainer {
     display: flex;
     justify-content: space-around;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }

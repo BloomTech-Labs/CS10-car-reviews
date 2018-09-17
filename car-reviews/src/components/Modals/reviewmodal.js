@@ -12,7 +12,7 @@ class ModalExample extends Component {
     super(props);
     this.state = {
       modal: false,
-      reviews: data
+      reviews: data.reviews
     };
 
     this.toggle = this.toggle.bind(this);
@@ -27,7 +27,7 @@ class ModalExample extends Component {
   render() {
     return (
       <div className='reviewModal'>
-        <div className="cardContainer">
+        <div className="cardsContainer">
           {this.state.reviews.map(review => {
             return (
               <div onClick={this.toggle}>

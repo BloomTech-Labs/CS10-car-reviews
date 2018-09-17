@@ -14,7 +14,7 @@ import {
 // * TODO: Add the actual star rating
 // * TODO: Distinguish between clicking to view the review vs clicking to view the reviewer. All clicks open the review modal at present
 const ContentCard = ({ content, cardType }) => {
-    console.log(content);
+    console.log(cardType);
     return(
         <Card className='contentCard'>
             <CardImg 
@@ -25,10 +25,10 @@ const ContentCard = ({ content, cardType }) => {
             />
             <CardBody>
                 { /* here the cardType determines what is conditionally rendered */ }
-                { cardType === 'featured_review' || 'popular_car' ?  <CardTitle>star rating</CardTitle> : <Fragment /> }
-                { cardType === 'featured_review' || 'popular_car' ?  <CardTitle>car model</CardTitle> : <Fragment /> }
-                { cardType === 'featured_review' || 'popular_car' ?  <CardText>car edition</CardText> : <Fragment /> }
-                { cardType === 'featured_review' || 'reviewer' ?  <CardText>reviewer username</CardText> : <Fragment /> }
+                { cardType !==  'reviewer' ?  <CardTitle>star rating</CardTitle> : <Fragment /> }
+                { cardType !==  'reviewer' ?  <CardTitle>{`${content.year} ${content.make} ${content.model}`}</CardTitle> : <Fragment /> }
+                { cardType !==  'reviewer' ?  <CardText>{content.edition}</CardText> : <Fragment /> }
+                { cardType === 'featured_review' || 'reviewer' ?  <CardText>{content.username}</CardText> : <Fragment /> }
             </CardBody>
         </Card>
     )
