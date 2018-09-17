@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios'
 import {
     Col,
@@ -6,8 +6,11 @@ import {
     Button,
 } from 'reactstrap'; 
 import './LoginRegister.css';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { changeLoginStatus } from '../../redux/actions/actionCreators';
 
-class Login extends Component {
+class LoginRegister extends Component {
     state = {
         login: {
             email: '',
@@ -18,24 +21,28 @@ class Login extends Component {
             username: '',
             email: '',
             password: ''
+        },
+        redirect: {
+            status:false
         }
     }
-
     handleUpdateForms = (type, field) => (event) => {
         const newState = Object.assign({}, this.state);
         newState[type][field] = event.target.value;
         this.setState(newState);
     }
-
     handleSubmitForm = (formType) => (event) => {
         // * TODO: Add a redirect here
-        console.log('running!');
         event.preventDefault();
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
+        const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
-        axios.post(requestURL, userForm)
+        axios.post(localRequests, userForm)
             .then(response => {
+                // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
                 localStorage.setItem('jwt', response.data.JWT);
+                // here the login status of the user is changed to 'true' when the login/register is successful
+                this.props.changeLoginStatus();
                 this.setState({
                     login: {
                         email: '',
@@ -46,17 +53,20 @@ class Login extends Component {
                         username: '',
                         email: '',
                         password: ''
+                    },
+                    redirect: {
+                        status:true
                     }
                 })
             })
             .catch(err => console.warn(err));
     }
-
-    render(){
-        return(
-            <div className="login-container">
-                {/* Left pane: Login */}
-                    <Col sm="6">
+    handleRedirect =() => {
+        if(this.state.redirect.status){
+          return  <Redirect to='/'  />
+        } else {
+           return <div className="login-container">
+            <Col sm="6">
                         <form onSubmit={this.handleSubmitForm('login')}>
                         <Label>Login Please!</Label>
                             <input 
@@ -109,10 +119,17 @@ class Login extends Component {
                          <Button color ="primary">Register</Button>
                     </form>
                 </Col>
-                
-            </div>
+                </div>
+        }
+        
+    }
+    render(){
+        return(
+            <Fragment>
+               {this.handleRedirect()} 
+            </Fragment>
         )
     }
 }
 
-export default Login;
+export default connect(null, { changeLoginStatus })(LoginRegister);
