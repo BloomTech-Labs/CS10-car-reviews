@@ -34,6 +34,19 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
         })
 });
 
+//route to change user status to paid or unpaid: (and other user data as needed)
+router.put('/data', verifyJWTMiddleware, (req, res) => {
+    const { email } = req;
+    const { paid } = req.body;
+    UserModel.findOneAndUpdate({ email }, { paid }, {new: true})
+        .then(record => {
+            res.json(record);
+        })
+        .catch(err => {
+            res.send(500).json({ databaseError: "There was an error updating the user data, please try again" });
+        })
+});
+
 
 // exporting the router
 module.exports = router;
