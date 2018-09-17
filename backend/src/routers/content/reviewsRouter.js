@@ -88,7 +88,8 @@ router
         .put((req, res) => {
             const { id } = req.params;
             const { content, score } = req.body;
-            ReviewModel.findByIdAndUpdate(id, { content, score })
+            const updatedOn = Date.now();
+            ReviewModel.findByIdAndUpdate(id, { content, score, updatedOn })
                 .then(reviews => res.status(200).json(reviews))
                 .catch(err => res.status(500).json({ error: err.message }));
         })
