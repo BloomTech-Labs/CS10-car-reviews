@@ -39,7 +39,9 @@ class LoginRegister extends Component {
         const userForm = Object.assign({}, this.state[formType]);
         axios.post(localRequests, userForm)
             .then(response => {
+                // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
                 localStorage.setItem('jwt', response.data.JWT);
+                // here the login status of the user is changed to 'true' when the login/register is successful
                 this.props.changeLoginStatus();
                 this.setState({
                     login: {
