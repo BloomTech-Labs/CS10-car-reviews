@@ -33,6 +33,9 @@ const styles = {
 // A form component that will display the name and email of a logged in user and allow them to change them and/or their password. Renders within the Settings component.
 
 // * TODO: Add a confirmation that the user has had their password changed successfully
+// * TODO: Add a warning that the passwords don't match
+// * TODO: Add better form validation
+// * TODO: Add support for chaning other values
 class UserSettings extends Component {
   constructor(props) {
     super(props);
@@ -49,24 +52,26 @@ class UserSettings extends Component {
   }
 
   handleSubmit = (event) => {
-    const { password } = this.state;
+    event.preventDefault();
+    const { password, password2 } = this.state;
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
-    event.preventDefault();
     const localRequests = 'http://localhost:3001/api/users/data'
+    if (password2 !== password) return console.warn(`Passwords do not match`)
     axios.put(localRequests, { password }, config)
-      .then(res => console.log(res));
-    // axios.put('')
+      .then(res => console.log(res))
+      .catch(err => console.warn(err));
     this.setState({
       password: '',
       password2: ''
     })
   }
 
-  handleValidation = (event) => {
-    
-  }
+  // handleValidation = (event) => {
+  //   const { password, password2 } = this.state;
+  //   if (password2 !== password) console.warn(`Passwords do not match`)
+  // }
 
   render() {
     return (
