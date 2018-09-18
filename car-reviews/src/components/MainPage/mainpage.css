@@ -48,15 +48,23 @@
 
 .review-link {
     margin-right: 25px;
-    background-color: #00887A;
-    color: white;
+    border-style: none !important;
+    background-color: white;
+    color: #77A6F7;
     height: 50px;
-    border: none !important;
+}
+.review-link:hover {
+    background-color: #FFCCBC;
+    text-shadow: 1px 1px 5px #77A6F7;
 }
 .search {
-    background-color: #00887A;
-    color: white;
-    border: none !important;
+    border-style: none !important;
+    background-color: white;
+    color: #77A6F7;
+}
+.search:hover {
+    background-color: #FFCCBC;
+    text-shadow: 1px 1px 5px #77A6F7;
 }
 
 /* End of Search Bar Styles */

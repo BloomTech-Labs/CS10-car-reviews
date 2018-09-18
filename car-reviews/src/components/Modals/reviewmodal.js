@@ -29,13 +29,13 @@ class ModalExample extends Component {
         <div>
           {this.state.reviews.map(review => {
             return (
-              <button onClick={this.toggle} className="modal-button" key={review.username} >
+              <Button onClick={this.toggle} className="modal-button" key={review.username} >
                 <img src={placeholder} style={{ height: '60px', width: '60px' }} />
                 <p>Star Rating</p>
                 <p>{`${review.year} ${review.make} ${review.model}`}</p>
                 <p>{review.edition}</p>
                 <CardText className="cardText">{`Updated ${review.updated_on}`}</CardText>
-              </button>
+              </Button>
             );
           })}
         </div>
