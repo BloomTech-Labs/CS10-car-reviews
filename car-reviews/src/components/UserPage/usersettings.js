@@ -14,11 +14,11 @@ import './usersettings.css';
 const styles = {
   cardStyles: {
     width: "30%",
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    height: "28%",
+    marginTop: '10%'
   },
   inputStyles: {
-    width: '80%',
+    width: '60%',
     marginTop: 0,
   },
   labelStyles: {
@@ -27,6 +27,11 @@ const styles = {
   },
   inputGroupStyles: {
     marginBottom: "5%",
+  },
+  containerStyles: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '100%',
   }
 }
 
@@ -124,7 +129,7 @@ class UserSettings extends Component {
 
   render() {
     return (
-      <div className="userinfoContainer">
+      <div style={styles.containerStyles}>
         <Card style={styles.cardStyles}>
           <CardBody>
             <CardTitle>Change Your Password</CardTitle>
