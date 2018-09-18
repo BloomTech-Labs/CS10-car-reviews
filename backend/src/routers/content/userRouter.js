@@ -1,6 +1,9 @@
 // NOTE: This router handles requests related to the user's personal section
 // importing dependencies
 const express = require('express');
+const bcrypt = require('bcryptjs');
+const JWT = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
 
 // importing models
 const UserModel = require('../../models/UserModel');
@@ -10,6 +13,7 @@ const router = express.Router();
 
 // importing middleware
 const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware');
+const hashPassword = require('../routing_middleware/hashPassword');
 
 // adding the routes
 router.get('/', (req, res) => res.send(`The home router is working!`)); // test router
@@ -34,17 +38,26 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
         })
 });
 
-//route to change user status to paid or unpaid: (and other user data as needed)
-router.put('/data', verifyJWTMiddleware, (req, res) => {
-    const { email } = req;
-    const { paid } = req.body;
-    UserModel.findOneAndUpdate({ email }, { paid }, {new: true})
-        .then(record => {
-            res.json(record);
+//route to change user data:
+router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
+    const oldEmail = req.email;
+    let objForUpdate = {};
+    if (req.body.email) objForUpdate.email = req.body.email;
+    if (req.body.username) objForUpdate.username = req.body.username;
+    if (req.password) objForUpdate.password = req.password;
+    console.log(objForUpdate);
+    UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
+        .then(userRecord => {
+            const { fullname, username, email, _id } = userRecord;
+            JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, token) => {
+                if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
+                res.status(200).json({ JWT: token });
+            })
         })
         .catch(err => {
-            res.send(500).json({ databaseError: "There was an error updating the user data, please try again" });
-        })
+            console.log(err);
+            res.send(500).json({ databaseError: err });
+        });
 });
 
 
