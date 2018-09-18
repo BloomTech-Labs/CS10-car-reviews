@@ -3,11 +3,12 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
 const STRIPE_PUBLISHABLE = `pk_test_gyGeHhPwsQ6mp7K1lSleMa4c`;
-const PAYMENT_SERVER_URL = 'http://localhost:8080';
+const PAYMENT_SERVER_URL = 'http://localhost:3002/Payment';
 
 const CURRENCY = 'USD';
 
 const fromDollarToCent = amount => amount * 100;
+
 
 const successPayment = data => {
   alert('Payment Successful');
@@ -16,6 +17,7 @@ const successPayment = data => {
 const errorPayment = data => {
   alert('Payment Error, Please check your numbers and try again');
 };
+
 
 const onToken = (amount, description) => token =>
   axios.post(PAYMENT_SERVER_URL,
@@ -33,6 +35,7 @@ const Checkout = ({ name, description, amount }) =>
     name={name}
     description={description}
     amount={fromDollarToCent(amount)}
+    panelLabel={'test'}
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
