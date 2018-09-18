@@ -49,20 +49,6 @@ UserModel.pre('save', function(next) {
       });
 });
 
-//need to hash passwords on update as well:
-UserModel.pre('findOneAndUpdate', function(next) {
-  return bcrypt
-      .hash(this._update.password, 10)
-      .then(hash => {
-        this._update.password = hash;
-        return next();
-      })
-      .catch(err => {
-        return next(err);
-      });
-});
-
-
 UserModel.methods.validatePassword = function(passwordGuess) {
   return bcrypt.compare(passwordGuess, this.password);
 };

@@ -1,6 +1,7 @@
 // NOTE: This router handles requests related to the user's personal section
 // importing dependencies
 const express = require('express');
+const bcrypt = require('bcryptjs');
 
 // importing models
 const UserModel = require('../../models/UserModel');
@@ -10,6 +11,7 @@ const router = express.Router();
 
 // importing middleware
 const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware');
+const hashPassword = require('../routing_middleware/hashPassword');
 
 // adding the routes
 router.get('/', (req, res) => res.send(`The home router is working!`)); // test router
@@ -35,16 +37,20 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
 });
 
 //route to change user data:
-router.put('/data', verifyJWTMiddleware, (req, res) => {
+router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     const email = req.email;
-    const { password } = req.body;
-    UserModel.findOneAndUpdate({email: email} , {password}, {new: true})
-        .then(record => {
-            res.json(record);
+    let objForUpdate = {};
+    if (req.body.email) objForUpdate.email = req.body.email;
+    if (req.body.username) objForUpdate.username = req.body.username;
+    if (req.password) objForUpdate.password = req.password;
+    UserModel.findOneAndUpdate({email: email} , objForUpdate, {new: true})
+        .then(userRecord => {
+            if (!userRecord) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
+            res.json(userRecord);
         })
         .catch(err => {
             res.send(500).json({ databaseError: "There was an error updating the user data, please try again" });
-        })
+        });
 });
 
 

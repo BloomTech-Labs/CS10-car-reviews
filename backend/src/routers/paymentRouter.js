@@ -9,6 +9,7 @@ const keySecret = process.env.SECRET_KEY;
 const stripe = require("stripe")(keySecret);
 
 const verifyJWTMiddleware = require('./routing_middleware/verifyJWTMiddleware');
+const UserModel = require('../models/UserModel');
 
 // intializing the router
 const router = express.Router();
@@ -16,10 +17,14 @@ const router = express.Router();
 // adding the routes
 router.get('/', (req, res) => res.send(`The home router is working!`)); // test router
 
-router.post("/", (req, res) => {
+router.post("/", verifyJWTMiddleware, (req, res) => {
+    const email = req.email;
+    console.log(email);
+    console.log(req.body);
     stripe.charges.create(req.body)
-    .then(response => {res.json( response )})
-    .catch(err => res.status(500).json({ error: err.message }));
+        .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
+        .then(response => {res.json( response )})
+        .catch(err => res.status(500).json({ error: err.message }));
 });
 
 
