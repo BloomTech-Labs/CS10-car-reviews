@@ -18,7 +18,6 @@ class App extends Component {
           <Route path="/searchpage" component={SearchResults} />
           <Route path="/UserPage" component={UserPage} />
           <Route path="/Billing" component={Billing} />
-          {/* I removed /UserPage before /MyReviews because something is bugged in UserPage in this build */}
           <Route path="/MyReviews" component={MyReviews} />
           <Route path="/Settings" component={Settings} />
           <Route path="/Login" component={Login} />

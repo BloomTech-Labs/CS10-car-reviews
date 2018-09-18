@@ -49,7 +49,7 @@ class Searchbar extends React.Component {
             {this.handleRenderSignin()}
             <div className="searchfields">
                 <UncontrolledDropdown className="dropdowns">
-                    <DropdownToggle caret>
+                    <DropdownToggle caret className="dropdown-toggle">
                         Year
                     </DropdownToggle>
                     <DropdownMenu>
@@ -119,7 +119,7 @@ class Searchbar extends React.Component {
                         pathname: './'
                     }
                 }>
-                <Button className="review">Review</Button>
+                <Button className="review-link">Review</Button>
                 </Link>
                 <Link to= {
                     {

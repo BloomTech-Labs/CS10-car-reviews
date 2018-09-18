@@ -10,9 +10,9 @@ class MainContent extends Component {
     render() { 
         return ( 
             <div className="main-content-border">
-                <h3>Featured Reviews</h3>
+                <h3 style={{ color: '#77A6F7' }}>Featured Reviews</h3>
                 <ReviewModal />
-                <h3>Popular Cars</h3>
+                <h3 className="pop-cars">Popular Cars</h3>
                 <Button className="main-card"> 
                     <img src={placeholder} style={{ height: '60px', width: '60px' }} />
                     <p>Star Rating</p> 

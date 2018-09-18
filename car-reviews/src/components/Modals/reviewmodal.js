@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
 import data from '../../data';
+import './modal.css';
 
 // This component is the review modal. Currently it is a placeholder,
 
@@ -25,10 +26,10 @@ class ModalExample extends Component {
   render() {
     return (
       <div>
-        <div className="modal-button">
+        <div>
           {this.state.reviews.map(review => {
             return (
-              <Button onClick={this.toggle} className={this.props.className} key={review.username}>
+              <Button onClick={this.toggle} className="modal-button" key={review.username} >
                 <img src={placeholder} style={{ height: '60px', width: '60px' }} />
                 <p>Star Rating</p>
                 <p>{`${review.year} ${review.make} ${review.model}`}</p>
