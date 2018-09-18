@@ -14,7 +14,7 @@ router.get('/', (req, res) => res.send(`The home router is working!`)); // test 
 
 // sorts and returns popular reviews
 router.get('/featured_reviews', (req, res) => {
-    ReviewModel.find({}).sort({timesViewed: -1}).limit(4)
+    ReviewModel.find({}).sort({createOn: -1}).limit(4)
     .then(review => res.status(200).json(review))
     .catch(err => res.status(500).json({ popRouterError: err.message }))
 });

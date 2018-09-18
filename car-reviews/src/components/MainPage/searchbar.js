@@ -1,8 +1,16 @@
 import React from 'react';
 import './mainpage.css';
-import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+  UncontrolledDropdown
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './hamburgerMenu.css';
+import HamburgerMenu from './hamburgerMenu';
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
@@ -12,10 +20,10 @@ class Searchbar extends React.Component {
     super(props);
 
     this.state = {
-        dropdownOpen: false,
+      dropdownOpen: false
     };
     this.toggle = this.toggle.bind(this);
-}
+  }
 
   toggle() {
     this.setState(prevState => ({
@@ -25,23 +33,23 @@ class Searchbar extends React.Component {
 
   handleRenderSignin = () => {
     if (!this.props.isLoggedIn) {
-        return (
-            <div className="login">
-                {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
-                <Link to='/login'>
-                    <Button className="signup">Sign Up</Button>
-                    <Button className="signin">Sign In</Button>
-                </Link>
-            </div>
-        )
+      return (
+        <div className="login">
+          {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
+          <Link to="/login">
+            <Button className="signup">Sign Up</Button>
+            <Button className="signin">Sign In</Button>
+          </Link>
+        </div>
+      );
     } else {
-        return (
-            <div>
-                <h1 style={{textAlign: 'right'}}>Hamburger Menu Goes Here</h1>
-            </div>
-        )
+      return (
+        <div id="hamburgerMenu">
+          <HamburgerMenu right />
+        </div>
+      );
     }
-  }
+  };
 
   render() {
     return (
@@ -70,10 +78,13 @@ class Searchbar extends React.Component {
                 </Link>
             </div>
         </div>
+      </div>
     );
   }
 }
 
-const mapStateToProps = ({ isLoggedIn }) => { return { isLoggedIn } };
+const mapStateToProps = ({ isLoggedIn }) => {
+  return { isLoggedIn };
+};
 
 export default connect(mapStateToProps)(Searchbar);
