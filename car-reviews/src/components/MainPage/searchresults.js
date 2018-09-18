@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import './mainpage.css';
 import SearchBar from './searchbar';
+import data from '../../data';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown} from 'reactstrap';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
@@ -16,9 +17,10 @@ class SearchResults extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
+      data: data
     };
   }
-    
+   
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
@@ -28,6 +30,7 @@ class SearchResults extends Component {
     render() { 
         return (
             <div>
+                 {console.log(data)}
                 <SearchBar />
                 <div className="filter-row">
                     <div className="filters"> 
@@ -74,14 +77,21 @@ class SearchResults extends Component {
                         </UncontrolledDropdown>
                     </div>
                 </div>
-                <div className="review-results">
-                    <Button className="main-card"> 
-                        <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                        <p>Aggrigated Star Rating</p> 
-                        <p>Year, Make, Model</p>
-                        <p>Trim</p>
-                    </Button>
+                <div>
+                   {data.map((car) => {
+                       return (
+                        <div className="review-results">
+                        <Button className="main-card"> 
+                            <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+                            <p>User: {car.username}</p>
+                            <p>Aggrigated Star Rating</p> 
+                            <p>{car.year}, {car.make},{car.model}</p>
+                        </Button>
+                        </div>
+                       )
+                    })}
                 </div>
+                
             </div>
         );
     }
