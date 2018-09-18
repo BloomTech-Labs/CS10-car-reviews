@@ -1,0 +1,9 @@
+.modal-button {
+    height: 250px;
+    width: 400px;
+    background-color: white;
+    color: #77A6F7;
+    margin: 20px;
+    border: none !important;
+    font-size: 1.5em;
+}

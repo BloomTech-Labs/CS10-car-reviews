@@ -19,7 +19,7 @@ After doing research, we decided to use the color scheme above because the stand
         - White will be our other 'dominant color', being the default background for the majority of the app.
     - #D3E3FC - light blue/gray
         - This color should be used for Modal Buttons, and perhaps borders as well. This complements both Blue and White.
-    - #00887A- turquoise
+    - #00887A - turquoise
         - This color will be our main go-to for Buttons and Components that need to "pop" or have attention drawn to it without standing out in 'loud' way. 
     - #FFCCBC - beige/salmon
         - This color will be used for components that need to standout, but need to be differentiated from turquoise. This color should be used sparingly. 

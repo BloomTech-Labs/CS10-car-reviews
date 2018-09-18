@@ -1,5 +1,10 @@
+h3 {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
 .App {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .App-logo {
