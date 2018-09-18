@@ -36,24 +36,38 @@ const styles = {
 // * TODO: Add a warning that the passwords don't match
 // * TODO: Add better form validation
 // * TODO: Add support for chaning other values
+// ** OPTIONAL: Add a more general submittal method
 class UserSettings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      password: '',
-      password2: ''
+      passwords: {
+        password: '',
+        password2: ''
+      },
+      usernames: {
+        username: '',
+        username2: ''
+      },
+      emails: {
+        email: '',
+        email2: ''
+      }
     };
 
   }
 
-  handleChange = (passType) => (event) =>{
+  handleChange = (type1, type2) => (event) =>{
     event.preventDefault();
-    this.setState({ [passType]: event.target.value });
+    const newState = Object.assign({}, this.state);
+    newState[type1][type2] = event.target.value;
+    this.setState(newState);
+    console.log(this.state);
   }
 
-  handleSubmit = (event) => {
+  handleSubmitPassword = (event) => {
     event.preventDefault();
-    const { password, password2 } = this.state;
+    const { password, password2 } = this.state.passwords;
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
@@ -63,15 +77,50 @@ class UserSettings extends Component {
       .then(res => console.log(res))
       .catch(err => console.warn(err));
     this.setState({
-      password: '',
-      password2: ''
+      passwords: {
+        password: '',
+        password2: ''
+      }
     })
   }
 
-  // handleValidation = (event) => {
-  //   const { password, password2 } = this.state;
-  //   if (password2 !== password) console.warn(`Passwords do not match`)
-  // }
+  handleSubmitUsername = (event) => {
+    event.preventDefault();
+    const { username, username2 } = this.state.usernames;
+    const config = {
+      headers: { 'jwt': localStorage.getItem('jwt') }
+    };
+    const localRequests = 'http://localhost:3001/api/users/data'
+    if (username2 !== username) return console.warn(`Usernames do not match`)
+    axios.put(localRequests, { username }, config)
+      .then(res => console.log(res))
+      .catch(err => console.warn(err));
+    this.setState({
+      usernames: {
+        username: '',
+        username2: ''
+      }
+    })
+  }
+
+  handleSubmitEmail = (event) => {
+    event.preventDefault();
+    const { email, email2 } = this.state.emails;
+    const config = {
+      headers: { 'jwt': localStorage.getItem('jwt') }
+    };
+    const localRequests = 'http://localhost:3001/api/users/data'
+    if (email2 !== email) return console.warn(`Email addresses do not match`)
+    axios.put(localRequests, { newEmail: email }, config)
+      .then(res => console.log(res))
+      .catch(err => console.warn(err));
+    this.setState({
+      emails: {
+        email: '',
+        email2: ''
+      }
+    })
+  }
 
   render() {
     return (
@@ -79,24 +128,82 @@ class UserSettings extends Component {
         <Card style={styles.cardStyles}>
           <CardBody>
             <CardTitle>Change Your Password</CardTitle>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmitPassword}>
               <div style={styles.inputGroupStyles}>
                 <p style={styles.labelStyles}>New Password</p>
                 <input
+                  type='password'
                   style={styles.inputStyles} 
                   placeholder='New password...'
-                  value={this.state.password}
-                  onChange={this.handleChange('password')}
+                  value={this.state.passwords.password}
+                  onChange={this.handleChange('passwords', 'password')}
                 />
               </div>
 
               <div style={styles.inputGroupStyles}>
                 <p style={styles.labelStyles}>Re-Enter New Password</p>
                 <input 
+                  type='password'
                   style={styles.inputStyles}
-                  placeholder='Re-enter new'
+                  placeholder='Re-enter new password...'
+                  value={this.state.passwords.password2}
+                  onChange={this.handleChange('passwords', 'password2')}
+                />
+              </div>
+              <Button type="submit" color="primary">Save Changes</Button>
+            </form>
+          </CardBody>
+        </Card>
+
+        <Card style={styles.cardStyles}>
+          <CardBody>
+            <CardTitle>Change Your Username</CardTitle>
+            <form onSubmit={this.handleSubmitUsername}>
+              <div style={styles.inputGroupStyles}>
+                <p style={styles.labelStyles}>New Username</p>
+                <input
+                  style={styles.inputStyles} 
+                  placeholder='New username...'
+                  value={this.state.usernames.username}
+                  onChange={this.handleChange('usernames', 'username')}
+                />
+              </div>
+
+              <div style={styles.inputGroupStyles}>
+                <p style={styles.labelStyles}>Re-Enter New Username</p>
+                <input 
+                  style={styles.inputStyles}
+                  placeholder='Re-enter new username'
+                  value={this.state.usernames.username2}
+                  onChange={this.handleChange('usernames', 'username2')}
+                />
+              </div>
+              <Button type="submit" color="primary">Save Changes</Button>
+            </form>
+          </CardBody>
+        </Card>
+
+        <Card style={styles.cardStyles}>
+          <CardBody>
+            <CardTitle>Change Your Email Address</CardTitle>
+            <form onSubmit={this.handleSubmitEmail}>
+              <div style={styles.inputGroupStyles}>
+                <p style={styles.labelStyles}>New Email Address</p>
+                <input
+                  style={styles.inputStyles} 
+                  placeholder='New password...'
+                  value={this.state.password}
+                  onChange={this.handleChange('emails', 'email')}
+                />
+              </div>
+
+              <div style={styles.inputGroupStyles}>
+                <p style={styles.labelStyles}>Re-Enter New Email</p>
+                <input 
+                  style={styles.inputStyles}
+                  placeholder='Re-enter new email'
                   value={this.state.password2}
-                  onChange={this.handleChange('password2')}
+                  onChange={this.handleChange('emails', 'email2')}
                 />
               </div>
               <Button type="submit" color="primary">Save Changes</Button>
