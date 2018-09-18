@@ -34,11 +34,11 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
         })
 });
 
-//route to change user status to paid or unpaid: (and other user data as needed)
+//route to change user data:
 router.put('/data', verifyJWTMiddleware, (req, res) => {
-    const { email } = req;
-    const { paid } = req.body;
-    UserModel.findOneAndUpdate({ email }, { paid }, {new: true})
+    const email = req.email;
+    const { password } = req.body;
+    UserModel.findOneAndUpdate({email: email} , {password}, {new: true})
         .then(record => {
             res.json(record);
         })
