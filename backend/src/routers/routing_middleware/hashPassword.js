@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-const checkIfCar = (req, res, next) => {
+const hashPassword = (req, res, next) => {
     if (req.body.password) {
         bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -10,7 +10,10 @@ const checkIfCar = (req, res, next) => {
         .catch(err => {
             console.log(err);
         });
+    } else {
+        console.log('here');
+        next();
     }
 }
 
-module.exports = checkIfCar;
+module.exports = hashPassword;

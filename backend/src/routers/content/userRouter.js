@@ -2,6 +2,8 @@
 // importing dependencies
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const JWT = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
 
 // importing models
 const UserModel = require('../../models/UserModel');
@@ -38,18 +40,23 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
 
 //route to change user data:
 router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
-    const email = req.email;
+    const oldEmail = req.email;
     let objForUpdate = {};
     if (req.body.email) objForUpdate.email = req.body.email;
     if (req.body.username) objForUpdate.username = req.body.username;
     if (req.password) objForUpdate.password = req.password;
-    UserModel.findOneAndUpdate({email: email} , objForUpdate, {new: true})
+    console.log(objForUpdate);
+    UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
         .then(userRecord => {
-            if (!userRecord) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
-            res.json(userRecord);
+            const { fullname, username, email, _id } = userRecord;
+            JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, token) => {
+                if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
+                res.status(200).json({ JWT: token });
+            })
         })
         .catch(err => {
-            res.send(500).json({ databaseError: "There was an error updating the user data, please try again" });
+            console.log(err);
+            res.send(500).json({ databaseError: err });
         });
 });
 
