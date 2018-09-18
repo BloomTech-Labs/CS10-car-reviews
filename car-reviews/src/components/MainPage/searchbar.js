@@ -1,8 +1,16 @@
 import React from 'react';
 import './mainpage.css';
-import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+  UncontrolledDropdown
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './hamburgerMenu.css';
+import HamburgerMenu from './hamburgerMenu';
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
@@ -12,10 +20,10 @@ class Searchbar extends React.Component {
     super(props);
 
     this.state = {
-        dropdownOpen: false,
+      dropdownOpen: false
     };
     this.toggle = this.toggle.bind(this);
-}
+  }
 
   toggle() {
     this.setState(prevState => ({
@@ -25,93 +33,33 @@ class Searchbar extends React.Component {
 
   handleRenderSignin = () => {
     if (!this.props.isLoggedIn) {
-        return (
-            <div className="login">
-                {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
-                <Link to='/login'>
-                    <Button className="signup">Sign Up</Button>
-                    <Button className="signin">Sign In</Button>
-                </Link>
-            </div>
-        )
+      return (
+        <div className="login">
+          {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
+          <Link to="/login">
+            <Button className="signup">Sign Up</Button>
+            <Button className="signin">Sign In</Button>
+          </Link>
+        </div>
+      );
     } else {
-        return (
-            <div>
-                <h1 style={{textAlign: 'right'}}>Hamburger Menu Goes Here</h1>
-            </div>
-        )
+      return (
+        <div id="hamburgerMenu">
+          <HamburgerMenu right />
+        </div>
+      );
     }
-  }
+  };
 
   render() {
     return (
         <div className="searchbar">
             {this.handleRenderSignin()}
-            <div className="searchfields">
-                <UncontrolledDropdown className="dropdowns">
-                    <DropdownToggle caret>
-                        Year
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem header>TODO:</DropdownItem>
-                        <DropdownItem disabled>map years onto here</DropdownItem>
-                        <DropdownItem>2000</DropdownItem>
-                        <DropdownItem>2001</DropdownItem>
-                        <DropdownItem>2002</DropdownItem>
-                        <DropdownItem>2003</DropdownItem>
-                        <DropdownItem>2004</DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>Makes will be dependent on Year -> </DropdownItem>
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-                <UncontrolledDropdown className="dropdowns">
-                    <DropdownToggle caret>
-                        Make
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem header>TODO:</DropdownItem>
-                        <DropdownItem disabled>map makes onto here</DropdownItem>
-                        <DropdownItem>Ford</DropdownItem>
-                        <DropdownItem>Toyota</DropdownItem>
-                        <DropdownItem>Honda</DropdownItem>
-                        <DropdownItem>BMW</DropdownItem>
-                        <DropdownItem>Volkswagon</DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>Models are dependent on Make -> </DropdownItem>
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-                <UncontrolledDropdown className="dropdowns">
-                    <DropdownToggle caret>
-                        Model
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem header>TODO:</DropdownItem>
-                        <DropdownItem disabled>map models onto here</DropdownItem>
-                        <DropdownItem>Camery</DropdownItem>
-                        <DropdownItem>Corolla</DropdownItem>
-                        <DropdownItem>Prius</DropdownItem>
-                        <DropdownItem>Rav4</DropdownItem>
-                        <DropdownItem>Tundra</DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>these examples are if someone picked toyota</DropdownItem>
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-                <UncontrolledDropdown className="dropdowns">
-                    <DropdownToggle caret>
-                        Trim
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem header>TODO:</DropdownItem>
-                        <DropdownItem disabled>map trims onto here</DropdownItem>
-                        <DropdownItem>One</DropdownItem>
-                        <DropdownItem>Two</DropdownItem>
-                        <DropdownItem>Two Eco</DropdownItem>
-                        <DropdownItem>Three</DropdownItem>
-                        <DropdownItem>Three Touring</DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem>these examples are if someone picked Prius</DropdownItem>
-                    </DropdownMenu>
-                </UncontrolledDropdown>
+            <div classname="searchfields">
+                <select className="dropdowns" name="car-years" id="car-years"></select>
+                <select className="dropdowns" name="car-makes" id="car-makes"></select> 
+                <select className="dropdowns" name="car-models" id="car-models"></select>
+                <select className="dropdowns" name="car-model-trims" id="car-model-trims"></select>
             </div>
             <div className="review-and-search">
                 <Link to= {
@@ -130,10 +78,13 @@ class Searchbar extends React.Component {
                 </Link>
             </div>
         </div>
+      </div>
     );
   }
 }
 
-const mapStateToProps = ({ isLoggedIn }) => { return { isLoggedIn } };
+const mapStateToProps = ({ isLoggedIn }) => {
+  return { isLoggedIn };
+};
 
 export default connect(mapStateToProps)(Searchbar);
