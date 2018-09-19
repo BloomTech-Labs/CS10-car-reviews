@@ -11,6 +11,8 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeLoginStatus } from '../../redux/actions/actionCreators';
 
+// * TODO: Check if the user already has a valid JWT when they first visit the page and when they navigate to login/signup
+// ** OPTIONAL: Create multiple alerts for all the different possible errors (no email, no password, both, etc.)
 class LoginRegister extends Component {
     state = {
         login: {
@@ -44,6 +46,8 @@ class LoginRegister extends Component {
         const userForm = Object.assign({}, this.state[formType]);
         axios.post(localRequests, userForm)
             .then(response => {
+                // removes the alert if it's present
+                if (this.state.alerts[formType]) this.handleAlerts(formType);
                 // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
                 localStorage.setItem('jwt', response.data.JWT);
                 // here the login status of the user is changed to 'true' when the login/register is successful
@@ -64,7 +68,10 @@ class LoginRegister extends Component {
                     }
                 })
             })
-            .catch(err => console.warn(err));
+            .catch(err => {
+                if (!this.state.alerts[formType]) this.handleAlerts(formType);
+                console.warn(err);
+            });
     }
 
     handleAlerts = (type) => {
@@ -72,6 +79,7 @@ class LoginRegister extends Component {
         newState.alerts[type] = !this.state.alerts[type];
         this.setState(newState);
     }
+
     handleRedirect =() => {
         if(this.state.redirect.status){
           return  <Redirect to='/'  />

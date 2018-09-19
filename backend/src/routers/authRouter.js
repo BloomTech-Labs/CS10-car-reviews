@@ -49,8 +49,6 @@ router.post('/login', (req, res) => {
         .then(userRecord => {
             if (!userRecord || !userRecord.password) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
             const { fullname, username, email, _id } = userRecord;
-            console.log(`Inputted pass: ${credentials.password}`)
-            console.log(`Stored pass: ${userRecord.password}`);
             
             // ** OPTIONAL: Add a password reset feature
             if (bcrypt.compareSync(credentials.password, userRecord.password)){
