@@ -20,6 +20,11 @@ router.get('/featured_reviews', (req, res) => {
             model: 'cars',
             select: 'make model year edition -_id'
         })
+        .populate({
+            path: 'user', 
+            model: 'users',
+            select: 'username -_id'
+        })
         .then(review => res.status(200).json(review))
         .catch(err => res.status(500).json({ popRouterError: err.message }));
 });

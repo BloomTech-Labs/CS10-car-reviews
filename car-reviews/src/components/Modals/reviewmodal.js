@@ -30,7 +30,6 @@ class ModalExample extends Component {
       .get(localURL)
       .then(response => {
           this.setState({ reviews: response.data });
-          console.log(typeof this.state.reviews[0].createOn)
       })
       .catch(error => {
           console.error('Server Error', error);
@@ -58,12 +57,12 @@ class ModalExample extends Component {
             return (
               <Modal isOpen={this.state.modal} toggle={this.toggle} key={review.username}>
                 <ModalHeader toggle={this.toggle}>
-                  <h2>{`${review.year} ${review.make} ${review.model} ${review.edition}`}</h2>
-                  <h5>{`Review by: ${review.username}`}</h5>
+                  <h2>{`${review.car.year} ${review.car.make} ${review.car.model} ${review.car.edition}`}</h2>
+                  <h5>{`Review by: ${review.user.username}`}</h5>
                 </ModalHeader>
                 <ModalBody>
                   <img src={placeholder} style={{ height: '160px', width: '320px' }} />
-                  <p>Star Rating</p>
+                  <p>Star Rating {review.score}</p>
                 </ModalBody>
                 <ModalFooter>
                   <p>{review.title}</p>
