@@ -4,6 +4,7 @@ import {
     Col,
     Label,
     Button,
+    Alert
 } from 'reactstrap'; 
 import './LoginRegister.css';
 import { Redirect } from 'react-router-dom';
@@ -24,6 +25,10 @@ class LoginRegister extends Component {
         },
         redirect: {
             status:false
+        },
+        alerts: {
+            login: false,
+            register: false
         }
     }
     handleUpdateForms = (type, field) => (event) => {
@@ -61,6 +66,12 @@ class LoginRegister extends Component {
             })
             .catch(err => console.warn(err));
     }
+
+    handleAlerts = (type) => {
+        const newState = Object.assign({}, this.state);
+        newState.alerts[type] = !this.state.alerts[type];
+        this.setState(newState);
+    }
     handleRedirect =() => {
         if(this.state.redirect.status){
           return  <Redirect to='/'  />
@@ -81,6 +92,7 @@ class LoginRegister extends Component {
                                 placeholder='Enter your password...' 
                                 onChange={this.handleUpdateForms('login', 'password')}   
                             />
+                            <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                             <Button type='submit' color ="primary">Login</Button>
                         </form>
                     </Col>

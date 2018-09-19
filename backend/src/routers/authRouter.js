@@ -47,8 +47,10 @@ router.post('/login', (req, res) => {
 
     UserModel.findOne({ email: credentials.email })
         .then(userRecord => {
+            if (!userRecord || !userRecord.password) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
             const { fullname, username, email, _id } = userRecord;
-            if (!userRecord) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
+            console.log(`Inputted pass: ${credentials.password}`)
+            console.log(`Stored pass: ${userRecord.password}`);
             
             // ** OPTIONAL: Add a password reset feature
             if (bcrypt.compareSync(credentials.password, userRecord.password)){
@@ -58,6 +60,7 @@ router.post('/login', (req, res) => {
                 });
             } else res.status(401).json({ loginError: `The password you provided didn't match the one stored in our database, please try again` });
         })
+        .catch(err => console.warn(err));
 })
 
 
