@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
-import data from '../../data.js';
 import ReviewModal from '../Modals/reviewmodal';
 import NewReviewModal from '../Modals/newreview';
+import axios from 'axios';
 
 class ReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: data
+      reviews: []
     };
   }
+
+  componentDidMount = () => {
+    axios
+      .get('https://back-lambda-car-reviews.herokuapp.com/api/users/data', {
+        headers: {
+          JWT: localStorage.getItem('jwt')
+        }
+      })
+      .then(response => {
+        this.setState({ reviews: response.data.reviews });
+      })
+      .catch(console.log('Error getting user data'));
+  };
 
   render() {
     const fullScreenReview = (
@@ -24,7 +37,8 @@ class ReviewList extends Component {
 
     const reviewListCards = (
       <div className="reviewCardContainer">
-        <ReviewModal className={'review'} />
+        {/* <ReviewModal className={'review'} /> */}
+
         <div className="reviewSpecial">
           <h4>New review</h4>
           <NewReviewModal className={'plusButton'} buttonLabel={'+'} />
