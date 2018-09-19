@@ -15,8 +15,18 @@ router.get('/', (req, res) => res.send(`The home router is working!`)); // test 
 // sorts and returns popular reviews
 router.get('/featured_reviews', (req, res) => {
     ReviewModel.find({}).sort({createOn: -1}).limit(4)
-    .then(review => res.status(200).json(review))
-    .catch(err => res.status(500).json({ popRouterError: err.message }))
+        .populate({
+            path: 'car', 
+            model: 'cars',
+            select: 'make model year edition -_id'
+        })
+        .populate({
+            path: 'user', 
+            model: 'users',
+            select: 'username -_id'
+        })
+        .then(review => res.status(200).json(review))
+        .catch(err => res.status(500).json({ popRouterError: err.message }));
 });
 
 // sorts and returns popular cars

@@ -11,7 +11,6 @@ const hashPassword = (req, res, next) => {
             console.log(err);
         });
     } else {
-        console.log('here');
         next();
     }
 }
