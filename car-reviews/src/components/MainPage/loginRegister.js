@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { changeLoginStatus } from '../../redux/actions/actionCreators';
 
 // * TODO: Check if the user already has a valid JWT when they first visit the page and when they navigate to login/signup
+// * TODO: Style login forms
 // ** OPTIONAL: Create multiple alerts for all the different possible errors (no email, no password, both, etc.)
 class LoginRegister extends Component {
     state = {
@@ -39,7 +40,6 @@ class LoginRegister extends Component {
         this.setState(newState);
     }
     handleSubmitForm = (formType) => (event) => {
-        // * TODO: Add a redirect here
         event.preventDefault();
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localRequests = `http://localhost:3001/auth/${formType}`
@@ -100,8 +100,8 @@ class LoginRegister extends Component {
                                 placeholder='Enter your password...' 
                                 onChange={this.handleUpdateForms('login', 'password')}   
                             />
-                            <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                             <Button type='submit' color ="primary">Login</Button>
+                            <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                         </form>
                     </Col>
                
@@ -137,6 +137,7 @@ class LoginRegister extends Component {
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
                          <Button color ="primary">Register</Button>
+                         <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
                     </form>
                 </Col>
                 </div>

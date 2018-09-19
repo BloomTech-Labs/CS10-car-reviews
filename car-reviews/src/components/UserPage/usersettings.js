@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import {
   Card, 
   CardTitle,
-  CardText,
   CardBody,
-  Label,
-  Button
+  Button,
+  Alert
 } from 'reactstrap';
 import axios from 'axios';
 import './usersettings.css';
@@ -57,6 +56,14 @@ class UserSettings extends Component {
       emails: {
         email: '',
         email2: ''
+      },
+      alerts: {
+        password: false,
+        username: false,
+        email: false,
+        passwordSuccess: false,
+        usernameSuccess: false,
+        emailSuccess: false,
       }
     };
 
@@ -67,7 +74,6 @@ class UserSettings extends Component {
     const newState = Object.assign({}, this.state);
     newState[type1][type2] = event.target.value;
     this.setState(newState);
-    console.log(this.state);
   }
 
   handleSubmitPassword = (event) => {
@@ -77,10 +83,22 @@ class UserSettings extends Component {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
     const localRequests = 'http://localhost:3001/api/users/data'
-    if (password2 !== password) return console.warn(`Passwords do not match`)
+    if (password2 !== password || !password || !password2) {
+      if (!this.state.alerts.password) this.handleAlerts('password');
+      return console.warn(`Passwords do not match`);
+    }
     axios.put(localRequests, { password }, config)
-      .then(res => console.log(res))
-      .catch(err => console.warn(err));
+      .then(res => {
+        console.log(res);
+        if (this.state.alerts.password) this.handleAlerts('password');
+        if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
+        localStorage.setItem('jwt', res.data.JWT);
+      })
+      .catch(err => {
+        if (!this.state.alerts.password) this.handleAlerts('password');
+        if (this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
+        console.warn(err);
+      });
     this.setState({
       passwords: {
         password: '',
@@ -96,10 +114,22 @@ class UserSettings extends Component {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
     const localRequests = 'http://localhost:3001/api/users/data'
-    if (username2 !== username) return console.warn(`Usernames do not match`)
+    if (username2 !== username || !username || !username2) {
+      if (!this.state.alerts.username) this.handleAlerts('username');
+      return console.warn(`Usernames do not match`)
+    }
     axios.put(localRequests, { username }, config)
-      .then(res => console.log(res))
-      .catch(err => console.warn(err));
+      .then(res => {
+        console.log(res);
+        if (this.state.alerts.username) this.handleAlerts('username');
+        if (!this.state.alerts.usernameSuccess) this.handleAlerts('usernameSuccess');
+        localStorage.setItem('jwt', res.data.JWT);
+      })
+      .catch(err => {
+        if (!this.state.alerts.username) this.handleAlerts('username');
+        if (this.state.alerts.usernameSuccess) this.handleAlerts('usernameSuccess');
+        console.warn(err);
+      });
     this.setState({
       usernames: {
         username: '',
@@ -115,16 +145,35 @@ class UserSettings extends Component {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
     const localRequests = 'http://localhost:3001/api/users/data'
-    if (email2 !== email) return console.warn(`Email addresses do not match`)
+    if (email2 !== email || !email || !email2) {
+      if (!this.state.alerts.email) this.handleAlerts('email');
+      return console.warn(`Email addresses do not match`);
+    }
     axios.put(localRequests, { newEmail: email }, config)
-      .then(res => console.log(res))
-      .catch(err => console.warn(err));
+      .then(res => {
+        console.log(res)
+        if (this.state.alerts.email) this.handleAlerts('email');
+        if (!this.state.alerts.emailSuccess) this.handleAlerts('emailSuccess');
+        localStorage.setItem('jwt', res.data.JWT);
+      })
+      .catch(err => {
+        console.log(err)
+        if (!this.state.alerts.email) this.handleAlerts('email');
+        if (this.state.alerts.emailSuccess) this.handleAlerts('emailSuccess');
+        console.warn(err);
+      });
     this.setState({
       emails: {
         email: '',
         email2: ''
       }
     })
+  }
+
+  handleAlerts = (type) => {
+    const newState = Object.assign({}, this.state);
+    newState.alerts[type] = !this.state.alerts[type];
+    this.setState(newState);
   }
 
   render() {
@@ -156,6 +205,8 @@ class UserSettings extends Component {
                 />
               </div>
               <Button type="submit" color="primary">Save Changes</Button>
+              <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
+              <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
             </form>
           </CardBody>
         </Card>
@@ -184,6 +235,8 @@ class UserSettings extends Component {
                 />
               </div>
               <Button type="submit" color="primary">Save Changes</Button>
+              <Alert isOpen={this.state.alerts.username} color='danger'>There was an issue changing your username, please try again</Alert>
+              <Alert isOpen={this.state.alerts.usernameSuccess} color='primary'>Your username has successfully been changed!</Alert>
             </form>
           </CardBody>
         </Card>
@@ -196,7 +249,7 @@ class UserSettings extends Component {
                 <p style={styles.labelStyles}>New Email Address</p>
                 <input
                   style={styles.inputStyles} 
-                  placeholder='New password...'
+                  placeholder='New email...'
                   value={this.state.password}
                   onChange={this.handleChange('emails', 'email')}
                 />
@@ -212,6 +265,8 @@ class UserSettings extends Component {
                 />
               </div>
               <Button type="submit" color="primary">Save Changes</Button>
+              <Alert isOpen={this.state.alerts.email} color='danger'>There was an issue changing your email, please try again</Alert>
+              <Alert isOpen={this.state.alerts.emailSuccess} color='primary'>Your email has successfully been changed!</Alert>
             </form>
           </CardBody>
         </Card>

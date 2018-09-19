@@ -58,7 +58,10 @@ router.post('/login', (req, res) => {
                 });
             } else res.status(401).json({ loginError: `The password you provided didn't match the one stored in our database, please try again` });
         })
-        .catch(err => console.warn(err));
+        .catch(err => {    
+            console.warn(err);
+            res.status(500).json({ loginError: `There was an error when trying to generate a JWT for the user--please try again. authRouter: 63` });
+        });
 })
 
 
