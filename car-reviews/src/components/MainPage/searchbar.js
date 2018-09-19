@@ -11,20 +11,65 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
+import { CarQuery } from 'car-query';
+import axios from 'axios';
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
 
+const carQuery = new CarQuery();
+
+// console.log("Car Query Object: ", carQuery);
+
+// const years = carQuery.getYears();
+
+// console.log("Years: ", years);
+
+// carQuery.getYears()
+//     .then(years => {
+//       // this.setState(() => ({ years: [...years.data] }));
+//       console.log(years.minYear)
+//       console.log(years.maxYear)
+//       return years;
+//     })
+//     .catch(err => {
+//       console.error("error: ", err);
+//     })
+
+// carQuery.getMakes(2000)
+//   .then(makes => {
+//     console.log(makes)
+//     return makes;
+//   })
+
+
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      years: []
     };
     this.toggle = this.toggle.bind(this);
   }
-
+  
+  componentDidMount() {
+    carQuery.getYears()
+    .then(years => {
+      console.log("YEARS: ", years)
+      this.setState(() => ({ years }));
+    })
+    .catch(err => {
+      console.error("error: ", err);
+    })
+    // carQuery.getMakes(2018)
+    // .then(makes => {
+    //   console.log("MAKES:", makes)
+    //     this.setState(()=> ({ makes }));
+    // });
+  }
+  
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
@@ -64,7 +109,7 @@ class Searchbar extends React.Component {
             <div className="review-and-search">
                 <Link to= {
                     {
-                        pathname: './'
+                        pathname: './MyReviews'
                     }
                 }>
                 <Button className="review">Review</Button>
@@ -74,7 +119,7 @@ class Searchbar extends React.Component {
                         pathname: './SearchPage'
                     }
                 }>
-                <Button className="search">Search</Button>
+                <Button className="search" id="cq-search-btn" value="Search CarQuery">Search</Button>
                 </Link>
             </div>
         </div>
