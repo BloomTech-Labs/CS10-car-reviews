@@ -3,8 +3,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 're
 import placeholder from '../../logo.svg';
 //import data from '../../data';
 import axios from 'axios';
+import './modals.css';
 
-// This component is the review modal.
+// This component is the review modal. Rendered in Main Content and reviewlist.
 
 class ModalExample extends Component {
   constructor(props) {
