@@ -30,7 +30,7 @@ class SearchResults extends Component {
     render() { 
         return (
             <div>
-                 {console.log(data)}
+                 {/* {console.log(data)} */}
                 <SearchBar />
                 <div className="filter-row">
                     <div className="filters"> 
