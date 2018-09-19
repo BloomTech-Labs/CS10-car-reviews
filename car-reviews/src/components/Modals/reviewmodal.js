@@ -4,7 +4,7 @@ import placeholder from '../../logo.svg';
 //import data from '../../data';
 import axios from 'axios';
 
-// This component is the review modal. Currently it is a placeholder,
+// This component is the review modal.
 
 class ModalExample extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class ModalExample extends Component {
                 <p>Star Rating {review.score}</p>
                 <p>{`${review.car.year} ${review.car.make} ${review.car.model}`}</p>
                 <p>{review.car.edition}</p>
-                <CardText className="cardText">{`Updated ${review.createOn}`}</CardText>
+                <CardText className="cardText">{`Updated ${new Date(review.createOn).toString().substring(4,10)}`}</CardText>
               </Button>
             );
           })}
