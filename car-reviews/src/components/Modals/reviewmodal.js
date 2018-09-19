@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
-import data from '../../data';
+//import data from '../../data';
+import axios from 'axios';
 
 // This component is the review modal. Currently it is a placeholder,
 
@@ -10,7 +11,7 @@ class ModalExample extends Component {
     super(props);
     this.state = {
       modal: false,
-      reviews: data
+      reviews: []
     };
 
     this.toggle = this.toggle.bind(this);
@@ -22,18 +23,32 @@ class ModalExample extends Component {
     });
   }
 
+  componentWillMount() {
+    const localURL = "http://localhost:3002/api/popular/featured_reviews"
+    const deployedURL = "https://back-lambda-car-reviews.herokuapp.com/api/popular/featured_reviews"
+    axios 
+      .get(localURL)
+      .then(response => {
+          this.setState({ reviews: response.data });
+          console.log(typeof this.state.reviews[0].createOn)
+      })
+      .catch(error => {
+          console.error('Server Error', error);
+      });
+  }
+
   render() {
     return (
       <div>
         <div className="modal-button">
           {this.state.reviews.map(review => {
             return (
-              <Button onClick={this.toggle} className={this.props.className} key={review.username}>
+              <Button onClick={this.toggle} className={this.props.className} key={review._id}>
                 <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                <p>Star Rating</p>
-                <p>{`${review.year} ${review.make} ${review.model}`}</p>
-                <p>{review.edition}</p>
-                <CardText className="cardText">{`Updated ${review.updated_on}`}</CardText>
+                <p>Star Rating {review.score}</p>
+                <p>{`${review.car.year} ${review.car.make} ${review.car.model}`}</p>
+                <p>{review.car.edition}</p>
+                <CardText className="cardText">{`Updated ${review.createOn}`}</CardText>
               </Button>
             );
           })}
