@@ -42,7 +42,11 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
 router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     const oldEmail = req.email;
     let objForUpdate = {};
-    if (req.body.newEmail) objForUpdate.email = req.body.newEmail;
+    if (req.body.email) {
+        objForUpdate.email = req.body.email;
+    } else if (req.body.newEmail) {
+        objForUpdate.email = req.body.newEmail;
+    }
     if (req.body.username) objForUpdate.username = req.body.username;
     if (req.password) objForUpdate.password = req.password;
     UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
@@ -54,7 +58,7 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
             })
         })
         .catch(err => {
-            res.send(500).json({ databaseError: err });
+            res.status(500).json({ databaseError: err });
         });
 });
 
