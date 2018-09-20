@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
 //import data from '../../data';
-import axios from 'axios';
-
 // This component is the review modal.
 
 class ReviewModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false,
-      reviews: []
+      modal: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -36,14 +33,14 @@ class ReviewModal extends Component {
           console.error('Server Error', error);
       });
   }
-
   render() {
+    const { score, createOn, title, content } = this.props;
+    const { year, make, model, edition } = this.props.car;
+    const { username } = this.props.user;
     return (
       <div>
         <div className="modal-button">
-          {this.state.reviews.map(review => {
-            return (
-              <Button onClick={this.toggle} className={this.props.className} key={review._id}>
+            <Button onClick={this.toggle} className={this.props.className}>
                 <img src={placeholder} style={{ height: '60px', width: '60px' }} />
                 <p>Star Rating {review.score}</p>
                 <p>{`${review.car.year} ${review.car.make} ${review.car.model}`}</p>
@@ -75,9 +72,22 @@ class ReviewModal extends Component {
             );
           })} 
         </div>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>
+            <h2>{`${year} ${make} ${model} ${edition}`}</h2>
+            <h5>{`Review by: ${username}`}</h5>
+          </ModalHeader>
+          <ModalBody>
+            <img src={placeholder} style={{ height: '160px', width: '320px' }} />
+            <p>Star Rating {score}</p>
+          </ModalBody>
+          <ModalFooter>
+            <p>{title}</p>
+            <p>{content}</p>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }
 }
-
 export default ReviewModal;

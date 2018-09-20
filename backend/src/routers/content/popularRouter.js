@@ -38,7 +38,7 @@ router.get('/popular_cars', (req, res) => {
 
 // sorts and returns popular reviewers
 router.get('/popular_reviewers', (req, res) => {
-    UserModel.find({}).select('username -_id').sort({reviews: -1}).limit(8)
+    UserModel.find({}).select('username').sort({reviews: -1}).limit(8)
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json({ popRouterErr: err.message }))
 });
