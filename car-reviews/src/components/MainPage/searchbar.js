@@ -9,9 +9,34 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
+
+const styles = {
+  buttonStylesMiddle: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 15,
+    width: '90%'
+  },
+  buttonContainerStyles: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  buttonStylesRight: {
+
+  },
+  loginContainerStyles: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginRight: 20,
+    marginTop: 10
+  }
+}
+
 import { CarQuery }from 'car-query';
+
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
 const carQuery = new CarQuery();
@@ -26,6 +51,7 @@ class Searchbar extends React.Component {
       'car-years': '',
       'car-models': '',
       'car-makes': ''
+
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -67,9 +93,11 @@ class Searchbar extends React.Component {
       return (
         <div className="login">
           {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
-          <Link to="/login">
+          <Link to='/login'>
+            <div style={styles.loginContainerStyles}>
             <Button className="signup">Sign Up</Button>
             <Button className="signin">Sign In</Button>
+            </div>
           </Link>
         </div>
       );
@@ -141,20 +169,16 @@ class Searchbar extends React.Component {
                 }>
                 <Button className="review">Review</Button>
               ]
+
                 </Link>
-                <Link to= {
-                    {
-                        pathname: './SearchPage'
-                    }
-                }>
-                <Button className="search">Search</Button>
+
+                <Link to='/searchresults'>
+                  <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
         </div>
     );
   }
 }
-const mapStateToProps = ({ isLoggedIn }) => {
-  return { isLoggedIn };
-};
-export default connect(mapStateToProps)(Searchbar);
+
+export default Searchbar;
