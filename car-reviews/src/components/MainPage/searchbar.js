@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
 import { CarQuery }from 'car-query';
+import axios from 'axios';
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
 const carQuery = new CarQuery();
@@ -32,6 +33,16 @@ class Searchbar extends React.Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  getReviews =()=> {
+    axios
+      .get('http://localhost:3002/api/reviews/search')
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
   componentDidMount() {
     carQuery.getMakes()
       .then(make => {
@@ -56,7 +67,7 @@ class Searchbar extends React.Component {
     for (let i = 1974; i<2018; i++) {
       this.state.years.push(i);
     }
-  } 
+  }
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
@@ -147,7 +158,7 @@ class Searchbar extends React.Component {
                         pathname: './SearchPage'
                     }
                 }>
-                <Button className="search">Search</Button>
+                <Button className="search" onClick={()=>this.getReviews}>Search</Button>
                 </Link>
             </div>
         </div>
