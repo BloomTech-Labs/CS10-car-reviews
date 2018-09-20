@@ -29,7 +29,6 @@ class MainContent extends Component {
                 reviews: reviewsRes.data, 
                 popularReviewers: reviewersRes.data
             });
-            console.log(this.state.popularReviewers)
         }))
         .catch(error => {
             console.error('Server Error', error)
