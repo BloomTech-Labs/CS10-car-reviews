@@ -8,8 +8,7 @@ import {
 } from 'reactstrap'; 
 import './LoginRegister.css';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { changeLoginStatus } from '../../redux/actions/actionCreators';
+
 
 // * TODO: Check if the user already has a valid JWT when they first visit the page and when they navigate to login/signup
 // * TODO: Style login forms
@@ -44,6 +43,7 @@ class LoginRegister extends Component {
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
+        console.log(userForm);
         axios.post(localRequests, userForm)
             .then(response => {
                 // removes the alert if it's present
@@ -51,7 +51,6 @@ class LoginRegister extends Component {
                 // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
                 localStorage.setItem('jwt', response.data.JWT);
                 // here the login status of the user is changed to 'true' when the login/register is successful
-                this.props.changeLoginStatus();
                 this.setState({
                     login: {
                         email: '',
@@ -136,7 +135,7 @@ class LoginRegister extends Component {
                             placeholder='Enter your password...' 
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
-                         <Button color ="primary">Register</Button>
+                         <Button color="primary">Register</Button>
                          <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
                     </form>
                 </Col>
@@ -153,4 +152,4 @@ class LoginRegister extends Component {
     }
 }
 
-export default connect(null, { changeLoginStatus })(LoginRegister);
+export default LoginRegister;
