@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import '../UserPage/header.css';
+import AuthService from '../Auth/AuthService';
+
+const Auth = new AuthService();
 
 class Header extends Component {
   render() {
@@ -11,7 +14,9 @@ class Header extends Component {
           {/*Will display the section that we are currently in passed down as props from that respective Component (ie. Settings, Billing, My Reviews, etc.)*/}
         </div>
         <div className="signoutContainer">
-          <a href="/">Sign Out</a>
+          <a href="/" onClick={Auth.logout()}>
+            Sign Out
+          </a>
         </div>
       </div>
     );
