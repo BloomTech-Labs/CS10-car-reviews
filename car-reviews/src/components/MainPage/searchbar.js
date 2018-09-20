@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
 
@@ -42,7 +43,7 @@ class Searchbar extends React.Component {
     super(props);
 
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -58,7 +59,7 @@ class Searchbar extends React.Component {
       return (
         <div className="login">
           {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
-          <Link to="/login">
+          <Link to='/login'>
             <div style={styles.loginContainerStyles}>
             <Button className="signup">Sign Up</Button>
             <Button className="signin">Sign In</Button>
@@ -76,7 +77,6 @@ class Searchbar extends React.Component {
   };
 
   render() {
-    console.log(this.props.isLoggedIn)
     return (
         <div className="searchbar">
             {this.handleRenderSignin()}
@@ -100,8 +100,4 @@ class Searchbar extends React.Component {
   }
 }
 
-const mapStateToProps = ({ clientStatus }) => {
-  return { isLoggedIn: clientStatus.isLoggedIn };
-};
-
-export default connect(mapStateToProps)(Searchbar);
+export default Searchbar;

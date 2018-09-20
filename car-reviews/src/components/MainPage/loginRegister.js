@@ -146,6 +146,7 @@ class LoginRegister extends Component {
         
     }
     render(){
+        console.log(this.props.location.state);
         return(
             <Fragment>
                {this.handleRedirect()} 
