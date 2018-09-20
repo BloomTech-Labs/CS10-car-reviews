@@ -22,13 +22,15 @@ router.get('/', (req, res) => res.send('The auth router is working!')); // test 
 // * TODO: Need to check that email is in the correct format
 // ** OPTIONAL: Externalize the form checking with a custom middleware
 router.post('/register', (req, res) => { // route that handles registering a user
+    console.log("REQ.BODY: ",req);
     const { fullname, username, email, password, testEntry } = req.body;
     const newUser = new UserModel({ fullname, username, email, password, testEntry });
     const { _id } = newUser;
     
     // the UserModel has a pre-save hook on it that hashes the password with Bcrypt
     newUser.save(err => {
-        if (err) return res.status(500).json({ registerError: `An account with those credentials already exists, please sign in.` });
+        // console.log("New user Error: ", err)
+        if (err) return res.status(500).json({ registerError: `An account with those credentials already exists, please sign in.`, err });
         
         // NOTE: JWTs are signed with the fullname, username, and email as the payload
         JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, token) => {

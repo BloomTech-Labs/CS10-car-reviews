@@ -56,8 +56,9 @@ class NewReviewModal extends Component {
   submitNewReview = () => {
     const newReview = this.state['review'];
     const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+    const localURL = 'http://localhost:3001/api/reviews';
     axios
-      .post(requestURL, newReview, {
+      .post(localURL, newReview, {
         headers: {
           JWT: localStorage.getItem('jwt')
         }

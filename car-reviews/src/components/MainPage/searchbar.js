@@ -34,13 +34,14 @@ class Searchbar extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   getReviews =()=> {
+    const payload = { year: '1990', make: 'Ford', model: 'F-150', trim: 'FX4'}
     axios
-      .get('http://localhost:3002/api/reviews/search')
+      .get('http://localhost:3002/api/reviews/search', payload)
       .then(response => {
-        console.log(response);
+        console.log("REVIEW RESPONSE: ",response);
       })
       .catch(err => {
-        console.log(err);
+        console.log("GET REVIEW ERROR:", err);
       })
   }
   componentDidMount() {
@@ -105,7 +106,7 @@ class Searchbar extends React.Component {
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
-            <div classname="searchfields">
+            <div className="searchfields">
               <select
                 className="dropdowns"
                 name="car-years"
