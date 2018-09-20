@@ -19,7 +19,7 @@ const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware')
 // POST new review:
 
 router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
-    const { content, score, year, make, model, edition } = req.body;
+    const { title, content, score, year, make, model, edition } = req.body;
     const user = req._id;
     let carID;
     if (!user || !content || !score) {
@@ -28,7 +28,7 @@ router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
     }
     if (req.carID != null) {
         const car = req.carID;
-        ReviewModel.create({ user, content, score, car })
+        ReviewModel.create({ title, user, content, score, car })
         .then(newReview => {  // adds review id to the user document of the author
             const id  = newReview.user;
             return UserModel.findByIdAndUpdate(id, { "$push": { reviews: newReview._id }}, {new: true})
@@ -48,7 +48,7 @@ router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
         .then(newCar => {
             const car = newCar._id;
             carID = newCar._id;
-            return ReviewModel.create({ user, content, score, car })
+            return ReviewModel.create({ title, user, content, score, car })
         })
         .then(newReview => {
             const id  = newReview.user;

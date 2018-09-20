@@ -9,27 +9,39 @@ import axios from 'axios';
 
 class MainContent extends Component {
     state = {
-        popularCars: []
+        popularCars: [],
+        reviews: []
       };
 
     componentWillMount() {
-        const localURL = "http://localhost:3002/api/popular/popular_cars"
+        const localcarsURL = "http://localhost:3002/api/popular/popular_cars";
+        const localreviewsURL = "http://localhost:3002/api/popular/featured_reviews"
         const deployedURL = "https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_cars"
-        axios 
-            .get(localURL)
-            .then(response => {
-                this.setState({ popularCars: response.data });
-            })
-            .catch(error => {
-                console.error('Server Error', error);
-            });
+        axios.all([
+            axios.get(localcarsURL),
+            axios.get(localreviewsURL)
+        ])
+        .then(axios.spread((carsRes, reviewsRes) => {
+            this.setState({ popularCars: carsRes.data })
+            this.setState({ reviews: reviewsRes.data})
+        }))
+        .catch(error => {
+            console.error('Server Error', error)
+        });
     }
 
     render() { 
         return ( 
             <div className="main-content-border">
                 <h3>Featured Reviews</h3>
-                <ReviewModal />
+                {this.state.reviews.map(review => {
+                    return (
+                        <ReviewModal score={review.score} id={review._id} key={review._id}
+                            year={review.car.year} make={review.car.make} model={review.car.model}
+                            edition={review.car.edition} user={review.user.username} 
+                            createOn={review.createOn} title={review.title} content={review.content}/>
+                    );
+                })}
                 <h3>Popular Cars</h3>
                 {this.state.popularCars.map(car => {
                     return (
