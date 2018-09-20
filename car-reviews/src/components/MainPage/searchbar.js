@@ -60,8 +60,8 @@ class Searchbar extends React.Component {
           {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
-            <Button className="signup">Sign Up</Button>
-            <Button className="signin">Sign In</Button>
+              <Button className="signup">Sign Up</Button>
+              <Button className="signin">Sign In</Button>
             </div>
           </Link>
         </div>
@@ -76,7 +76,6 @@ class Searchbar extends React.Component {
   };
 
   render() {
-    console.log(this.props.isLoggedIn)
     return (
         <div className="searchbar">
             {this.handleRenderSignin()}
@@ -91,7 +90,7 @@ class Searchbar extends React.Component {
                   <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
 
-                <Link to='/searchresults'>
+                <Link to='/searchpage'>
                   <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
