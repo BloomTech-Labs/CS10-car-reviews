@@ -41,10 +41,7 @@ class MainContent extends Component {
                 <h3>Featured Reviews</h3>
                 {this.state.reviews.map(review => {
                     return (
-                        <ReviewModal score={review.score} id={review._id} key={review._id}
-                            year={review.car.year} make={review.car.make} model={review.car.model}
-                            edition={review.car.edition} user={review.user.username} 
-                            createOn={review.createOn} title={review.title} content={review.content}/>
+                        <ReviewModal {...review} />
                     );
                 })}
                 <h3>Popular Cars</h3>

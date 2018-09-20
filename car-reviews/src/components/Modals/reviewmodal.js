@@ -22,7 +22,9 @@ class ReviewModal extends Component {
 
   
   render() {
-    const { score, year, make, model, edition, user, createOn, title, content } = this.props;
+    const { score, createOn, title, content } = this.props;
+    const { year, make, model, edition } = this.props.car;
+    const { username } = this.props.user;
     return (
       <div>
         <div className="modal-button">
@@ -37,7 +39,7 @@ class ReviewModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>
             <h2>{`${year} ${make} ${model} ${edition}`}</h2>
-            <h5>{`Review by: ${user}`}</h5>
+            <h5>{`Review by: ${username}`}</h5>
           </ModalHeader>
           <ModalBody>
             <img src={placeholder} style={{ height: '160px', width: '320px' }} />
