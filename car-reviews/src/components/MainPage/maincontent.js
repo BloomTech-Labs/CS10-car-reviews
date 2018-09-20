@@ -10,20 +10,26 @@ import axios from 'axios';
 class MainContent extends Component {
     state = {
         popularCars: [],
-        reviews: []
+        reviews: [],
+        popularReviewers: []
       };
 
     componentWillMount() {
         const localcarsURL = "http://localhost:3002/api/popular/popular_cars";
-        const localreviewsURL = "http://localhost:3002/api/popular/featured_reviews"
-        const deployedURL = "https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_cars"
+        const localreviewsURL = "http://localhost:3002/api/popular/featured_reviews";
+        const popularReviewersURL = "http://localhost:3002/api/popular/popular_reviewers"
+        const deployedURL = "https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_cars";
         axios.all([
             axios.get(localcarsURL),
-            axios.get(localreviewsURL)
+            axios.get(localreviewsURL),
+            axios.get(popularReviewersURL)
         ])
-        .then(axios.spread((carsRes, reviewsRes) => {
-            this.setState({ popularCars: carsRes.data })
-            this.setState({ reviews: reviewsRes.data})
+        .then(axios.spread((carsRes, reviewsRes, reviewersRes) => {
+            this.setState({ popularCars: carsRes.data, 
+                reviews: reviewsRes.data, 
+                popularReviewers: reviewersRes.data
+            });
+            console.log(this.state.popularReviewers)
         }))
         .catch(error => {
             console.error('Server Error', error)
@@ -54,10 +60,14 @@ class MainContent extends Component {
                     );
                 })}
                 <h3>Popular Reviewers</h3>
-                <Button className="main-card"> 
-                    <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                    <p>Reviewer</p>
-                </Button>
+               {this.state.popularReviewers.map(reviewer => {
+                    return (
+                        <Button className="main-card" key={reviewer._id}> 
+                            <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+                            <p>{reviewer.username}</p>
+                        </Button>
+                    );
+                })}
             </div>
         );
     }
