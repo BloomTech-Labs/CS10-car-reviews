@@ -4,12 +4,16 @@ import {
     Col,
     Label,
     Button,
+    Alert
 } from 'reactstrap'; 
 import './LoginRegister.css';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeLoginStatus } from '../../redux/actions/actionCreators';
 
+// * TODO: Check if the user already has a valid JWT when they first visit the page and when they navigate to login/signup
+// * TODO: Style login forms
+// ** OPTIONAL: Create multiple alerts for all the different possible errors (no email, no password, both, etc.)
 class LoginRegister extends Component {
     state = {
         login: {
@@ -24,6 +28,10 @@ class LoginRegister extends Component {
         },
         redirect: {
             status:false
+        },
+        alerts: {
+            login: false,
+            register: false
         }
     }
     handleUpdateForms = (type, field) => (event) => {
@@ -32,13 +40,14 @@ class LoginRegister extends Component {
         this.setState(newState);
     }
     handleSubmitForm = (formType) => (event) => {
-        // * TODO: Add a redirect here
         event.preventDefault();
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
         axios.post(localRequests, userForm)
             .then(response => {
+                // removes the alert if it's present
+                if (this.state.alerts[formType]) this.handleAlerts(formType);
                 // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
                 localStorage.setItem('jwt', response.data.JWT);
                 // here the login status of the user is changed to 'true' when the login/register is successful
@@ -59,8 +68,18 @@ class LoginRegister extends Component {
                     }
                 })
             })
-            .catch(err => console.warn(err));
+            .catch(err => {
+                if (!this.state.alerts[formType]) this.handleAlerts(formType);
+                console.warn(err);
+            });
     }
+
+    handleAlerts = (type) => {
+        const newState = Object.assign({}, this.state);
+        newState.alerts[type] = !this.state.alerts[type];
+        this.setState(newState);
+    }
+
     handleRedirect =() => {
         if(this.state.redirect.status){
           return  <Redirect to='/'  />
@@ -82,6 +101,7 @@ class LoginRegister extends Component {
                                 onChange={this.handleUpdateForms('login', 'password')}   
                             />
                             <Button type='submit' color ="primary">Login</Button>
+                            <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                         </form>
                     </Col>
                
@@ -117,6 +137,7 @@ class LoginRegister extends Component {
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
                          <Button color ="primary">Register</Button>
+                         <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
                     </form>
                 </Col>
                 </div>
