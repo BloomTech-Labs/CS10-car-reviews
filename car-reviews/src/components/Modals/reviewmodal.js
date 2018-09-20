@@ -55,7 +55,7 @@ class ModalExample extends Component {
         <div>
           {this.state.reviews.map(review => {
             return (
-              <Modal isOpen={this.state.modal} toggle={this.toggle} key={review.username}>
+              <Modal isOpen={this.state.modal} toggle={this.toggle} key={review._id}>
                 <ModalHeader toggle={this.toggle}>
                   <h2>{`${review.car.year} ${review.car.make} ${review.car.model} ${review.car.edition}`}</h2>
                   <h5>{`Review by: ${review.user.username}`}</h5>
