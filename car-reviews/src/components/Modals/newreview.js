@@ -7,7 +7,6 @@ class NewReviewModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: {},
       modal: false,
       review: {
         year: Number(''),
@@ -15,25 +14,12 @@ class NewReviewModal extends Component {
         model: '',
         edition: '',
         // selectedImage: undefined,
+        title: '',
         content: '',
         score: Number('')
       }
     };
   }
-
-  componentDidMount = () => {
-    axios
-      .get('https://back-lambda-car-reviews.herokuapp.com/api/users/data', {
-        headers: {
-          JWT: localStorage.getItem('jwt')
-        }
-      })
-      .then(response => {
-        console.log(response.data);
-        this.setState({ userInfo: response.data });
-      })
-      .catch(console.log('Error getting user data'));
-  };
 
   toggle = () => {
     this.setState({
@@ -56,8 +42,9 @@ class NewReviewModal extends Component {
   submitNewReview = () => {
     const newReview = this.state['review'];
     const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+    const localRequests = 'http://localhost:3001/api/reviews';
     axios
-      .post(requestURL, newReview, {
+      .post(localRequests, newReview, {
         headers: {
           JWT: localStorage.getItem('jwt')
         }
@@ -71,6 +58,7 @@ class NewReviewModal extends Component {
             model: '',
             edition: '',
             // selectedImage: undefined,
+            title: '',
             content: '',
             score: ''
           }
@@ -126,7 +114,7 @@ class NewReviewModal extends Component {
               <select className="dropdownsNR" name="car-models" id="car-models" />
               <select className="dropdownsNR" name="car-model-trims" id="car-model-trims" />
             </div> */}
-            Review by: {this.state.userInfo.username}
+            Review by: {this.props.userInfo.username}
           </ModalHeader>
           <ModalBody>
             {this.state.review.selectedImage ? (
@@ -150,6 +138,13 @@ class NewReviewModal extends Component {
                 value={this.state.review.score}
                 onChange={this.handleChange('review', 'score')}
                 placeholder="car-score"
+              />
+              <input
+                type="text"
+                name="title"
+                value={this.state.review.title}
+                onChange={this.handleChange('review', 'title')}
+                placeholder="Write the title here..."
               />
               <p>
                 <textarea
