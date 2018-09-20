@@ -46,7 +46,6 @@ class LoginRegister extends Component {
         const userForm = Object.assign({}, this.state[formType]);
         axios.post(localRequests, userForm)
             .then(response => {
-                console.log(response.data.JWT)
                 // removes the alert if it's present
                 if (this.state.alerts[formType]) this.handleAlerts(formType);
                 // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
@@ -146,7 +145,6 @@ class LoginRegister extends Component {
         
     }
     render(){
-        console.log(this.props.location.state);
         return(
             <Fragment>
                {this.handleRedirect()} 
