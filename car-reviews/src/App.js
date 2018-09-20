@@ -15,7 +15,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={MainPage} />
-          <Route path="/searchpage" component={SearchResults} />
+          <Route path="/searchresults" component={SearchResults} />
           <Route path="/UserPage" component={UserPage} />
           <Route path="/Billing" component={Billing} />
           {/* I removed /UserPage before /MyReviews because something is bugged in UserPage in this build */}
