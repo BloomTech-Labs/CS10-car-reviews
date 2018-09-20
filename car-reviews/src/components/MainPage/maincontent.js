@@ -8,7 +8,7 @@ import ReviewModal from '../Modals/reviewmodal';
 
 class MainContent extends Component {
     render() { 
-        return ( 
+        return (
             <div className="main-content-border">
                 <h3 style={{ color: '#77A6F7' }}>Featured Reviews</h3>
                 <ReviewModal />
