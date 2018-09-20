@@ -15,9 +15,9 @@ class MainContent extends Component {
       };
 
     componentWillMount() {
-        const localcarsURL = "http://localhost:3002/api/popular/popular_cars";
-        const localreviewsURL = "http://localhost:3002/api/popular/featured_reviews";
-        const popularReviewersURL = "http://localhost:3002/api/popular/popular_reviewers"
+        const localcarsURL = "http://localhost:3001/api/popular/popular_cars";
+        const localreviewsURL = "http://localhost:3001/api/popular/featured_reviews";
+        const popularReviewersURL = "http://localhost:3001/api/popular/popular_reviewers"
         const deployedURL = "https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_cars";
         axios.all([
             axios.get(localcarsURL),
