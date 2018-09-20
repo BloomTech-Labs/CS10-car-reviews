@@ -12,6 +12,28 @@ import { connect } from 'react-redux';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
 
+const styles = {
+  buttonStylesMiddle: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 15,
+    width: '90%'
+  },
+  buttonContainerStyles: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  buttonStylesRight: {
+
+  },
+  loginContainerStyles: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginRight: 20,
+    marginTop: 10
+  }
+}
+
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
 
@@ -37,8 +59,10 @@ class Searchbar extends React.Component {
         <div className="login">
           {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
           <Link to="/login">
+            <div style={styles.loginContainerStyles}>
             <Button className="signup">Sign Up</Button>
             <Button className="signin">Sign In</Button>
+            </div>
           </Link>
         </div>
       );
@@ -52,29 +76,23 @@ class Searchbar extends React.Component {
   };
 
   render() {
+    console.log(this.props.isLoggedIn)
     return (
         <div className="searchbar">
             {this.handleRenderSignin()}
-            <div classname="searchfields">
+            <div className="searchfields">
                 <select className="dropdowns" name="car-years" id="car-years"></select>
                 <select className="dropdowns" name="car-makes" id="car-makes"></select> 
                 <select className="dropdowns" name="car-models" id="car-models"></select>
                 <select className="dropdowns" name="car-model-trims" id="car-model-trims"></select>
             </div>
-            <div className="review-and-search">
-                <Link to= {
-                    {
-                        pathname: './'
-                    }
-                }>
-                <Button className="review">Review</Button>
+            <div style={styles.buttonContainerStyles}>
+                <Link to='/MyReviews'>
+                  <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
-                <Link to= {
-                    {
-                        pathname: './SearchPage'
-                    }
-                }>
-                <Button className="search">Search</Button>
+
+                <Link to='/searchresults'>
+                  <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
         </div>
@@ -82,8 +100,8 @@ class Searchbar extends React.Component {
   }
 }
 
-const mapStateToProps = ({ isLoggedIn }) => {
-  return { isLoggedIn };
+const mapStateToProps = ({ clientStatus }) => {
+  return { isLoggedIn: clientStatus.isLoggedIn };
 };
 
 export default connect(mapStateToProps)(Searchbar);

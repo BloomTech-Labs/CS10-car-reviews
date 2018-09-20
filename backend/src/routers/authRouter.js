@@ -17,6 +17,13 @@ const router = express.Router();
 // creating the routes
 router.get('/', (req, res) => res.send('The auth router is working!')); // test route
 
+router.get('/verify', (req, res) => {
+    const { jwt } = req.headers;
+    console.log('running!');
+    JWT.verify(jwt, JWT_SECRET)
+        .then((res) => console.log(res));
+})
+
 
 // route registers a user
 // * TODO: Need to check that email is in the correct format

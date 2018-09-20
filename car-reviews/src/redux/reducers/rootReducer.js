@@ -11,7 +11,9 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
     switch (action.type){
         case CHANGE_LOGIN_STATUS:
-            return Object.assign({}, state, { isLoggedIn: !state.isLoggedIn });
+            const newLoginState = Object.assign({}, state);
+            newLoginState.clientStatus.isLoggedIn = !state.clientStatus.isLoggedIn;
+            return newLoginState;
         default:
             return state;
     }

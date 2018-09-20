@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // This component is the review modal.
 
-class ModalExample extends Component {
+class ReviewModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,11 +24,12 @@ class ModalExample extends Component {
   }
 
   componentWillMount() {
-    const localURL = "http://localhost:3002/api/popular/featured_reviews"
+    const localURL = "http://localhost:3001/api/popular/featured_reviews"
     const deployedURL = "https://back-lambda-car-reviews.herokuapp.com/api/popular/featured_reviews"
     axios 
       .get(localURL)
       .then(response => {
+          console.log(response);
           this.setState({ reviews: response.data });
       })
       .catch(error => {
@@ -55,6 +56,7 @@ class ModalExample extends Component {
         <div>
           {this.state.reviews.map(review => {
             return (
+              <div key={review._id}>
               <Modal isOpen={this.state.modal} toggle={this.toggle} key={review.username}>
                 <ModalHeader toggle={this.toggle}>
                   <h2>{`${review.car.year} ${review.car.make} ${review.car.model} ${review.car.edition}`}</h2>
@@ -69,12 +71,13 @@ class ModalExample extends Component {
                   <p>{review.content}</p>
                 </ModalFooter>
               </Modal>
+              </div>
             );
-          })}
+          })} 
         </div>
       </div>
     );
   }
 }
 
-export default ModalExample;
+export default ReviewModal;

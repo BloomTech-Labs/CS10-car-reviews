@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchResults from './SearchResults';
 import placeholder from '../../logo.svg';
 import { Button } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';

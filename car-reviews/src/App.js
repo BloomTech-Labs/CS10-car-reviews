@@ -6,7 +6,7 @@ import MyReviews from './components/UserPage/myreviews';
 import { Switch, Route } from 'react-router-dom';
 import Billing from './components/UserPage/billing';
 import Settings from './components/UserPage/settings';
-import SearchResults from './components/MainPage/searchresults';
+import SearchResults from './components/MainPage/SearchResults';
 import Login from './components/MainPage/loginRegister';
 
 class App extends Component {
