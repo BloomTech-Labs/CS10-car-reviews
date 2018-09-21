@@ -70,6 +70,7 @@ class NewReviewModal extends Component {
   onClick = event => {
     this.submitNewReview();
     this.toggle();
+    window.location.reload(); // Need a way for the screen to rerender the changes without me doing it explicitly.
   };
 
   render() {
