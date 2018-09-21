@@ -32,10 +32,10 @@
 
 .main-content {
     border: 1px solid black;
-    text-align: left;
     margin-top: 30px;
-    background-color: #D3E3FC;
     margin-bottom: 45px;
+    text-align: left;
+    background-color: #D3E3FC;
 }
 
 

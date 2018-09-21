@@ -42,7 +42,7 @@ class ReviewModal extends Component {
             <h5>{`Review by: ${username}`}</h5>
           </ModalHeader>
           <ModalBody>
-            <img src={placeholder} style={{ height: '160px', width: '320px' }} />
+            <img src={placeholder} style={{ height: '160px', width: '50%' }} />
             <p>Star Rating {score}</p>
           </ModalBody>
           <ModalFooter>
