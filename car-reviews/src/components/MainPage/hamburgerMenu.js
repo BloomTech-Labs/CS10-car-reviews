@@ -1,10 +1,14 @@
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
-import AuthService from '../Auth/AuthService';
+import AuthService from '../Auth/authservice';
 
 const Auth = new AuthService();
 
 export default props => {
+  const signOut = () => {
+    Auth.logout();
+  };
+
   return (
     <Menu {...props}>
       <a className="menu-item" href="/">
@@ -25,7 +29,7 @@ export default props => {
       <a className="menu-item" href="/Settings">
         Settings
       </a>
-      <a className="menu-item" href="/" onClick={Auth.logout()}>
+      <a className="menu-item" href="/" onClick={signOut}>
         Sign Out
       </a>
     </Menu>
