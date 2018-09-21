@@ -64,12 +64,13 @@ class Searchbar extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // * TODO: Add a redirect to the search page, make this function called on the search button's click, pass the results to the SearchResults page
   searchFunction = () => {
-    const placeholder = { year: '1995', make: 'Toyota', model: 'corolla', edition: 'SE' };
+    const placeholder = { year: '2019', make: 'Mitsubishi', model: 'Eclipse Cross', trim: 'SE', reviewer: 'test' };
     axios
       .post('http://localhost:3001/api/reviews/search', placeholder)
       .then(response => {
-        console.log("RESPONSE: ", response.config.data)
+        console.log("RESPONSE: ", response)
       })
       .catch(err => {
         console.log("ERROR: ", err.message)
