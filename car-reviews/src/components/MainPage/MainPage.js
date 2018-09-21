@@ -28,7 +28,7 @@ class MainPage extends Component {
         </div>
         <div className="search-container">
           <MainContent />
-          <a href="https://lambdaschool.com">About The Team</a>
+          <a href="https://lambdaschool.com" style={{ paddingBottom: '30px' }}>About The Team</a>
         </div>
       </div>
     );

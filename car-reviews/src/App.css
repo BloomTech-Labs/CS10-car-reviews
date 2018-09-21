@@ -1,16 +1,21 @@
 .App {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-.example{
-  /* border: 1px solid red; */
+/*.example{
+  border: 1px solid red; 
   display: flex !important;
   justify-content: center;
-}
+}*/
 
 .App-header {
   background-color: #222;

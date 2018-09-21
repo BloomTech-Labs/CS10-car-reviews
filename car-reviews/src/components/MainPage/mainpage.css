@@ -29,14 +29,25 @@
 /* End of Search Bar Styles */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /* Main Content Styles */
-.main-content-border {
+
+.main-content {
     border: 1px solid black;
+    margin-top: 30px;
+    margin-bottom: 45px;
     text-align: left;
+    background-color: #D3E3FC;
+}
+
+
+.header {
+    padding-top: 65px;
+    margin-bottom: 35px;
 }
 
 .main-card {
     height: 220px;
-    width: 200px;
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 /* End of Main Content Styles */

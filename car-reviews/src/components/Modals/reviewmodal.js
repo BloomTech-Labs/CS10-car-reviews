@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
+import '../MainPage/mainpage.css';
 //import data from '../../data';
 // This component is the review modal.
 
@@ -27,22 +28,20 @@ class ReviewModal extends Component {
     const { username } = this.props.user;
     return (
       <div>
-        <div className="modal-button">
-            <Button onClick={this.toggle} className={this.props.className}>
-                <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                <p>Star Rating {score}</p>
-                <p>{`${year} ${make} ${model}`}</p>
-                <p>{edition}</p>
-                <CardText className="cardText">{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
-            </Button>
-        </div>
+        <Button className="main-card" onClick={this.toggle}>
+            <img src={placeholder} style={{ height: '60px', width: '25%' }} />
+            <p>Star Rating {score}</p>
+            <p>{`${year} ${make} ${model}`}</p>
+            <p>{edition}</p>
+            <CardText className="cardText">{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
+        </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>
             <h2>{`${year} ${make} ${model} ${edition}`}</h2>
             <h5>{`Review by: ${username}`}</h5>
           </ModalHeader>
           <ModalBody>
-            <img src={placeholder} style={{ height: '160px', width: '320px' }} />
+            <img src={placeholder} style={{ height: '160px', width: '50%' }} />
             <p>Star Rating {score}</p>
           </ModalBody>
           <ModalFooter>

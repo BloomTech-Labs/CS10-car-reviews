@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
-import { Button } from 'reactstrap';
+import { Button, Row, Col, Container } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';
 import axios from 'axios';
+import './mainpage.css';
 
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
 // because they will need to be clicked on to open the review page. This is rendered in MainPage.
@@ -14,7 +15,7 @@ class MainContent extends Component {
         popularReviewers: []
       };
 
-    componentWillMount() {
+    componentDidMount() {
         const localcarsURL = "http://localhost:3001/api/popular/popular_cars";
         const localreviewsURL = "http://localhost:3001/api/popular/featured_reviews";
         const popularReviewersURL = "http://localhost:3001/api/popular/popular_reviewers"
@@ -37,33 +38,47 @@ class MainContent extends Component {
 
     render() { 
         return ( 
-            <div className="main-content-border">
-                <h3>Featured Reviews</h3>
-                {this.state.reviews.map(review => {
-                    return (
-                        <ReviewModal {...review} />
-                    );
-                })}
-                <h3>Popular Cars</h3>
-                {this.state.popularCars.map(car => {
-                    return (
-                        <Button className="main-card" key={car._id}> 
-                            <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                            <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>  
-                            <p>{car.year} {car.make} {car.model}</p>
-                            <p>{car.edition}</p>
-                        </Button>
-                    );
-                })}
-                <h3>Popular Reviewers</h3>
-               {this.state.popularReviewers.map(reviewer => {
-                    return (
-                        <Button className="main-card" key={reviewer._id}> 
-                            <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                            <p>{reviewer.username}</p>
-                        </Button>
-                    );
-                })}
+            <div className="main-content">
+                <Container>
+                    <h3 className="header">Featured Reviews</h3>
+                    <Row>
+                        {this.state.reviews.map(review => {
+                            return (
+                                <Col lg="3" md="6" key={review._id}>
+                                    <ReviewModal {...review} key={review._id}/>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                    <h3 className="header">Popular Cars</h3>
+                    <Row>
+                        {this.state.popularCars.map(car => {
+                            return (
+                                <Col lg="3" md="6" key={car._id}>
+                                    <Button className="main-card" key={car._id}> 
+                                        <img src={placeholder} style={{ height: '60px' }} />
+                                        <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>  
+                                        <p>{car.year} {car.make} {car.model}</p>
+                                        <p>{car.edition}</p>
+                                    </Button>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                    <h3 className="header">Popular Reviewers</h3>
+                    <Row>
+                        {this.state.popularReviewers.map(reviewer => {
+                            return (
+                                <Col lg="3" md="6" key={reviewer._id}>
+                                    <Button className="main-card" key={reviewer._id}> 
+                                        <img src={placeholder} style={{ height: '60px' }} />
+                                        <p>{reviewer.username}</p>
+                                    </Button>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                </Container>
             </div>
         );
     }
