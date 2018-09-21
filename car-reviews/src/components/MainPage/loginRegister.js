@@ -43,7 +43,6 @@ class LoginRegister extends Component {
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
-        console.log(userForm);
         axios.post(localRequests, userForm)
             .then(response => {
                 // removes the alert if it's present

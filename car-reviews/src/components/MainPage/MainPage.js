@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from './searchbar';
 import MainContent from './maincontent';
+import JWT from 'jsonwebtoken';
 
 // This file contains the various components that make up the landing page
 // and search results. This file is rendered in App.
@@ -11,11 +12,15 @@ class MainPage extends Component {
   }
 
   componentWillMount(){
-    if (localStorage.getItem('jwt')) this.handleChangeLogin();
+    const tokenStatus = JWT.verify(localStorage.getItem('jwt'), "supersecretsecret", (err, decoded) => {
+      if (err) this.handleLogin(false);
+      else this.handleLogin(true);
+    })
   }
 
-  handleChangeLogin = () => {
-    this.setState({ isLoggedIn: !this.state.isLoggedIn });
+  handleLogin = (status) => {
+    console.log(`JWT is ${status}`)
+    this.setState({ isLoggedIn: status });
   }
 
   render() {
