@@ -52,7 +52,10 @@ router.post('/login', (req, res) => {
             
             // ** OPTIONAL: Add a password reset feature
             if (bcrypt.compareSync(credentials.password, userRecord.password)){
-                JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, decoded) => {
+                const options = {
+                    expiresIn: '1h',
+                  };
+                JWT.sign({ fullname, username, email, _id }, JWT_SECRET, options, (err, decoded) => {
                     if (err) return res.status(500).json({ loginError: `There was an error when trying to generate a JWT for the user--please try again.` });
                     res.status(200).json({ JWT: decoded });
                 });
