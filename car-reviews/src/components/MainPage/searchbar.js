@@ -11,8 +11,10 @@ import {
 import { Link } from 'react-router-dom';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
-import { CarQuery }from 'car-query';
+import {CarQuery} from 'car-query';
 import axios from 'axios';
+
+const carQuery = new CarQuery();
 
 const styles = {
   buttonStylesMiddle: {
@@ -35,6 +37,7 @@ const styles = {
     marginTop: 10
   }
 }
+
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
@@ -74,6 +77,7 @@ class Searchbar extends React.Component {
   };
 
   componentDidMount() {
+    console.log(carQuery);
     carQuery.getMakes()
       .then(make => {
         this.setState((prevState) =>({
@@ -147,7 +151,7 @@ class Searchbar extends React.Component {
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
-            <div classname="searchfields">
+            <div className="searchfields">
               <select
                 className="dropdowns"
                 name="car-years"
@@ -198,7 +202,7 @@ class Searchbar extends React.Component {
               </select>
             </div> 
             <button onClick={()=>this.searchFunction()}>click me for testing</button>
-            <div className="review-and-search">
+            <div style={styles.buttonContainerStyles}>
                 <Link to='/MyReviews'>
                   <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
