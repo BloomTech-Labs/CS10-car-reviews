@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import { Button, Row, Col, Container } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';
+import PopularSedanCarousel from './PopularSedanCarousel'
 import axios from 'axios';
 import './mainpage.css';
 
