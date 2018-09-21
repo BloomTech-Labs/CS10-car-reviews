@@ -176,7 +176,6 @@ class Searchbar extends React.Component {
                     }
                 }>
                 <Button className="review">Review</Button>
-              ]
                 </Link>
                 <Link to= {
                     {
