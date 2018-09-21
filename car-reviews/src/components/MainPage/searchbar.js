@@ -11,6 +11,10 @@ import {
 import { Link } from 'react-router-dom';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
+import {CarQuery} from 'car-query';
+import axios from 'axios';
+
+const carQuery = new CarQuery();
 
 const styles = {
   buttonStylesMiddle: {
@@ -34,19 +38,77 @@ const styles = {
   }
 }
 
+
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
 
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      years: [],
+      makes: [],
+      models: [],
+      trims: [],
+      'car-years': '',
+      'car-models': '',
+      'car-makes': '',
+      'car-edition': ''
     };
     this.toggle = this.toggle.bind(this);
   }
+  
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
+  searchFunction = () => {
+    const placeholder = { year: '1995', make: 'Toyota', model: 'corolla', edition: 'SE' };
+    axios
+      .post('http://localhost:3001/api/reviews/search', placeholder)
+      .then(response => {
+        console.log("RESPONSE: ", response.config.data)
+      })
+      .catch(err => {
+        console.log("ERROR: ", err.message)
+      })
+  };
+
+  componentDidMount() {
+    console.log(carQuery);
+    carQuery.getMakes()
+      .then(make => {
+        this.setState((prevState) =>({
+          makes: [prevState.makes, ...make]
+        }));
+      });
+    
+    const searchCriteria = {
+      year: this.state.selectedYear,
+      make: this.state.selectedMake
+    }
+    
+    carQuery.getModels(searchCriteria)
+      .then(model => {
+        console.log("MODELS:", model)
+        this.setState((prevState) =>({
+          models: [prevState.models, ...model]
+        }));
+      });
+
+    carQuery.getTrims(searchCriteria)
+      .then(trim => {
+          this.setState((prevState) =>({
+            trims: [prevState.trims, ...trim]
+          }));
+      });
+    // For-Loop to populate years array in state
+    for (let i = 1974; i<2018; i++) {
+      this.state.years.push(i);
+    }
+  } 
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
@@ -75,22 +137,77 @@ class Searchbar extends React.Component {
     }
   };
 
+  // * TODO: pass search results to the Search Results Component
+  handleSearch = () => {
+    carQuery.getModels({
+      year: this.state['car-years'],
+      make: this.state['car-makes'],
+      model: this.state['car-models'],
+      edition: this.state['car-trims']
+    })
+    .then(res => console.log(res));
+  }
   render() {
     return (
         <div className="searchbar">
-            {this.handleRenderSignin()}
+          {this.handleRenderSignin()}
             <div className="searchfields">
-                <select className="dropdowns" name="car-years" id="car-years"></select>
-                <select className="dropdowns" name="car-makes" id="car-makes"></select> 
-                <select className="dropdowns" name="car-models" id="car-models"></select>
-                <select className="dropdowns" name="car-model-trims" id="car-model-trims"></select>
-            </div>
+              <select
+                className="dropdowns"
+                name="car-years"
+                id="car-years"
+                onChange={this.handleChange}
+              >
+              {this.state.years.map((year) => {
+                return (
+                  <option> {year} </option>
+                )
+              })}
+              </select>
+              <select
+                className="dropdowns"
+                name="car-makes"
+                id="car-makes"
+                onChange={this.handleChange}
+              >
+              {this.state.makes.map((make) => {
+                return (
+                  <option> {make.display}</option>
+                )
+              })}
+              </select>
+              <select
+                className="dropdowns"
+                name="car-models"
+                id="car-models"
+                onChange={this.handleChange}
+              >
+              {this.state.models.map((model) => {
+                return (
+                  <option>{model.makeId} {model.name}</option>
+                )
+              })}
+              </select>
+              <select
+                className="dropdowns"
+                name="car-model-trims"
+                id="car-model-trims"
+                onChange={this.handleChange}
+              >
+              {this.state.trims.map((trim) => {
+                return (
+                  null
+                )
+              })}
+              </select>
+            </div> 
+            <button onClick={()=>this.searchFunction()}>click me for testing</button>
             <div style={styles.buttonContainerStyles}>
                 <Link to='/MyReviews'>
                   <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
 
-                <Link to='/searchpage'>
+                <Link to='/SearchPage'>
                   <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
