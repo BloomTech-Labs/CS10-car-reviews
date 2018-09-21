@@ -200,7 +200,7 @@ class Searchbar extends React.Component {
             <button onClick={()=>this.searchFunction()}>click me for testing</button>
             <div className="review-and-search">
                 <Link to='/MyReviews'>
-                  <Button className="review">Review</Button>
+                  <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
 
                 <Link to='/SearchPage'>
