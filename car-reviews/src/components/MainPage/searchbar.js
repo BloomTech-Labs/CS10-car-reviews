@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './mainpage.css';
 import {
@@ -13,9 +14,32 @@ import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
 import { CarQuery }from 'car-query';
 import axios from 'axios';
+
+const styles = {
+  buttonStylesMiddle: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 15,
+    width: '90%'
+  },
+  buttonContainerStyles: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  buttonStylesRight: {
+
+  },
+  loginContainerStyles: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginRight: 20,
+    marginTop: 10
+  }
+}
+
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
-const carQuery = new CarQuery();
+
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
@@ -85,14 +109,17 @@ class Searchbar extends React.Component {
       dropdownOpen: !prevState.dropdownOpen
     }));
   }
+
   handleRenderSignin = () => {
     if (!this.props.isLoggedIn) {
       return (
         <div className="login">
           {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
           <Link to="/login">
-            <Button className="signup">Sign Up</Button>
-            <Button className="signin">Sign In</Button>
+            <div style={styles.loginContainerStyles}>
+              <Button className="signup">Sign Up</Button>
+              <Button className="signin">Sign In</Button>
+            </div>
           </Link>
         </div>
       );
@@ -182,7 +209,7 @@ class Searchbar extends React.Component {
                         pathname: './SearchPage'
                     }
                 }>
-                <Button className="search" onClick={()=>this.searchFunction}>Search</Button>
+                <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
         </div>
