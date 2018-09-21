@@ -44,19 +44,19 @@ class MainContent extends Component {
                     <Row>
                         {this.state.reviews.map(review => {
                             return (
-                                <Col className="review-results" key={review._id}>
+                                <Col xs="3" key={review._id}>
                                     <ReviewModal {...review} key={review._id}/>
                                 </Col>
                             );
                         })}
                     </Row>
-                    <h3 className="header" id="popHeader">Popular Cars</h3>
+                    <h3 className="header">Popular Cars</h3>
                     <Row>
                         {this.state.popularCars.map(car => {
                             return (
-                                <Col key={car._id}>
+                                <Col xs="3" key={car._id}>
                                     <Button className="main-card" key={car._id}> 
-                                        <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+                                        <img src={placeholder} style={{ height: '60px' }} />
                                         <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>  
                                         <p>{car.year} {car.make} {car.model}</p>
                                         <p>{car.edition}</p>
@@ -65,15 +65,19 @@ class MainContent extends Component {
                             );
                         })}
                     </Row>
-                    <h3>Popular Reviewers</h3>
-                    {this.state.popularReviewers.map(reviewer => {
-                            return (
-                                <Button className="main-card" key={reviewer._id}> 
-                                    <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                                    <p>{reviewer.username}</p>
-                                </Button>
-                            );
-                    })}
+                    <h3 className="header">Popular Reviewers</h3>
+                    <Row>
+                        {this.state.popularReviewers.map(reviewer => {
+                                return (
+                                    <Col xs="3" key={reviewer._id}>
+                                        <Button className="main-card" key={reviewer._id}> 
+                                            <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+                                            <p>{reviewer.username}</p>
+                                        </Button>
+                                    </Col>
+                                );
+                        })}
+                    </Row>
                 </Container>
             </div>
         );

@@ -5,9 +5,9 @@
     justify-content: flex-end;
 }
 
-/*.signup {
+.signup {
     margin-right: 25px;
-}*/
+}
 
 .searchfields {
     display: flex;
@@ -31,25 +31,23 @@
 /* Main Content Styles */
 
 .main-content {
-    /*border: 1px solid black;*/
+    border: 1px solid black;
     text-align: left;
     margin-top: 30px;
     background-color: #D3E3FC;
+    margin-bottom: 45px;
 }
 
 
 .header {
-    padding-top: 35px;
+    padding-top: 65px;
     margin-bottom: 35px;
 }
 
 .main-card {
     height: 220px;
-    width: 200px;
-}
-
-#popHeader {
-    padding-top: 65px;
+    width: 95%;
+    margin-bottom: 30px;
 }
 
 /* End of Main Content Styles */
@@ -69,12 +67,6 @@
     display: flex;
 }
 
-.review-results {
-    /*margin-top: 30px;*/
-    /*margin-left: 30px;*/
-    /* display: inline-flex;
-    width: 25%;*/
-}
 
 /* End of Search Results Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */

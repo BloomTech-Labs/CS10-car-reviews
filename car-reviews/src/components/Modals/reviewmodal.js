@@ -28,7 +28,7 @@ class ReviewModal extends Component {
     return (
       <div>
         <div className="modal-button">
-            <Button onClick={this.toggle} className={this.props.className}>
+            <Button onClick={this.toggle}>
                 <img src={placeholder} style={{ height: '60px', width: '25%' }} />
                 <p>Star Rating {score}</p>
                 <p>{`${year} ${make} ${model}`}</p>
