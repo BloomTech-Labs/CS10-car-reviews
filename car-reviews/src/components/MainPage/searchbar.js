@@ -207,7 +207,10 @@ class Searchbar extends React.Component {
                   <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
 
-                <Link to='/SearchPage'>
+                <Link to={{
+                  pathname: '/searchpage',
+                  state: { isLoggedIn: this.props.isLoggedIn }
+                }}>
                   <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
