@@ -28,10 +28,11 @@ class SearchResults extends Component {
   }
 
     render() { 
+        const { isLoggedIn } = this.props.location.state;
         return (
             <div>
                  {console.log(data)}
-                <SearchBar />
+                <SearchBar isLoggedIn={isLoggedIn} />
                 <div className="filter-row">
                     <div className="filters"> 
                         <h5>Filter by:</h5>

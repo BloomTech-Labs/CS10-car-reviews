@@ -148,6 +148,7 @@ class Searchbar extends React.Component {
     .then(res => console.log(res));
   }
   render() {
+    const { isLoggedIn } = this.props;
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
@@ -207,7 +208,10 @@ class Searchbar extends React.Component {
                   <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
 
-                <Link to='/SearchPage'>
+                <Link to={{
+                  pathname: '/SearchPage',
+                  state: { isLoggedIn }
+                }}>
                   <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
