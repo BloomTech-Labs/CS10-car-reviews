@@ -9,7 +9,6 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
 import { CarQuery }from 'car-query';
@@ -43,6 +42,7 @@ const styles = {
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       dropdownOpen: false,
       years: [],
@@ -56,6 +56,7 @@ class Searchbar extends React.Component {
     };
     this.toggle = this.toggle.bind(this);
   }
+  
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -132,6 +133,7 @@ class Searchbar extends React.Component {
     }
   };
 
+  // * TODO: pass search results to the Search Results Component
   handleSearch = () => {
     carQuery.getModels({
       year: this.state['car-years'],
@@ -197,26 +199,17 @@ class Searchbar extends React.Component {
             </div> 
             <button onClick={()=>this.searchFunction()}>click me for testing</button>
             <div className="review-and-search">
-                <Link to= {
-                    {
-                        pathname: './'
-                    }
-                }>
-                <Button className="review">Review</Button>
+                <Link to='/MyReviews'>
+                  <Button className="review">Review</Button>
                 </Link>
-                <Link to= {
-                    {
-                        pathname: './SearchPage'
-                    }
-                }>
-                <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
+
+                <Link to='/SearchPage'>
+                  <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
                 </Link>
             </div>
         </div>
     );
   }
 }
-const mapStateToProps = ({ isLoggedIn }) => {
-  return { isLoggedIn };
-};
-export default connect(mapStateToProps)(Searchbar);
+
+export default Searchbar;
