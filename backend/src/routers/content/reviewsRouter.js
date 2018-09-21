@@ -102,8 +102,9 @@ router
 
 
 // search router:
-router.get('/search', (req, res) => {
+router.post('/search', (req, res) => {
     const { year, make, model, trim, reviewer} = req.body;
+    console.log("BACKEND LOG",req.body)
     if (reviewer) {
         CarModel.find({year: year, make: make, model: model, edition: trim}).select('make model year -_id')
             .populate({
