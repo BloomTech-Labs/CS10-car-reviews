@@ -15,7 +15,7 @@ class MainContent extends Component {
         popularReviewers: []
       };
 
-    componentWillMount() {
+    componentDidMount() {
         const localcarsURL = "http://localhost:3001/api/popular/popular_cars";
         const localreviewsURL = "http://localhost:3001/api/popular/featured_reviews";
         const popularReviewersURL = "http://localhost:3001/api/popular/popular_reviewers"
