@@ -51,30 +51,59 @@ class Searchbar extends React.Component {
       'car-makes': '',
       'car-edition': '',
       searching: false,
-      searchResults: []
+      searchResults: [],
+      selectedValues: {
+        year: '',
+        make: '',
+        model: '',
+        trim: ''
+      }
     };
     this.toggle = this.toggle.bind(this);
   }
   
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    console.log(name, value);
+    this.setState((prevState) => {
+      prevState.selectedValues[name] = value;
+      if (name === 'make'){
+        const searchCriteria = {
+          make: prevState.selectedValues.make
+        }
+        if (this.state.selectedValues.year) searchCriteria.year = this.state.selectedValues.year,
+        // * DO NOT DELETE THIS LOG, the function doesn't work without it.
+        console.log(this.state.selectedValues.year);
+        const newModels = [];
+        carQuery.getModels(searchCriteria)
+          .then(models => {
+            models.map(model => {
+              newModels.push(model);
+            });
+          });
+          prevState.models = newModels;
+      }
+      return prevState;
+    });
   };
 
   searchFunction = () => {
     const placeholder = { year: '1995', make: 'Toyota', model: 'corolla', edition: 'SE' };
-    const searchCriteria = {
-      year: parseInt(this.state['car-years']),
-      make: this.state['car-makes'],
-      model: this.state['car-models'],
-      edition: this.state['car-edition']
+    const searchCriteria = {}
+
+    if (this.state[`car-years`]) {
+      searchCriteria.year = this.state['car-years'];
+      console.log(searchCriteria.year);
+    } else {
+      console.log('empty');
     }
-    console.log(searchCriteria)
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
-        this.setState({ searchResults: response.data })
-        console.log(this.state.searchResults[0], this.state.searching);
-        this.handleSearchingFlag();
+        this.setState({ searchResults: response.data }, () => {
+          console.log(this.state.searchResults[0], this.state.searching);
+        })
+        // this.handleSearchingFlag();
       })
       .catch(err => {
         console.log("ERROR: ", err.message)
@@ -88,7 +117,7 @@ class Searchbar extends React.Component {
         pathname: '/searchpage',
         state: {
           isLoggedIn: this.props.isLoggedIn,
-          searchResults: results
+          searchResults: this.state.searchResults
         }
       }} />
     } else {
@@ -101,36 +130,40 @@ class Searchbar extends React.Component {
   }
 
   componentDidMount() {
+    const yearList = [];
+    carQuery.getYears()
+      .then(years => {
+        for (let i = years.minYear; i <= years.maxYear; i++) {
+          yearList.push(i);
+        }
+        this.setState({ years: yearList });
+      })
+
     carQuery.getMakes()
-      .then(make => {
-        this.setState((prevState) =>({
-          makes: [prevState.makes, ...make]
-        }));
+      .then(makes => {
+        this.setState({ makes });
       });
     
     const searchCriteria = {
-      year: this.state.selectedYear,
-      make: this.state.selectedMake
+      year: this.state.selectedValues.year,
+      make: this.state.selectedValues.make
     }
     
-    carQuery.getModels(searchCriteria)
-      .then(model => {
-        console.log("MODELS:", model)
-        this.setState((prevState) =>({
-          models: [prevState.models, ...model]
-        }));
-      });
+    // carQuery.getModels(searchCriteria)
+    //   .then(model => {
+    //     console.log("MODELS:", model)
+    //     this.setState((prevState) =>({
+    //       models: [prevState.models, ...model]
+    //     }));
+    //   });
 
-    carQuery.getTrims(searchCriteria)
-      .then(trim => {
-          this.setState((prevState) =>({
-            trims: [prevState.trims, ...trim]
-          }));
-      });
-    // For-Loop to populate years array in state
-    for (let i = 1974; i<2018; i++) {
-      this.state.years.push(i);
-    }
+    // carQuery.getTrims(searchCriteria)
+    //   .then(trim => {
+    //       this.setState((prevState) =>({
+    //         trims: [prevState.trims, ...trim]
+    //       }));
+    //   });
+    
   } 
   toggle() {
     this.setState(prevState => ({
@@ -159,6 +192,10 @@ class Searchbar extends React.Component {
     }
   };
 
+  handleSetDropdowns = (type) => {
+
+  }
+
   // * TODO: pass search results to the Search Results Component
   handleSearch = () => {
     carQuery.getModels({
@@ -173,12 +210,12 @@ class Searchbar extends React.Component {
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
-          {this.handleRedirect(this.state.searchResults)}
+          {this.handleRedirect()}
             <div className="searchfields">
               <select
                 className="dropdowns"
-                name="car-years"
-                id="car-years"
+                name="year"
+                // id="car-years"
                 onChange={this.handleChange}
               >
               {this.state.years.map((year) => {
@@ -189,8 +226,7 @@ class Searchbar extends React.Component {
               </select>
               <select
                 className="dropdowns"
-                name="car-makes"
-                id="car-makes"
+                name="make"
                 onChange={this.handleChange}
               >
               {this.state.makes.map((make) => {
@@ -201,8 +237,7 @@ class Searchbar extends React.Component {
               </select>
               <select
                 className="dropdowns"
-                name="car-models"
-                id="car-models"
+                name="model"
                 onChange={this.handleChange}
               >
               {this.state.models.map((model) => {
@@ -214,13 +249,10 @@ class Searchbar extends React.Component {
               <select
                 className="dropdowns"
                 name="car-model-trims"
-                id="car-model-trims"
                 onChange={this.handleChange}
               >
               {this.state.trims.map((trim) => {
-                return (
-                  null
-                )
+                console.log(trim);
               })}
               </select>
             </div> 
@@ -230,15 +262,15 @@ class Searchbar extends React.Component {
                   <Button style={styles.buttonStylesMiddle}>Review</Button>
                 </Link>
 
-                <Link to={{
+                {/* <Link to={{
                   pathname: '/searchpage',
                   state: { isLoggedIn: this.props.isLoggedIn }
-                }}>
+                }}> */}
                   <Button 
                     style={styles.buttonStylesMiddle} 
                     onClick={()=>this.searchFunction()}
                   >Search</Button>
-                </Link>
+                {/* </Link> */}
             </div>
         </div>
     );
