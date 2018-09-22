@@ -73,7 +73,7 @@ class Searchbar extends React.Component {
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
         this.setState({ searchResults: response.data })
-        console.log(this.state.searchResults[0]);
+        console.log(this.state.searchResults[0], this.state.searching);
         this.handleSearchingFlag();
       })
       .catch(err => {
@@ -81,13 +81,14 @@ class Searchbar extends React.Component {
       })
   };
 
-  handleRedirect = () => {
+  handleRedirect = (results) => {
     if (this.state.searching) {
+      this.setState({ searching: false });
       return <Redirect to={{
         pathname: '/searchpage',
         state: {
           isLoggedIn: this.props.isLoggedIn,
-          searchResults: this.state.searchResults
+          searchResults: results
         }
       }} />
     } else {
@@ -141,7 +142,6 @@ class Searchbar extends React.Component {
     if (!this.props.isLoggedIn) {
       return (
         <div className="login">
-          {/* <Button onClick={this.props.changeLoginStatus}>Test Sign In</Button> */}
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
               <Button className="signup">Sign Up</Button>
@@ -173,7 +173,7 @@ class Searchbar extends React.Component {
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
-          {this.handleRedirect()}
+          {this.handleRedirect(this.state.searchResults)}
             <div className="searchfields">
               <select
                 className="dropdowns"
@@ -234,7 +234,10 @@ class Searchbar extends React.Component {
                   pathname: '/searchpage',
                   state: { isLoggedIn: this.props.isLoggedIn }
                 }}>
-                  <Button style={styles.buttonStylesMiddle} className="search">Search</Button>
+                  <Button 
+                    style={styles.buttonStylesMiddle} 
+                    onClick={()=>this.searchFunction()}
+                  >Search</Button>
                 </Link>
             </div>
         </div>

@@ -36,11 +36,10 @@ class SearchResults extends Component {
   }
 
   handleRenderSearchResults = () => {
-    const { searchResults } = this.props.location.state;
-      if (!searchResults[0]) {
+      if (!this.props.location.state.searchResults) {
           return <h1>No cars were found!</h1>
       } else {
-        return ( searchResults.map((car) => {
+        return ( this.props.location.state.searchResults.map((car) => {
             return (
              <Col lg="3" md="6" key={car._id}>
                  <Button style={styles.cardStyles} key={car._id}> 
