@@ -91,8 +91,8 @@ class Searchbar extends React.Component {
     const placeholder = { year: '1995', make: 'Toyota', model: 'corolla', edition: 'SE' };
     const searchCriteria = {}
 
-    if (this.state[`car-years`]) {
-      searchCriteria.year = this.state['car-years'];
+    if (this.state.selectedValues.year) {
+      searchCriteria.year = this.state.selectedValues.year;
       console.log(searchCriteria.year);
     } else {
       console.log('empty');
@@ -100,10 +100,8 @@ class Searchbar extends React.Component {
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
-        this.setState({ searchResults: response.data }, () => {
-          console.log(this.state.searchResults[0], this.state.searching);
-        })
-        // this.handleSearchingFlag();
+        this.setState({ searchResults: response.data })
+        this.handleSearchingFlag();
       })
       .catch(err => {
         console.log("ERROR: ", err.message)
