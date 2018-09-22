@@ -28,6 +28,7 @@ class SearchResults extends Component {
   }
 
     render() { 
+        const { searchResults } = this.props.location.state;
         return (
             <div>
                 <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
@@ -77,7 +78,7 @@ class SearchResults extends Component {
                     </div>
                 </div>
                 <div>
-                   {data.map((car) => {
+                   {searchResults.map((car) => {
                        return (
                         <div className="review-results">
                         <Button style={{ height: '220px', width: '200px' }}> 

@@ -1,14 +1,8 @@
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import './mainpage.css';
-import {
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-  UncontrolledDropdown
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
+import { Link, Redirect } from 'react-router-dom';
 import './hamburgerMenu.css';
 import HamburgerMenu from './hamburgerMenu';
 import {CarQuery} from 'car-query';
@@ -55,7 +49,9 @@ class Searchbar extends React.Component {
       'car-years': '',
       'car-models': '',
       'car-makes': '',
-      'car-edition': ''
+      'car-edition': '',
+      searching: false,
+      searchResults: []
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -66,18 +62,37 @@ class Searchbar extends React.Component {
 
   searchFunction = () => {
     const placeholder = { year: '1995', make: 'Toyota', model: 'corolla', edition: 'SE' };
+    const searchCriteria = {year: 2019}
     axios
-      .post('http://localhost:3001/api/reviews/search', placeholder)
+      .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
-        console.log("RESPONSE: ", response.config.data)
+        this.setState({ searchResults: response.data })
+        this.handleSearchingFlag();
       })
       .catch(err => {
         console.log("ERROR: ", err.message)
       })
   };
 
+  handleRedirect = () => {
+    if (this.state.searching) {
+      return <Redirect to={{
+        pathname: '/searchpage',
+        state: {
+          isLoggedIn: this.props.isLoggedIn,
+          searchResults: this.state.searchResults
+        }
+      }} />
+    } else {
+      return <Fragment />
+    }
+  }
+
+  handleSearchingFlag = () => {
+    this.setState({ searching: true });
+  }
+
   componentDidMount() {
-    console.log(carQuery);
     carQuery.getMakes()
       .then(make => {
         this.setState((prevState) =>({
@@ -151,6 +166,7 @@ class Searchbar extends React.Component {
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
+          {this.handleRedirect()}
             <div className="searchfields">
               <select
                 className="dropdowns"

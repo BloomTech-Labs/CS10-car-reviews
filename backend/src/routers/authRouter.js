@@ -3,10 +3,6 @@ const express = require('express');
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const JWT_OPTIONS = {
-    expiresIn: '500'
-}
-
 // destructuring our secret
 const { JWT_SECRET } = process.env;
 
