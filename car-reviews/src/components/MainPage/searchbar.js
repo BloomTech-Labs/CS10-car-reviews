@@ -62,11 +62,18 @@ class Searchbar extends React.Component {
 
   searchFunction = () => {
     const placeholder = { year: '1995', make: 'Toyota', model: 'corolla', edition: 'SE' };
-    const searchCriteria = {year: 2019}
+    const searchCriteria = {
+      year: parseInt(this.state['car-years']),
+      make: this.state['car-makes'],
+      model: this.state['car-models'],
+      edition: this.state['car-edition']
+    }
+    console.log(searchCriteria)
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
         this.setState({ searchResults: response.data })
+        console.log(this.state.searchResults[0]);
         this.handleSearchingFlag();
       })
       .catch(err => {
