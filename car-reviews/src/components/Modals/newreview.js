@@ -158,7 +158,7 @@ class NewReviewModal extends Component {
             accept="image/*" 
             style={styles.dropzone}
           >
-            <p>Drop your files or click here to upload</p>
+            <p>Click a picture to upload for your review</p>
           </Dropzone>
           </ModalBody>
           <ModalFooter>
