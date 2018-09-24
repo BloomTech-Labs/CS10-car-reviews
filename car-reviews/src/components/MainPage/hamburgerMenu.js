@@ -1,6 +1,6 @@
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
-import AuthService from '../Auth/authservice';
+import AuthService from '../Auth/AuthService';
 
 const Auth = new AuthService();
 
