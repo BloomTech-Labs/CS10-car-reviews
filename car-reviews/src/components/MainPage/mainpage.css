@@ -5,6 +5,11 @@
     justify-content: flex-end;
 }
 
+.searchbar {
+    background-color: #77A6F7;
+    /* border: 1px solid black; */
+}
+
 .signup {
     margin-right: 25px;
 }
@@ -31,8 +36,8 @@
 /* Main Content Styles */
 
 .main-content {
-    border: 1px solid black;
-    margin-top: 30px;
+    /* border: 1px solid black; */
+    /* margin-top: 30px; */
     margin-bottom: 45px;
     text-align: left;
     background-color: #D3E3FC;

@@ -80,12 +80,12 @@ class SearchResults extends Component {
                    {data.map((car) => {
                        return (
                         <div className="review-results">
-                        <Button style={{ height: '220px', width: '200px' }}> 
+                        {/* <Button style={{ height: '220px', width: '200px' }}> 
                             <img src={placeholder} style={{ height: '60px', width: '60px' }} />
                             <p>User: {car.username}</p>
                             <p>Aggrigated Star Rating</p> 
                             <p>{car.year}, {car.make},{car.model}</p>
-                        </Button>
+                        </Button> */}
                         </div>
                        )
                     })}
