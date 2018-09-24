@@ -152,12 +152,14 @@ class NewReviewModal extends Component {
               <img src={placeholder} />
             )}
             {/* <img style={{ height: '160px', width: '320px' }} /> */}
-            <input
-              type="file"
-              name="selectedImage"
-              value={this.state.review.selectedImage}
-              onChange={this.imageSelectedHandler}
-            />
+            <Dropzone 
+            onDrop={this.handleDrop} 
+            multiple 
+            accept="image/*" 
+            style={styles.dropzone}
+          >
+            <p>Drop your files or click here to upload</p>
+          </Dropzone>
           </ModalBody>
           <ModalFooter>
             <form>
