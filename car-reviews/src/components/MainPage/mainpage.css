@@ -1,4 +1,7 @@
 /* Search Bar Styles */
+.searchbar {
+    background-color: #77A6F7;
+}
 
 .login {
     display: flex;
@@ -31,8 +34,6 @@
 /* Main Content Styles */
 
 .main-content {
-    border: 1px solid black;
-    margin-top: 30px;
     margin-bottom: 45px;
     text-align: left;
     background-color: #D3E3FC;
@@ -75,3 +76,8 @@
 
 /* End of Search Results Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* .footer {
+    background-color: #77A6F7;
+    color: white;
+} */

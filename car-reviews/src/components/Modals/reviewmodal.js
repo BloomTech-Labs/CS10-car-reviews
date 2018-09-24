@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
-import '../MainPage/mainpage.css';
-//import data from '../../data';
-// This component is the review modal.
+// import '../MainPage/mainpage.css';
+import './reviewmodal.css';
+
+// This component is the review modal. It is rendered in maincontent.js
 
 class ReviewModal extends Component {
   constructor(props) {
