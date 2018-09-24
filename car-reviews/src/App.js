@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import MainPage from './components/MainPage/MainPage';
+import MainPage from './components/MainPage/mainpage';
 import UserPage from './components/UserPage/UserPage';
 import MyReviews from './components/UserPage/myreviews';
 import { Switch, Route } from 'react-router-dom';
 import Billing from './components/UserPage/billing';
 import Settings from './components/UserPage/settings';
 import SearchResults from './components/MainPage/searchresults';
-import Login from './components/MainPage/loginRegister';
+import Login from './components/MainPage/loginregister';
 
 class App extends Component {
   render() {

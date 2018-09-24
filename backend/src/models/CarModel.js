@@ -28,6 +28,9 @@ const CarModel = mongoose.Schema({
         default: false
     },
     reviews: [{ type: ObjectId, ref: 'ReviewModel' }],
+    imageURL: {
+        type: String
+    }
 });
 
 module.exports = mongoose.model('cars', CarModel);

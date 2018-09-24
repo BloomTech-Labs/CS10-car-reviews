@@ -19,7 +19,7 @@ const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware')
 // POST new review:
 
 router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
-    const { title, content, score, year, make, model, edition } = req.body;
+    const { title, content, score, year, make, model, edition, imageURL } = req.body;
     const user = req._id;
     let carID;
     if (!user || !content || !score) {
