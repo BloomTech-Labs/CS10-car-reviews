@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../UserPage/header.css';
 import AuthService from '../Auth/AuthService';
 
+
 const Auth = new AuthService();
 
 class Header extends Component {

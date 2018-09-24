@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
     "car-query": "^1.0.4",
+    "cloudinary": "^1.11.0",
     "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.5.0",
