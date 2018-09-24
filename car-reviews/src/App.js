@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
-import MainPage from './components/MainPage/mainpage';
+import MainPage from './components/MainPage/MainPage';
 import UserPage from './components/UserPage/UserPage';
 import MyReviews from './components/UserPage/myreviews';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import BillingContainer from './components/UserPage/billingcontainer';
 import Settings from './components/UserPage/settings';
 import SearchResults from './components/MainPage/searchresults';
-import Login from './components/MainPage/loginregister';
+import Login from './components/MainPage/loginRegister';
+import AuthService from './components/Auth/AuthService';
+
+const Auth = new AuthService();
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      Auth.loggedIn() === true ? <Component {...props} /> : <Redirect to="/login" />
+    }
+  />
+);
 
 class App extends Component {
   render() {
@@ -16,11 +28,11 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/searchpage" component={SearchResults} />
-          <Route path="/UserPage" component={UserPage} />
-          <Route path="/Billing" component={BillingContainer} />
+          <PrivateRoute path="/UserPage" component={UserPage} />
+          <PrivateRoute path="/Billing" component={BillingContainer} />
           {/* I removed /UserPage before /MyReviews because something is bugged in UserPage in this build */}
-          <Route path="/MyReviews" component={MyReviews} />
-          <Route path="/Settings" component={Settings} />
+          <PrivateRoute path="/MyReviews" component={MyReviews} />
+          <PrivateRoute path="/Settings" component={Settings} />
           <Route path="/Login" component={Login} />
         </Switch>
       </div>
