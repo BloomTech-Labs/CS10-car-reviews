@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
+import f150 from '../../f150.jpg';
 // import '../MainPage/mainpage.css';
 import './reviewmodal.css';
 
@@ -29,26 +30,27 @@ class ReviewModal extends Component {
     const { username } = this.props.user;
     return (
       <div>
-        <Button className="main-card" onClick={this.toggle}>
-            <img src={placeholder} style={{ height: '60px', width: '25%' }} />
+        <Button className="modal-button" onClick={this.toggle} src={f150}>
+            {/* <img src={placeholder} style={{ height: '60px', width: '25%' }} /> */}
+            <p>{`${year} ${make} ${model} ${edition}`}</p>
             <p>Star Rating {score}</p>
-            <p>{`${year} ${make} ${model}`}</p>
-            <p>{edition}</p>
-            <CardText className="cardText">{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
+            <CardText styles={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle} className="modal-header">
             <h2>{`${year} ${make} ${model} ${edition}`}</h2>
+            <p>Rating: {score} out of 5</p>
             <h5>{`Review by: ${username}`}</h5>
           </ModalHeader>
-          <ModalBody>
-            <img src={placeholder} style={{ height: '160px', width: '50%' }} />
-            <p>Star Rating {score}</p>
-          </ModalBody>
-          <ModalFooter>
+          <ModalBody className="modal-body">
+            <img src={f150} style={{ height: '100%', width: '100%' }} />
             <p>{title}</p>
             <p>{content}</p>
-          </ModalFooter>
+          </ModalBody>
+          {/* <ModalFooter className="modal-footer">
+            <p style={{ textAlign: 'left' }}>{title}</p>
+            <p style={{ textAlign: 'left' }}>{content}</p>
+          </ModalFooter> */}
         </Modal>
       </div>
     );

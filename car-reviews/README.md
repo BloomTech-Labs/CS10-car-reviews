@@ -15,11 +15,15 @@ After doing research, we decided to use the color scheme above because the stand
 * Color Scheme:
     - #77A6F7 - light blue
         - This, in combination with white, will be our 'dominant color', used for backgrounds of the search bar, nav bar, and other backgrounds. Blue evokes trust, security, and calmness, which are feelings we want our Users to feel when reading reviews.
+    - #2F77F3 - darker blue
+        - This color is used when a darker shade of blue is neccessary to make something stand out against a white background, like fonts.
     - #FFFFFF - white
         - White will be our other 'dominant color', being the default background for the majority of the app.
     - #D3E3FC - light blue/gray
         - This color should be used for Modal Buttons, and perhaps borders as well. This complements both Blue and White.
-    - #00887A- turquoise
+    - #B4B6BA - Gray
+        - This is a darker shade of gray to be used for contrasting the lighter elements.
+    - #00887A - turquoise
         - This color will be our main go-to for Buttons and Components that need to "pop" or have attention drawn to it without standing out in 'loud' way. 
     - #FFCCBC - beige/salmon
         - This color will be used for components that need to standout, but need to be differentiated from turquoise. This color should be used sparingly. 
