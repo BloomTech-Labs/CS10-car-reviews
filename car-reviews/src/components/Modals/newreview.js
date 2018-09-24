@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import placeholder from '../../logo.svg';
+import Dropzone from 'react-dropzone'
 import axios from 'axios';
 
 class NewReviewModal extends Component {
