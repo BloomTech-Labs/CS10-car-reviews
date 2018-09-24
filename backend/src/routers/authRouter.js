@@ -3,6 +3,10 @@ const express = require('express');
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const JWT_OPTIONS = {
+    expiresIn: '500'
+}
+
 // destructuring our secret
 const { JWT_SECRET } = process.env;
 
@@ -17,6 +21,15 @@ const router = express.Router();
 // creating the routes
 router.get('/', (req, res) => res.send('The auth router is working!')); // test route
 
+// route for verifying the client's JWT
+router.get('/verify', (req, res) => {
+    const { jwt } = req.headers;
+    JWT.verify(jwt, JWT_SECRET, (err, decoded) => {
+        console.log(err);
+        if (err) res.status(500).json({ tokenIsValid: false });
+        if (decoded) res.status(200).json({ tokenIsValid: true })
+    })
+})
 
 // route registers a user
 // * TODO: Need to check that email is in the correct format
@@ -31,7 +44,7 @@ router.post('/register', (req, res) => { // route that handles registering a use
         if (err) return res.status(500).json({ registerError: `An account with those credentials already exists, please sign in.` });
         
         // NOTE: JWTs are signed with the fullname, username, and email as the payload
-        JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, token) => {
+        JWT.sign({ fullname, username, email, _id }, JWT_SECRET, { expiresIn: "1hr", algorithm: 'HS256' }, (err, token) => {
             if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
             res.status(200).json({ JWT: token });
         })
@@ -49,10 +62,10 @@ router.post('/login', (req, res) => {
         .then(userRecord => {
             if (!userRecord || !userRecord.password) return res.status(404).json({ loginError: 'No user with that email address was found, please register or try re-entering your credentials.' });
             const { fullname, username, email, _id } = userRecord;
-            
+        
             // ** OPTIONAL: Add a password reset feature
             if (bcrypt.compareSync(credentials.password, userRecord.password)){
-                JWT.sign({ fullname, username, email, _id }, JWT_SECRET, (err, decoded) => {
+                JWT.sign({ fullname, username, email, _id }, JWT_SECRET, { expiresIn: "1hr", algorithm: 'HS256' }, (err, decoded) => {
                     if (err) return res.status(500).json({ loginError: `There was an error when trying to generate a JWT for the user--please try again.` });
                     res.status(200).json({ JWT: decoded });
                 });

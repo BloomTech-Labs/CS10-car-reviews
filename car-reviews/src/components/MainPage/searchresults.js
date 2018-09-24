@@ -30,7 +30,7 @@ class SearchResults extends Component {
     render() { 
         return (
             <div>
-                <SearchBar />
+                <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
                 <div className="filter-row">
                     <div className="filters"> 
                         <h5>Filter by:</h5>
