@@ -168,6 +168,12 @@ class NewReviewModal extends Component {
           </ModalBody>
           <ModalFooter>
             <form>
+              <ReactStars
+              count={5}
+              onChange={ratingChanged}
+              size={24}
+              color2={'#ffd700'} />
+
               <input
                 type="text"
                 name="score"
