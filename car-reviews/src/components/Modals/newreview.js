@@ -15,7 +15,7 @@ class NewReviewModal extends Component {
         make: '',
         model: '',
         edition: '',
-        carImage: undefined,
+        carImage: '',
         title: '',
         content: '',
         score: ''
@@ -45,8 +45,6 @@ class NewReviewModal extends Component {
 
   handleChange = (type, field) => event => {
     const newState = Object.assign({}, this.state);
-    console.log("this is type", type , field)
-    console.log(event.target.value);
     newState[type][field] = event.target.value;
     this.setState(newState);
   };
@@ -69,7 +67,7 @@ class NewReviewModal extends Component {
             make: '',
             model: '',
             edition: '',
-            carImage: undefined,
+            carImage: '',
             title: '',
             content: '',
             score: ''
@@ -104,7 +102,6 @@ class NewReviewModal extends Component {
         .then(response => {
           const data = response.data;
           const fileURL = data.secure_url; // You should store this URL for future references in your app
-          console.log(data);
           this.setState({ review: { ...this.state.review, carImage: fileURL } });
         });
     });
@@ -166,7 +163,7 @@ class NewReviewModal extends Component {
             </div> */}
             {/* Review by: {this.props.userInfo.username} */}
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="drop-zone">
             {this.state.review.carImage ? (
               <img
                 src={this.state.review.carImage}

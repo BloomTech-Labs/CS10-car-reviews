@@ -25,8 +25,9 @@ class ReviewModal extends Component {
 
   
   render() {
-    const { score, createOn, title, content } = this.props;
+    const { score, createOn, title, content, carImage } = this.props;
     const { year, make, model, edition } = this.props.car;
+    console.log("REVIEW PROPS: ", this.props);
     // const { username } = this.props.user;
     return (
       <div>
@@ -43,7 +44,7 @@ class ReviewModal extends Component {
             {/* <h5>{`Review by: ${username}`}</h5> */}
           </ModalHeader>
           <ModalBody className="modal-body">
-            <img src={f150} style={{ height: '100%', width: '100%' }} />
+            <img src={carImage} style={{ height: '100%', width: '100%' }} />
             <p>{title}</p>
             <p>{content}</p>
           </ModalBody>
