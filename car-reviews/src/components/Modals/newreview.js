@@ -165,17 +165,9 @@ class NewReviewModal extends Component {
             <form>
               <ReactStars
               count={5}
-              onChange={this.state.ratingChanged}
+              onChange={this.handleChange('review', 'score')}
               size={24}
               color2={'#ffd700'} />
-
-              <input
-                type="text"
-                name="score"
-                value={this.state.review.score}
-                onChange={this.handleChange('review', 'score')}
-                placeholder="car-score"
-              />
               <input
                 type="text"
                 name="title"
