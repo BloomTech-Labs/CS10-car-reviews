@@ -52,10 +52,7 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
         .then(userRecord => {
             const { fullname, username, email, _id } = userRecord;
-            const options = {
-                expiresIn: '1h',
-              };
-            JWT.sign({ fullname, username, email, _id }, JWT_SECRET, options, (err, token) => {
+            JWT.sign({ fullname, username, email, _id }, JWT_SECRET, { expiresIn: "1hr", algorithm: 'HS256' }, (err, token) => {
                 if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
                 res.status(200).json({ JWT: token });
             })
