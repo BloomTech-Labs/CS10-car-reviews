@@ -25,6 +25,9 @@ const ReviewSchema = new Schema({
         type: Number, 
         required: true
     },
+    carImage: {
+        type: String,
+    },
     timesViewed: {
         type: Number,
         default: 0, 
