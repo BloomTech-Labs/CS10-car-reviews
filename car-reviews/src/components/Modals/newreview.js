@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import ReactStars from 'react-stars'
 import './newreview.css'
 
 class NewReviewModal extends Component {
@@ -34,8 +35,18 @@ class NewReviewModal extends Component {
     // });
   };
 
+  ratingChanged = (type, field) => event => {
+      const newState = Object.assign({}, this.state);
+      console.log("this is type", type , field)
+      console.log(event);
+      newState[type][field] = event;
+      this.setState(newState);
+  }
+
   handleChange = (type, field) => event => {
     const newState = Object.assign({}, this.state);
+    console.log("this is type", type , field)
+    console.log(event.target.value);
     newState[type][field] = event.target.value;
     this.setState(newState);
   };
@@ -169,16 +180,18 @@ class NewReviewModal extends Component {
           </ModalBody>
           <ModalFooter className="new-review-footer">
             <form>
-              <input
-                type="number"
-                min='0'
-                max='5'
-                name="score"
-                value={this.state.review.score}
-                onChange={this.handleChange('review', 'score')}
-                placeholder="Please give a rating between 0-5"
-                className="review-input"
-              />
+              <ReactStars
+              type= "number"
+              name= "score"
+              edit= {true}
+              half={true}
+              count={5}
+              value={this.state.review.score}
+              // this.state.review.score
+              onChange={this.ratingChanged('review', 'score')}
+              size={36}
+              color2={'#ffd700'} />
+                
               <input
                 type="text"
                 name="title"
