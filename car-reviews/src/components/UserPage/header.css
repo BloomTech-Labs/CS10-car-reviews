@@ -1,5 +1,7 @@
 .headerContainer {
   display: flex;
   justify-content: space-between;
-  margin: 25px 20px 0 20px;
+  padding: 25px 20px 20px 20px;
+  /* border-bottom: 2px solid #B4B6BA; */
+  background: #2F77F3;
 }

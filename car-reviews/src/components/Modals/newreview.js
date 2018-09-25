@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import './newreview.css'
 
 class NewReviewModal extends Component {
   constructor(props) {
@@ -9,14 +10,14 @@ class NewReviewModal extends Component {
     this.state = {
       modal: false,
       review: {
-        year: Number(''),
+        year: '',
         make: '',
         model: '',
         edition: '',
         carImage: undefined,
         title: '',
         content: '',
-        score: Number('')
+        score: ''
       }
     };
   }
@@ -113,32 +114,38 @@ class NewReviewModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>
             <input
-              type="text"
+              type="number"
               name="year"
+              min="1940"
+              max="2019"
               value={this.state.review.year}
               onChange={this.handleChange('review', 'year')}
-              placeholder="car-year"
+              placeholder="Year"
+              className="review-input"
             />
             <input
               type="text"
               name="make"
               value={this.state.review.make}
               onChange={this.handleChange('review', 'make')}
-              placeholder="car-make"
+              placeholder="Make"
+              className="review-input"
             />
             <input
               type="text"
               name="model"
               value={this.state.review.model}
               onChange={this.handleChange('review', 'model')}
-              placeholder="car-model"
+              placeholder="Model"
+              className="review-input"
             />
             <input
               type="text"
               name="edition"
               value={this.state.review.edition}
               onChange={this.handleChange('review', 'edition')}
-              placeholder="car-edition"
+              placeholder="Edition"
+              className="review-input"
             />
             {/* <div className="searchfields">
               <select className="dropdownsNR" name="car-years" id="car-years" />
@@ -146,7 +153,7 @@ class NewReviewModal extends Component {
               <select className="dropdownsNR" name="car-models" id="car-models" />
               <select className="dropdownsNR" name="car-model-trims" id="car-model-trims" />
             </div> */}
-            Review by: {this.props.userInfo.username}
+            {/* Review by: {this.props.userInfo.username} */}
           </ModalHeader>
           <ModalBody>
             {this.state.review.carImage ? (
@@ -160,14 +167,17 @@ class NewReviewModal extends Component {
               <p>Click a picture to upload for your review</p>
             </Dropzone>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter className="new-review-footer">
             <form>
               <input
-                type="text"
+                type="number"
+                min='0'
+                max='5'
                 name="score"
                 value={this.state.review.score}
                 onChange={this.handleChange('review', 'score')}
-                placeholder="car-score"
+                placeholder="Please give a rating between 0-5"
+                className="review-input"
               />
               <input
                 type="text"
@@ -189,7 +199,9 @@ class NewReviewModal extends Component {
               </p>
             </form>
           </ModalFooter>
-          <input type="submit" onClick={this.onClick} />
+          <button className="submit-button" onClick={this.onClick} >
+            Submit
+          </button>
         </Modal>
       </div>
     );
