@@ -47,7 +47,9 @@ class MyReviewsModal extends Component {
                   <p>{`Review by: ${this.props.data.user.username}`}</p>
                 </ModalHeader>
                 <ModalBody>
-                  <img src={placeholder} style={{ height: '160px', width: '320px' }} />
+                  {review.carImage ? (
+                    <img src={review.carImage} style={{ height: '160px', width: '320px' }} />
+                  ) : null}
                   <p>{`Star Rating: ${review.score}`}</p>
                 </ModalBody>
                 <ModalFooter>
