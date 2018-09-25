@@ -1,4 +1,5 @@
 .mainContainer {
+  /* position: absolute; */
   display: flex;
   flex-direction: column;
   padding: 25px 0px 25px 20px;
@@ -12,13 +13,19 @@
 .headerStyle {
   font-size: 1.2rem;
   cursor: pointer;
-  color: white;
-}
-.headerStyle:hover {
-  color: black;
+  color: #2F77F3;
 }
 
 .hoverStyle:hover {
-  background-color: #D3E3FC;
-  border-left: solid #00887A;
+  background-color: #D3E3FC ;
+  border-left: solid #B4B6BA;
+}
+
+.white-space {
+  height: 50px;
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
 }

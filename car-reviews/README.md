@@ -32,6 +32,9 @@ After doing research, we decided to use the color scheme above because the stand
     - Julius Sans One - headers
     - Montserrat - body
 
+* Photo Credits:
+    - desert_road.jpg by Bruno Bergher on Unsplash
+
 # Component Structure
 - src/App.js
     - /MainPage
