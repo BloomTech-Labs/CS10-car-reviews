@@ -6,7 +6,7 @@ import {
     Button,
     Alert
 } from 'reactstrap'; 
-import './LoginRegister.css';
+import './loginregister.css';
 import { Redirect } from 'react-router-dom';
 
 
