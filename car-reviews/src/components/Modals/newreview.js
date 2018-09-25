@@ -17,7 +17,7 @@ class NewReviewModal extends Component {
         carImage: undefined,
         title: '',
         content: '',
-        score: Number('')
+        score: ('')
       }
     };
   }
@@ -34,8 +34,18 @@ class NewReviewModal extends Component {
     // });
   };
 
+  ratingChanged = (type, field) => event => {
+      const newState = Object.assign({}, this.state);
+      console.log("this is type", type , field)
+      console.log(event);
+      newState[type][field] = event;
+      this.setState(newState);
+  }
+
   handleChange = (type, field) => event => {
     const newState = Object.assign({}, this.state);
+    console.log("this is type", type , field)
+    console.log(event.target.value);
     newState[type][field] = event.target.value;
     this.setState(newState);
   };
@@ -164,10 +174,15 @@ class NewReviewModal extends Component {
           <ModalFooter>
             <form>
               <ReactStars
+              type= "number"
+              name= "score"
+              edit= {true}
+              half={true}
               count={5}
               value={this.state.review.score}
-              onChange={this.handleChange('review', 'score')}
-              size={24}
+              // this.state.review.score
+              onChange={this.ratingChanged('review', 'score')}
+              size={36}
               color2={'#ffd700'} />
               <input
                 type="text"
