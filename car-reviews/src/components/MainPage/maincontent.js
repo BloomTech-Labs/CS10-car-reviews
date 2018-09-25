@@ -45,7 +45,7 @@ class MainContent extends Component {
                         {this.state.reviews.map(review => {
                             return (
                                 <Col lg="3" md="6" key={review._id}>
-                                    <ReviewModal {...review} key={review._id}/>
+                                    <ReviewModal {...review}/>
                                 </Col>
                             );
                         })}
@@ -55,7 +55,7 @@ class MainContent extends Component {
                         {this.state.popularCars.map(car => {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
-                                    <Button className="main-card" key={car._id}> 
+                                    <Button className="main-card"> 
                                         <img src={placeholder} style={{ height: '60px' }} />
                                         <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>  
                                         <p>{car.year} {car.make} {car.model}</p>
@@ -70,7 +70,7 @@ class MainContent extends Component {
                         {this.state.popularReviewers.map(reviewer => {
                             return (
                                 <Col lg="3" md="6" key={reviewer._id}>
-                                    <Button className="main-card" key={reviewer._id}> 
+                                    <Button className="main-card"> 
                                         <img src={placeholder} style={{ height: '60px' }} />
                                         <p>{reviewer.username}</p>
                                     </Button>
