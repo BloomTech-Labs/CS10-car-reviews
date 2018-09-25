@@ -28,11 +28,6 @@ class NewReviewModal extends Component {
     });
   };
 
-  ratingChanged = (newRating) => {
-    console.log(newRating)
-  }
-  
-
   imageSelectedHandler = event => {
     // this.setState({
     //   selectedImage: event.target.files[0]
@@ -170,7 +165,7 @@ class NewReviewModal extends Component {
             <form>
               <ReactStars
               count={5}
-              onChange={ratingChanged}
+              onChange={this.state.ratingChanged}
               size={24}
               color2={'#ffd700'} />
 
