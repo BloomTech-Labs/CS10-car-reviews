@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
-import { Col } from 'reactstrap'
+import { Col } from 'reactstrap';
 import MyReviewsModal from '../Modals/myreviewsmodal';
 import NewReviewModal from '../Modals/newreview';
 import axios from 'axios';
@@ -38,6 +38,15 @@ class ReviewList extends Component {
       );
   };
 
+  handleRemove = id => {
+    this.setState({
+      data: {
+        ...this.state.data,
+        reviews: this.state.data.reviews.filter(review => review._id != id)
+      }
+    });
+  };
+
   render() {
     const fullScreenReview = (
       <div className="fullScreenReview">
@@ -63,7 +72,16 @@ class ReviewList extends Component {
           />
         </div>
         <Col lg="3" md="6" className="reviewCardContainer">
-          <MyReviewsModal className={'review'} data={this.state.data} />
+          {this.state.data.reviews.map(review => {
+            return (
+              <MyReviewsModal
+                key={review._id}
+                className={'review'}
+                {...review}
+                removeReview={this.handleRemove}
+              />
+            );
+          })}
         </Col>
       </div>
     );
