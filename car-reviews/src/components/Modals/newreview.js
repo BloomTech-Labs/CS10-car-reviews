@@ -28,6 +28,11 @@ class NewReviewModal extends Component {
     });
   };
 
+  ratingChanged = (newRating) => {
+    console.log(newRating)
+  }
+  
+
   imageSelectedHandler = event => {
     // this.setState({
     //   selectedImage: event.target.files[0]
