@@ -9,8 +9,8 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import './hamburgerMenu.css';
-import HamburgerMenu from './hamburgerMenu';
+import './hamburgermenu.css';
+import HamburgerMenu from './hamburgermenu';
 import {CarQuery} from 'car-query';
 import axios from 'axios';
 

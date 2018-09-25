@@ -62,3 +62,7 @@ After doing research, we decided to use the color scheme above because the stand
 
 # AXIOS ENDPOINTS
 TBD
+
+# Naming Conventions
+- Class names and React Components are named (within their files) using PascalCasing.
+- Filenames of all JS and CSS files are lowercase.

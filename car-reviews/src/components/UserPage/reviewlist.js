@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
 import { Col } from 'reactstrap'
-import MyReviewsModal from '../Modals/myReviewsModal';
+import MyReviewsModal from '../Modals/myreviewsmodal';
 import NewReviewModal from '../Modals/newreview';
 import axios from 'axios';
 
