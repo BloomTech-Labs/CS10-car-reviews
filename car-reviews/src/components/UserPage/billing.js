@@ -33,6 +33,34 @@ class Billing extends Component {
             <div className="BillingBox">
             <h3> Billing </h3>
             <label> payment info</label>
+             {stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc")}
+
+        {   stripe.products.create({
+            name: '1month fee',
+            type: 'service',
+            }, function(err, product) {
+            // asynchronously called
+            })
+
+        }
+        {
+            stripe.products.create({
+                name: '6month fee',
+                type: 'service',
+                }, function(err, product) {
+                // asynchronously called
+                })
+        }
+        {
+            stripe.products.create({
+                name: '1yearh fee',
+                type: 'service',
+                }, function(err, product) {
+                // asynchronously called
+                })
+        }
+
+
             <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
             <Elements>
                 <div className="PurchaseCard">
@@ -48,6 +76,7 @@ class Billing extends Component {
                     name={this.state.name}
                     description={this.state.description}
                     amount={this.state.amount}
+                    
                 />
                 </div>
             </Elements>
