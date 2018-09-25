@@ -56,7 +56,8 @@ class Searchbar extends React.Component {
         year: '',
         make: '',
         model: '',
-        trim: ''
+        trim: '',
+        renderTrim: false,
       }
     };
     this.toggle = this.toggle.bind(this);
@@ -84,7 +85,8 @@ class Searchbar extends React.Component {
           });
           prevState.models = newModels;
       }
-
+      
+      const newTrims = [];
       if (name === 'model'){
         prevState.selectedValues.model = value;
 
@@ -94,14 +96,14 @@ class Searchbar extends React.Component {
           model: prevState.selectedValues.model,
         }
         
-        const newTrims = [];
         carQuery.getTrims(searchCriteria)
           .then(trims => {
             trims.map(trim => newTrims.push(trim));
-            prevState.trims = newTrims;
           })
+          prevState.trims = newTrims;
+          prevState.selectedValues.renderTrim = true;
+          console.log(newTrims);
       }
-
       return prevState;
     });
     console.log(this.state);
@@ -161,7 +163,7 @@ class Searchbar extends React.Component {
         for (let i = years.minYear; i <= years.maxYear; i++) {
           yearList.push(i);
         }
-        this.setState({ years: yearList });
+        this.setState({ years: yearList.reverse() });
       })
 
     carQuery.getMakes()
@@ -232,6 +234,7 @@ class Searchbar extends React.Component {
     .then(res => console.log(res));
   }
   render() {
+    console.log(this.state.trims);
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
@@ -277,11 +280,8 @@ class Searchbar extends React.Component {
                 name="trims"
                 onChange={this.handleChange}
               >
-              {/* TODO: Figure out how to make this re-render when the trims have loaded */}
-              {this.state.trims.map((trim) => {
-                console.log(trim);
-                return (<option key={`${trim.modelId}_${trim.trim}`}>{trim.trim}</option>)
-              })}
+                { this.state.selectedValues.renderTrim ? this.state.trims.map(trim => <options key={`${trim.modelId}_${trim.makeId}_${trim.trim}`}>{trim.trim}</options>)
+                : <option>Trims</option> }
               </select>
             </div> 
             <button onClick={()=>this.searchFunction()}>click me for testing</button>
