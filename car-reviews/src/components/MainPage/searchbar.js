@@ -242,6 +242,17 @@ class Searchbar extends React.Component {
             <div className="searchfields">
               <select
                 className="dropdowns"
+                name="make"
+                onChange={this.handleChange}
+              >
+              {this.state.makes.map((make) => {
+                return (
+                  <option> {make.display}</option>
+                )
+              })}
+              </select>
+              <select
+                className="dropdowns"
                 name="year"
                 // id="car-years"
                 onChange={this.handleChange}
@@ -249,17 +260,6 @@ class Searchbar extends React.Component {
               {this.state.years.map((year) => {
                 return (
                   <option> {year} </option>
-                )
-              })}
-              </select>
-              <select
-                className="dropdowns"
-                name="make"
-                onChange={this.handleChange}
-              >
-              {this.state.makes.map((make) => {
-                return (
-                  <option> {make.display}</option>
                 )
               })}
               </select>
