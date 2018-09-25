@@ -11,11 +11,6 @@ const router = express.Router();
 const checkIfCar = require('../routing_middleware/checkIfCar');
 const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware');
 
-// adding the routes
-//router.get('/', (req, res) => res.send(`The reviews router is working!`)); // test router
-
-//TODO: implement averageScore in cars model to update when new review is created. DONE
-
 // POST new review:
 
 router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
@@ -35,9 +30,9 @@ router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
         }) 
         .then(updatedUser => {
             return CarModel.findByIdAndUpdate(req.carID, 
-                { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1] }, 
-                    averageScore: req.avgScore,
-                    "$push": { imageURL: carImage } }, 
+                { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1], 
+                    imageURL: carImage }, 
+                    averageScore: req.avgScore },
                 {new: true})
         })
         .then(updatedCar => {
@@ -85,27 +80,40 @@ router.get('/', verifyJWTMiddleware, (req, res) => {
         .catch(err => res.status(500).json({ error: err.message }));
 });
 
-// route for editing and getting an individual review:
+// route for editing, getting, and deleting an individual review:
 
-router
-    .route('/:id', verifyJWTMiddleware)
-        .put((req, res) => {
-            const { id } = req.params;
-            const { content, score } = req.body;
-            const updatedOn = Date.now();
-            ReviewModel.findByIdAndUpdate(id, { content, score, updatedOn })
-                .then(reviews => res.status(200).json(reviews))
-                .catch(err => res.status(500).json({ error: err.message }));
-        })
-        .get((req, res) => {
-            const { id } = req.params;
-            ReviewModel.findById(id)
-            .then(review => res.json(review))
-            .catch(err => res.status(500).json({ error: err.message }));
-        });
+router.put('/:id', verifyJWTMiddleware, (req, res) => {
+    const { id } = req.params;
+    const { content, score } = req.body;
+    const updatedOn = Date.now();
+    ReviewModel.findByIdAndUpdate(id, { content, score, updatedOn })
+        .then(reviews => res.status(200).json(reviews))
+        .catch(err => res.status(500).json({ error: err.message }));
+});
+        
+router.get('/:id', verifyJWTMiddleware, (req, res) => {
+    const { id } = req.params;
+    ReviewModel.findById(id)
+        .then(review => res.json(review))
+        .catch(err => res.status(500).json({ error: err.message }));
+})
+        
+router.delete('/:id', verifyJWTMiddleware, (req, res) => {
+    const { id } = req.params;
+    ReviewModel.findByIdAndRemove(id)
+    .then(deletedReview => {
+        res.json(deletedReview);
+        return CarModel.findByIdAndUpdate(deletedReview.car, { "$pull": { reviews: id }}, {new: true})
+    })
+    .then(updatedCar => {
+        console.log(updatedCar)
+        return UserModel.findOneAndUpdate({_id: req._id}, { "$pull": { reviews: id }}, {new: true})
+    })
+    .catch(err => res.status(500).json({ error: err.message }));
+});
 
 
-// search router:
+// search endpoint:
 router.post('/search', (req, res) => {
     const { year, make, model, trim, reviewer} = req.body;
     console.log("BACKEND LOG",req.body)
