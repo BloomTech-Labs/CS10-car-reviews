@@ -71,6 +71,7 @@ class Searchbar extends React.Component {
         const searchCriteria = {
           make: prevState.selectedValues.make
         }
+        // * TODO: Don't display model and edition until year and make are set
         if (this.state.selectedValues.year) searchCriteria.year = this.state.selectedValues.year,
         // * DO NOT DELETE THIS LOG, the function doesn't work without it.
         console.log(this.state.selectedValues.year);
@@ -83,8 +84,27 @@ class Searchbar extends React.Component {
           });
           prevState.models = newModels;
       }
+
+      if (name === 'model'){
+        prevState.selectedValues.model = value;
+
+        const searchCriteria = {
+          year: prevState.selectedValues.year,
+          make: prevState.selectedValues.make,
+          model: prevState.selectedValues.model,
+        }
+        
+        const newTrims = [];
+        carQuery.getTrims(searchCriteria)
+          .then(trims => {
+            trims.map(trim => newTrims.push(trim));
+            prevState.trims = newTrims;
+          })
+      }
+
       return prevState;
     });
+    console.log(this.state);
   };
 
   searchFunction = () => {
@@ -94,14 +114,21 @@ class Searchbar extends React.Component {
     if (this.state.selectedValues.year) {
       searchCriteria.year = this.state.selectedValues.year;
       console.log(searchCriteria.year);
+    } else if (this.state.selectedValues.make){
+      searchCriteria.make = this.state.selectedValues.make;
+    } else if (this.state.selectedValues.model) {
+      searchCriteria.model = this.state.selectedValues.model;
+    } else if (this.state.selectedValues.trim) {
+      searchCriteria.edition = this.state.selectedValues.trim;
     } else {
-      console.log('empty');
+      return console.log(`Search criteria is empty!`);
     }
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
+        console.log(response);
         this.setState({ searchResults: response.data })
-        this.handleSearchingFlag();
+        // this.handleSearchingFlag();
       })
       .catch(err => {
         console.log("ERROR: ", err.message)
@@ -238,19 +265,22 @@ class Searchbar extends React.Component {
                 name="model"
                 onChange={this.handleChange}
               >
+              {/* TODO: Figure out how to make this re-render when the models have loaded */}
               {this.state.models.map((model) => {
                 return (
-                  <option>{model.makeId} {model.name}</option>
+                  <option key={`${model.makeId}_${model.name}`}>{model.name}</option>
                 )
               })}
               </select>
               <select
                 className="dropdowns"
-                name="car-model-trims"
+                name="trims"
                 onChange={this.handleChange}
               >
+              {/* TODO: Figure out how to make this re-render when the trims have loaded */}
               {this.state.trims.map((trim) => {
                 console.log(trim);
+                return (<option key={`${trim.modelId}_${trim.trim}`}>{trim.trim}</option>)
               })}
               </select>
             </div> 
