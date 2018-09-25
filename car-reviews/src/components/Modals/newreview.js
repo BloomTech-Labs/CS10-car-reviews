@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import ReactStars from 'react-stars'
 
 class NewReviewModal extends Component {
   constructor(props) {
