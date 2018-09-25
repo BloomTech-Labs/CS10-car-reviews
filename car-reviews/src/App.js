@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import MainPage from './components/MainPage/MainPage';
-import UserPage from './components/UserPage/UserPage';
+import MainPage from './components/MainPage/mainpage';
+import UserPage from './components/UserPage/userpage';
 import MyReviews from './components/UserPage/myreviews';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import BillingContainer from './components/UserPage/billingcontainer';
 import Settings from './components/UserPage/settings';
 import SearchResults from './components/MainPage/searchresults';
-import Login from './components/MainPage/loginRegister';
-import AuthService from './components/Auth/AuthService';
+import Login from './components/MainPage/loginregister';
+import AuthService from './components/Auth/authservice';
 
 const Auth = new AuthService();
 
