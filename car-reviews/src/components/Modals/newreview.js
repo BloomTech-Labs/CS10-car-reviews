@@ -156,8 +156,7 @@ class NewReviewModal extends Component {
             <Dropzone 
             onDrop={this.handleDrop} 
             multiple 
-            accept="image/*" 
-            style={styles.dropzone}
+            accept="image/*"
           >
             <p>Click a picture to upload for your review</p>
           </Dropzone>
