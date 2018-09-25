@@ -35,49 +35,7 @@ class Billing extends Component {
             <label> payment info</label>
              {stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc")}
 
-        {
-            monthlypPlan = stripe.plans.create({
-                product: 'prod_CbvTFuXWh7BPJH',
-                nickname: 'unlimited 1 month reviews USD',
-                currency: 'usd',
-                interval: 'month',
-                amount: 0.99,
-              })
-        }
-        {
-            plan = stripe.plans.create({
-                product: 'prod_CbvTFuXWh7BPJH',
-                nickname: 'SaaS Platform USD',
-                currency: 'usd',
-                interval: 'month',
-                amount: 3.99,
-              });
-        }
-        {
-            plan = stripe.plans.create({
-                product: 'prod_CbvTFuXWh7BPJH',
-                nickname: 'SaaS Platform USD',
-                currency: 'usd',
-                interval: 'month',
-                amount: 6.99,
-              });
-        }
-        {
-            stripe.products.create({
-                name: '6 month fee',
-                type: 'service',
-                }, function(err, product) {
-                // asynchronously called
-                })
-        }
-        {
-            stripe.products.create({
-                name: '1 year fee',
-                type: 'service',
-                }, function(err, product) {
-                // asynchronously called
-                })
-        }
+       
 
 
             <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
