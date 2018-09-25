@@ -19,7 +19,7 @@ const verifyJWTMiddleware = require('../routing_middleware/verifyJWTMiddleware')
 // POST new review:
 
 router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
-    const { title, content, score, year, make, model, edition, imageURL } = req.body;
+    const { title, content, score, year, make, model, edition, carImage } = req.body;
     const user = req._id;
     let carID;
     if (!user || !content || !score) {
@@ -34,7 +34,11 @@ router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
             return UserModel.findByIdAndUpdate(id, { "$push": { reviews: newReview._id }}, {new: true})
         }) 
         .then(updatedUser => {
-            return CarModel.findByIdAndUpdate(req.carID, { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1] }, averageScore: req.avgScore}, {new: true})
+            return CarModel.findByIdAndUpdate(req.carID, 
+                { "$push": { reviews: updatedUser.reviews[updatedUser.reviews.length - 1] }, 
+                    averageScore: req.avgScore,
+                    "$push": { imageURL: carImage } }, 
+                {new: true})
         })
         .then(updatedCar => {
             return ReviewModel.findById(updatedCar.reviews[updatedCar.reviews.length - 1]);
@@ -44,7 +48,7 @@ router.post('/', verifyJWTMiddleware, checkIfCar, (req, res) => {
         })
         .catch(err => res.status(500).json({ error: err.message }))
     } else {
-        CarModel.create({ year, make, model, edition, averageScore: score })
+        CarModel.create({ year, make, model, edition, averageScore: score, imageURL: carImage })
         .then(newCar => {
             const car = newCar._id;
             carID = newCar._id;
