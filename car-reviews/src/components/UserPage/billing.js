@@ -35,15 +35,6 @@ class Billing extends Component {
             <label> payment info</label>
              {stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc")}
 
-        {   stripe.products.create({
-            name: '1 month fee',
-            type: 'service',
-            }, function(err, product) {
-            // asynchronously called
-            })
-
-        }
-
         {
             monthlypPlan = stripe.plans.create({
                 product: 'prod_CbvTFuXWh7BPJH',
