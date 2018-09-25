@@ -36,16 +36,44 @@ class Billing extends Component {
              {stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc")}
 
         {   stripe.products.create({
-            name: '1month fee',
+            name: '1 month fee',
             type: 'service',
             }, function(err, product) {
             // asynchronously called
             })
 
         }
+
+        {
+            monthlypPlan = stripe.plans.create({
+                product: 'prod_CbvTFuXWh7BPJH',
+                nickname: 'unlimited 1 month reviews USD',
+                currency: 'usd',
+                interval: 'month',
+                amount: 0.99,
+              })
+        }
+        {
+            plan = stripe.plans.create({
+                product: 'prod_CbvTFuXWh7BPJH',
+                nickname: 'SaaS Platform USD',
+                currency: 'usd',
+                interval: 'month',
+                amount: 3.99,
+              });
+        }
+        {
+            plan = stripe.plans.create({
+                product: 'prod_CbvTFuXWh7BPJH',
+                nickname: 'SaaS Platform USD',
+                currency: 'usd',
+                interval: 'month',
+                amount: 6.99,
+              });
+        }
         {
             stripe.products.create({
-                name: '6month fee',
+                name: '6 month fee',
                 type: 'service',
                 }, function(err, product) {
                 // asynchronously called
@@ -53,7 +81,7 @@ class Billing extends Component {
         }
         {
             stripe.products.create({
-                name: '1yearh fee',
+                name: '1 year fee',
                 type: 'service',
                 }, function(err, product) {
                 // asynchronously called
