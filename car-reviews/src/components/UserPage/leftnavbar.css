@@ -5,19 +5,20 @@
   /* border-right: 2px solid #B4B6BA; */
   width: 225px;
   min-width: 225px;
-  background-color: #D3E3FC;
+  background-color: #2F77F3;
   height: 90vh;
 }
 
 .headerStyle {
   font-size: 1.2rem;
   cursor: pointer;
+  color: white;
 }
 .headerStyle:hover {
-  color: white;
+  color: black;
 }
 
 .hoverStyle:hover {
   background-color: #D3E3FC;
-  border-left: solid #2F77F3;
+  border-left: solid #00887A;
 }

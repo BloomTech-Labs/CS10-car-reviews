@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../UserPage/leftnavbar.css';
+import { ReviewIcon } from './assets/review.png';
 
 class LeftNavBar extends Component {
   render() {

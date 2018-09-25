@@ -24,9 +24,18 @@
     margin-left: 35px;
 }
 
-
-.review {
-    margin-right: 25px;
+.searchbar-buttons {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    width: 90%;
+    background-color: white;
+    color: #77A6F7;
+    border: none !important;
+}
+.searchbar-buttons:hover {
+    background-color: #2F77F3;
+    color: white;
 }
 
 /* End of Search Bar Styles */
@@ -46,11 +55,20 @@
 }
 
 .main-card {
-    height: 220px;
+    background-color: white;
+    color: #2F77F3;
+    border: none !important;
+    text-align: left;
+    height: 100%;
     width: 100%;
-    margin-bottom: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    /* margin: 10px; */
 }
-
+.main-card:hover {
+    background-color: #77A6F7;
+    /* background-color: #B4B6BA; */
+}
 /* End of Main Content Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* Search Results Styles */
