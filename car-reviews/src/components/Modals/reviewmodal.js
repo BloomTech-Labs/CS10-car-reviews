@@ -27,7 +27,7 @@ class ReviewModal extends Component {
   render() {
     const { score, createOn, title, content } = this.props;
     const { year, make, model, edition } = this.props.car;
-    const { username } = this.props.user;
+    // const { username } = this.props.user;
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle} src={f150}>
@@ -40,7 +40,7 @@ class ReviewModal extends Component {
           <ModalHeader toggle={this.toggle} className="modal-header">
             <h2>{`${year} ${make} ${model} ${edition}`}</h2>
             <p>Rating: {score} out of 5</p>
-            <h5>{`Review by: ${username}`}</h5>
+            {/* <h5>{`Review by: ${username}`}</h5> */}
           </ModalHeader>
           <ModalBody className="modal-body">
             <img src={f150} style={{ height: '100%', width: '100%' }} />

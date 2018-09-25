@@ -165,6 +165,7 @@ class NewReviewModal extends Component {
             <form>
               <ReactStars
               count={5}
+              value={this.state.review.score}
               onChange={this.handleChange('review', 'score')}
               size={24}
               color2={'#ffd700'} />
