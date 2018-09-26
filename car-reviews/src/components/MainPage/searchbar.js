@@ -181,10 +181,6 @@ class Searchbar extends React.Component {
     }
   }
 
-  handleSearchingFlag = () => {
-    this.setState({ searching: true });
-  }
-
   componentDidMount() {
     const yearList = [];
     carQuery.getYears()
