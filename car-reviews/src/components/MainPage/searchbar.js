@@ -10,21 +10,23 @@ import axios from 'axios';
 
 const carQuery = new CarQuery();
 
+// * TODO: Make colors for the Review and Search buttons match
 const styles = {
-  // buttonStylesMiddle: {
-  //   marginLeft: 10,
-  //   marginRight: 10,
-  //   marginBottom: 15,
-  //   width: '90%',
-  //   backgroundColor: 'white',
-  //   color: '#77A6F7',
-  // },
+  buttonStylesMiddle: {
+    width: '100%',
+    backgroundColor: 'white',
+    color: '#77A6F7',
+  },
   buttonContainerStyles: {
     display: 'flex',
     justifyContent: 'center'
   },
-  buttonStylesRight: {
-
+  linkStyles: {
+    textDecoration: 'none',
+    width: '8%',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 15,
   },
   loginContainerStyles: {
     display: 'flex',
@@ -157,8 +159,7 @@ class Searchbar extends React.Component {
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
         console.log(response);
-        this.setState({ searchResults: response.data, searching: true })
-        this.handleSearchingFlag();
+        this.setState({ searchResults: response.data, searching: true });
       })
       .catch(err => {
         console.log("ERROR: ", err.message)
@@ -232,7 +233,10 @@ class Searchbar extends React.Component {
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
-          <Link to='/'><Button>Home</Button></Link>
+          {/* TODO: Only display the Home button when at '/searchpage' */}
+          <div style={styles.buttonContainerStyles}>
+            <Link style={styles.linkStyles} to='/'><Button style={styles.buttonStylesMiddle}>Home</Button></Link>
+          </div>
             <div className="searchfields">
               <select
                 className="dropdowns"
@@ -274,32 +278,26 @@ class Searchbar extends React.Component {
                 name="trim"
                 onChange={this.handleChangeGeneral}
               >
-              {/* TODO: Figure out how to make this re-render when the trims have loaded */}
               {this.state.trims.map((trim) => {
-                // console.log(trim);
                 return (<option key={trim.index}>{trim}</option>)
               })}
               </select>
             </div> 
-            <button onClick={()=>this.searchFunction()}>click me for testing</button>
-            <div style={styles.buttonContainerStyles}>
-                <Link to='/MyReviews'>
-                  <Button
-                    className="searchbar-buttons"
-                  >
-                  Review
-                  </Button>
-                </Link>
 
-                {/* <Link to={{
-                  pathname: '/searchpage',
-                  state: { isLoggedIn: this.props.isLoggedIn }
-                }}> */}
+            <div style={styles.buttonContainerStyles}>
+              <Link style={styles.linkStyles}  to='/MyReviews'>
+                  <Button
+                    style={styles.buttonStylesMiddle}
+                  >
+                    Review
+                  </Button>
+                  </Link>
+                  <div style={styles.linkStyles}>
                   <Button 
-                    style={styles.buttonStylesMiddle} 
+                    style={styles.buttonStylesMiddle}
                     onClick={()=>this.searchFunction()}
                   >Search</Button>
-                {/* </Link> */}
+                  </div>
             </div>
         </div>
     );
