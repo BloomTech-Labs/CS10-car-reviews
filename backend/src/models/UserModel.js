@@ -25,6 +25,10 @@ const UserModel = mongoose.Schema({
         required: true,
         minlength: 4,
     },
+    customerId: {
+      type: string,
+      required: false.
+    },
     testEntry: {
       type: Boolean,
       default: false
