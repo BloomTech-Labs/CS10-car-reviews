@@ -128,7 +128,7 @@ router.post('/search', (req, res) => {
             .populate({
                 path: 'reviews', 
                 model: 'reviews',
-                select: 'content score user -_id'
+                select: 'title content score user -_id'
             })
             .then(cars=> {
                 console.log(cars);
