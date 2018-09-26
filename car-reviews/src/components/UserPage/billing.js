@@ -23,22 +23,18 @@ class Billing extends Component {
             };
     };
 
-    onPriceClick(name, description, price) {
-        console.log(name, description, price);
+    onPriceClick(name, description, amount) {
+        
 
-        this.setState({ name, description, price });
+        this.setState({ name, description, amount });
       }
     render(){
         return(
             <div className="BillingBox">
             <h3> Billing </h3>
             <label> payment info</label>
-             {stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc")}
 
-       
-
-
-            <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+            <StripeProvider apiKey="pk_test_gyGeHhPwsQ6mp7K1lSleMa4c">
             <Elements>
                 <div className="PurchaseCard">
 {/*             
@@ -53,7 +49,6 @@ class Billing extends Component {
                     name={this.state.name}
                     description={this.state.description}
                     amount={this.state.amount}
-                    
                 />
                 </div>
             </Elements>
