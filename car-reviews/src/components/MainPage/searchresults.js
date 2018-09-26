@@ -45,7 +45,7 @@ class SearchResults extends Component {
                  <Button style={styles.cardStyles} key={car._id}> 
                      <img src={placeholder} style={{ height: '60px' }} />
                      {/* <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>   */}
-                     <p>Star Rating</p>
+                     <p>{Math.round(car.averageScore * 100 / 100)}</p>
                      <p>{car.year} {car.make} {car.model}</p>
                      <p>{car.edition}</p>
                  </Button>

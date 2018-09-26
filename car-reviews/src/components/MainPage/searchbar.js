@@ -108,7 +108,7 @@ class Searchbar extends React.Component {
           ...prevState.selectedValues,
           [name]: value,
           model: '',
-          trim: ''                  // to these clear values if reselecting different make
+          trim: ''                  // to clear these values if reselecting different make
       }}},
       () => {
         let newModels = [];
