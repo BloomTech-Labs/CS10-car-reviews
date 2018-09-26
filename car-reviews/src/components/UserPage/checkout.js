@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
-
 const STRIPE_PUBLISHABLE = `pk_test_gyGeHhPwsQ6mp7K1lSleMa4c`;
 const PAYMENT_SERVER_URL = 'http://localhost:3001/Payment';
-const stripe = require("stripe")(STRIPE_PUBLISHABLE);
+// const stripe = require("stripe")(STRIPE_PUBLISHABLE);
+// const stripe = configureStripe(STRIPE_SECRET_KEY);
 
 
 const CURRENCY = 'USD';
@@ -16,10 +16,6 @@ console.log(this.props);
 const successPayment = data => {
   alert('Payment Successful');
   console.log('data is:' ,data);
-  const customer = stripe.customers.create({
-    email: data.email,
-    // source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
-  });
 };
 
 const errorPayment = data => {

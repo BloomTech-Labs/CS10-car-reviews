@@ -19,6 +19,10 @@ router.get('/', (req, res) => res.send(`The home router is working!`)); // test 
 
 router.post("/", verifyJWTMiddleware, (req, res) => {
     const email = req.email;
+    const customer = stripe.customers.create({
+        email: email,
+        // source: 'src_18eYalAHEMiOZZp1l9ZTjSU0',
+      });
     stripe.charges.create(req.body)
         .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
         .then(response => {res.json( response )})
