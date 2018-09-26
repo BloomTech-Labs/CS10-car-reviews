@@ -176,17 +176,17 @@ router.post('/search', (req, res) => {
     if (reviewer) searchObj.reviewer = reviewer;
 
     if (reviewer) {
-        CarModel.find(searchObj).select('make model year -_id edition')
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
             .populate({
                 path: 'reviews', 
                 model: 'reviews', 
                 match: { user: reviewer },
-                select: 'content score user -_id'
+                select: 'title content score user -_id'
             })
             .then(cars=> res.json(cars))
             .catch(err => res.status(500).json({ error: err.message }));
     } else {
-        CarModel.find(searchObj).select('make model year -_id edition')
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
             .populate({
                 path: 'reviews', 
                 model: 'reviews',
