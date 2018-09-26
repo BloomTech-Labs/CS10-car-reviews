@@ -164,32 +164,41 @@ router.delete('/:id', verifyJWTMiddleware, (req, res) => {
 });
 
 // search router:
-router.post("/search", (req, res) => {
-  const { year, make, model, trim, reviewer } = req.body;
-  console.log("BACKEND LOG", req.body);
-  if (reviewer) {
-    CarModel.find({ year: year, make: make, model: model, edition: trim })
-      .select("make model year -_id")
-      .populate({
-        path: "reviews",
-        model: "reviews",
-        match: { user: reviewer },
-        select: "content score user -_id"
-      })
-      .then(cars => res.json(cars))
-      .catch(err => res.status(500).json({ error: err.message }));
-  } else {
-    CarModel.find({ year: year, make: make, model: model, edition: trim })
-      .select("make model year -_id")
-      .populate({
-        path: "reviews",
-        model: "reviews",
-        select: "content score user -_id"
-      })
-      .then(cars => res.json(cars))
-      .catch(err => res.status(500).json({ error: err.message }));
-  }
-});
+router.post('/search', (req, res) => {
+    const { year, make, model, trim, reviewer} = req.body;
+    
+    // here we setup a search object that only adds values that are actually passed in to the .find method
+    const searchObj = {};
+    if (year) searchObj.year = year;
+    if (make) searchObj.make = make;
+    if (model) searchObj.model = model;
+    if (trim) searchObj.trim = trim;
+    if (reviewer) searchObj.reviewer = reviewer;
+
+    if (reviewer) {
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
+            .populate({
+                path: 'reviews', 
+                model: 'reviews', 
+                match: { user: reviewer },
+                select: 'title content score user -_id'
+            })
+            .then(cars=> res.json(cars))
+            .catch(err => res.status(500).json({ error: err.message }));
+    } else {
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
+            .populate({
+                path: 'reviews', 
+                model: 'reviews',
+                select: 'title content score user -_id'
+            })
+            .then(cars=> {
+                console.log(cars);
+                res.json(cars);
+            })
+            .catch(err => res.status(500).json({ error: err.message }));
+    }
+})
 
 // exporting the router
 module.exports = router;

@@ -3,12 +3,20 @@ import placeholder from '../../logo.svg';
 import './mainpage.css';
 import SearchBar from './searchbar';
 import data from '../../data';
-import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown} from 'reactstrap';
+import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown, Col} from 'reactstrap';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
 // search results. As with the main content, I chose to represent the result cards as Buttons. 
 // This is rendered in MainPage.
+
+const styles = {
+    cardStyles: {
+        height: '220px',
+        width: '100%',
+        marginBottom: '30px'
+    }
+}
 
 class SearchResults extends Component {
   constructor(props) {
@@ -25,6 +33,26 @@ class SearchResults extends Component {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
     }));
+  }
+
+  handleRenderSearchResults = () => {
+      if (!this.props.location.state.searchResults) {
+          return <h1>No cars were found!</h1>
+      } else {
+        return ( this.props.location.state.searchResults.map((car) => {
+            return (
+             <Col lg="3" md="6" key={car._id}>
+                 <Button style={styles.cardStyles} key={car._id}> 
+                     <img src={placeholder} style={{ height: '60px' }} />
+                     {/* <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>   */}
+                     <p>{Math.round(car.averageScore * 100 / 100)}</p>
+                     <p>{car.year} {car.make} {car.model}</p>
+                     <p>{car.edition}</p>
+                 </Button>
+             </Col>
+             );
+         }))
+      }
   }
 
     render() { 
@@ -77,18 +105,7 @@ class SearchResults extends Component {
                     </div>
                 </div>
                 <div>
-                   {data.map((car) => {
-                       return (
-                        <div className="review-results">
-                        <Button style={{ height: '220px', width: '200px' }}> 
-                            <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                            <p>User: {car.username}</p>
-                            <p>Aggrigated Star Rating</p> 
-                            <p>{car.year}, {car.make},{car.model}</p>
-                        </Button>
-                        </div>
-                       )
-                    })}
+                   {this.handleRenderSearchResults()}
                 </div>
                 
             </div>
