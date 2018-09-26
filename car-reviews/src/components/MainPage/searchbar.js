@@ -102,17 +102,22 @@ class Searchbar extends React.Component {
   } 
 
   handleChangeMake = e => {
-    const { name, value } = e.target;
+    const { value } = e.target;
+    const searchCriteria = { make: value};
     this.setState((prevState) => {
       return {selectedValues: {
           ...prevState.selectedValues,
-          [name]: value,
+          make: value,
           model: '',
           trim: ''                  // to clear model and trim if reselecting different make
       }}},
+      
       () => {
+        // if year is selected, it will get all the models for that year, otherwise it will get all the models for the selected make
+        if (this.state.selectedValues.year) searchCriteria.year = this.state.selectedValues.year;
+
         let newModels = [];
-        carQuery.getModels({make: this.state.selectedValues.make, year: this.state.selectedValues.year})
+        carQuery.getModels(searchCriteria)
           .then(models => {
             models.map(model => newModels.push(model.name));
             this.setState({
@@ -131,6 +136,7 @@ class Searchbar extends React.Component {
 
   searchFunction = () => {
     const searchCriteria = {}
+    const { year, make, model, trim } = this.state.selectedValues;
 
     if (this.state.selectedValues.year) {
       searchCriteria.year = this.state.selectedValues.year;
@@ -143,28 +149,30 @@ class Searchbar extends React.Component {
     } 
     if (this.state.selectedValues.trim) {
       searchCriteria.edition = this.state.selectedValues.trim;
-    } else {
-      return console.log(`Search criteria is empty!`);
+    } else if (!year && !make && !model && !trim){
+      console.log(`There are no selected values in the search criteria`);
     }
+
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
         console.log(response);
         this.setState({ searchResults: response.data, searching: true })
-        // this.handleSearchingFlag();
+        this.handleSearchingFlag();
       })
       .catch(err => {
         console.log("ERROR: ", err.message)
       })
   };
 
-  handleRedirect = (results) => {
+  handleRedirect = (page) => {
     if (this.state.searching) {
       return <Redirect to={{
         pathname: '/searchpage',
         state: {
           isLoggedIn: this.props.isLoggedIn,
-          searchResults: this.state.searchResults
+          searchResults: this.state.searchResults,
+          currentPage: '/searchpage'
         }
       }} />
     } else {
@@ -219,25 +227,12 @@ class Searchbar extends React.Component {
     }
   };
 
-  handleSetDropdowns = (type) => {
-
-  }
-
-  // * TODO: pass search results to the Search Results Component
-  handleSearch = () => {
-    carQuery.getModels({
-      year: this.state['car-years'],
-      make: this.state['car-makes'],
-      model: this.state['car-models'],
-      edition: this.state['car-trims']
-    })
-    .then(res => console.log(res));
-  }
   render() {
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
+          <Link to='/'><Button>Home</Button></Link>
             <div className="searchfields">
               <select
                 className="dropdowns"

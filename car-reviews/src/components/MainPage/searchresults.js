@@ -4,6 +4,7 @@ import './mainpage.css';
 import SearchBar from './searchbar';
 import data from '../../data';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown, Col} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
