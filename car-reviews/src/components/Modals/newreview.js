@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import placeholder from '../../logo.svg';
+import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import ReactStars from 'react-stars'
+import './newreview.css'
 
 class NewReviewModal extends Component {
   constructor(props) {
@@ -9,14 +11,14 @@ class NewReviewModal extends Component {
     this.state = {
       modal: false,
       review: {
-        year: Number(''),
+        year: '',
         make: '',
         model: '',
         edition: '',
-        // selectedImage: undefined,
+        carImage: '',
         title: '',
         content: '',
-        score: Number('')
+        score: ''
       }
     };
   }
@@ -33,8 +35,18 @@ class NewReviewModal extends Component {
     // });
   };
 
+  ratingChanged = (type, field) => event => {
+      const newState = Object.assign({}, this.state);
+      // console.log("this is type", type , field)
+      // console.log(event);
+      newState[type][field] = event;
+      this.setState(newState);
+  }
+
   handleChange = (type, field) => event => {
     const newState = Object.assign({}, this.state);
+    // console.log("this is type", type , field)
+    // console.log(event.target.value);
     newState[type][field] = event.target.value;
     this.setState(newState);
   };
@@ -57,7 +69,7 @@ class NewReviewModal extends Component {
             make: '',
             model: '',
             edition: '',
-            // selectedImage: undefined,
+            carImage: '',
             title: '',
             content: '',
             score: ''
@@ -73,6 +85,37 @@ class NewReviewModal extends Component {
     window.location.reload(); // Need a way for the screen to rerender the changes without me doing it explicitly.
   };
 
+  handleDrop = files => {
+    // Push all the axios request promise into a single array
+    const uploaders = files.map(file => {
+      // Initial FormData
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('tags', `codeinfuse, medium, gist`);
+      formData.append('upload_preset', 'ovqvnchc'); // Replace the preset name with your own
+      formData.append('api_key', '425737191539185'); // Replace API key with your own Cloudinary key
+      formData.append('timestamp', (Date.now() / 1000) | 0);
+
+      // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+      return axios
+        .post('https://api.cloudinary.com/v1_1/autoreveiewforyou/image/upload', formData, {
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(response => {
+          const data = response.data;
+          const fileURL = data.secure_url; // You should store this URL for future references in your app
+          // console.log(data);
+          this.setState({ review: { ...this.state.review, carImage: fileURL } });
+        });
+    });
+
+    // Once all the files are uploaded
+    axios.all(uploaders).then(() => {
+      // ... perform after upload is successful operation
+      console.log('request finished', uploaders);
+    });
+  };
+
   render() {
     return (
       <div>
@@ -82,32 +125,38 @@ class NewReviewModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>
             <input
-              type="text"
+              type="number"
               name="year"
+              min="1940"
+              max="2019"
               value={this.state.review.year}
               onChange={this.handleChange('review', 'year')}
-              placeholder="car-year"
+              placeholder="Year"
+              className="review-input"
             />
             <input
               type="text"
               name="make"
               value={this.state.review.make}
               onChange={this.handleChange('review', 'make')}
-              placeholder="car-make"
+              placeholder="Make"
+              className="review-input"
             />
             <input
               type="text"
               name="model"
               value={this.state.review.model}
               onChange={this.handleChange('review', 'model')}
-              placeholder="car-model"
+              placeholder="Model"
+              className="review-input"
             />
             <input
               type="text"
               name="edition"
               value={this.state.review.edition}
               onChange={this.handleChange('review', 'edition')}
-              placeholder="car-edition"
+              placeholder="Edition"
+              className="review-input"
             />
             {/* <div className="searchfields">
               <select className="dropdownsNR" name="car-years" id="car-years" />
@@ -115,31 +164,34 @@ class NewReviewModal extends Component {
               <select className="dropdownsNR" name="car-models" id="car-models" />
               <select className="dropdownsNR" name="car-model-trims" id="car-model-trims" />
             </div> */}
-            Review by: {this.props.userInfo.username}
+            {/* Review by: {this.props.userInfo.username} */}
           </ModalHeader>
-          <ModalBody>
-            {this.state.review.selectedImage ? (
-              <img src={this.state.review.selectedImage} />
-            ) : (
-              <img src={placeholder} />
-            )}
-            {/* <img style={{ height: '160px', width: '320px' }} /> */}
-            <input
-              type="file"
-              name="selectedImage"
-              value={this.state.review.selectedImage}
-              onChange={this.imageSelectedHandler}
-            />
-          </ModalBody>
-          <ModalFooter>
-            <form>
-              <input
-                type="text"
-                name="score"
-                value={this.state.review.score}
-                onChange={this.handleChange('review', 'score')}
-                placeholder="car-score"
+          <ModalBody className="drop-zone">
+            {this.state.review.carImage ? (
+              <img
+                src={this.state.review.carImage}
+                style={{ height: '160px', width: '320px' }}
               />
+            ) : null}
+            <Dropzone onDrop={this.handleDrop} multiple accept="image/*">
+              {/* style={styles.dropzone} */}
+              <p>Click a picture to upload for your review</p>
+            </Dropzone>
+          </ModalBody>
+          <ModalFooter className="new-review-footer">
+            <form>
+              <ReactStars
+              type= "number"
+              name= "score"
+              edit= {true}
+              half={true}
+              count={5}
+              value={this.state.review.score}
+              // this.state.review.score
+              onChange={this.ratingChanged('review', 'score')}
+              size={36}
+              color2={'#ffd700'} />
+                
               <input
                 type="text"
                 name="title"
@@ -160,7 +212,9 @@ class NewReviewModal extends Component {
               </p>
             </form>
           </ModalFooter>
-          <input type="submit" onClick={this.onClick} />
+          <button className="submit-button" onClick={this.onClick} >
+            Submit
+          </button>
         </Modal>
       </div>
     );

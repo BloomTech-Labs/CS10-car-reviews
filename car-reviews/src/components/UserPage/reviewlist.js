@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
-import MyReviewsModal from '../Modals/myReviewsModal';
+import { Col } from 'reactstrap'
+import MyReviewsModal from '../Modals/myreviewsmodal';
 import NewReviewModal from '../Modals/newreview';
 import axios from 'axios';
 
@@ -52,9 +53,7 @@ class ReviewList extends Component {
     );
 
     const reviewListCards = (
-      <div className="reviewCardContainer">
-        <MyReviewsModal className={'review'} data={this.state.data} />
-
+      <div>
         <div className="reviewSpecial">
           <h4>New review</h4>
           <NewReviewModal
@@ -63,6 +62,9 @@ class ReviewList extends Component {
             userInfo={this.state.data.user}
           />
         </div>
+        <Col lg="3" md="6" className="reviewCardContainer">
+          <MyReviewsModal className={'review'} data={this.state.data} />
+        </Col>
       </div>
     );
 

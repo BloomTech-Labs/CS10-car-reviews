@@ -1,0 +1,22 @@
+.review-input {
+    width: 335px;
+}
+
+.new-review-footer {
+    background-color: #D3E3FC;
+}
+
+.drop-zone {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button {
+    background-color:#2F77F3;
+    border: none !important;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #00887A;
+}

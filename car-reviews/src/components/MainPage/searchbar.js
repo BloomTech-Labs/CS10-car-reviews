@@ -11,12 +11,14 @@ import axios from 'axios';
 const carQuery = new CarQuery();
 
 const styles = {
-  buttonStylesMiddle: {
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 15,
-    width: '90%'
-  },
+  // buttonStylesMiddle: {
+  //   marginLeft: 10,
+  //   marginRight: 10,
+  //   marginBottom: 15,
+  //   width: '90%',
+  //   backgroundColor: 'white',
+  //   color: '#77A6F7',
+  // },
   buttonContainerStyles: {
     display: 'flex',
     justifyContent: 'center'
@@ -203,8 +205,8 @@ class Searchbar extends React.Component {
         <div className="login">
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
-              <Button className="signup">Sign Up</Button>
-              <Button className="signin">Sign In</Button>
+              <Button className="searchbar-buttons">Sign Up</Button>
+              <Button className="searchbar-buttons">Sign In</Button>
             </div>
           </Link>
         </div>
@@ -288,7 +290,11 @@ class Searchbar extends React.Component {
             <button onClick={()=>this.searchFunction()}>click me for testing</button>
             <div style={styles.buttonContainerStyles}>
                 <Link to='/MyReviews'>
-                  <Button style={styles.buttonStylesMiddle}>Review</Button>
+                  <Button
+                    className="searchbar-buttons"
+                  >
+                  Review
+                  </Button>
                 </Link>
 
                 {/* <Link to={{
