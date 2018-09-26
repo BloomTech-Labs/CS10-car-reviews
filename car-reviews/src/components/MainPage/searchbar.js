@@ -108,7 +108,7 @@ class Searchbar extends React.Component {
           ...prevState.selectedValues,
           [name]: value,
           model: '',
-          trim: ''                  // to clear these values if reselecting different make
+          trim: ''                  // to clear model and trim if reselecting different make
       }}},
       () => {
         let newModels = [];
@@ -177,7 +177,7 @@ class Searchbar extends React.Component {
     this.setState({ searching: true });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const yearList = [];
     carQuery.getYears()
       .then(years => {
