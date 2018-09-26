@@ -39,12 +39,22 @@ class ReviewList extends Component {
   };
 
   handleRemove = id => {
-    this.setState({
-      data: {
-        ...this.state.data,
-        reviews: this.state.data.reviews.filter(review => review._id != id)
+    const config = {
+      headers: {
+        JWT: localStorage.getItem('jwt')
       }
-    });
+    };
+
+    axios
+      .delete(`http://localhost:3001/api/reviews/${id}`, config)
+      .then(response => {
+        console.log('deleteNote:', response);
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      });
+
+    window.location.reload();
   };
 
   render() {

@@ -20,13 +20,14 @@ class MyReviewsModal extends Component {
 
   deleteReview = id => {
     this.props.removeReview(id);
+    this.toggle();
   };
 
   render() {
     console.log('props', this.props);
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle} className={this.props.className}>
+        <Button className="modal-button" onClick={this.toggle}>
           <img src={placeholder} style={{ height: '60px', width: '60px' }} />
           <p>{`Star Rating: ${this.props.score}`}</p>
           <p>{`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}
@@ -35,21 +36,21 @@ class MyReviewsModal extends Component {
                   review.updated_on
                 }`}</CardText> */}
         </Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-header">
-          <ModalHeader toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle} className="modal-header">
             <p>
               {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
                 this.props.car.edition
-              }`}
+              } `}
               <button onClick={() => this.deleteReview(this.props._id)}>delete</button>
             </p>
             {/* <p>{`Review by: ${this.props.user.username}`}</p> */}
+            <p>{`Rating: ${this.props.score} out of 5`}</p>
           </ModalHeader>
           <ModalBody className="modal-body">
             {this.props.carImage ? (
-              <img src={this.props.carImage} style={{ height: '160px', width: '320px' }} />
+              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
             ) : null}
-            <p>{`Star Rating: ${this.props.score}`}</p>
             <hr />
             <p>{this.props.title}</p>
             <p>{this.props.content}</p>
