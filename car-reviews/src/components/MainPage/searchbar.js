@@ -160,7 +160,6 @@ class Searchbar extends React.Component {
 
   handleRedirect = (results) => {
     if (this.state.searching) {
-      this.setState({ searching: false });
       return <Redirect to={{
         pathname: '/searchpage',
         state: {
