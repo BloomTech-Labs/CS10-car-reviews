@@ -52,7 +52,7 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
         ]
       }, function(err, subscription) {
           // asynchronously called
-          console.log(subscription)
+          console.log('subscription is :', subscription)
         }
       );
     stripe.charges.create(req.body)
