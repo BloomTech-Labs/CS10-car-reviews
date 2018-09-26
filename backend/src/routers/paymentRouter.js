@@ -32,8 +32,29 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
         source: source // obtained with Stripe.js
       }, function(err, customer) {
         // asynchronously called
-        console.log('here is a customer: ',customer)
+        // console.log('here is a customer: ',customer)
       });
+
+      stripe.plans.list(
+        { limit: 3 },
+        function(err, plans) {
+          // asynchronously called
+        }
+
+      );
+
+      stripe.subscriptions.create({
+        customer: customer,
+        items: [
+          {
+            plan: plans[1],
+          },
+        ]
+      }, function(err, subscription) {
+          // asynchronously called
+          console.log(subscription)
+        }
+      );
     stripe.charges.create(req.body)
         .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
         .then(response => {res.json( response )})
