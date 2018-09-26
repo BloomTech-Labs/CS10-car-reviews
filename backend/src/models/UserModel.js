@@ -19,15 +19,15 @@ const UserModel = mongoose.Schema({
       unique: true,
       required: true,
       lowercase: true,
-  },
+    },
     password: {
         type: String,
         required: true,
         minlength: 4,
     },
     customerId: {
-      type: string,
-      required: false.
+      type: String,
+      required: false
     },
     testEntry: {
       type: Boolean,

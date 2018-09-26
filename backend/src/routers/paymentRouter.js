@@ -18,41 +18,27 @@ const router = express.Router();
 // adding the routes
 router.get('/', (req, res) => res.send(`The home router is working!`)); // test router
 
-router.post('/customer/create', function (req, res, next){
-    const token = req.body.toekn;
-    if (!token) {
-        return res.send({
-            success: false, 
-            message: 'no token present'
-        });
-    }
-    stripe.customers.create(
-        {
-            source: token,
-            email: email
-        },
-        function(err, customer) {
-            if (err) {
-                console.error(err);
-            }  else {
-                res.send({
-                    success: true,
-                    customer: customer,
-                    customerId: customer.id
-                });
-            }
-        }
-    )
-})
 
-// router.post("/", verifyJWTMiddleware, (req, res) => {
-//     const email = req.email;
-//     stripe.charges.create(req.body)
-//         .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
-//         .then(response => {res.json( response )})
-//         .catch(err => res.status(500).json({ error: err.message }));
-// });
 
+
+router.post("/", verifyJWTMiddleware, (req, res) => {
+    const email = req.email;
+    const source = req.body.source;
+    // const token = req.body.token;
+    // console.log(token)
+
+    stripe.customers.create({
+        email: email,
+        source: source // obtained with Stripe.js
+      }, function(err, customer) {
+        // asynchronously called
+        console.log('here is a customer: ',customer)
+      });
+    stripe.charges.create(req.body)
+        .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
+        .then(response => {res.json( response )})
+        .catch(err => res.status(500).json({ error: err.message }));
+});
 
 // exporting the router
 module.exports = router;
