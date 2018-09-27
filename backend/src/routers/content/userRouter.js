@@ -42,7 +42,6 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
 //route to change user data:
 router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     const oldEmail = req.email;
-    // let counter = req.body.counter;
     console.log('I am being called correctly', req.body.counter)
     let objForUpdate = {};
     
@@ -57,29 +56,25 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
         objForUpdate.timesViewed = req.body.counter;
         UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
         .then(userRecord => {
-            console.log('this is inside.then', userRecord);
-            res.json(userRecord)
-            
+            res.json(userRecord) 
         })
         .catch(err => {
-            console.log('this is inside.catch');
             res.status(500).json({ databaseError: err });
-            
         });
-    } 
-    UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
-        .then(userRecord => {
-            const { fullname, username, email, _id } = userRecord;
-            JWT.sign({ fullname, username, email, _id }, JWT_SECRET, { expiresIn: "1hr", algorithm: 'HS256' }, (err, token) => {
-                if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
-                res.status(200).json({ JWT: token });
+    } else {
+        UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
+            .then(userRecord => {
+                const { fullname, username, email, _id } = userRecord;
+                JWT.sign({ fullname, username, email, _id }, JWT_SECRET, { expiresIn: "1hr", algorithm: 'HS256' }, (err, token) => {
+                    if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
+                    res.status(200).json({ JWT: token });
+                })
             })
-        })
-        .catch(err => {
-            res.status(500).json({ databaseError: err });
-        });
+            .catch(err => {
+                res.status(500).json({ databaseError: err });
+            });
+    }
 });
 
-
 // exporting the router
-module.exports = router;
+module.exports = router; 

@@ -22,7 +22,7 @@ class ReviewModal extends Component {
   toggle() {
     // this.modelOpen();
     this.getUserCounter();
-      this.updateUserCounter();
+    this.updateUserCounter();
     this.setState({
       modal: !this.state.modal
     });
@@ -61,9 +61,6 @@ class ReviewModal extends Component {
   };
   
   updateUserCounter = () => {
-    // const newReview = this.state['review'];
-    // const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
-    // const localRequests = 'http://localhost:3001/api/reviews';
     const counter = this.state.counter;
     
     console.log('the counter is ',counter);
@@ -77,7 +74,7 @@ class ReviewModal extends Component {
         this.setState(newstate)
         // if (this.state.alerts.password) this.handleAlerts('password');
         // if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
-         localStorage.setItem('jwt', response.data.JWT);
+         //localStorage.setItem('jwt', response.data.JWT);
       })
       .catch(err => {
         // if (!this.state.alerts.password) this.handleAlerts('password');
