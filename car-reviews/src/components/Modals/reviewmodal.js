@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
 import f150 from '../../f150.jpg';
+import ReactStars from 'react-stars'
 // import '../MainPage/mainpage.css';
 import './reviewmodal.css';
 
@@ -33,6 +34,15 @@ class ReviewModal extends Component {
         <Button className="modal-button" onClick={this.toggle} src={f150}>
             {/* <img src={placeholder} style={{ height: '60px', width: '25%' }} /> */}
             <p>{`${year} ${make} ${model} ${edition}`}</p>
+            <ReactStars
+              type= "number"
+              name= "score"
+              edit= {false}
+              half={true}
+              count={5}
+              value={score}
+              size={36}
+              color2={'#ffd700'} />
             <p>Star Rating {score}</p>
             <CardText styles={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
         </Button>
