@@ -104,7 +104,7 @@ class NewReviewModal extends Component {
                 return {trims: newTrims,
                   review: {
                     ...prevState.review,
-                    trim: newTrims[0]
+                    edition: newTrims[0]
                   }
                 }  
               },
@@ -116,7 +116,6 @@ class NewReviewModal extends Component {
           });
         }
       );
-
     } else {
       this.setState(newState);
     }
@@ -195,16 +194,6 @@ class NewReviewModal extends Component {
         </button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>
-            {/* <input
-              type="number"
-              name="year"
-              min="1940"
-              max="2019"
-              value={this.state.review.year}
-              onChange={this.handleChange('review', 'year')}
-              placeholder="Year"
-              className="review-input"
-            /> */}
             <select
                 name="year"
                 value={this.state.review.year}
@@ -217,14 +206,6 @@ class NewReviewModal extends Component {
                   )
                 })}
             </select>
-            {/* <input
-              type="text"
-              name="make"
-              value={this.state.review.make}
-              onChange={this.handleChange('review', 'make')}
-              placeholder="Make"
-              className="review-input"
-            /> */}
             <select
                 name="make"
                 value={this.state.review.make}
@@ -237,14 +218,6 @@ class NewReviewModal extends Component {
                 )
               })}
             </select>
-            {/* <input
-              type="text"
-              name="model"
-              value={this.state.review.model}
-              onChange={this.handleChange('review', 'model')}
-              placeholder="Model"
-              className="review-input"
-            /> */}
             <select
                 name="model"
                 value={this.state.review.model}
@@ -257,14 +230,16 @@ class NewReviewModal extends Component {
                 )
               })}
             </select>
-            <input
-              type="text"
-              name="edition"
-              value={this.state.review.edition}
-              onChange={this.handleChange('review', 'edition')}
-              placeholder="Edition"
-              className="review-input"
-            />
+            <select
+                name="edition"
+                value={this.state.review.edition}
+                onChange={this.handleChange('review', 'edition')}
+                className="review-input"
+              >
+              {this.state.trims.map((trim) => {
+                return (<option key={trim.index}>{trim}</option>)
+              })}
+            </select>
             {/* <div className="searchfields">
               <select className="dropdownsNR" name="car-years" id="car-years" />
               <select className="dropdownsNR" name="car-makes" id="car-makes" />
