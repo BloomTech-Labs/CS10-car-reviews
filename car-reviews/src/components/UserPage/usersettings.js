@@ -27,11 +27,11 @@ const styles = {
   inputGroupStyles: {
     marginBottom: "5%",
   },
-  containerStyles: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    width: '100%',
-  }
+  // containerStyles: {
+  //   display: 'flex',
+  //   justifyContent: 'space-around',
+  //   width: '100%',
+  // }
 }
 
 // A form component that will display the name and email of a logged in user and allow them to change them and/or their password. Renders within the Settings component.
@@ -178,7 +178,8 @@ class UserSettings extends Component {
 
   render() {
     return (
-      <div style={styles.containerStyles}>
+      <div className="user-settings-container">
+      {/* <div style={styles.containerStyles}> */}
         <Card style={styles.cardStyles}>
           <CardBody>
             <CardTitle>Change Your Password</CardTitle>

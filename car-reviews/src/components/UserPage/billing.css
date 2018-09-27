@@ -1,9 +1,14 @@
 .BillingBox {
     /* display: flex !important; */
-    /* border: 1px solid black; */
+    /* border: 5px solid black; */
     text-align: center;
     margin-top: 25px;
     height: 90vh;
+    background-image: url("../Assets/Pok_Rie.jpg");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 

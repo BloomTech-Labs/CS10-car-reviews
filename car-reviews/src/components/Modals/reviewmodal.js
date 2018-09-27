@@ -31,7 +31,7 @@ class ReviewModal extends Component {
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle} src={f150}>
-            {/* <img src={placeholder} style={{ height: '60px', width: '25%' }} /> */}
+            <img src={carImage} style={{ height: '100%', width: '100%' }} />
             <p>{`${year} ${make} ${model} ${edition}`}</p>
             <p>Star Rating {score}</p>
             <CardText styles={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>

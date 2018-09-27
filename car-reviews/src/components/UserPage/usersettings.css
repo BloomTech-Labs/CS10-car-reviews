@@ -1,3 +1,14 @@
+.user-settings-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-image: url("../Assets/1.jpg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .userinfoContainer {
   width: 75%;
   margin-top: 25px;
