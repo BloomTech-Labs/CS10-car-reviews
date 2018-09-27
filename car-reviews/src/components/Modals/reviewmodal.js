@@ -21,8 +21,7 @@ class ReviewModal extends Component {
 
   toggle() {
     // this.modelOpen();
-    this.getUserCounter();
-    this.updateUserCounter();
+    this.modelOpen();
     this.setState({
       modal: !this.state.modal
     });
@@ -30,8 +29,8 @@ class ReviewModal extends Component {
 
   modelOpen() {
     if(this.state.modal == true) {
-      // this.getUserCounter();
-      // this.updateUserCounter();
+      this.getUserCounter();
+      this.updateUserCounter();
     }
   }
 
