@@ -23,14 +23,16 @@ class LoginRegister extends Component {
             fullname: '',
             username: '',
             email: '',
-            password: ''
+            password: '',
+            password2: ''
         },
         redirect: {
             status:false
         },
         alerts: {
             login: false,
-            register: false
+            register: false,
+            passMatch: false,
         }
     }
     handleUpdateForms = (type, field) => (event) => {
@@ -43,6 +45,19 @@ class LoginRegister extends Component {
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
+
+        if (formType === 'register'){
+            if (this.state.register.password !== this.state.register.password2){
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        passMatch: true,
+                    }
+                })
+                return console.log(`Passwords don't match, dog!`)
+            }
+        }
+
         axios.post(localRequests, userForm)
             .then(response => {
                 // removes the alert if it's present
@@ -92,7 +107,6 @@ class LoginRegister extends Component {
                                 onChange={this.handleUpdateForms('login', 'email')}     
                             />
                             <input 
-                                // * NOTE: Hide characters
                                 type='password'
                                 value={this.state.login.password} 
                                 placeholder='Enter your password...' 
@@ -134,8 +148,15 @@ class LoginRegister extends Component {
                             placeholder='Enter your password...' 
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
-                         <Button color="primary">Register</Button>
+                        <input 
+                                type='password'
+                                value={this.state.register.password2} 
+                                placeholder='Re-enter password...' 
+                                onChange={this.handleUpdateForms('register', 'password2')}   
+                            />
+                         <Button type='submit' color="primary">Register</Button>
                          <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
+                         <Alert isOpen={this.state.alerts.passMatch} color='danger'>The passwords you entered don't match, please try again</Alert>
                     </form>
                 </Col>
                 </div>
