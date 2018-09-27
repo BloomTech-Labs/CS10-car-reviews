@@ -49,6 +49,15 @@ class ReviewModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
             <h2>{`${year} ${make} ${model} ${edition}`}</h2>
+            <ReactStars
+              type= "number"
+              name= "score"
+              edit= {false}
+              half={true}
+              count={5}
+              value={score}
+              size={36}
+              color2={'#ffd700'} />
             <p>Rating: {score} out of 5</p>
             {/* <h5>{`Review by: ${username}`}</h5> */}
           </ModalHeader>
