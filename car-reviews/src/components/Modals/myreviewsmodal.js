@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
+import EditableContent from './editablecontent';
 
 class MyReviewsModal extends Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class MyReviewsModal extends Component {
 
   render() {
     console.log('props', this.props);
+    let EditableInfoP = EditableContent('p');
+    let EditableInfoSpan = EditableContent('span');
+
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle}>
@@ -38,12 +42,20 @@ class MyReviewsModal extends Component {
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
-            <p>
+            <EditableInfoSpan name="year" value={this.props.car.year} id={this.props._id} />
+            <span> </span>
+            <EditableInfoSpan name="make" value={this.props.car.make} id={this.props._id} />
+            <span> </span>
+            <EditableInfoSpan name="model" value={this.props.car.model} id={this.props._id} />
+            <span> </span>
+            <EditableInfoSpan name="edition" value={this.props.car.edition} id={this.props._id} />
+            <span> </span>
+            {/* <p>
               {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
                 this.props.car.edition
-              } `}
-              <button onClick={() => this.deleteReview(this.props._id)}>delete</button>
-            </p>
+              } `} */}
+            <button onClick={() => this.deleteReview(this.props._id)}>delete</button>
+            {/* </p> */}
             {/* <p>{`Review by: ${this.props.user.username}`}</p> */}
             <p>{`Rating: ${this.props.score} out of 5`}</p>
           </ModalHeader>
@@ -52,8 +64,10 @@ class MyReviewsModal extends Component {
               <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
             ) : null}
             <hr />
-            <p>{this.props.title}</p>
-            <p>{this.props.content}</p>
+            <EditableInfoP name="title" value={this.props.title} id={this.props._id} />
+            <EditableInfoP name="content" value={this.props.content} id={this.props._id} />
+            {/* <p>{this.props.title}</p>
+            <p>{this.props.content}</p> */}
           </ModalBody>
         </Modal>
       </div>
