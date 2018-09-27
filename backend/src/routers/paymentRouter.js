@@ -24,8 +24,9 @@ router.get('/', (req, res) => res.send(`The home router is working!`)); // test 
 router.post("/", verifyJWTMiddleware, (req, res) => {
     const email = req.email;
     const source = req.body.source;
+    const description = req.body.description;
     // const token = req.body.token;
-    // console.log(token)
+    //  console.log(req)
 
     stripe.customers.create({
         email: email,
@@ -33,28 +34,35 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
       }, function(err, customer) {
         // asynchronously called
         // console.log('here is a customer: ',customer)
+        
+        stripe.plans.retrieve(
+            'plan_DfkDDsht0n0Vei',
+            function(err, plan) {
+              // asynchronously called
+              console.log('the plan is ', plan.id)
+              console.log('the customer is ', customer.id)
+
+              stripe.subscriptions.create({
+                    customer: customer.id,
+                    // billing: "charge_automatically",
+                    items: [
+                      {
+                        plan: plan.id,
+                      },
+                      console.log('tommy' ,customer, 'tommy2',  plan)
+                    ]
+                  }, function(err, subscription) {
+                      // asynchronously called
+                      console.log('subscription is :', subscription)
+                    }
+                  );
+            
+            }
+          );
+        
       });
 
-      stripe.plans.list(
-        { limit: 3 },
-        function(err, plans) {
-          // asynchronously called
-        }
-
-      );
-
-      stripe.subscriptions.create({
-        customer: customer,
-        items: [
-          {
-            plan: plans[1],
-          },
-        ]
-      }, function(err, subscription) {
-          // asynchronously called
-          console.log('subscription is :', subscription)
-        }
-      );
+      
     stripe.charges.create(req.body)
         .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
         .then(response => {res.json( response )})
