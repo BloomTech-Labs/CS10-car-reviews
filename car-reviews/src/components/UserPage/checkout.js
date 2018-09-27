@@ -11,7 +11,7 @@ const PAYMENT_SERVER_URL = 'http://localhost:3001/Payment';
 const CURRENCY = 'USD';
 
 const fromDollarToCent = amount => amount * 100;
-console.log(this.props);
+console.log('this is props: ', this.props);
 
 const successPayment = data => {
   alert('Payment Successful');
@@ -46,6 +46,7 @@ const Checkout = ({ name, description, amount }) =>
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
+    // email= {email} you could set an email to auto populate from the user here
   />
 
 export default Checkout;

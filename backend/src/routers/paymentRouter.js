@@ -25,7 +25,7 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
     const email = req.email;
     const source = req.body.source;
     const description = req.body.description;
-    const chosenplan = ''
+    let chosenplan = ''
 
     if(description === '1 year unlimited reviews') {
         chosenplan = 'plan_DfkDDsht0n0Vei';
@@ -44,14 +44,17 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
         source: source // obtained with Stripe.js
       }, function(err, customer) {
         // asynchronously called
+        if(customer !== null) {
+
+        
         // console.log('here is a customer: ',customer)
         
         stripe.plans.retrieve(
             chosenplan,
             function(err, plan) {
               // asynchronously called
-              console.log('the plan is ', plan.id)
-              console.log('the customer is ', customer.id)
+            //   console.log('the plan is ', plan.id)
+            //   console.log('the customer is ', customer.id)
 
               stripe.subscriptions.create({
                     customer: customer.id,
@@ -60,17 +63,19 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
                       {
                         plan: plan.id,
                       },
-                      console.log('tommy' ,customer.id, 'tommy2',  plan.id)
+                    //   console.log('tommy' ,customer.id, 'tommy2',  plan.id)
                     ]
                   }, function(err, subscription) {
                       // asynchronously called
-                      console.log('subscription is :', subscription)
+                    //   console.log('subscription is :', subscription)
                     }
                   );
             
             }
           );
-        
+        } else {
+            console.log('The token has expired please try again', err)
+        }
       });
 
       

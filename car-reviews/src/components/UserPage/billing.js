@@ -25,8 +25,8 @@ class Billing extends Component {
 
     onPriceClick(name, description, amount) {
         
-
         this.setState({ name, description, amount });
+        
       }
     render(){
         return(
@@ -49,6 +49,7 @@ class Billing extends Component {
                     name={this.state.name}
                     description={this.state.description}
                     amount={this.state.amount}
+                    
                 />
                 </div>
             </Elements>
