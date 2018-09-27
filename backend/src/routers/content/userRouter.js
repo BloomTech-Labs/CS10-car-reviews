@@ -57,10 +57,14 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
         objForUpdate.timesViewed = req.body.counter;
         UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
         .then(userRecord => {
+            console.log('this is inside.then', userRecord);
             res.json(userRecord)
+            
         })
         .catch(err => {
+            console.log('this is inside.catch');
             res.status(500).json({ databaseError: err });
+            
         });
     } 
     UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
