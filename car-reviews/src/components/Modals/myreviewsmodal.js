@@ -28,7 +28,7 @@ class MyReviewsModal extends Component {
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle}>
-          <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
           <p>{`Star Rating: ${this.props.score}`}</p>
           <p>{`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}
  ${this.props.car.edition}`}</p>

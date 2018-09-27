@@ -1,5 +1,10 @@
 .wrapperContainer {
-  width: 80%;
+  width: 100%;
+  background-image: url("../Assets/Markus_Spiske.jpg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .fullScreenReview {
