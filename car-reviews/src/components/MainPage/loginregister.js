@@ -32,7 +32,8 @@ class LoginRegister extends Component {
         alerts: {
             login: false,
             register: false,
-            passMatch: false,
+            passMatchErr: false,
+            emailValidErr: false,
         }
     }
     handleUpdateForms = (type, field) => (event) => {
@@ -47,16 +48,31 @@ class LoginRegister extends Component {
         const userForm = Object.assign({}, this.state[formType]);
 
         if (formType === 'register'){
+            if (this.state.register.email.includes('@')){
+                if (!this.state.register.email.includes('.')){
+                    this.setState({
+                        alerts: {
+                            ...this.state.alerts,
+                            emailValidErr: true
+                        }
+                    })
+                    return console.log(`Email isn't real!`)
+                } else {
+                    console.log('they check out, let em pass')
+                }
+            }
+
             if (this.state.register.password !== this.state.register.password2){
                 this.setState({
                     alerts: {
                         ...this.state.alerts,
-                        passMatch: true,
+                        passMatchErr: true,
                     }
                 })
                 return console.log(`Passwords don't match, dog!`)
             }
         }
+
 
         axios.post(localRequests, userForm)
             .then(response => {
@@ -91,6 +107,10 @@ class LoginRegister extends Component {
         const newState = Object.assign({}, this.state);
         newState.alerts[type] = !this.state.alerts[type];
         this.setState(newState);
+    }
+
+    handleEmailValidation = () => {
+
     }
 
     handleRedirect =() => {
@@ -149,14 +169,15 @@ class LoginRegister extends Component {
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
                         <input 
-                                type='password'
-                                value={this.state.register.password2} 
-                                placeholder='Re-enter password...' 
-                                onChange={this.handleUpdateForms('register', 'password2')}   
+                            type='password'
+                            value={this.state.register.password2} 
+                            placeholder='Re-enter password...' 
+                            onChange={this.handleUpdateForms('register', 'password2')}   
                             />
                          <Button type='submit' color="primary">Register</Button>
                          <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
-                         <Alert isOpen={this.state.alerts.passMatch} color='danger'>The passwords you entered don't match, please try again</Alert>
+                         <Alert isOpen={this.state.alerts.passMatchErr} color='danger'>The passwords you entered don't match, please try again</Alert>
+                         <Alert isOpen={this.state.alerts.emailValidErr} color='danger'>Please enter a valid email address</Alert>
                     </form>
                 </Col>
                 </div>
