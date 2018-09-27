@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
 
+console.log('I am hitting this');
 // importing models
 const UserModel = require('../../models/UserModel');
 
@@ -41,7 +42,10 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
 //route to change user data:
 router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     const oldEmail = req.email;
+    // let counter = req.body.counter;
+    console.log('I am being called correctly', req.body.counter)
     let objForUpdate = {};
+    
     if (req.body.email) {
         objForUpdate.email = req.body.email;
     } else if (req.body.newEmail) {
@@ -49,6 +53,20 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     }
     if (req.body.username) objForUpdate.username = req.body.username;
     if (req.password) objForUpdate.password = req.password;
+    if (req.body.counter) {
+        objForUpdate.timesViewed = req.body.counter;
+        UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
+        .then(userRecord => {
+            console.log('this is inside.then', userRecord);
+            res.json(userRecord)
+            
+        })
+        .catch(err => {
+            console.log('this is inside.catch');
+            res.status(500).json({ databaseError: err });
+            
+        });
+    } 
     UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
         .then(userRecord => {
             const { fullname, username, email, _id } = userRecord;
