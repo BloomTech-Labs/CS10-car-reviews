@@ -19,7 +19,7 @@ const UserModel = mongoose.Schema({
       unique: true,
       required: true,
       lowercase: true,
-  },
+    },
     password: {
         type: String,
         required: true,
@@ -30,6 +30,10 @@ const UserModel = mongoose.Schema({
       default: 0, 
       index: true
   },
+    customerId: {
+      type: String,
+      required: false
+    },
     testEntry: {
       type: Boolean,
       default: false
