@@ -4,7 +4,6 @@ import { Button, Row, Col, Container } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';
 import axios from 'axios';
 import './mainpage.css';
-import TEST from '../test';
 
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
 // because they will need to be clicked on to open the review page. This is rendered in MainPage.
@@ -53,7 +52,7 @@ class MainContent extends Component {
                     </Row>
                     <h3 className="header">Popular Cars</h3>
                     <Row>
-                        {/* {this.state.popularCars.map(car => {
+                        {this.state.popularCars.map(car => {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
                                     <Button className="main-card">
@@ -63,8 +62,7 @@ class MainContent extends Component {
                                     </Button>
                                 </Col>
                             );
-                        })} */}
-                        <TEST />
+                        })}
                     </Row>
                     <h3 className="header">Popular Reviewers</h3>
                     <Row>
