@@ -227,9 +227,9 @@ class Searchbar extends React.Component {
     return (
         <div className="searchbar">
           <div>
-            <div style={styles.buttonContainerStyles}>
+            {/* <div style={styles.buttonContainerStyles}>
               <Link style={styles.linkStyles} to='/'><Button style={styles.buttonStylesMiddle}>Home</Button></Link>
-            </div>
+            </div> */}
             {this.handleRenderSignin()}
             {this.handleRedirect()}
             {/* TODO: Only display the Home button when at '/searchpage' */}

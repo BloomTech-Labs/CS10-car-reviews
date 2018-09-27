@@ -48,7 +48,6 @@
     background-color: #D3E3FC;
     height: 100%; 
     background-image: url("../Assets/Aleksesjs_Bergmanis.jpg");
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -69,7 +68,7 @@
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    /* margin: 10px; */
+    margin: 10px;
 }
 .main-card:hover {
     background-color: #77A6F7;
@@ -100,8 +99,3 @@
 
 /* End of Search Results Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-/* .footer {
-    background-color: #77A6F7;
-    color: white;
-} */

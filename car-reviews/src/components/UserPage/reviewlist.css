@@ -27,10 +27,10 @@
   outline: none !important;
 }
 
-/* .reviewCardContainer {
+.reviewCardContainer {
   display: flex;
-  flex-wrap: wrap;
-} */
+  /* flex-wrap: wrap; */
+}
 
 .review {
   margin: 25px 1rem;
