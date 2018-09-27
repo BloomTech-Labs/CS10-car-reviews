@@ -49,7 +49,7 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
                       {
                         plan: plan.id,
                       },
-                      console.log('tommy' ,customer, 'tommy2',  plan)
+                      console.log('tommy' ,customer.id, 'tommy2',  plan.id)
                     ]
                   }, function(err, subscription) {
                       // asynchronously called
