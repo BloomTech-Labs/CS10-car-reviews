@@ -46,7 +46,8 @@ class LoginRegister extends Component {
         const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
-
+        
+        // * TODO: Make sure that all fields are filled out before attempting the POST
         if (formType === 'register'){
             if (this.state.register.email.includes('@')){
                 if (!this.state.register.email.includes('.')){
