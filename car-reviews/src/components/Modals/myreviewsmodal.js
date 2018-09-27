@@ -18,47 +18,44 @@ class MyReviewsModal extends Component {
     });
   }
 
+  deleteReview = id => {
+    this.props.removeReview(id);
+    this.toggle();
+  };
+
   render() {
+    console.log('props', this.props);
     return (
       <div>
-        <div className="modal-button">
-          {this.props.data.reviews.map(review => {
-            return (
-              <Button onClick={this.toggle} className={this.props.className} key={review._id}>
-                <img src={placeholder} style={{ height: '60px', width: '60px' }} />
-                <p>{`Star Rating: ${review.score}`}</p>
-                <p>{`${review.car.year} ${review.car.make} ${review.car.model}`}</p>
-                <p>{review.car.edition}</p>
-                {/* <CardText className="cardText">{`Updated ${
+        <Button className="modal-button" onClick={this.toggle}>
+          <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+          <p>{`Star Rating: ${this.props.score}`}</p>
+          <p>{`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}
+ ${this.props.car.edition}`}</p>
+          {/* <CardText className="cardText">{`Updated ${
                   review.updated_on
                 }`}</CardText> */}
-              </Button>
-            );
-          })}
-        </div>
-        <div>
-          {this.props.data.reviews.map(review => {
-            return (
-              <Modal isOpen={this.state.modal} toggle={this.toggle} key={review._id}>
-                <ModalHeader toggle={this.toggle}>
-                  <p>{`${review.car.year} ${review.car.make} ${review.car.model} ${
-                    review.car.edition
-                  }`}</p>
-                  <p>{`Review by: ${this.props.data.user.username}`}</p>
-                </ModalHeader>
-                <ModalBody>
-                  {review.carImage ? (
-                    <img src={review.carImage} style={{ height: '160px', width: '320px' }} />
-                  ) : null}
-                  <p>{`Star Rating: ${review.score}`}</p>
-                </ModalBody>
-                <ModalFooter>
-                  <p>{review.content}</p>
-                </ModalFooter>
-              </Modal>
-            );
-          })}
-        </div>
+        </Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle} className="modal-header">
+            <p>
+              {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
+                this.props.car.edition
+              } `}
+              <button onClick={() => this.deleteReview(this.props._id)}>delete</button>
+            </p>
+            {/* <p>{`Review by: ${this.props.user.username}`}</p> */}
+            <p>{`Rating: ${this.props.score} out of 5`}</p>
+          </ModalHeader>
+          <ModalBody className="modal-body">
+            {this.props.carImage ? (
+              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
+            ) : null}
+            <hr />
+            <p>{this.props.title}</p>
+            <p>{this.props.content}</p>
+          </ModalBody>
+        </Modal>
       </div>
     );
   }

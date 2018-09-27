@@ -1,16 +1,40 @@
 .login-container{
    display: flex;
-   /* border: 1px solid red;  */
-   margin-top: 200px;
-   width: 100%; 
-   height: 300px;
-   
+   /* border: 3px solid red;  */
+   /* margin-top: 200px; */
+   /* width: 100%;  */
+   /* height: 700px; */
+
+
+   /* The image used */
+   background-image: url("../Assets/Bruno_Bergher.jpg");
+   /* Full height */
+   height: 100%; 
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   /* opacity: 0.5;
+   filter: alpha(opacity=50); */
 }
-.col-sm-6{
+
+.col-sm-4{
     display: flex; 
-    border: 1px solid black; 
-    justify-content: center; 
+    /* border: 3px solid blue;  */
+    justify-content: center;
+    margin-top: 245px;
+    margin-bottom: 245px;
+    /* height: 350px; */
+    height: 100%;
+    /* background-color: #B4B6BA;
+    opacity: 0.5;
+    filter: alpha(opacity=50); */
 }
+
+.login-mid {
+    font-size: 1.5em;
+}
+
 Input {
     /* border: 1px solid purple; */
     display: block;
