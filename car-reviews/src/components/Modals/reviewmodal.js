@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import placeholder from '../../logo.svg';
 import f150 from '../../f150.jpg';
+import axios from 'axios';
 // import '../MainPage/mainpage.css';
 import './reviewmodal.css';
 
@@ -11,18 +12,69 @@ class ReviewModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      counter: 3
     };
 
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
+    this.getUserCounter();
+    this.updateUserCounter();
     this.setState({
       modal: !this.state.modal
     });
   }
 
+
+
+  getUserCounter = () => {
+    // const newReview = this.state['review'];
+    // const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+    // const localRequests = 'http://localhost:3001/api/reviews';
+    const counter = this.state.counter;
+    axios
+      .get('http://localhost:3001/api/users/data', {
+        headers: {
+          JWT: localStorage.getItem('jwt')
+        }
+      })
+      .then(response => {
+        // console.log(response);
+        console.log(response.data.timesViewed);
+        const newstate = {counter: response.data.timesViewed}
+        this.setState(newstate)
+        
+      })
+      .catch(err => console.warn(err));
+  };
+  
+  updateUserCounter = () => {
+    // const newReview = this.state['review'];
+    // const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+    // const localRequests = 'http://localhost:3001/api/reviews';
+    const counter = this.state.counter;
+    console.log('the counter is ',counter);
+    const config = {
+      headers: { 'jwt': localStorage.getItem('jwt') }
+    };
+    axios.put('http://localhost:3001/api/users/data', { counter }, config)
+      .then(response => {
+        console.log(response);
+        const newstate = {counter: counter}
+        this.setState(newstate)
+        // if (this.state.alerts.password) this.handleAlerts('password');
+        // if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
+        // localStorage.setItem('jwt', res.data.JWT);
+      })
+      .catch(err => {
+        // if (!this.state.alerts.password) this.handleAlerts('password');
+        // if (this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
+        console.warn(err);
+      });
+    }
+    ///////////////////////////////////////////////
   
   render() {
     const { score, createOn, title, content, carImage } = this.props;
