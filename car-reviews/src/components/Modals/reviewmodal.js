@@ -13,19 +13,29 @@ class ReviewModal extends Component {
     super(props);
     this.state = {
       modal: false,
-      counter: 3
+      counter: 0
     };
 
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
+    // this.modelOpen();
     this.getUserCounter();
-    this.updateUserCounter();
+      this.updateUserCounter();
     this.setState({
       modal: !this.state.modal
     });
   }
+
+  modelOpen() {
+    if(this.state.modal == true) {
+      // this.getUserCounter();
+      // this.updateUserCounter();
+    }
+  }
+
+  
 
 
 
@@ -55,6 +65,7 @@ class ReviewModal extends Component {
     // const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
     // const localRequests = 'http://localhost:3001/api/reviews';
     const counter = this.state.counter;
+    
     console.log('the counter is ',counter);
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
@@ -62,11 +73,11 @@ class ReviewModal extends Component {
     axios.put('http://localhost:3001/api/users/data', { counter }, config)
       .then(response => {
         console.log(response);
-        const newstate = {counter: counter}
+        const newstate = {counter: counter + 1}
         this.setState(newstate)
         // if (this.state.alerts.password) this.handleAlerts('password');
         // if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
-        // localStorage.setItem('jwt', res.data.JWT);
+         localStorage.setItem('jwt', response.data.JWT);
       })
       .catch(err => {
         // if (!this.state.alerts.password) this.handleAlerts('password');
