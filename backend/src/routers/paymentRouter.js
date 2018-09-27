@@ -25,6 +25,17 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
     const email = req.email;
     const source = req.body.source;
     const description = req.body.description;
+    const chosenplan = ''
+
+    if(description === '1 year unlimited reviews') {
+        chosenplan = 'plan_DfkDDsht0n0Vei';
+    } else if (description === '6 month unlimited reviews') {
+        chosenplan = 'plan_DfkCgCUQ2vmePO';
+    } else if (description === '1 month unlimited reviews') {
+        chosenplan = 'plan_DfkBSehKoaV8LZ';
+    } else {
+        console.log('An error occured no plan was chosen');
+    }
     // const token = req.body.token;
     //  console.log(req)
 
@@ -36,7 +47,7 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
         // console.log('here is a customer: ',customer)
         
         stripe.plans.retrieve(
-            'plan_DfkDDsht0n0Vei',
+            chosenplan,
             function(err, plan) {
               // asynchronously called
               console.log('the plan is ', plan.id)

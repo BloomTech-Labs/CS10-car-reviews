@@ -42,8 +42,8 @@ class Billing extends Component {
                 <CardExpiryElement/>
                 <CardCVCElement/>
                 <PostalCodeElement/> */}
-                <Button color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 year unlimited reviews: 40% OFF!',  6.99)} >1 Year Subscription = 6.99</Button>
-                <Button color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','6 month unlimited reviews: 33% OFF!', 3.99)} >6 month Subscription = 3.99</Button>
+                <Button color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 year unlimited reviews',  6.99)} >1 Year Subscription = 6.99</Button>
+                <Button color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','6 month unlimited reviews', 3.99)} >6 month Subscription = 3.99</Button>
                 <Button color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 month unlimited reviews', 0.99)} >1 month Subscription = 0.99</Button>
                 <Checkout
                     name={this.state.name}
