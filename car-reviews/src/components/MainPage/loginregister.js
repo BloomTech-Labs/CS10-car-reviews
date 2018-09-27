@@ -83,34 +83,44 @@ class LoginRegister extends Component {
           return  <Redirect to='/'  />
         } else {
            return <div className="login-container">
-            <Col sm="6">
-                        <form onSubmit={this.handleSubmitForm('login')}>
-                        <Label>Login Please!</Label>
-                            <input 
-                                value={this.state.login.email} 
-                                placeholder='Enter your email...' 
-                                onChange={this.handleUpdateForms('login', 'email')}     
-                            />
-                            <input 
-                                // * NOTE: Hide characters
-                                type='password'
-                                value={this.state.login.password} 
-                                placeholder='Enter your password...' 
-                                onChange={this.handleUpdateForms('login', 'password')}   
-                            />
-                            <Button type='submit' color ="primary">Login</Button>
-                            <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
-                        </form>
-                    </Col>
+                <Col sm="4">
+                    <form onSubmit={this.handleSubmitForm('login')}>
+                    {/* <Label>Please Enter Your Email</Label> */}
+                        <input 
+                            value={this.state.login.email} 
+                            placeholder='Enter your email...' 
+                            onChange={this.handleUpdateForms('login', 'email')}     
+                        />
+                        <input 
+                            // * NOTE: Hide characters
+                            type='password'
+                            value={this.state.login.password} 
+                            placeholder='Enter your password...' 
+                            onChange={this.handleUpdateForms('login', 'password')}   
+                        />
+                        <Button type='submit' color ="primary">Login</Button>
+                        <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
+                    </form>
+                </Col>
                
+                <Col className="login-mid">
+                    <p> 
+                    If you're already registered with us, Welcome back! 
+                    Please login to the left
+                    </p>
+                    <p> 
+                    If this is your first time here, go ahead and register
+                    with us and start checking out all the reviews we have 
+                    waiting for you!
+                    </p>
+                </Col>
                 
                 
-                
-                <Col sm="6">
+                <Col sm="4">
                     {/* Right pane: Login */}
                     { /* * TODO: Add logic to hide register fields until a button is clicked */}
                     <form onSubmit={this.handleSubmitForm('register')}>
-                    <Label>Register if you do not have an account yet!</Label>
+                    {/* <Label>Register if you do not have an account yet!</Label> */}
                         <input 
                             value={this.state.register.fullname} 
                             placeholder='Enter your fullname...' 
@@ -134,8 +144,8 @@ class LoginRegister extends Component {
                             placeholder='Enter your password...' 
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
-                         <Button color="primary">Register</Button>
-                         <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
+                        <Button color="primary">Register</Button>
+                        <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
                     </form>
                 </Col>
                 </div>

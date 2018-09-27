@@ -33,7 +33,7 @@ After doing research, we decided to use the color scheme above because the stand
     - Montserrat - body
 
 * Photo Credits:
-    - desert_road.jpg by Bruno Bergher on Unsplash
+    - photo by Bruno Bergher on Unsplash
 
 # Component Structure
 - src/App.js
