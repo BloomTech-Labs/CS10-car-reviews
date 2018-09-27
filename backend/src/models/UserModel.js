@@ -25,6 +25,11 @@ const UserModel = mongoose.Schema({
         required: true,
         minlength: 4,
     },
+    timesViewed: {
+      type: Number,
+      default: 0, 
+      index: true
+  },
     customerId: {
       type: String,
       required: false
