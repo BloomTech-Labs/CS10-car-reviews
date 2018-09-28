@@ -11,7 +11,7 @@ const fromDollarToCent = amount => amount * 100;
 console.log('this is props: ', this.props);
 
 const successPayment = data => {
-  alert('Payment Successful');
+  alert('Payment Successful Thank you for your buisness');
   console.log('data is:' ,data);
 };
 
