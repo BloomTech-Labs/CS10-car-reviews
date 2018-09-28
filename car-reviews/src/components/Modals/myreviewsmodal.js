@@ -58,12 +58,12 @@ class MyReviewsModal extends Component {
 }
 
   render() {
-    console.log('props', this.props);
 
+    console.log('props', this.props);
     return (
       <div>
         <Button className="my-modal-button" onClick={this.toggle}>
-          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
+          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
           <ReactStars
               type= "number"
               name= "score"
@@ -103,7 +103,7 @@ class MyReviewsModal extends Component {
           </ModalHeader>
           <ModalBody className="my-modal-body">
             {this.props.carImage ? (
-              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
+              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
             ) : null}
             <hr />
             <Input name='title' type='text' onChange={this.handleChange} value={this.state.title}>{this.props.title}</Input>
