@@ -24,6 +24,11 @@ class MyReviewsModal extends Component {
     this.toggle();
   };
 
+  updateReview = id => {
+   // this.props.removeReview(id);
+   // this.toggle();
+  };
+
   render() {
     console.log('props', this.props);
     let EditableInfoP = EditableContent('p');
@@ -54,7 +59,8 @@ class MyReviewsModal extends Component {
               {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
                 this.props.car.edition
               } `} */}
-            <button onClick={() => this.deleteReview(this.props._id)}>delete</button>
+            <button onClick={() => this.deleteReview(this.props._id)}>delete review</button>
+            <button onClick={() => this.updateReview(this.props._id)}>edit review</button>
             {/* </p> */}
             {/* <p>{`Review by: ${this.props.user.username}`}</p> */}
             <p>{`Rating: ${this.props.score} out of 5`}</p>
