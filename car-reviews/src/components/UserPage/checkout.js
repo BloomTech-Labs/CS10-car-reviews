@@ -16,7 +16,7 @@ const successPayment = data => {
 };
 
 const errorPayment = data => {
-  alert('Payment Error, Please check your numbers and try again');
+  alert('Payment Error, Please check your numbers and try again', data);
 };
 
 

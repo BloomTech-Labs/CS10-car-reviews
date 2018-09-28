@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, CardText } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } from 'reactstrap';
 import axios from 'axios';
 import ReactStars from 'react-stars'
 import './reviewmodal.css';
@@ -11,7 +11,8 @@ class ReviewModal extends Component {
     super(props);
     this.state = {
       modal: false,
-      counter: 0
+      counter: 0,
+      paid: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -19,10 +20,19 @@ class ReviewModal extends Component {
 
   toggle() {
     // this.modelOpen();
-    this.modelOpen();
-    this.setState({
-      modal: !this.state.modal
-    });
+    if(this.state.counter > 3 && !this.state.paid) {
+      alert('Please pay for a subscription or come back tommorow for more free reviews!')
+      return console.log('to many views');
+    } else if(this.state.counter <= 3 || this.state.paid) {
+
+      this.modelOpen();
+      this.setState({
+        modal: !this.state.modal
+      });
+    } else {
+      console.log('there was a problem');
+    }
+    
   }
 
   modelOpen() {
@@ -31,6 +41,7 @@ class ReviewModal extends Component {
       this.updateUserCounter();
     }
   }
+
 
   
 
@@ -67,7 +78,7 @@ class ReviewModal extends Component {
     axios.put('http://localhost:3001/api/users/data', { counter }, config)
       .then(response => {
         console.log("USER view count", response);
-        const newstate = {counter: counter + 1}
+        const newstate = {counter: counter + 1, paid: response.data.paid}
         this.setState(newstate)
         // if (this.state.alerts.password) this.handleAlerts('password');
         // if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
