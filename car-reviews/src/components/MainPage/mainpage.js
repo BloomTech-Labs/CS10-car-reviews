@@ -44,15 +44,15 @@ class MainPage extends Component {
         <div>
           <SearchBar isLoggedIn={isLoggedIn} />
         </div>
-          <MainContent />
-          <a
-            href="https://lambdaschool.com"
-            style={{ paddingBottom: '30px' }}
-            target="_blank"
-          >
-            About The Team
-          </a>
-        </div>
+        <MainContent />
+        <a
+          href="https://lambdaschool.com"
+          style={{ paddingBottom: '30px' }}
+          target="_blank"
+        >
+          About The Team
+        </a>
+      </div>
     );
   }
 }

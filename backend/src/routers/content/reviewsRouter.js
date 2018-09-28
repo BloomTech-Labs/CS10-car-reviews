@@ -183,7 +183,7 @@ router.post('/search', (req, res) => {
                 path: 'reviews', 
                 model: 'reviews', 
                 match: { user: reviewer },
-                select: 'title content score user -_id'
+                select: 'title content score user carImage -_id'
             })
             .then(cars=> res.json(cars))
             .catch(err => res.status(500).json({ error: err.message }));
@@ -192,7 +192,7 @@ router.post('/search', (req, res) => {
             .populate({
                 path: 'reviews', 
                 model: 'reviews',
-                select: 'title content score user -_id'
+                select: 'title content score user carImage -_id'
             })
             .then(cars=> {
                 console.log(cars);
