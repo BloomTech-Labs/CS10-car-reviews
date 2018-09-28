@@ -25,7 +25,6 @@ class MyReviewsModal extends Component {
   };
 
   render() {
-    console.log('props', this.props);
     return (
       <div>
         <Button className="my-modal-button" onClick={this.toggle}>
