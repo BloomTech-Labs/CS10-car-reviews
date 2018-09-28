@@ -7,20 +7,22 @@ const router = express.Router();
 
 router.get('/', (req, res) => res.send(`The car query home router is working!`)); // test router
 
-router.get('/makes/:year', (req, res) => {
+router.get('/makes', (req, res) => {
     let makesArr = [];
     const { year } = req.params;
-    carQueryObj.getMakes(year)
+    console.log(year);
+    carQueryObj.getYears()
       .then(makes => {
-        for (let i = 0; i < makes.length; i++) {
-            if (makes[i].isCommon === true) {
-                makesArr.push(makes[i].display);
-            }
-        }
-        res.json(makesArr);
+        console.log(makes);
+        // for (let i = 0; i < makes.length; i++) {
+        //     if (makes[i].isCommon === true) {
+        //         makesArr.push(makes[i].display);
+        //     }
+        // }
+        // res.json(makesArr);
       })
       .catch(err => {
-        res.status(500).json(err.message);
+        console.log(err);
       });    
 });
 

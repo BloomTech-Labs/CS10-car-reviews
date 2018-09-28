@@ -57,8 +57,8 @@ class Searchbar extends React.Component {
       searching: false,
       searchResults: [],
       selectedValues: {
-        year: '',
-        make: '',
+        year: '2018',
+        make: 'Acura',
         model: '',
         trim: ''
       }
@@ -102,6 +102,17 @@ class Searchbar extends React.Component {
       () => console.log(this.state)
     )
   } 
+
+  componentDidUpdate(prevProps, prevState) {
+    const { year, make, model } = this.state.selectedValues
+    if (year != prevState.selectedValues.year) {
+      this.getMakes(year);
+    } else if (make != prevState.selectedValues.make) {
+      this.getModels(year, make);
+    } else if (model != prevState.selectedValues.model) {
+      this.getTrims(year, make, model);
+    }
+  }
 
   handleChangeMake = e => {
     const { value } = e.target;
@@ -183,19 +194,68 @@ class Searchbar extends React.Component {
 
   componentDidMount() {
     const yearList = [];
-    carQuery.getYears()
-      .then(years => {
-        for (let i = years.minYear; i <= years.maxYear; i++) {
-          yearList.push(i);
-        }
-        this.setState({ years: yearList.reverse() });
-      })
-
-    carQuery.getMakes()
-      .then(makes => {
-        this.setState({ makes });
-      });
+    for (let i = 1980; i < 2019; i++) {
+      yearList.push(i);
+    }
+    this.setState({ years: yearList.reverse() }, () => this.getMakes(2018));  
   } 
+
+  getMakes = (year) => {
+    axios
+      .get(`http://localhost:3001/car-query/makes/${year}`)
+      .then(resMakes => {
+          this.setState((prevState) => {
+            return { makes: resMakes.data,
+              selectedValues: {
+                ...prevState.selectedValues,
+                make: resMakes.data[0]
+              }
+            }
+          }, () => console.log(this.state, '84')
+          );
+      })
+      .catch(error => {
+          console.error('Server Error', error);
+      });
+  }
+
+  getModels = (year, make) => {
+    axios
+      .get(`http://localhost:3001/car-query/models/${year}/${make}`)
+      .then(resModels => {
+          this.setState((prevState) => {
+            return { models: resModels.data,
+              selectedValues: {
+                ...prevState.selectedValues,
+                model: resModels.data[0]
+              }
+            }
+          }, () => console.log(this.state, '84')
+          );
+      })
+      .catch(error => {
+          console.error('Server Error', error);
+      });
+  }
+
+  getTrims = (year, make, model) => {
+    axios
+      .get(`http://localhost:3001/car-query/trims/${year}/${make}/${model}`)
+      .then(resTrims => {
+          this.setState((prevState) => {
+            return { trims: resTrims.data,
+              selectedValues: {
+                ...prevState.selectedValues,
+                trim: resTrims.data[0]
+              }
+            }
+          }, () => console.log(this.state, '84')
+          );
+      })
+      .catch(error => {
+          console.error('Server Error', error);
+      });
+  }
 
   toggle() {
     this.setState(prevState => ({
@@ -247,18 +307,18 @@ class Searchbar extends React.Component {
               <select
                 className="dropdowns"
                 name="make"
-                onChange={this.handleChangeMake}
+                onChange={this.handleChangeGeneral}
               >
               {this.state.makes.map((make) => {
                 return (
-                  <option> {make.display}</option>
+                  <option>{make}</option>
                 )
               })}
               </select>
               <select
                 className="dropdowns"
                 name="model"
-                onChange={this.handleChangeModels}
+                onChange={this.handleChangeGeneral}
               >
               {/* TODO: Figure out how to make this re-render when the models have loaded */}
               {this.state.models.map((model) => {

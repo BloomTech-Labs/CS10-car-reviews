@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Lambda-School-Labs/CS10-car-reviews#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "car-query": "^1.0.4",
     "cors": "^2.8.4",
