@@ -57,7 +57,7 @@ class MainContent extends Component {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
                                     <Button className="main-card"> 
-                                        <img src={placeholder} style={{ height: '60px' }} />
+                                        <img src={placeholder} style={{ height: '60px' }} alt="" />
                                         <ReactStars
                                         type= "number"
                                         name= "score"

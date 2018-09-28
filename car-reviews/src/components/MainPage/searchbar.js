@@ -212,7 +212,7 @@ class Searchbar extends React.Component {
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
               <Button className="searchbar-buttons">Sign In</Button>
-              <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
+              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
             </div>
           </Link>
         </div>

@@ -174,7 +174,7 @@ class NewReviewModal extends Component {
         .then(response => {
           const data = response.data;
           const fileURL = data.secure_url; // You should store this URL for future references in your app
-          // console.log(data);
+          console.log("Cloudinary URL", fileURL);
           this.setState({ review: { ...this.state.review, carImage: fileURL } });
         });
     });
@@ -253,6 +253,7 @@ class NewReviewModal extends Component {
               <img
                 src={this.state.review.carImage}
                 style={{ height: '160px', width: '320px' }}
+                alt=""
               />
             ) : null}
             <Dropzone onDrop={this.handleDrop} multiple accept="image/*">
