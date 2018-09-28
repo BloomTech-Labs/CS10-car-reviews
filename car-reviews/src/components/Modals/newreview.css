@@ -1,5 +1,6 @@
 .review-input {
-    width: 335px;
+    width: 100%;
+    margin-bottom: 12px;
 }
 
 .new-review-footer {

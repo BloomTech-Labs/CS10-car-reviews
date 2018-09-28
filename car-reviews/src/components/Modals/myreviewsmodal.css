@@ -1,0 +1,30 @@
+.my-modal-button {
+    background-color: white;
+    color: #2F77F3;
+    border: none !important;
+    text-align: left;
+    height: 100% !important;
+    width: 100% !important;
+    margin-right: 30px;
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.my-modal-button:hover {
+    background-color: #77A6F7;
+    /* background-color: #B4B6BA; */
+}
+
+.my-modal-header {
+    background-color: #77A6F7;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.my-modal-body {
+    text-align: left;
+    background-color: white;
+    color: #2F77F3;
+    font-family: 'Montserrat', sans-serif;
+}
