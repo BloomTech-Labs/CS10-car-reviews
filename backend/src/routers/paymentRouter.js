@@ -34,11 +34,11 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
     } else if (description === '1 month unlimited reviews') {
         chosenplan = 'plan_DfkBSehKoaV8LZ';
     } else {
-        console.log('An error occured no plan was chosen');
+        console.log('An error occured no plan was chosen', description);
     }
-    // const token = req.body.token;
-    //  console.log(req)
+    if(description !== null) {
 
+    
     stripe.customers.create({
         email: email,
         source: source // obtained with Stripe.js
@@ -77,6 +77,10 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
             console.log('The token has expired please try again', err)
         }
       });
+
+    } else {
+      console.log('no description was present', description)
+    }
 
       
     // stripe.charges.create(req.body)
