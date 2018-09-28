@@ -30,18 +30,17 @@ Elements {
 
 }
 
-button {
-
-    display: block !important;
-    /* width: 200px;
+.button {
+    /* display: block !important; */
+    /* width: 200px; */
     height: 50px;
+
     margin-top: 20px; */
-
-
 }
 
 .btn-primary{
     /* background-color: red; */
     /* border: 1px solid red; */
-    margin: 10px;
+    margin: 20px;
+
 }

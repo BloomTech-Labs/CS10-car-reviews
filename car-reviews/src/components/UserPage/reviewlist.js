@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
-import { Col } from 'reactstrap'
+import { Col } from 'reactstrap';
 import MyReviewsModal from '../Modals/myreviewsmodal';
 import NewReviewModal from '../Modals/newreview';
 import axios from 'axios';
@@ -38,6 +38,25 @@ class ReviewList extends Component {
       );
   };
 
+  handleRemove = id => {
+    const config = {
+      headers: {
+        JWT: localStorage.getItem('jwt')
+      }
+    };
+
+    axios
+      .delete(`http://localhost:3001/api/reviews/${id}`, config)
+      .then(response => {
+        console.log('deleteNote:', response);
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      });
+
+    window.location.reload();
+  };
+
   render() {
     const fullScreenReview = (
       <div className="fullScreenReview">
@@ -63,7 +82,16 @@ class ReviewList extends Component {
           />
         </div>
         <Col lg="3" md="6" className="reviewCardContainer">
-          <MyReviewsModal className={'review'} data={this.state.data} />
+          {this.state.data.reviews.map(review => {
+            return (
+              <MyReviewsModal
+                key={review._id}
+                className={'review'}
+                {...review}
+                removeReview={this.handleRemove}
+              />
+            );
+          })}
         </Col>
       </div>
     );

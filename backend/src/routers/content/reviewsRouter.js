@@ -11,11 +11,6 @@ const router = express.Router();
 const checkIfCar = require("../routing_middleware/checkIfCar");
 const verifyJWTMiddleware = require("../routing_middleware/verifyJWTMiddleware");
 
-// adding the routes
-//router.get('/', (req, res) => res.send(`The reviews router is working!`)); // test router
-
-//TODO: implement averageScore in cars model to update when new review is created. DONE
-
 // POST new review:
 
 router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
@@ -51,12 +46,13 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
       })
       .then(updatedUser => {
         return CarModel.findByIdAndUpdate(
-          req.carID,
-          {
-            $push: {
-              reviews: updatedUser.reviews[updatedUser.reviews.length - 1]
-            },
-            averageScore: req.avgScore
+          req.carID, 
+          { 
+            $push: { 
+                reviews: updatedUser.reviews[updatedUser.reviews.length - 1], 
+                imageURL: carImage 
+            }, 
+            averageScore: req.avgScore 
           },
           { new: true }
         );
@@ -71,7 +67,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
       })
       .catch(err => res.status(500).json({ error: err.message }));
   } else {
-    CarModel.create({ year, make, model, edition, averageScore: score })
+    CarModel.create({ year, make, model, edition, averageScore: score, imageURL: carImage })
       .then(newCar => {
         const car = newCar._id;
         carID = newCar._id;
@@ -130,11 +126,9 @@ router.get("/", verifyJWTMiddleware, (req, res) => {
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
-// route for editing and getting an individual review:
+// route for editing getting and deleting an individual review:
 
-router
-  .route("/:id", verifyJWTMiddleware)
-  .put((req, res) => {
+router.put('/:id', verifyJWTMiddleware, (req, res) => {
     const { id } = req.params;
     const { title, content, score, carImage } = req.body;
     const updatedOn = Date.now();
@@ -147,41 +141,64 @@ router
     })
       .then(reviews => res.status(200).json(reviews))
       .catch(err => res.status(500).json({ error: err.message }));
-  })
-  .get((req, res) => {
+});
+
+router.get('/:id', verifyJWTMiddleware, (req, res) => {
     const { id } = req.params;
     ReviewModel.findById(id)
       .then(review => res.json(review))
       .catch(err => res.status(500).json({ error: err.message }));
-  });
+});
+
+router.delete('/:id', verifyJWTMiddleware, (req, res) => {
+    const { id } = req.params;
+    ReviewModel.findByIdAndRemove(id)
+      .then(deletedReview => {
+        res.json(deletedReview);
+        return CarModel.findByIdAndUpdate(deletedReview.car, { "$pull": { reviews: id }}, {new: true})
+       })
+      .then(updatedCar => {
+        return UserModel.findByIdAndUpdate(req._id, { "$pull": { reviews: id }}, {new: true})
+       })
+      .catch(err => res.status(500).json({ error: err.message }));
+});
 
 // search router:
-router.post("/search", (req, res) => {
-  const { year, make, model, trim, reviewer } = req.body;
-  console.log("BACKEND LOG", req.body);
-  if (reviewer) {
-    CarModel.find({ year: year, make: make, model: model, edition: trim })
-      .select("make model year -_id")
-      .populate({
-        path: "reviews",
-        model: "reviews",
-        match: { user: reviewer },
-        select: "content score user -_id"
-      })
-      .then(cars => res.json(cars))
-      .catch(err => res.status(500).json({ error: err.message }));
-  } else {
-    CarModel.find({ year: year, make: make, model: model, edition: trim })
-      .select("make model year -_id")
-      .populate({
-        path: "reviews",
-        model: "reviews",
-        select: "content score user -_id"
-      })
-      .then(cars => res.json(cars))
-      .catch(err => res.status(500).json({ error: err.message }));
-  }
-});
+router.post('/search', (req, res) => {
+    const { year, make, model, trim, reviewer} = req.body;
+    
+    // here we setup a search object that only adds values that are actually passed in to the .find method
+    const searchObj = {};
+    if (year) searchObj.year = year;
+    if (make) searchObj.make = make;
+    if (model) searchObj.model = model;
+    if (trim) searchObj.trim = trim;
+    if (reviewer) searchObj.reviewer = reviewer;
+
+    if (reviewer) {
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
+            .populate({
+                path: 'reviews', 
+                model: 'reviews', 
+                match: { user: reviewer },
+                select: 'title content score user -_id'
+            })
+            .then(cars=> res.json(cars))
+            .catch(err => res.status(500).json({ error: err.message }));
+    } else {
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
+            .populate({
+                path: 'reviews', 
+                model: 'reviews',
+                select: 'title content score user -_id'
+            })
+            .then(cars=> {
+                console.log(cars);
+                res.json(cars);
+            })
+            .catch(err => res.status(500).json({ error: err.message }));
+    }
+})
 
 // exporting the router
 module.exports = router;

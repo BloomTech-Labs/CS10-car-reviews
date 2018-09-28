@@ -4,9 +4,6 @@ import StripeCheckout from 'react-stripe-checkout';
 
 const STRIPE_PUBLISHABLE = `pk_test_gyGeHhPwsQ6mp7K1lSleMa4c`;
 const PAYMENT_SERVER_URL = 'http://localhost:3001/Payment';
-// const stripe = require("stripe")(STRIPE_PUBLISHABLE);
-// const stripe = configureStripe(STRIPE_SECRET_KEY);
-
 
 const CURRENCY = 'USD';
 
