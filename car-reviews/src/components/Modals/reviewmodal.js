@@ -14,7 +14,8 @@ class ReviewModal extends Component {
     super(props);
     this.state = {
       modal: false,
-      counter: 0
+      counter: 0,
+      paid: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -29,6 +30,9 @@ class ReviewModal extends Component {
   }
 
   modelOpen() {
+    if(this.state.counter > 3 && !this.state.paid) {
+      console.log('to many views');
+    }
     if(this.state.modal == true) {
       this.getUserCounter();
       this.updateUserCounter();
@@ -70,7 +74,7 @@ class ReviewModal extends Component {
     axios.put('http://localhost:3001/api/users/data', { counter }, config)
       .then(response => {
         console.log(response);
-        const newstate = {counter: counter + 1}
+        const newstate = {counter: counter + 1, paid: response.data.paid}
         this.setState(newstate)
         // if (this.state.alerts.password) this.handleAlerts('password');
         // if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
