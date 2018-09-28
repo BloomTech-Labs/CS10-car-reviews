@@ -33,6 +33,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
     return;
   }
   if (req.carID != null) {
+    console.log("looking for CAR IMAGE URL: ", req.body)
     const car = req.carID;
     ReviewModel.create({ title, user, content, score, car, carImage })
       .then(newReview => {
@@ -132,6 +133,7 @@ router.put('/:id', verifyJWTMiddleware, (req, res) => {
     const { id } = req.params;
     const { title, content, score, carImage } = req.body;
     const updatedOn = Date.now();
+    console.log('the response is: ', req.body);
     ReviewModel.findByIdAndUpdate(id, {
       title,
       content,

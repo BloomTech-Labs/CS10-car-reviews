@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import './mainpage.css';
 import SearchBar from './searchbar';
@@ -43,12 +43,6 @@ class SearchResults extends Component {
                 console.log("CAR DATA: ", car);
                 return (
                 <Col lg="3" md="6" key={car._id}>
-                    {/* <Button style={styles.cardStyles} key={car._id}> 
-                        <img src={placeholder} style={{ height: '60px' }} />
-                        <p>{Math.round(car.averageScore * 100 / 100)}</p>
-                        <p>{car.year} {car.make} {car.model}</p>
-                        <p>{car.edition}</p>
-                    </Button> */}
                     <div style={{ height: '50px' }} />
                     <ResultsModal {...car} />
                 </Col>

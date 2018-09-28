@@ -55,8 +55,9 @@
 
 
 .header {
-    padding-top: 65px;
-    margin-bottom: 35px;
+    background-color: #2F77F3;
+    background-image: linear-gradient(to right, white,#2F77F3);
+    font-size: 2.2em;
 }
 
 .main-card {
