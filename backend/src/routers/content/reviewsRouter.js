@@ -132,7 +132,7 @@ router.put('/:id', verifyJWTMiddleware, (req, res) => {
     const { id } = req.params;
     const { title, content, score, carImage } = req.body;
     const updatedOn = Date.now();
-    console.log('the response is: ', req);
+    console.log('the response is: ', req.body);
     ReviewModel.findByIdAndUpdate(id, {
       title,
       content,
