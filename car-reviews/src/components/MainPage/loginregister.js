@@ -138,26 +138,6 @@ class LoginRegister extends Component {
                             <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                         </form>
                     </Col>
-
-                <Col sm="4">
-                    <form onSubmit={this.handleSubmitForm('login')}>
-                    {/* <Label>Please Enter Your Email</Label> */}
-                        <input 
-                            value={this.state.login.email} 
-                            placeholder='Enter your email...' 
-                            onChange={this.handleUpdateForms('login', 'email')}     
-                        />
-                        <input 
-                            // * NOTE: Hide characters
-                            type='password'
-                            value={this.state.login.password} 
-                            placeholder='Enter your password...' 
-                            onChange={this.handleUpdateForms('login', 'password')}   
-                        />
-                        <Button type='submit'className="general-button">Login</Button>
-                        <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
-                    </form>
-                </Col>
                
                 <Col className="login-mid">
                     {/* <p> 
