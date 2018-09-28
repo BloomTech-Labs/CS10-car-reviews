@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import {CardElement, injectStripe, CardNumberElement} from 'react-stripe-elements';
 import { Button, Container, Row, Col } from 'reactstrap';
-import {Elements, 
-        StripeProvider, 
-        CardExpiryElement,
-        CardCVCElement,
-        PostalCodeElement,
-        PaymentRequestButtonElement} from 'react-stripe-elements';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 import './billing.css'
 import Checkout from './checkout';
 

@@ -40,6 +40,7 @@ class MainContent extends Component {
     render() { 
         return ( 
             <div className="main-content">
+            <div style={{ height: '20px'}}></div>
                 <Container>
                     <h3 className="header">Featured Reviews</h3>
                     <Row>
@@ -57,7 +58,7 @@ class MainContent extends Component {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
                                     <Button className="main-card"> 
-                                        <img src={placeholder} style={{ height: '60px' }} />
+                                        <img src={car.imageURL} style={{ height: '60px' }} alt="" />
                                         <ReactStars
                                         type= "number"
                                         name= "score"
@@ -75,6 +76,7 @@ class MainContent extends Component {
                             );
                         })}
                     </Row>
+                    <div style={{ height: '50px'}}></div>
                     <h3 className="header">Popular Reviewers</h3>
                     <Row>
                         {this.state.popularReviewers.map(reviewer => {
@@ -88,6 +90,7 @@ class MainContent extends Component {
                         })}
                     </Row>
                 </Container>
+                <div style={{ height: '100px'}}></div>
             </div>
         );
     }

@@ -212,7 +212,7 @@ class Searchbar extends React.Component {
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
               <Button className="searchbar-buttons">Sign In</Button>
-              <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
+              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
             </div>
           </Link>
         </div>
@@ -235,7 +235,6 @@ class Searchbar extends React.Component {
               <select
                 className="dropdowns"
                 name="year"
-                // id="car-years"
                 onChange={this.handleChangeGeneral}
               >
               {this.state.years.map((year) => {
@@ -251,7 +250,7 @@ class Searchbar extends React.Component {
               >
               {this.state.makes.map((make) => {
                 return (
-                  <option> {make.display}</option>
+                  <option key={make.id}> {make.display}</option>
                 )
               })}
               </select>
@@ -273,7 +272,9 @@ class Searchbar extends React.Component {
                 onChange={this.handleChangeGeneral}
               >
               {this.state.trims.map((trim) => {
-                return (<option key={trim.index}>{trim}</option>)
+                return (
+                  <option key={trim.index}>{trim}</option>
+                )
               })}
               </select>
             </div> 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import './myreviewsmodal.css';
 import ReactStars from 'react-stars'
 
@@ -25,11 +25,10 @@ class MyReviewsModal extends Component {
   };
 
   render() {
-    console.log('props', this.props);
     return (
       <div>
         <Button className="my-modal-button" onClick={this.toggle}>
-          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
+          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
           <ReactStars
               type= "number"
               name= "score"
@@ -68,7 +67,7 @@ class MyReviewsModal extends Component {
           </ModalHeader>
           <ModalBody className="my-modal-body">
             {this.props.carImage ? (
-              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
+              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
             ) : null}
             <hr />
             <p>{this.props.title}</p>

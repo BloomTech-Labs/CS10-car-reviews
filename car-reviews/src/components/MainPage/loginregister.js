@@ -140,15 +140,7 @@ class LoginRegister extends Component {
                     </Col>
                
                 <Col className="login-mid">
-                    {/* <p> 
-                    If you're already registered with us, Welcome back! 
-                    Please login to the left
-                    </p>
-                    <p> 
-                    If this is your first time here, go ahead and register
-                    with us and start checking out all the reviews we have 
-                    waiting for you!
-                    </p> */}
+                    {/* This is an intentional blank space */}
                 </Col>
                 
                 
