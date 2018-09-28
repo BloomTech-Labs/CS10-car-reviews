@@ -98,12 +98,12 @@ class ResultsModal extends Component {
   
   render() {
       const { year, make, model, edition } = this.props;
-      const { title, content, score, user } = this.props.reviews;
+      const { title, content, score, user, carImage } = this.props.reviews[0];
       console.log("RESULTS MODAL PROPS: ", this.props.reviews);
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle} src={f150}>
-            {/* <img src={carImage} style={{ height: '100%', width: '100%' }} /> */}
+        <Button className="modal-button" onClick={this.toggle}>
+            <img src={carImage} style={{ height: '100%', width: '100%' }} />
             <p>{`${year} ${make} ${model} ${edition}`}</p>
             <ReactStars
               type= "number"
@@ -115,7 +115,6 @@ class ResultsModal extends Component {
               size={36}
               color2={'#ffd700'} />
             <p>Star Rating {score}</p>
-            {/* <CardText styles={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText> */}
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
@@ -129,18 +128,13 @@ class ResultsModal extends Component {
               value={score}
               size={36}
               color2={'#ffd700'} />
-            {/* <p>Rating: {score} out of 5</p> */}
             <h5>{`Review by: ${user}`}</h5>
           </ModalHeader>
           <ModalBody className="modal-body">
-            {/* <img src={carImage} style={{ height: '100%', width: '100%' }} /> */}
+            <img src={carImage} style={{ height: '100%', width: '100%' }} />
             <p>{title}</p>
             <p>{content}</p>
           </ModalBody>
-          {/* <ModalFooter className="modal-footer">
-            <p style={{ textAlign: 'left' }}>{title}</p>
-            <p style={{ textAlign: 'left' }}>{content}</p>
-          </ModalFooter> */}
         </Modal>
       </div>
     );

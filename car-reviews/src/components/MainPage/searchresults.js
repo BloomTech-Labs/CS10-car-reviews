@@ -49,6 +49,7 @@ class SearchResults extends Component {
                         <p>{car.year} {car.make} {car.model}</p>
                         <p>{car.edition}</p>
                     </Button> */}
+                    <div style={{ height: '50px' }} />
                     <ResultsModal {...car} />
                 </Col>
                 );
@@ -113,7 +114,8 @@ class SearchResults extends Component {
                         </UncontrolledDropdown>
                     </div>
                 </div> */}
-                <div>
+                <div className="search-container">
+                    <div style={{height: '250px'}}/>
                    {this.handleRenderSearchResults()}
                 </div>
                 

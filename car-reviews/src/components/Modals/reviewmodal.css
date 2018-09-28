@@ -26,4 +26,6 @@
     background-color: white;
     color: #2F77F3;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
 }

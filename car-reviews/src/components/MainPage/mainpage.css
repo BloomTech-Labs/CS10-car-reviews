@@ -76,6 +76,18 @@
 /* End of Main Content Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* Search Results Styles */
+
+.search-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: url("../Assets/markus_spiske_2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
 .filter-row {
     display: flex;
     justify-content: center;
