@@ -62,21 +62,25 @@ function EditableContent(WrappedComponent) {
         () => {
           if (this.isValueChanged()) {
             console.log('Value changed to', this.domElm.textContent);
-            // const editedContent = this.domElm.textContent;
-            // const config = {
-            //   headers: {
-            //     JWT: localStorage.getItem('jwt')
-            //   }
-            // };
 
-            // axios
-            //   .put(`http://localhost:3001/api/reviews/${this.props.id}`, editedContent, config)
-            //   .then(response => {
-            //     console.log('editNote:', response);
-            //   })
-            //   .catch(err => {
-            //     console.log('Error: ', err);
-            //   });
+            // this.setState({
+              // model: this.domElm.textContent
+            // });
+            const editedContent = this.domElm.textContent;
+            const config = {
+              headers: {
+                JWT: localStorage.getItem('jwt')
+              }
+            };
+
+            axios
+              .put(`http://localhost:3001/api/reviews/${this.props.id}`, editedContent, config)
+              .then(response => {
+                console.log('editNote:', response);
+              })
+              .catch(err => {
+                console.log('Error: ', err);
+              });
           }
         }
       );
@@ -103,7 +107,7 @@ function EditableContent(WrappedComponent) {
     };
 
     render() {
-      console.log('PROPS', this.props);
+      // console.log('PROPS', this.props);
       // let editOnClick = true;
       const editing = this.state.editing;
       // if (this.props.editOnClick !== undefined) {
