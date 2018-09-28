@@ -30,7 +30,7 @@ class Billing extends Component {
       }
     render(){
         return(
-            <Container>
+            <Container className="billing-container">
                 <div className="BillingBox">
                 <h3> Billing </h3>
                 <label> payment info</label>

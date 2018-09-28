@@ -30,7 +30,6 @@ class App extends Component {
           <Route path="/searchpage" component={SearchResults} />
           <PrivateRoute path="/UserPage" component={UserPage} />
           <PrivateRoute path="/Billing" component={BillingContainer} />
-          {/* I removed /UserPage before /MyReviews because something is bugged in UserPage in this build */}
           <PrivateRoute path="/MyReviews" component={MyReviews} />
           <PrivateRoute path="/Settings" component={Settings} />
           <Route path="/Login" component={Login} />

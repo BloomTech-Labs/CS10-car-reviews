@@ -154,13 +154,13 @@ class LoginRegister extends Component {
                             placeholder='Enter your password...' 
                             onChange={this.handleUpdateForms('login', 'password')}   
                         />
-                        <Button type='submit' color ="primary">Login</Button>
+                        <Button type='submit'className="general-button">Login</Button>
                         <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                     </form>
                 </Col>
                
                 <Col className="login-mid">
-                    <p> 
+                    {/* <p> 
                     If you're already registered with us, Welcome back! 
                     Please login to the left
                     </p>
@@ -168,7 +168,7 @@ class LoginRegister extends Component {
                     If this is your first time here, go ahead and register
                     with us and start checking out all the reviews we have 
                     waiting for you!
-                    </p>
+                    </p> */}
                 </Col>
                 
                 
@@ -200,14 +200,13 @@ class LoginRegister extends Component {
                             placeholder='Enter your password...' 
                             onChange={this.handleUpdateForms('register', 'password')}   
                         />
-
                         <input 
                             type='password'
                             value={this.state.register.password2} 
                             placeholder='Re-enter password...' 
                             onChange={this.handleUpdateForms('register', 'password2')}   
                             />
-                         <Button type='submit' color="primary">Register</Button>
+                         <Button className="general-button">Register</Button>
                          <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
                          <Alert isOpen={this.state.alerts.passMatchErr} color='danger'>The passwords you entered don't match, please try again</Alert>
                          <Alert isOpen={this.state.alerts.emailValidErr} color='danger'>Please enter a valid email address</Alert>

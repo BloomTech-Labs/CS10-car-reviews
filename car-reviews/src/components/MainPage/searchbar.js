@@ -207,9 +207,10 @@ class Searchbar extends React.Component {
     if (!this.props.isLoggedIn) {
       return (
         <div className="login">
+
+
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
-              <Button className="searchbar-buttons">Sign Up</Button>
               <Button className="searchbar-buttons">Sign In</Button>
               <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
             </div>
@@ -224,7 +225,7 @@ class Searchbar extends React.Component {
       );
     }
   };
-
+  
   render() {
     return (
         <div className="searchbar">
@@ -276,18 +277,18 @@ class Searchbar extends React.Component {
               })}
               </select>
             </div> 
-
+            
             <div style={styles.buttonContainerStyles}>
               <Link style={styles.linkStyles}  to='/MyReviews'>
                   <Button
-                    style={styles.buttonStylesMiddle}
+                    className="searchbar-buttons"
                   >
                     Review
                   </Button>
                   </Link>
                   <div style={styles.linkStyles}>
                   <Button 
-                    style={styles.buttonStylesMiddle}
+                    className="searchbar-buttons"
                     onClick={()=>this.searchFunction()}
                   >Search</Button>
                   </div>

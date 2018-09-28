@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
+import './myreviewsmodal.css';
 import ReactStars from 'react-stars'
-import placeholder from '../../logo.svg';
 
 class MyReviewsModal extends Component {
   constructor(props) {
@@ -28,8 +28,8 @@ class MyReviewsModal extends Component {
     console.log('props', this.props);
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle}>
-          <img src={placeholder} style={{ height: '60px', width: '60px' }} />
+        <Button className="my-modal-button" onClick={this.toggle}>
+          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
           <ReactStars
               type= "number"
               name= "score"
@@ -47,7 +47,7 @@ class MyReviewsModal extends Component {
                 }`}</CardText> */}
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle} className="modal-header">
+          <ModalHeader toggle={this.toggle} className="my-modal-header">
             <p>
               {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
                 this.props.car.edition
@@ -66,7 +66,7 @@ class MyReviewsModal extends Component {
               color2={'#ffd700'} />
             <p>{`Rating: ${this.props.score} out of 5`}</p>
           </ModalHeader>
-          <ModalBody className="modal-body">
+          <ModalBody className="my-modal-body">
             {this.props.carImage ? (
               <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
             ) : null}

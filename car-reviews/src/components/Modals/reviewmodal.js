@@ -91,7 +91,7 @@ class ReviewModal extends Component {
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle} src={f150}>
-            {/* <img src={placeholder} style={{ height: '60px', width: '25%' }} /> */}
+            <img src={carImage} style={{ height: '100%', width: '100%' }} />
             <p>{`${year} ${make} ${model} ${edition}`}</p>
             <ReactStars
               type= "number"
