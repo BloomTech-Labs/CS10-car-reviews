@@ -3,6 +3,7 @@ import placeholder from '../../logo.svg';
 import { Button, Row, Col, Container } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';
 import axios from 'axios';
+import ReactStars from 'react-stars';
 import './mainpage.css';
 
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
@@ -55,7 +56,17 @@ class MainContent extends Component {
                         {this.state.popularCars.map(car => {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
-                                    <Button className="main-card">
+                                    <Button className="main-card"> 
+                                        <img src={placeholder} style={{ height: '60px' }} />
+                                        <ReactStars
+                                        type= "number"
+                                        name= "score"
+                                        edit= {false}
+                                        half={true}
+                                        count={5}
+                                        value={Math.round(car.averageScore * 100) / 100}
+                                        size={36}
+                                        color2={'#ffd700'} />
                                         <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>  
                                         <p>{car.year} {car.make} {car.model}</p>
                                         <p>{car.edition}</p>

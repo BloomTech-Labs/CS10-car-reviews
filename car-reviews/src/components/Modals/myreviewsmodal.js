@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText } from 'reactstrap';
 import './myreviewsmodal.css';
+import ReactStars from 'react-stars'
 
 class MyReviewsModal extends Component {
   constructor(props) {
@@ -29,6 +30,15 @@ class MyReviewsModal extends Component {
       <div>
         <Button className="my-modal-button" onClick={this.toggle}>
           <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} />
+          <ReactStars
+              type= "number"
+              name= "score"
+              edit= {false}
+              half={true}
+              count={5}
+              value={this.props.score}
+              size={36}
+              color2={'#ffd700'} />
           <p>{`Star Rating: ${this.props.score}`}</p>
           <p>{`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}
  ${this.props.car.edition}`}</p>
@@ -45,6 +55,15 @@ class MyReviewsModal extends Component {
               <button onClick={() => this.deleteReview(this.props._id)}>delete</button>
             </p>
             {/* <p>{`Review by: ${this.props.user.username}`}</p> */}
+            <ReactStars
+              type= "number"
+              name= "score"
+              edit= {false}
+              half={true}
+              count={5}
+              value={this.props.score}
+              size={36}
+              color2={'#ffd700'} />
             <p>{`Rating: ${this.props.score} out of 5`}</p>
           </ModalHeader>
           <ModalBody className="my-modal-body">

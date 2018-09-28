@@ -18,14 +18,15 @@ class Billing extends Component {
             this.state = {
                 name: '',
                 description:'',
-                amount: 0.00
+                amount: 0.00,
+                subscription: 0
             };
     };
 
-    onPriceClick(name, description, price) {
-        console.log(name, description, price);
-
-        this.setState({ name, description, price });
+    onPriceClick(name, description, amount) {
+        
+        this.setState({ name, description, amount });
+        
       }
     render(){
         return(

@@ -28,11 +28,6 @@ const ReviewSchema = new Schema({
     carImage: {
         type: String,
     },
-    timesViewed: {
-        type: Number,
-        default: 0, 
-        index: true
-    },
     createOn: {
         type: Date,
         default: Date.now()
