@@ -46,6 +46,11 @@
     margin-bottom: 45px;
     text-align: left;
     background-color: #D3E3FC;
+    height: 100%; 
+    background-image: url("../Assets/Aleksesjs_Bergmanis.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -63,11 +68,10 @@
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    /* margin: 10px; */
+    margin: 10px;
 }
 .main-card:hover {
     background-color: #77A6F7;
-    /* background-color: #B4B6BA; */
 }
 /* End of Main Content Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -94,8 +98,3 @@
 
 /* End of Search Results Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-/* .footer {
-    background-color: #77A6F7;
-    color: white;
-} */

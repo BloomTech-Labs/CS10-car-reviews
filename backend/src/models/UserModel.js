@@ -19,11 +19,20 @@ const UserModel = mongoose.Schema({
       unique: true,
       required: true,
       lowercase: true,
-  },
+    },
     password: {
         type: String,
         required: true,
         minlength: 4,
+    },
+    timesViewed: {
+      type: Number,
+      default: 0, 
+      index: true
+  },
+    customerId: {
+      type: String,
+      required: false
     },
     testEntry: {
       type: Boolean,
@@ -33,6 +42,10 @@ const UserModel = mongoose.Schema({
     paid: {
       type: Boolean,
       default: false
+    },
+    reviewsViewed: {
+      type: Number,
+      default: 0
     }
 });
 

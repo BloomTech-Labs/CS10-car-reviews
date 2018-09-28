@@ -1,9 +1,19 @@
+.billing-container {
+    width: 100%;
+    background-image: url("../Assets/Pok_Rie.jpg");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .BillingBox {
     /* display: flex !important; */
-    /* border: 1px solid black; */
+    /* border: 5px solid black; */
     text-align: center;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     height: 90vh;
+    width: 100%;
 }
 
 
@@ -16,9 +26,9 @@
     /* margin-left: 5px; */
 }
 
-Elements {
+/* Elements {
     border: 1px solid black;
-}
+} */
 
 .BillingContainer {
     text-align: left;
@@ -34,5 +44,12 @@ Elements {
     /* display: block !important; */
     /* width: 200px; */
     height: 50px;
+    margin-top: 20px;
+}
+
+.btn-primary{
+    /* background-color: red; */
+    /* border: 1px solid red; */
     margin: 20px;
+
 }

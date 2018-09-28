@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
 
+console.log('I am hitting this');
 // importing models
 const UserModel = require('../../models/UserModel');
 
@@ -41,7 +42,9 @@ router.get('/data', verifyJWTMiddleware, (req, res) => {
 //route to change user data:
 router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     const oldEmail = req.email;
+    console.log('I am being called correctly', req.body.counter)
     let objForUpdate = {};
+    
     if (req.body.email) {
         objForUpdate.email = req.body.email;
     } else if (req.body.newEmail) {
@@ -49,19 +52,29 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
     }
     if (req.body.username) objForUpdate.username = req.body.username;
     if (req.password) objForUpdate.password = req.password;
-    UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
+    if (req.body.counter) {
+        objForUpdate.timesViewed = req.body.counter;
+        UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
         .then(userRecord => {
-            const { fullname, username, email, _id } = userRecord;
-            JWT.sign({ fullname, username, email, _id }, JWT_SECRET, { expiresIn: "1hr", algorithm: 'HS256' }, (err, token) => {
-                if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
-                res.status(200).json({ JWT: token });
-            })
+            res.json(userRecord) 
         })
         .catch(err => {
             res.status(500).json({ databaseError: err });
         });
+    } else {
+        UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
+            .then(userRecord => {
+                const { fullname, username, email, _id } = userRecord;
+                JWT.sign({ fullname, username, email, _id }, JWT_SECRET, { expiresIn: "1hr", algorithm: 'HS256' }, (err, token) => {
+                    if (err) return res.status(500).json({ registerError: `There was an error when trying to generate a JWT for the user--please try again.`});
+                    res.status(200).json({ JWT: token });
+                })
+            })
+            .catch(err => {
+                res.status(500).json({ databaseError: err });
+            });
+    }
 });
 
-
 // exporting the router
-module.exports = router;
+module.exports = router; 
