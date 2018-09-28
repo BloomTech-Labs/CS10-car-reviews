@@ -54,37 +54,38 @@ function EditableContent(WrappedComponent) {
       );
     };
 
-    save = () => {
-      this.setState(
-        {
-          editing: false
-        },
-        () => {
-          if (this.isValueChanged()) {
-            console.log('Value changed to', this.domElm.textContent);
+    // save = () => {
+    //   this.setState(
+    //     {
+    //       editing: false
+    //     },
+    //     () => {
+    //       if (this.isValueChanged()) {
+    //         console.log('Value changed to', this.domElm.textContent);
 
-            // this.setState({
-              // model: this.domElm.textContent
-            // });
-            const editedContent = this.domElm.textContent;
-            const config = {
-              headers: {
-                JWT: localStorage.getItem('jwt')
-              }
-            };
+    //         // this.setState({
+    //           // model: this.domElm.textContent
+    //         // });
+    //         // const editedContent = this.domElm.textContent;
+    //         const editedContent = {title: 'tommy' , content: 'pickles', score: 5, carImage: ''};
+    //         const config = {
+    //           headers: {
+    //             JWT: localStorage.getItem('jwt')
+    //           }
+    //         };
 
-            axios
-              .put(`http://localhost:3001/api/reviews/${this.props.id}`, editedContent, config)
-              .then(response => {
-                console.log('editNote:', response);
-              })
-              .catch(err => {
-                console.log('Error: ', err);
-              });
-          }
-        }
-      );
-    };
+    //         axios
+    //           .put(`http://localhost:3001/api/reviews/${this.props.id}`, editedContent, config)
+    //           .then(response => {
+    //             console.log('editNote:', response);
+    //           })
+    //           .catch(err => {
+    //             console.log('Error: ', err);
+    //           });
+    //       }
+    //     }
+    //   );
+    // };
 
     cancel = () => {
       this.setState({

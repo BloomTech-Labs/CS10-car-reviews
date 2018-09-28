@@ -58,24 +58,24 @@ class ReviewList extends Component {
   };
 
 
-  handleUpdate = id => {
-    const config = {
-      headers: {
-        JWT: localStorage.getItem('jwt')
-      }
-    };
+  // handleUpdate = id => {
+  //   const config = {
+  //     headers: {
+  //       JWT: localStorage.getItem('jwt')
+  //     }
+  //   };
 
-    axios
-      .put(`http://localhost:3001/api/reviews/${id}`, config)
-      .then(response => {
-        console.log('deleteNote:', response);
-      })
-      .catch(err => {
-        console.log('Error: ', err);
-      });
+  //   axios
+  //     .put(`http://localhost:3001/api/reviews/${id}`, config)
+  //     .then(response => {
+  //       console.log('deleteNote:', response);
+  //     })
+  //     .catch(err => {
+  //       console.log('Error: ', err);
+  //     });
 
-    window.location.reload();
-  };
+  //   window.location.reload();
+  // };
 
   render() {
     const fullScreenReview = (
