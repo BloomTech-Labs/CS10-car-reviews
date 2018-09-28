@@ -28,6 +28,7 @@ class MyReviewsModal extends Component {
    // this.props.removeReview(id);
    // this.toggle();
    console.log('The id is : ',id);
+   console.log('The props are : ',this.props);
   };
 
   render() {
