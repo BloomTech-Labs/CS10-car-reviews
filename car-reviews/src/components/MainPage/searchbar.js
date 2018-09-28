@@ -208,11 +208,6 @@ class Searchbar extends React.Component {
       return (
         <div className="login">
 
-          {/* <div style={styles.buttonContainerStyles}>
-            <Link style={styles.linkStyles} to='/'>
-              <Button style={styles.buttonStylesMiddle}>Home</Button>
-            </Link>
-          </div> */}
 
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
@@ -229,7 +224,7 @@ class Searchbar extends React.Component {
       );
     }
   };
-
+  
   render() {
     return (
         <div className="searchbar">
@@ -237,6 +232,11 @@ class Searchbar extends React.Component {
             {this.handleRenderSignin()}
             {this.handleRedirect()}
             {/* TODO: Only display the Home button when at '/searchpage' */}
+            {/* <div style={styles.buttonContainerStyles}>
+              <Link style={styles.linkStyles} to='/'>
+                <Button style={styles.buttonStylesMiddle}>Home</Button>
+              </Link>
+            </div> */}
           </div>
             <div className="searchfields">
               <select

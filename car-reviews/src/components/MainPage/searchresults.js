@@ -59,13 +59,6 @@ class SearchResults extends Component {
     render() { 
         return (
             <div>
-
-                <div style={styles.buttonContainerStyles}>
-                    <Link style={styles.linkStyles} to='/'>
-                        <Button style={styles.buttonStylesMiddle}>Home</Button>
-                    </Link>
-                </div>
-
                 <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
                 <div className="filter-row">
                     <div className="filters"> 
