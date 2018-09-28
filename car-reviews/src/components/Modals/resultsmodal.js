@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } from 'reactstrap';
-import placeholder from '../../logo.svg';
-import f150 from '../../f150.jpg';
 import axios from 'axios';
 import ReactStars from 'react-stars'
 // import '../MainPage/mainpage.css';
