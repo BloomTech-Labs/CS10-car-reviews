@@ -12,7 +12,12 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/carsfavicon.ico">
-    
+    <script type="text/javascript">
+    if (document.cookie.replace(/(?:(?:^|.*;\s*)seenSplash\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
+      document.cookie = "seenSplash=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+      document.location = "/login";
+  }
+    </script>
     <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
     <script type="text/javascript">
