@@ -273,7 +273,7 @@ class NewReviewModal extends Component {
               // this.state.review.score
               onChange={this.ratingChanged('review', 'score')}
               size={36}
-              color2={'#ffd700'} />
+              color2={'#00887A'} />
                 
               <input
                 type="text"

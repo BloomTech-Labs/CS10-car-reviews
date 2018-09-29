@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } from 'reactstrap';
 import axios from 'axios';
 import ReactStars from 'react-stars'
+import '../MainPage/mainpage.css';
 import './reviewmodal.css';
 
-// This component is the review modal. It is rendered in maincontent.js
+// This component is the Popular Car modal. It is rendered in maincontent.js
 
-class ReviewModal extends Component {
+class PopCarModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,16 +37,11 @@ class ReviewModal extends Component {
   }
 
   modelOpen() {
-    if(this.state.modal === true) {
+    if(this.state.modal == true) {
       this.getUserCounter();
       this.updateUserCounter();
     }
   }
-
-
-  
-
-
 
   getUserCounter = () => {
     // const newReview = this.state['review'];
@@ -59,25 +55,22 @@ class ReviewModal extends Component {
         }
       })
       .then(response => {
-        // console.log(response);
-        console.log("Times Viewed:", response.data.timesViewed);
+        console.log(response.data.timesViewed);
         const newstate = {counter: response.data.timesViewed}
         this.setState(newstate)
-        
       })
       .catch(err => console.warn(err));
   };
   
   updateUserCounter = () => {
     const counter = this.state.counter;
-    
-    console.log('the counter is ',counter);
+    console.log('View Counter: ', counter);
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
     axios.put('http://localhost:3001/api/users/data', { counter }, config)
       .then(response => {
-        console.log("USER view count", response);
+        console.log(response);
         const newstate = {counter: counter + 1, paid: response.data.paid}
         this.setState(newstate)
         // if (this.state.alerts.password) this.handleAlerts('password');
@@ -89,16 +82,16 @@ class ReviewModal extends Component {
         // if (this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
         console.warn(err);
       });
-    }
-    ///////////////////////////////////////////////
+  };
   
   render() {
-    const { score, createOn, title, content, carImage } = this.props;
-    const { year, make, model, edition } = this.props.car;
+      const { year, make, model, edition } = this.props;
+      const { title, content, score, user, carImage } = this.props.reviews[0];
+      console.log("POPULAR CAR MODAL PROPS: ", this.props);
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle}>
-            <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+        <Button className="main-card" onClick={this.toggle}>
+            <img src={carImage} style={{ height: '100%', width: '100%' }} />
             <p>{`${year} ${make} ${model} ${edition}`}</p>
             <ReactStars
               type= "number"
@@ -110,11 +103,10 @@ class ReviewModal extends Component {
               size={36}
               color2={'#00887A'} />
             <p>Star Rating {score}</p>
-            <CardText styles={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
-            <p style={{ fontSize: '1.7em' }}>{`${year} ${make} ${model} ${edition}`}</p>
+            <h2>{`${year} ${make} ${model} ${edition}`}</h2>
             <ReactStars
               type= "number"
               name= "score"
@@ -124,22 +116,17 @@ class ReviewModal extends Component {
               value={score}
               size={36}
               color2={'#00887A'} />
-            <p>Rating: {score} out of 5</p>
-            {/* <h5>{`Review by: ${username}`}</h5> */}
+            <h5>{`Review by: ${user}`}</h5>
           </ModalHeader>
           <ModalBody className="modal-body">
-            <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+            <img src={carImage} style={{ height: '100%', width: '100%' }} />
             <p>{title}</p>
             <p>{content}</p>
           </ModalBody>
-          {/* <ModalFooter className="modal-footer">
-            <p style={{ textAlign: 'left' }}>{title}</p>
-            <p style={{ textAlign: 'left' }}>{content}</p>
-          </ModalFooter> */}
         </Modal>
       </div>
     );
   }
 }
 
-export default ReviewModal;
+export default PopCarModal;

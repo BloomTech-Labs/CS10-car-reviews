@@ -72,7 +72,7 @@ class MyReviewsModal extends Component {
               count={5}
               value={this.props.score}
               size={36}
-              color2={'#ffd700'} />
+              color2={'#00887A'} />
           <p>{`Star Rating: ${this.props.score}`}</p>
           <p>{`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}
  ${this.props.car.edition}`}</p>
@@ -98,7 +98,7 @@ class MyReviewsModal extends Component {
               count={5}
               value={this.props.score}
               size={36}
-              color2={'#ffd700'} />
+              color2={'#00887A'} />
             <p>{`Rating: ${this.props.score} out of 5`}</p>
           </ModalHeader>
           <ModalBody className="my-modal-body">

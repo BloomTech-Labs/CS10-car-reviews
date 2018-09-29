@@ -32,6 +32,11 @@ router.get('/featured_reviews', (req, res) => {
 // sorts and returns popular cars
 router.get('/popular_cars', (req, res) => {
     CarModel.find({}).sort({averageScore: -1}).limit(8)
+    .populate({
+        path: 'reviews',
+        model: 'review',
+        select: 'car user title content score carImage -_id'
+    })
     .then(car => res.status(200).json(car))
     .catch(err => res.status(500).json({ popRouterError: err.message }))
 });

@@ -27,7 +27,7 @@ const CarModel = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    reviews: [{ type: ObjectId, ref: 'ReviewModel' }],
+    review: [{ type: ObjectId, ref: 'ReviewModel' }],
     imageURL: [{
         type: String
     }]

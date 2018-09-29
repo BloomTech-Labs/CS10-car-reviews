@@ -111,7 +111,7 @@ class ResultsModal extends Component {
               count={5}
               value={score}
               size={36}
-              color2={'#ffd700'} />
+              color2={'#00887A'} />
             <p>Star Rating {score}</p>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -125,7 +125,7 @@ class ResultsModal extends Component {
               count={5}
               value={score}
               size={36}
-              color2={'#ffd700'} />
+              color2={'#00887A'} />
             <h5>{`Review by: ${user}`}</h5>
           </ModalHeader>
           <ModalBody className="modal-body">
