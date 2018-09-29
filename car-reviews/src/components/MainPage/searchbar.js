@@ -9,6 +9,7 @@ import {CarQuery} from 'car-query';
 import axios from 'axios';
 
 const carQuery = new CarQuery();
+const API_KEY = 'b684b562f269e246688693389';
 
 // * TODO: Make colors for the Review and Search buttons match
 const styles = {
@@ -48,8 +49,8 @@ class Searchbar extends React.Component {
       dropdownOpen: false,
       years: [],
       makes: [],
-      models: [],
-      trims: [],
+      models: ['test', 'also test'],
+      trims: ['trim1', 'trim2'],
       'car-years': '',
       'car-models': '',
       'car-makes': '',
@@ -61,78 +62,84 @@ class Searchbar extends React.Component {
         make: '',
         model: '',
         trim: ''
+      },
+      displayDropdowns: {
+        year: false,
+        model: false,
+        trim: false
       }
     };
-    this.toggle = this.toggle.bind(this);
   }
   
   handleChangeModels = e => {
-    const { name, value } = e.target;
-    this.setState((prevState) => {
-      return {selectedValues: {
-          ...prevState.selectedValues,
-          [name]: value
-      }}},
-      () => {
-        let newTrims = [];
-        carQuery.getTrims({make: this.state.selectedValues.make, year: this.state.selectedValues.year, 
-                            model: this.state.selectedValues.model})
-          .then(trims => {
-            trims.map(trim => newTrims.push(trim.trim));
-            this.setState({
-                trims: newTrims
-              },
-              () => console.log(this.state, '81')
-            );
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      }
-    );
+    const { value } = e.target;
+    const newState = Object.assign({}, this.state);
+    newState.selectedValues.model = value;
+    newState.displayDropdowns.trim = true;
+    this.setState(newState);
+    // this.setState((prevState) => {
+    //   return {selectedValues: {
+    //       ...prevState.selectedValues,
+    //       [name]: value
+    //   }}},
+    //   () => {
+    //     let newTrims = [];
+    //     carQuery.getTrims({make: this.state.selectedValues.make, year: this.state.selectedValues.year, 
+    //                         model: this.state.selectedValues.model})
+    //       .then(trims => {
+    //         trims.map(trim => newTrims.push(trim.trim));
+    //         this.setState({
+    //             trims: newTrims
+    //           },
+    //           () => console.log(this.state, '81')
+    //         );
+    //       })
+    //       .catch(err => {
+    //         console.error(err);
+    //       });
+    //   }
+    // );
   };
 
   handleChangeGeneral = e => {
     const { name, value } = e.target;
-    this.setState((prevState) => {
-      return {selectedValues: {
-          ...prevState.selectedValues,
-          [name]: value
-      }}},
-      () => console.log(this.state)
-    )
+    const newState = Object.assign({}, this.state);
+    newState.selectedValues[name] = value;
+    console.log(name);
+    newState.displayDropdowns[name] = true;
+    console.log(newState);
+    this.setState(newState);
   } 
+
+  handleChangeYear = e => {
+    const value = e.target;
+    const newState = Object.assign({}, this.state);
+    newState.selectedValues.year = value;
+    newState.displayDropdowns.model = true;
+    this.setState(newState);
+  }
 
   handleChangeMake = e => {
     const { value } = e.target;
-    const searchCriteria = { make: value};
-    this.setState((prevState) => {
-      return {selectedValues: {
-          ...prevState.selectedValues,
-          make: value,
-          model: '',
-          trim: ''                  // to clear model and trim if reselecting different make
-      }}},
-      
-      () => {
-        // if year is selected, it will get all the models for that year, otherwise it will get all the models for the selected make
-        if (this.state.selectedValues.year) searchCriteria.year = this.state.selectedValues.year;
+    const searchCriteria = { make: value };
+    const newMake = {
+      make: value,
+      makeId: ''
+    }
+    this.state.makes.map(make => {
+      if (make.make === value) newMake.makeId = make.make_id;
+    })
 
-        let newModels = [];
-        carQuery.getModels(searchCriteria)
-          .then(models => {
-            models.map(model => newModels.push(model.name));
-            this.setState({
-                models: newModels
-              },
-              () => console.log(this.state, '121')
-            );
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      }
-    );
+    const newState = Object.assign({}, this.state);
+    newState.selectedValues.make = newMake;
+    newState.displayDropdowns.year = true;
+
+    axios.get(`https://databases.one/api/?format=json&select=year&make_id=${newState.selectedValues.make.makeId}&api_key=${API_KEY}`)
+        .then(res => {
+          newState.years = res.data.result
+          this.setState(newState);
+        })
+        .catch(err => console.warn(`There was an error getting the years for that make: \n${err}`));
   }
 
 
@@ -182,25 +189,34 @@ class Searchbar extends React.Component {
   }
 
   componentDidMount() {
-    const yearList = [];
-    carQuery.getYears()
-      .then(years => {
-        for (let i = years.minYear; i <= years.maxYear; i++) {
-          yearList.push(i);
-        }
-        this.setState({ years: yearList.reverse() });
+    axios.get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
+      .then(res => {
+        this.setState({ makes: res.data.result});
+      })
+      .catch(err => {
+        console.warn(err);
+        alert('There was an error loading the makes, please reload the page')
       })
 
-    carQuery.getMakes()
-      .then(makes => {
-        this.setState({ makes });
-      });
-  } 
+  //   const yearList = [];
+  //   carQuery.getYears()
+  //     .then(years => {
+  //       for (let i = years.minYear; i <= years.maxYear; i++) {
+  //         yearList.push(i);
+  //       }
+  //       this.setState({ years: yearList.reverse() });
+  //     })
 
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
+  //   carQuery.getMakes()
+  //     .then(makes => {
+  //       this.setState({ makes });
+  //     });
+  // } 
+
+  // toggle() {
+  //   this.setState(prevState => ({
+  //     dropdownOpen: !prevState.dropdownOpen
+  //   }));
   }
 
   handleRenderSignin = () => {
@@ -234,39 +250,41 @@ class Searchbar extends React.Component {
             <div className="searchfields">
               <select
                 className="dropdowns"
+                name="make"
+                onChange={this.handleChangeMake}
+              >
+              {this.state.makes.map((make) => {
+                return (
+                  <option key={make.make_id}>{make.make}</option>
+                )
+              })}
+              </select>
+
+              {/* {this.state.displayDropdowns.year ? <select
+                className="dropdowns"
                 name="year"
-                onChange={this.handleChangeGeneral}
+                onChange={this.handleChangeYear}
               >
               {this.state.years.map((year) => {
                 return (
                   <option key={year}> {year} </option>
                 )
               })}
-              </select>
-              <select
-                className="dropdowns"
-                name="make"
-                onChange={this.handleChangeMake}
-              >
-              {this.state.makes.map((make) => {
-                return (
-                  <option key={make.id}> {make.display}</option>
-                )
-              })}
-              </select>
-              <select
+              </select> : <Fragment />}
+
+              {this.state.displayDropdowns.model ? <select
                 className="dropdowns"
                 name="model"
                 onChange={this.handleChangeModels}
               >
-              {/* TODO: Figure out how to make this re-render when the models have loaded */}
               {this.state.models.map((model) => {
                 return (
-                  <option key={model.index}>{model}</option>
+                  <option key={model}>{model}</option>
                 )
               })}
-              </select>
-              <select
+              </select> : <Fragment />}
+              
+              {this.state.displayDropdowns.trim ? <select
                 className="dropdowns"
                 name="trim"
                 onChange={this.handleChangeGeneral}
@@ -276,7 +294,7 @@ class Searchbar extends React.Component {
                   <option key={trim.index}>{trim}</option>
                 )
               })}
-              </select>
+              </select> : <Fragment />}
             </div> 
             
             <div style={styles.buttonContainerStyles}>
@@ -292,7 +310,7 @@ class Searchbar extends React.Component {
                     className="searchbar-buttons"
                     onClick={()=>this.searchFunction()}
                   >Search</Button>
-                  </div>
+                  </div> */}
             </div>
         </div>
     );
