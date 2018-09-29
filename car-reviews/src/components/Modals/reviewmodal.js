@@ -19,6 +19,16 @@ class ReviewModal extends Component {
   }
 
   toggle() {
+    // counter to control views of users not registered or logged in yet.
+    let value = localStorage.getItem("value");
+    if(value > 3 && !this.state.paid) {
+      //do somthing
+      console.log('The value is greater than 3', value)
+    } else {
+      value++
+      localStorage.setItem("value", value);
+      console.log(value);
+    
     // this.modelOpen();
     if(this.state.counter > 3 && !this.state.paid) {
       alert('Please pay for a subscription or come back tommorow for more free reviews!')
@@ -32,7 +42,7 @@ class ReviewModal extends Component {
     } else {
       console.log('there was a problem');
     }
-    
+  }
   }
 
   modelOpen() {

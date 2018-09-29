@@ -15,6 +15,8 @@ class MainPage extends Component {
   }
 
   componentWillMount(){
+    let oldvalue = localStorage.getItem("value");
+    localStorage.setItem("value", oldvalue);
     const localJWT = localStorage.getItem('jwt');
     if (!localJWT) this.handleLogin(false);
     else {
