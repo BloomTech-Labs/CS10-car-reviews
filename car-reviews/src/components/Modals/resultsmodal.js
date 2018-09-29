@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } from 'reactstrap';
 import axios from 'axios';
 import ReactStars from 'react-stars'
@@ -95,14 +95,24 @@ class ResultsModal extends Component {
     ///////////////////////////////////////////////
   
   render() {
+    // ** NOTE: You shouldn't try and destructure values that may or may not be on the object, as it will crash the whole app (carImage, for example)
       const { year, make, model, edition } = this.props;
-      const { title, content, score, user, carImage } = this.props.reviews[0];
-      console.log("RESULTS MODAL PROPS: ", this.props.reviews);
+      const { title, content, score, user } = this.props.reviews[0];
+      console.log("RESULTS MODAL PROPS: ", this.props);
+      
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle}>
-            <img src={carImage} style={{ height: '100%', width: '100%' }} />
-            <p>{`${year} ${make} ${model} ${edition}`}</p>
+        <Button className='modal-button' onClick={this.toggle}>
+            { /*this.props.reviews[0].carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} /> : <Fragment /> */}
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap'
+            }}>
+              <p style={{marginRight: 5, marginBottom: 2}}>{year}</p>
+              <p style={{marginRight: 5, marginBottom: 2}}> {make} </p>
+              <p style={{marginRight: 5, marginBottom: 2}}> {model} </p>
+              <p style={{marginRight: 5, marginBottom: 2}}> {edition} </p>
+            </div>
             <ReactStars
               type= "number"
               name= "score"
@@ -129,7 +139,7 @@ class ResultsModal extends Component {
             <h5>{`Review by: ${user}`}</h5>
           </ModalHeader>
           <ModalBody className="modal-body">
-            <img src={carImage} style={{ height: '100%', width: '100%' }} />
+            {/* <img src={carImage} style={{ height: '100%', width: '100%' }} /> */}
             <p>{title}</p>
             <p>{content}</p>
           </ModalBody>
@@ -140,3 +150,4 @@ class ResultsModal extends Component {
 }
 
 export default ResultsModal;
+

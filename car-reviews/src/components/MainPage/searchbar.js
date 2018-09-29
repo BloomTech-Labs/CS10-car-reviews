@@ -157,13 +157,13 @@ class Searchbar extends React.Component {
       searchCriteria.year = this.state.selectedValues.year;
     } 
     if (this.state.selectedValues.make) {
-      searchCriteria.make = this.state.selectedValues.make;
+      searchCriteria.make = this.state.selectedValues.make.make;
     } 
     if (this.state.selectedValues.model) {
-      searchCriteria.model = this.state.selectedValues.model;
+      searchCriteria.model = this.state.selectedValues.model.model;
     } 
     if (this.state.selectedValues.trim) {
-      searchCriteria.edition = this.state.selectedValues.trim;
+      searchCriteria.edition = this.state.selectedValues.trim.trim;
     } else if (!year && !make && !model && !trim){
       console.log(`There are no selected values in the search criteria`);
     }
@@ -171,7 +171,6 @@ class Searchbar extends React.Component {
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
-        console.log(response);
         this.setState({ searchResults: response.data, searching: true });
       })
       .catch(err => {
@@ -206,7 +205,7 @@ class Searchbar extends React.Component {
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
               <Button className="searchbar-buttons">Sign In</Button>
-              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
+              <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
             </div>
           </Link>
         </div>
