@@ -106,7 +106,9 @@ class ResultsModal extends Component {
             { /*this.props.reviews[0].carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} /> : <Fragment /> */}
             <div style={{
               display: 'flex',
-              flexWrap: 'wrap'
+              justifyContent: 'space-around',
+              flexWrap: 'wrap',
+              marginTop: 13
             }}>
               <p style={{marginRight: 5, marginBottom: 2}}>{year}</p>
               <p style={{marginRight: 5, marginBottom: 2}}> {make} </p>
