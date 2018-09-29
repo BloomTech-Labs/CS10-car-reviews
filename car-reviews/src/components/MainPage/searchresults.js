@@ -4,7 +4,8 @@ import './mainpage.css';
 import SearchBar from './searchbar';
 import data from '../../data';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown, Col} from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import ResultsModal from '../Modals/resultsmodal';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
@@ -37,30 +38,32 @@ class SearchResults extends Component {
   }
 
   handleRenderSearchResults = () => {
-      if (!this.props.location.state.searchResults) {
-          return <h1>No cars were found!</h1>
+        if (this.props.location.state !== undefined) {
+            return ( this.props.location.state.searchResults.map((car) => {
+                console.log("CAR DATA: ", car);
+                return (
+                <Col lg="3" md="6" key={car._id}>
+                    <div style={{ height: '50px' }} />
+                    <ResultsModal {...car} />
+                </Col>
+                );
+            }))
+        }
+    }
+
+  handleRedirect = () => {
+      if (this.props.location.state === undefined){
+        return <Redirect to='/' />
       } else {
-        return ( this.props.location.state.searchResults.map((car) => {
-            return (
-             <Col lg="3" md="6" key={car._id}>
-                 <Button style={styles.cardStyles} key={car._id}> 
-                     <img src={placeholder} style={{ height: '60px' }} />
-                     {/* <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>   */}
-                     <p>{Math.round(car.averageScore * 100 / 100)}</p>
-                     <p>{car.year} {car.make} {car.model}</p>
-                     <p>{car.edition}</p>
-                 </Button>
-             </Col>
-             );
-         }))
+          return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
       }
   }
 
     render() { 
         return (
             <div>
-                <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
-                <div className="filter-row">
+                {this.handleRedirect()}
+                {/* <div className="filter-row">
                     <div className="filters"> 
                         <h5>Filter by:</h5>
                         <UncontrolledDropdown className="dropdowns">
@@ -104,8 +107,9 @@ class SearchResults extends Component {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </div>
-                </div>
-                <div>
+                </div> */}
+                <div className="search-container">
+                    <div style={{height: '250px'}}/>
                    {this.handleRenderSearchResults()}
                 </div>
                 

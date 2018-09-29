@@ -4,6 +4,9 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import ReactStars from 'react-stars'
 import './newreview.css'
+import {CarQuery} from 'car-query';
+
+const carQuery = new CarQuery();
 
 class NewReviewModal extends Component {
   constructor(props) {
@@ -11,17 +14,37 @@ class NewReviewModal extends Component {
     this.state = {
       modal: false,
       review: {
-        year: '',
-        make: '',
+        year: '2018', //intial values 
+        make: 'Abarth',
         model: '',
         edition: '',
         carImage: '',
         title: '',
         content: '',
         score: ''
-      }
+      },
+      years: [],
+      makes: [],
+      models: [],
+      trims: [],
     };
   }
+
+  componentDidMount() {
+    const yearList = [];
+    carQuery.getYears()
+      .then(years => {
+        for (let i = years.minYear; i <= years.maxYear; i++) {
+          yearList.push(i);
+        }
+        this.setState({ years: yearList.reverse() });
+      })
+
+    carQuery.getMakes()
+      .then(makes => {
+        this.setState({ makes });
+      });
+  } 
 
   toggle = () => {
     this.setState({
@@ -45,10 +68,57 @@ class NewReviewModal extends Component {
 
   handleChange = (type, field) => event => {
     const newState = Object.assign({}, this.state);
-    // console.log("this is type", type , field)
-    // console.log(event.target.value);
     newState[type][field] = event.target.value;
-    this.setState(newState);
+    if (field === 'make') {
+      this.setState(newState, () => {
+        const searchCriteria = { make: this.state.review.make };
+        if (this.state.review.year) searchCriteria.year = this.state.review.year;
+        let newModels = [];
+        carQuery.getModels(searchCriteria)
+          .then(models => {
+            models.map(model => newModels.push(model.name));
+            this.setState((prevState) => {
+                return {models: newModels,
+                  review: {
+                    ...prevState.review,
+                    model: newModels[0]
+                  }
+                }  
+              },
+              () => console.log(this.state, '84')
+            );
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        }
+      );
+    } else if (field === 'model') {
+      this.setState(newState, () => {
+        let newTrims = [];
+        carQuery.getTrims({make: this.state.review.make, year: this.state.review.year, 
+                            model: this.state.review.model})
+          .then(trims => {
+            trims.map(trim => newTrims.push(trim.trim));
+            this.setState((prevState) => {
+                return {trims: newTrims,
+                  review: {
+                    ...prevState.review,
+                    edition: newTrims[0]
+                  }
+                }  
+              },
+              () => console.log(this.state, '84')
+            );
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        }
+      );
+    } else {
+      this.setState(newState);
+    }
   };
 
   submitNewReview = () => {
@@ -104,7 +174,7 @@ class NewReviewModal extends Component {
         .then(response => {
           const data = response.data;
           const fileURL = data.secure_url; // You should store this URL for future references in your app
-          // console.log(data);
+          console.log("Cloudinary URL", fileURL);
           this.setState({ review: { ...this.state.review, carImage: fileURL } });
         });
     });
@@ -124,40 +194,52 @@ class NewReviewModal extends Component {
         </button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>
-            <input
-              type="number"
-              name="year"
-              min="1940"
-              max="2019"
-              value={this.state.review.year}
-              onChange={this.handleChange('review', 'year')}
-              placeholder="Year"
-              className="review-input"
-            />
-            <input
-              type="text"
-              name="make"
-              value={this.state.review.make}
-              onChange={this.handleChange('review', 'make')}
-              placeholder="Make"
-              className="review-input"
-            />
-            <input
-              type="text"
-              name="model"
-              value={this.state.review.model}
-              onChange={this.handleChange('review', 'model')}
-              placeholder="Model"
-              className="review-input"
-            />
-            <input
-              type="text"
-              name="edition"
-              value={this.state.review.edition}
-              onChange={this.handleChange('review', 'edition')}
-              placeholder="Edition"
-              className="review-input"
-            />
+            <select
+                name="year"
+                value={this.state.review.year}
+                onChange={this.handleChange('review', 'year')}
+                className="review-input"
+              >
+                {this.state.years.map((year) => {
+                  return (
+                    <option key={year}> {year} </option>
+                  )
+                })}
+            </select>
+            <select
+                name="make"
+                value={this.state.review.make}
+                onChange={this.handleChange('review', 'make')}
+                className="review-input"
+              >
+              {this.state.makes.map((make) => {
+                return (
+                  <option>{make.display}</option>
+                )
+              })}
+            </select>
+            <select
+                name="model"
+                value={this.state.review.model}
+                onChange={this.handleChange('review', 'model')}
+                className="review-input"
+              >
+              {this.state.models.map((model) => {
+                return (
+                  <option key={model.index}>{model}</option>
+                )
+              })}
+            </select>
+            <select
+                name="edition"
+                value={this.state.review.edition}
+                onChange={this.handleChange('review', 'edition')}
+                className="review-input"
+              >
+              {this.state.trims.map((trim) => {
+                return (<option key={trim.index}>{trim}</option>)
+              })}
+            </select>
             {/* <div className="searchfields">
               <select className="dropdownsNR" name="car-years" id="car-years" />
               <select className="dropdownsNR" name="car-makes" id="car-makes" />
@@ -171,6 +253,7 @@ class NewReviewModal extends Component {
               <img
                 src={this.state.review.carImage}
                 style={{ height: '160px', width: '320px' }}
+                alt=""
               />
             ) : null}
             <Dropzone onDrop={this.handleDrop} multiple accept="image/*">

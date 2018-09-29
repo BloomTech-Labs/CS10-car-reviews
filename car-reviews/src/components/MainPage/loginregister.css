@@ -41,3 +41,15 @@ Input {
     margin-top: 20px;
     
 }
+
+.general-button {
+    margin: 10px;
+    width: 90%;
+    background-color: white;
+    color: #77A6F7;
+    border: none !important;
+}
+.general-button:hover {
+    background-color: #2F77F3;
+    color: white;
+}

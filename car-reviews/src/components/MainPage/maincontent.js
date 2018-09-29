@@ -3,6 +3,7 @@ import placeholder from '../../logo.svg';
 import { Button, Row, Col, Container } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';
 import axios from 'axios';
+import ReactStars from 'react-stars';
 import './mainpage.css';
 
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
@@ -39,6 +40,7 @@ class MainContent extends Component {
     render() { 
         return ( 
             <div className="main-content">
+            <div style={{ height: '20px'}}></div>
                 <Container>
                     <h3 className="header">Featured Reviews</h3>
                     <Row>
@@ -56,7 +58,16 @@ class MainContent extends Component {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
                                     <Button className="main-card"> 
-                                        <img src={placeholder} style={{ height: '60px' }} />
+                                        <img src={car.imageURL} style={{ height: '60px' }} alt="" />
+                                        <ReactStars
+                                        type= "number"
+                                        name= "score"
+                                        edit= {false}
+                                        half={true}
+                                        count={5}
+                                        value={Math.round(car.averageScore * 100) / 100}
+                                        size={36}
+                                        color2={'#ffd700'} />
                                         <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>  
                                         <p>{car.year} {car.make} {car.model}</p>
                                         <p>{car.edition}</p>
@@ -65,13 +76,13 @@ class MainContent extends Component {
                             );
                         })}
                     </Row>
+                    <div style={{ height: '50px'}}></div>
                     <h3 className="header">Popular Reviewers</h3>
                     <Row>
                         {this.state.popularReviewers.map(reviewer => {
                             return (
                                 <Col lg="3" md="6" key={reviewer._id}>
                                     <Button className="main-card"> 
-                                        <img src={placeholder} style={{ height: '60px' }} />
                                         <p>{reviewer.username}</p>
                                     </Button>
                                 </Col>
@@ -79,6 +90,7 @@ class MainContent extends Component {
                         })}
                     </Row>
                 </Container>
+                <div style={{ height: '100px'}}></div>
             </div>
         );
     }

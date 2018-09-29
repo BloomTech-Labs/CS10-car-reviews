@@ -42,6 +42,10 @@ const UserModel = mongoose.Schema({
     paid: {
       type: Boolean,
       default: false
+    },
+    reviewsViewed: {
+      type: Number,
+      default: 0
     }
 });
 

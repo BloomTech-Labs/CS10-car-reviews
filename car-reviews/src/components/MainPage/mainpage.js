@@ -44,10 +44,14 @@ class MainPage extends Component {
         <div>
           <SearchBar isLoggedIn={isLoggedIn} />
         </div>
-        <div className="search-container">
-          <MainContent />
-          <a href="https://lambdaschool.com" style={{ paddingBottom: '30px' }}>About The Team</a>
-        </div>
+        <MainContent />
+        <a
+          href="https://lambdaschool.com"
+          style={{ paddingBottom: '30px' }}
+          target="_blank"
+        >
+          About The Team
+        </a>
       </div>
     );
   }

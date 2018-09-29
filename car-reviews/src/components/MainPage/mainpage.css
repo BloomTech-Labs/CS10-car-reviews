@@ -46,12 +46,18 @@
     margin-bottom: 45px;
     text-align: left;
     background-color: #D3E3FC;
+    height: 100%; 
+    background-image: url("../Assets/Aleksesjs_Bergmanis.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
 .header {
-    padding-top: 65px;
-    margin-bottom: 35px;
+    background-color: #2F77F3;
+    background-image: linear-gradient(to right, white,#2F77F3);
+    font-size: 2.2em;
 }
 
 .main-card {
@@ -63,15 +69,26 @@
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    /* margin: 10px; */
+    margin: 10px;
 }
 .main-card:hover {
     background-color: #77A6F7;
-    /* background-color: #B4B6BA; */
 }
 /* End of Main Content Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* Search Results Styles */
+
+.search-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: url("../Assets/markus_spiske_2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
 .filter-row {
     display: flex;
     justify-content: center;
@@ -94,8 +111,3 @@
 
 /* End of Search Results Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-/* .footer {
-    background-color: #77A6F7;
-    color: white;
-} */
