@@ -12,6 +12,12 @@
     margin-right: 25px;
 }
 
+.auto-logo {
+    color: white;
+    font-size: 3em;
+    font-family: 'Julius Sans One', sans-serif;
+}
+
 .searchfields {
     display: flex;
     justify-content: center;
@@ -55,9 +61,10 @@
 
 
 .header {
-    background-color: #2F77F3;
-    background-image: linear-gradient(to right, white,#2F77F3);
+    background-color: white;
+    background-image: linear-gradient(to right, #2F77F3, white);
     font-size: 2.2em;
+    color: white;
 }
 
 .main-card {
