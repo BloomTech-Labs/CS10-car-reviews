@@ -103,16 +103,16 @@ class Searchbar extends React.Component {
     )
   } 
 
-  componentDidUpdate(prevProps, prevState) {
-    const { year, make, model } = this.state.selectedValues
-    if (year != prevState.selectedValues.year) {
-      this.getMakes(year);
-    } else if (make != prevState.selectedValues.make) {
-      this.getModels(year, make);
-    } else if (model != prevState.selectedValues.model) {
-      this.getTrims(year, make, model);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   const { year, make, model } = this.state.selectedValues
+  //   if (year != prevState.selectedValues.year) {
+  //     this.getMakes(year);
+  //   } else if (make != prevState.selectedValues.make) {
+  //     this.getModels(year, make);
+  //   } else if (model != prevState.selectedValues.model) {
+  //     this.getTrims(year, make, model);
+  //   }
+  // }
 
   handleChangeMake = e => {
     const { value } = e.target;
@@ -202,8 +202,9 @@ class Searchbar extends React.Component {
 
   getMakes = (year) => {
     axios
-      .get(`http://localhost:3001/car-query/makes/${year}`)
+      .get(`https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json`)
       .then(resMakes => {
+        console.log(resMakes);
           this.setState((prevState) => {
             return { makes: resMakes.data,
               selectedValues: {
@@ -309,11 +310,11 @@ class Searchbar extends React.Component {
                 name="make"
                 onChange={this.handleChangeGeneral}
               >
-              {this.state.makes.map((make) => {
+              {/* {this.state.makes.map((make) => {
                 return (
                   <option>{make}</option>
                 )
-              })}
+              })} */}
               </select>
               <select
                 className="dropdowns"
