@@ -9,6 +9,7 @@ import {CarQuery} from 'car-query';
 import axios from 'axios';
 
 const carQuery = new CarQuery();
+const API_KEY = 'b684b562f269e246688693389';
 
 // * TODO: Make colors for the Review and Search buttons match
 const styles = {
@@ -61,80 +62,92 @@ class Searchbar extends React.Component {
         make: '',
         model: '',
         trim: ''
+      },
+      displayDropdowns: {
+        year: false,
+        model: false,
+        trim: false
       }
     };
-    this.toggle = this.toggle.bind(this);
   }
-  
-  handleChangeModels = e => {
-    const { name, value } = e.target;
-    this.setState((prevState) => {
-      return {selectedValues: {
-          ...prevState.selectedValues,
-          [name]: value
-      }}},
-      () => {
-        let newTrims = [];
-        carQuery.getTrims({make: this.state.selectedValues.make, year: this.state.selectedValues.year, 
-                            model: this.state.selectedValues.model})
-          .then(trims => {
-            trims.map(trim => newTrims.push(trim.trim));
-            this.setState({
-                trims: newTrims
-              },
-              () => console.log(this.state, '81')
-            );
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      }
-    );
-  };
 
-  handleChangeGeneral = e => {
-    const { name, value } = e.target;
-    this.setState((prevState) => {
-      return {selectedValues: {
-          ...prevState.selectedValues,
-          [name]: value
-      }}},
-      () => console.log(this.state)
-    )
-  } 
+  componentDidMount() {
+    axios.get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
+      .then(res => {
+        this.setState({ makes: res.data.result });
+      })
+      .catch(err => {
+        console.warn(err);
+        alert('There was an error loading the makes, please reload the page')
+      })
+  }
 
   handleChangeMake = e => {
     const { value } = e.target;
-    const searchCriteria = { make: value};
-    this.setState((prevState) => {
-      return {selectedValues: {
-          ...prevState.selectedValues,
-          make: value,
-          model: '',
-          trim: ''                  // to clear model and trim if reselecting different make
-      }}},
-      
-      () => {
-        // if year is selected, it will get all the models for that year, otherwise it will get all the models for the selected make
-        if (this.state.selectedValues.year) searchCriteria.year = this.state.selectedValues.year;
+    const searchCriteria = { make: value };
+    const newMake = {
+      make: value,
+      makeId: ''
+    }
+    this.state.makes.map(make => {
+      if (make.make === value) newMake.makeId = make.make_id;
+    })
 
-        let newModels = [];
-        carQuery.getModels(searchCriteria)
-          .then(models => {
-            models.map(model => newModels.push(model.name));
-            this.setState({
-                models: newModels
-              },
-              () => console.log(this.state, '121')
-            );
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      }
-    );
+    const newState = Object.assign({}, this.state);
+    newState.selectedValues.make = newMake;
+    newState.displayDropdowns.year = true;
+
+    axios.get(`https://databases.one/api/?format=json&select=year&make_id=${newState.selectedValues.make.makeId}&api_key=${API_KEY}`)
+        .then(res => {
+          newState.years = res.data.result.reverse();
+          this.setState(newState);
+        })
+        .catch(err => console.warn(`There was an error getting the years for that make: \n${err}`));
   }
 
+  handleChangeYear = e => {
+    const value = parseInt(e.target.value);
+    const { makeId } = this.state.selectedValues.make;
+    const newState = Object.assign({}, this.state);
+    newState.selectedValues.year = value;
+    newState.displayDropdowns.model = true;
+    axios.get(`https://databases.one/api/?format=json&select=model&make_id=${makeId}&api_key=${API_KEY}`)
+      .then(res => {
+        newState.models = res.data.result;
+        this.setState(newState, () => console.log(this.state));
+      })
+  }
+  
+  handleChangeModels = e => {
+    const { value } = e.target;
+    const newState = Object.assign({}, this.state);
+    let modelId;
+    this.state.models.map(model => {
+      if (value === model.model) modelId = model.model_id;
+    })
+
+    newState.selectedValues.model = { model: value, modelId };
+    newState.displayDropdowns.trim = true;
+    const searchTerms = {
+      makeId: this.state.selectedValues.make.makeId,
+      modelId
+    }
+    
+    axios.get(`https://databases.one/api/?format=json&select=trim&make_id=${searchTerms.makeId}&model_id=${searchTerms.modelId}&api_key=${API_KEY}`)
+      .then(res => {
+        newState.trims = res.data.result;
+        this.setState(newState, () => console.log(this.state));
+      })
+  };
+
+  handleChangeTrim = e => {
+    const { value } = e.target;
+    const newState = Object.assign({}, this.state);
+    this.state.trims.map(trim => {
+      if (trim.trim === value) newState.selectedValues.trim = {trimId: trim.trim_id, trim: trim.trim};
+    })
+    this.setState(newState);
+  }
 
   searchFunction = () => {
     const searchCriteria = {}
@@ -144,13 +157,13 @@ class Searchbar extends React.Component {
       searchCriteria.year = this.state.selectedValues.year;
     } 
     if (this.state.selectedValues.make) {
-      searchCriteria.make = this.state.selectedValues.make;
+      searchCriteria.make = this.state.selectedValues.make.make;
     } 
     if (this.state.selectedValues.model) {
-      searchCriteria.model = this.state.selectedValues.model;
+      searchCriteria.model = this.state.selectedValues.model.model;
     } 
     if (this.state.selectedValues.trim) {
-      searchCriteria.edition = this.state.selectedValues.trim;
+      searchCriteria.edition = this.state.selectedValues.trim.trim;
     } else if (!year && !make && !model && !trim){
       console.log(`There are no selected values in the search criteria`);
     }
@@ -158,7 +171,6 @@ class Searchbar extends React.Component {
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {
-        console.log(response);
         this.setState({ searchResults: response.data, searching: true });
       })
       .catch(err => {
@@ -181,27 +193,8 @@ class Searchbar extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const yearList = [];
-    carQuery.getYears()
-      .then(years => {
-        for (let i = years.minYear; i <= years.maxYear; i++) {
-          yearList.push(i);
-        }
-        this.setState({ years: yearList.reverse() });
-      })
+  
 
-    carQuery.getMakes()
-      .then(makes => {
-        this.setState({ makes });
-      });
-  } 
-
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
-  }
 
   handleRenderSignin = () => {
     if (!this.props.isLoggedIn) {
@@ -212,7 +205,7 @@ class Searchbar extends React.Component {
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
               <Button className="searchbar-buttons">Sign In</Button>
-              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
+              <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
             </div>
           </Link>
         </div>
@@ -235,49 +228,54 @@ class Searchbar extends React.Component {
             <div className="searchfields">
               <select
                 className="dropdowns"
-                name="year"
-                onChange={this.handleChangeGeneral}
-              >
-              {this.state.years.map((year) => {
-                return (
-                  <option key={year}> {year} </option>
-                )
-              })}
-              </select>
-              <select
-                className="dropdowns"
                 name="make"
                 onChange={this.handleChangeMake}
               >
+              <option>Select a Make</option>
               {this.state.makes.map((make) => {
                 return (
-                  <option key={make.id}> {make.display}</option>
+                  <option key={make.make_id}>{make.make}</option>
                 )
               })}
               </select>
-              <select
+
+              {this.state.displayDropdowns.year ? <select
+                className="dropdowns"
+                name="year"
+                onChange={this.handleChangeYear}
+              >
+              <option>Select a Year</option>
+              {this.state.years.map((year) => {
+                return <option key={year.year}>{year.year}</option>
+              })}
+              </select> : <Fragment />}
+
+              {this.state.displayDropdowns.model ? <select
                 className="dropdowns"
                 name="model"
                 onChange={this.handleChangeModels}
-              >
-              {/* TODO: Figure out how to make this re-render when the models have loaded */}
+                >
+
+                <option>Select a Model</option>
               {this.state.models.map((model) => {
-                return (
-                  <option key={model.index}>{model}</option>
-                )
-              })}
-              </select>
-              <select
+                return <option key={model.model_id}>{model.model}</option>
+                })}
+              </select> : <Fragment />}
+              
+                
+              {this.state.displayDropdowns.trim ? <select
                 className="dropdowns"
                 name="trim"
-                onChange={this.handleChangeGeneral}
+                onChange={this.handleChangeTrim}
               >
+                <option>Select a Trim</option>
+
               {this.state.trims.map((trim) => {
                 return (
-                  <option key={trim.index}>{trim}</option>
+                  <option key={trim.trim_id}>{trim.trim}</option>
                 )
               })}
-              </select>
+              </select> : <Fragment />}
             </div> 
             
             <div style={styles.buttonContainerStyles}>
@@ -289,10 +287,10 @@ class Searchbar extends React.Component {
                   </Button>
                   </Link>
                   <div style={styles.linkStyles}>
-                  <Button 
-                    className="searchbar-buttons"
-                    onClick={()=>this.searchFunction()}
-                  >Search</Button>
+                    <Button 
+                      className="searchbar-buttons"
+                      onClick={()=>this.searchFunction()}
+                    >Search</Button>
                   </div>
             </div>
         </div>
