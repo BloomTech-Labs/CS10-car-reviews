@@ -14,7 +14,7 @@ class MainContent extends Component {
         popularCars: [],
         reviews: [],
         popularReviewers: [],
-        count: 0
+        counter: 0
       };
 
     componentDidMount() {
@@ -42,6 +42,12 @@ class MainContent extends Component {
 
     updateUserCounter = () => {
         const counter = this.state.counter;
+
+        
+
+        
+
+        
         // this.getUserCounter();
         console.log('the counter is ',counter);
         const config = {
@@ -54,6 +60,13 @@ class MainContent extends Component {
             console.log('new response', newstate)
             this.setState(newstate);
 
+            if(this.state.counter > 3 && !response.data.paid) {
+                alert('Please pay for a subscription or come back tommorow for more free reviews!')
+                // return console.log('to many views');
+            } else if(this.state.counter <= 3 || response.data.paid) {
+                //do nothing
+            }
+
           })
           .catch(err => {
             console.warn(err);
@@ -61,12 +74,6 @@ class MainContent extends Component {
 
           
         }
-
-
-        // if(this.state.counter > 3 && !this.state.paid) {
-        //     alert('Please pay for a subscription or come back tommorow for more free reviews!')
-        //     return console.log('to many views');
-        //   } else if(this.state.counter <= 3 || this.state.paid) {
 
 
         getUserCounter = () => {
