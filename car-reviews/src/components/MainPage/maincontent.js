@@ -16,7 +16,6 @@ class MainContent extends Component {
         popularCars: [],
         reviews: [],
         popularReviewers: [],
-        redirectToSearch: false
       };
 
     componentDidMount() {
