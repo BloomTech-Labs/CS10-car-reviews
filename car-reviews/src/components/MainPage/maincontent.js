@@ -110,9 +110,6 @@ class MainContent extends Component {
 
     
 
-    render() {
-        return (
-            
     render() { 
         return (
             <div className="main-content-container" >
