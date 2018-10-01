@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import { Button, Row, Col, Container } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
 import ReviewModal from '../Modals/reviewmodal';
 import PopularCar from './popularcar';
 import axios from 'axios';

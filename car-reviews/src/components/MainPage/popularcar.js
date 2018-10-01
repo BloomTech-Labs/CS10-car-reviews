@@ -29,9 +29,7 @@ class PopularCar extends Component {
         axios
             .post('http://localhost:3001/api/reviews/search', {year, make, model, trim})
             .then(response => {
-                console.log(response);
-                this.setState({ searchResults: response.data, searching: true }, 
-                    () => console.log(this.state));
+                this.setState({ searchResults: response.data, searching: true });
             })
             .catch(err => {
                 console.log("ERROR: ", err.message)
