@@ -13,10 +13,14 @@ import ResultsModal from '../Modals/resultsmodal';
 // This is rendered in MainPage.
 
 const styles = {
-    cardStyles: {
-        height: '220px',
-        width: '100%',
-        marginBottom: '30px'
+    resultCardStyles: {
+
+
+    },
+    resultStyles: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: 20
     }
 }
 
@@ -43,8 +47,9 @@ class SearchResults extends Component {
                 console.log("CAR DATA: ", car);
                 return (
                 <Col lg="3" md="6" key={car._id}>
-                    <div style={{ height: '50px' }} />
-                    <ResultsModal {...car} />
+                    <div style={styles.resultCardStyles}>
+                        <ResultsModal {...car} />
+                    </div>
                 </Col>
                 );
             }))
@@ -60,10 +65,11 @@ class SearchResults extends Component {
   }
 
     render() { 
+        console.log(this.props.location.state);
         return (
             <div>
                 {this.handleRedirect()}
-                {/* <div className="filter-row">
+                <div className="filter-row">
                     <div className="filters"> 
                         <h5>Filter by:</h5>
                         <UncontrolledDropdown className="dropdowns">
@@ -107,12 +113,10 @@ class SearchResults extends Component {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </div>
-                </div> */}
-                <div className="search-container">
-                    <div style={{height: '250px'}}/>
-                   {this.handleRenderSearchResults()}
                 </div>
-                
+                <div style={styles.resultStyles}>
+                    {this.handleRenderSearchResults()}
+                </div>
             </div>
         );
     }
