@@ -33,7 +33,7 @@ class ReviewModal extends Component {
     // const { username } = this.props.user;
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle} src={}>
+        <Button className="modal-button" onClick={this.toggle} >
             {/* <img src={placeholder} style={{ height: '60px', width: '25%' }} /> */}
             <p>{`${year} ${make} ${model} ${edition}`}</p>
             <p>Star Rating {score}</p>
