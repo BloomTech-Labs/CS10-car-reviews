@@ -41,8 +41,28 @@ class LoginRegisterModal extends Component {
         const userState = Object.assign({}, this.state[formType]);
         
         axios.post(deployedURL, userState)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
+            .then(res => {
+                // * TODO: remove alert
+                localStorage.setItem('jwt', res.data.JWT);
+                this.setState({
+                    login: {
+                        email: '',
+                        password: '',
+                    },
+                    register: {
+                        fullname: '',
+                        username: '',
+                        email: '',
+                        password: '',
+                        password2: ''
+                    }
+                });
+                this.props.handleModalState();
+            })
+            .catch(err => {
+                // * TODO: set alert to active
+                console.warn(err);
+            });
     }
 
     handleRenderFormType = () => {
