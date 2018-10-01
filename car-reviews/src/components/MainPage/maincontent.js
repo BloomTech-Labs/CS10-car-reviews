@@ -45,7 +45,6 @@ class MainContent extends Component {
         });
     }
 
-
     updateUserCounter = () => {
         const counter = this.state.counter;
 
@@ -114,6 +113,10 @@ class MainContent extends Component {
     render() {
         return (
             
+    render() { 
+        return (
+            <div className="main-content-container" >
+
             <div className="main-content">
             <div style={{ height: '20px'}}></div>
                 <Container>
@@ -132,8 +135,10 @@ class MainContent extends Component {
                         {this.state.popularCars.map(car => {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
-                                    <Button className="main-card"> 
-                                        <img src={car.imageURL} style={{ height: '60px' }} alt="" />
+                                    <Button className="modal-button">
+                                        <div>
+                                            <img src={car.imageURL} style={{ height: '100%', width: '100%' }} alt="" />
+                                        </div>
                                         <ReactStars
                                         type= "number"
                                         name= "score"
@@ -143,7 +148,7 @@ class MainContent extends Component {
                                         value={Math.round(car.averageScore * 100) / 100}
                                         size={36}
                                         color2={'#ffd700'} />
-                                        <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>  
+                                        {/* <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>   */}
                                         <p>{car.year} {car.make} {car.model}</p>
                                         <p>{car.edition}</p>
                                     </Button>
@@ -166,6 +171,7 @@ class MainContent extends Component {
                     </Row>
                 </Container>
                 <div style={{ height: '100px'}}></div>
+            </div>
             </div>
         );
     }

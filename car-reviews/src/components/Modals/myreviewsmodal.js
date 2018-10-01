@@ -62,8 +62,10 @@ class MyReviewsModal extends Component {
     console.log('props', this.props);
     return (
       <div>
-        <Button className="my-modal-button" onClick={this.toggle}>
-          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+        <Button className="modal-button" onClick={this.toggle}>
+          <div>
+            <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+          </div>
           <ReactStars
               type= "number"
               name= "score"
