@@ -101,7 +101,9 @@ class ResultsModal extends Component {
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle}>
-            <img src={carImage} style={{ height: '100%', width: '100%' }} />
+            <div>
+              <img src={carImage} style={{ height: '100%', width: '100%' }} />
+            </div>
             <p>{`${year} ${make} ${model} ${edition}`}</p>
             <ReactStars
               type= "number"
