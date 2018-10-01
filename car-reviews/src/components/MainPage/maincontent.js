@@ -15,7 +15,8 @@ class MainContent extends Component {
         reviews: [],
         popularReviewers: [],
         counter: 0,
-        newdate: new Date(),
+        newdate: new Date,
+        olddate: null,
 
       };
 
@@ -49,21 +50,27 @@ class MainContent extends Component {
         const counter = this.state.counter;
 
         const newDate = this.state.newdate;
+        const oldDate = this.state.olddate;
+
+
+        console.log('the new date is', newDate);
+        console.log('the ols date is', oldDate);
 
         // this.getUserCounter();
         console.log('the counter is ',counter);
         const config = {
           headers: { 'jwt': localStorage.getItem('jwt') }
         };
-        axios.put('http://localhost:3001/api/users/data', { counter, newDate }, config)
+        axios.put('http://localhost:3001/api/users/data', { counter }, config)
           .then(response => {
             console.log(response);
             const newstate = {counter: counter + 1}
             console.log('new response', newstate)
             this.setState(newstate);
             
-            if((this.state.counter > 3 && !response.data.paid) || (olddate === newdate &&  this.state.counter > 3 && !response.data.paid )) {
+            if((this.state.counter > 3 && !response.data.paid) || (oldDate === newDate &&  this.state.counter > 3 && !response.data.paid )) {
                 alert('Please pay for a subscription or come back tommorow for more free reviews!')
+                window.location = '/';
                 // return console.log('to many views');
             } else if(this.state.counter <= 3 || response.data.paid) {
                 //do nothing
@@ -86,8 +93,17 @@ class MainContent extends Component {
                 }
               })
               .then(response => {
-                const newstate = {counter: response.data.timesViewed, olddate: reponse.date.date}
-                this.setState(newstate)
+                
+
+                if(this.state.olddate !== this.state.newdate){ 
+                    console.log('The dates do not match!')
+                    const newstate = {counter: 0, olddate: response.data.date}
+                    this.setState(newstate)
+                } else {
+                    const newstate = {counter: response.data.timesViewed, olddate: response.data.date}
+                    this.setState(newstate)
+                }
+                
                 
               })
               .catch(err => console.warn(err));
