@@ -21,8 +21,6 @@ class MainContent extends Component {
 
     componentDidMount() {
 
-        //pass that date down to user component
-
         //conditional rendering based on that date
         
         this.getUserCounter();
@@ -52,11 +50,6 @@ class MainContent extends Component {
 
         const newDate = this.state.newdate;
 
-        
-
-        
-
-        
         // this.getUserCounter();
         console.log('the counter is ',counter);
         const config = {
@@ -68,8 +61,8 @@ class MainContent extends Component {
             const newstate = {counter: counter + 1}
             console.log('new response', newstate)
             this.setState(newstate);
-
-            if(this.state.counter > 3 && !response.data.paid) {
+            
+            if((this.state.counter > 3 && !response.data.paid) || (olddate === newdate &&  this.state.counter > 3 && !response.data.paid )) {
                 alert('Please pay for a subscription or come back tommorow for more free reviews!')
                 // return console.log('to many views');
             } else if(this.state.counter <= 3 || response.data.paid) {
@@ -93,7 +86,7 @@ class MainContent extends Component {
                 }
               })
               .then(response => {
-                const newstate = {counter: response.data.timesViewed}
+                const newstate = {counter: response.data.timesViewed, olddate: reponse.date.date}
                 this.setState(newstate)
                 
               })
