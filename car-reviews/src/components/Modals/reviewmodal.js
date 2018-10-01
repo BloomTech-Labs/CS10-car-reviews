@@ -29,21 +29,43 @@ class ReviewModal extends Component {
   
   render() {
     const { score, createOn, title, content, carImage } = this.props;
+    console.log("MODAL PROPS: ", this.props)
     const { year, make, model, edition } = this.props.car;
     // const { username } = this.props.user;
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle} >
-            {/* <img src={placeholder} style={{ height: '60px', width: '25%' }} /> */}
-            <p>{`${year} ${make} ${model} ${edition}`}</p>
-            <p>Star Rating {score}</p>
-            <CardText styles={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
+        <Button className="modal-button" onClick={this.toggle}>
+            <div>
+              <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+            </div>
+            <p>{`${year} ${make} ${model}`}</p>
+            <p>{edition}</p>
+            <ReactStars
+              type= "number"
+              name= "score"
+              edit= {false}
+              half={true}
+              count={5}
+              value={score}
+              size={36}
+              color2={'#ffd700'} />
+            {/* <p>Star Rating {score}</p> */}
+            <CardText style={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
-            <h2>{`${year} ${make} ${model} ${edition}`}</h2>
-            <p>Rating: {score} out of 5</p>
-            {/* <h5>{`Review by: ${username}`}</h5> */}
+            <p style={{ fontSize: '1.7em' }}>{`${year} ${make} ${model} ${edition}`}</p>
+            <h5>{`Review by: ${this.props.user.username}`}</h5>
+            <ReactStars
+              type= "number"
+              name= "score"
+              edit= {false}
+              half={true}
+              count={5}
+              value={score}
+              size={36}
+              color2={'#ffd700'} />
+            {/* <p>Rating: {score} out of 5</p> */}
           </ModalHeader>
           <ModalBody className="modal-body">
             <img src={carImage} style={{ height: '100%', width: '100%' }} />

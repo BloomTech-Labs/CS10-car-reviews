@@ -224,6 +224,7 @@ class Searchbar extends React.Component {
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
+          <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
             <div className="searchfields">
               <select
                 className="dropdowns"
