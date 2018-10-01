@@ -41,7 +41,8 @@ class MainContent extends Component {
     }
 
     render() { 
-        return ( 
+        return (
+            <div className="main-content-container" >
             <div className="main-content">
             <div style={{ height: '20px'}}></div>
                 <Container>
@@ -80,6 +81,7 @@ class MainContent extends Component {
                     </Row>
                 </Container>
                 <div style={{ height: '100px'}}></div>
+            </div>
             </div>
         );
     }
