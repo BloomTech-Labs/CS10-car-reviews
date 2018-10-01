@@ -104,7 +104,8 @@ class ResultsModal extends Component {
             <div>
               <img src={carImage} style={{ height: '100%', width: '100%' }} />
             </div>
-            <p>{`${year} ${make} ${model} ${edition}`}</p>
+            <p>{`${year} ${make} ${model}`}</p>
+            <p>{edition}</p>
             <ReactStars
               type= "number"
               name= "score"
@@ -131,9 +132,11 @@ class ResultsModal extends Component {
             <h5>{`Review by: ${user}`}</h5>
           </ModalHeader>
           <ModalBody className="modal-body">
-            <img src={carImage} style={{ height: '100%', width: '100%' }} />
-            <p>{title}</p>
-            <p>{content}</p>
+            <div>
+              <img src={carImage} style={{ height: '100%', width: '100%' }} />
+              <p>{title}</p>
+              <p>{content}</p>
+            </div>
           </ModalBody>
         </Modal>
       </div>
