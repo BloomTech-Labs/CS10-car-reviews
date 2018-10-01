@@ -3,9 +3,8 @@
     color: #2F77F3;
     border: none !important;
     text-align: left;
-    height: 100%;
-    width: 100%;
     margin-bottom: 30px;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
 }
