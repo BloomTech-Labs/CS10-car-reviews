@@ -43,16 +43,27 @@ class SearchResults extends Component {
 
   handleRenderSearchResults = () => {
         if (this.props.location.state !== undefined) {
-            return ( this.props.location.state.searchResults.map((car) => {
-                console.log("CAR DATA: ", car);
+            if (this.props.location.state.searchResults.length > 1) {
+                return ( this.props.location.state.searchResults.map((car) => {
+                    console.log("CAR DATA: ", car);
+                    return (
+                    <Col lg="3" md="6" key={car._id}>
+                        <div style={styles.resultCardStyles}>
+                            <ResultsModal {...car} />
+                        </div>
+                    </Col>
+                    );
+                }));
+            } else {
+                console.log("CAR DATA: ", this.props.location.state.searchResults);
                 return (
-                <Col lg="3" md="6" key={car._id}>
-                    <div style={styles.resultCardStyles}>
-                        <ResultsModal {...car} />
-                    </div>
-                </Col>
+                    <Col lg="3" md="6" key={this.props.location.state.searchResults._id}>
+                        <div style={styles.resultCardStyles}>
+                            <ResultsModal {...this.props.location.state.searchResults} />
+                        </div>
+                    </Col>
                 );
-            }))
+            }
         }
     }
 
