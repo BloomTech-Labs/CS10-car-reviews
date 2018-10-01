@@ -14,10 +14,17 @@ class MainContent extends Component {
         popularCars: [],
         reviews: [],
         popularReviewers: [],
-        counter: 0
+        counter: 0,
+        newdate: new Date(),
+
       };
 
     componentDidMount() {
+
+        //pass that date down to user component
+
+        //conditional rendering based on that date
+        
         this.getUserCounter();
         const localcarsURL = "http://localhost:3001/api/popular/popular_cars";
         const localreviewsURL = "http://localhost:3001/api/popular/featured_reviews";
@@ -43,6 +50,8 @@ class MainContent extends Component {
     updateUserCounter = () => {
         const counter = this.state.counter;
 
+        const newDate = this.state.newdate;
+
         
 
         
@@ -53,7 +62,7 @@ class MainContent extends Component {
         const config = {
           headers: { 'jwt': localStorage.getItem('jwt') }
         };
-        axios.put('http://localhost:3001/api/users/data', { counter }, config)
+        axios.put('http://localhost:3001/api/users/data', { counter, newDate }, config)
           .then(response => {
             console.log(response);
             const newstate = {counter: counter + 1}

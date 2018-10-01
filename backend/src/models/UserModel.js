@@ -30,6 +30,10 @@ const UserModel = mongoose.Schema({
       default: 0, 
       index: true
   },
+    date: {
+      type: Date,
+      index: true
+    },
     customerId: {
       type: String,
       required: false
