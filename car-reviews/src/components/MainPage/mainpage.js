@@ -44,7 +44,7 @@ class MainPage extends Component {
         <div>
           <SearchBar isLoggedIn={isLoggedIn} />
         </div>
-        <MainContent />
+        <MainContent isLoggedIn={isLoggedIn} />
         <a
           href="https://lambdaschool.com"
           style={{ paddingBottom: '30px' }}
