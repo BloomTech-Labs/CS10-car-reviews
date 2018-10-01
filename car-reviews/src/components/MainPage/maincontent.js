@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import { Button, Row, Col, Container } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';
+import PopularCar from './popularcar';
 import axios from 'axios';
 import ReactStars from 'react-stars';
 import './mainpage.css';
@@ -17,7 +18,6 @@ class MainContent extends Component {
         counter: 0,
         newdate: new Date,
         olddate: null,
-
       };
 
     componentDidMount() {
@@ -132,23 +132,7 @@ class MainContent extends Component {
                         {this.state.popularCars.map(car => {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
-                                    <Button className="modal-button">
-                                        <div>
-                                            <img src={car.imageURL} style={{ height: '100%', width: '100%' }} alt="" />
-                                        </div>
-                                        <ReactStars
-                                        type= "number"
-                                        name= "score"
-                                        edit= {false}
-                                        half={true}
-                                        count={5}
-                                        value={Math.round(car.averageScore * 100) / 100}
-                                        size={36}
-                                        color2={'#ffd700'} />
-                                        {/* <p>Star Rating {Math.round(car.averageScore * 100) / 100}</p>   */}
-                                        <p>{car.year} {car.make} {car.model}</p>
-                                        <p>{car.edition}</p>
-                                    </Button>
+                                    <PopularCar {...car} isLoggedIn={this.props.isLoggedIn}/>
                                 </Col>
                             );
                         })}
