@@ -71,7 +71,7 @@ class Searchbar extends React.Component {
       },
       modalState: {
         isOpen: true,
-        type: 'login'
+        type: 'register'
       }
     };
   }
@@ -202,8 +202,6 @@ class Searchbar extends React.Component {
     if (!this.props.isLoggedIn) {
       return (
         <div className="login">
-
-
           <Link to="/login">
             <div style={styles.loginContainerStyles}>
               <Button className="searchbar-buttons">Sign In</Button>
@@ -227,6 +225,12 @@ class Searchbar extends React.Component {
     newState.modalState.isOpen = !this.state.modalState.isOpen;
     this.setState(newState);
   }
+
+  handleChangeModalType = modalType => {
+    const newState = Object.assign({}, this.state);
+    newState.modalState.type = modalType;
+    this.setState(newState);
+  }
   
   render() {
     return (
@@ -237,6 +241,7 @@ class Searchbar extends React.Component {
             isOpen={this.state.modalState.isOpen}
             type={this.state.modalState.type}
             handleModalState={this.handleModalState}
+            handleChangeModalType={this.handleChangeModalType}
           />
             <div className="searchfields">
               <select
