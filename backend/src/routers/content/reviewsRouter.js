@@ -166,7 +166,7 @@ router.delete('/:id', verifyJWTMiddleware, (req, res) => {
 });
 
 // search router:
-router.post('/search', (req, res) => {
+router.post("/search", (req, res) => {
     const { year, make, model, trim, reviewer} = req.body;
     
     // here we setup a search object that only adds values that are actually passed in to the .find method
@@ -183,7 +183,8 @@ router.post('/search', (req, res) => {
                 path: 'reviews', 
                 model: 'reviews', 
                 match: { user: reviewer },
-                select: 'title content score user carImage -_id'
+                select: 'title content score user carImage',
+                populate: { path: 'user' }
             })
             .then(cars=> res.json(cars))
             .catch(err => res.status(500).json({ error: err.message }));
@@ -192,10 +193,11 @@ router.post('/search', (req, res) => {
             .populate({
                 path: 'reviews', 
                 model: 'reviews',
-                select: 'title content score user carImage -_id'
+                select: 'title content score user carImage',
+                populate: { path: 'user', model: 'users' }
             })
             .then(cars=> {
-                console.log(cars);
+                console.log(cars, '200');
                 res.json(cars);
             })
             .catch(err => res.status(500).json({ error: err.message }));

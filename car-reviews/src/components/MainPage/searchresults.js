@@ -31,7 +31,8 @@ class SearchResults extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      data: data
+      data: data,
+      usernames: []
     };
   }
    
@@ -64,8 +65,28 @@ class SearchResults extends Component {
       }
   }
 
+  handleFilter = (type) => {
+
+  }
+
+  componentDidMount() {
+    if (this.props.location.state !== undefined) {
+        let usernamesArr = [];
+        for (let i = 0; i < this.props.location.state.searchResults.length; i++) {
+            for(let j = 0; j < this.props.location.state.searchResults[i].reviews.length; j++) {
+                usernamesArr.push(this.props.location.state.searchResults[i].reviews[j].user.username);
+            }
+        }
+        this.setState({ usernames: usernamesArr }, () => console.log(this.state));
+    } else {
+        console.log('problem');
+    }
+  }
+
     render() { 
         console.log(this.props.location.state);
+        console.log(this.state.usernames.length);
+        console.log(this.state.usernames);
         return (
             <div>
                 {this.handleRedirect()}
@@ -77,14 +98,11 @@ class SearchResults extends Component {
                                 Reviewer
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem header>TODO:</DropdownItem>
-                                <DropdownItem disabled>map reviewers onto this list</DropdownItem>
-                                <DropdownItem>IheartPrius</DropdownItem>
-                                <DropdownItem>FordStrong</DropdownItem>
-                                <DropdownItem>ToyotaJim</DropdownItem>
-                                <DropdownItem>MommaJeep</DropdownItem>
-                                <DropdownItem>BMWsRcool</DropdownItem>
-                                <DropdownItem divider />
+                                {this.state.usernames.map((username) => {
+                                    return (
+                                        <DropdownItem>{username}</DropdownItem>
+                                    );
+                                })}
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         <UncontrolledDropdown className="dropdowns">
