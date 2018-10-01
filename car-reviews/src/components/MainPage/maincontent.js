@@ -60,7 +60,7 @@ class MainContent extends Component {
                         {this.state.popularCars.map(car => {
                             return (
                                 <Col lg="3" md="6" key={car._id}>
-                                    <PopularCar {...car}/>
+                                    <PopularCar {...car} isLoggedIn={this.props.isLoggedIn}/>
                                 </Col>
                             );
                         })}

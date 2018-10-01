@@ -23,17 +23,15 @@ class PopularCar extends Component {
         };
     }
 
-    componentDidMount() {
-        const { searchCriteria } = this.state.selectedValues;
-        console.log(searchCriteria);
-    }
-
     searchFunction = () => {
-        const { searchCriteria } = this.state.selectedValues;
+        console.log(this.state.selectedValues);
+        const { year, make, model, trim } = this.state.selectedValues
         axios
-            .post('http://localhost:3001/api/reviews/search', searchCriteria)
+            .post('http://localhost:3001/api/reviews/search', {year, make, model, trim})
             .then(response => {
-                this.setState({ searchResults: response.data, searching: true });
+                console.log(response);
+                this.setState({ searchResults: response.data, searching: true }, 
+                    () => console.log(this.state));
             })
             .catch(err => {
                 console.log("ERROR: ", err.message)
@@ -61,7 +59,7 @@ class PopularCar extends Component {
         return (
           <div>
             {this.handleRedirect()}
-            <Button className="main-card">
+            <Button className="main-card" onClick={()=>this.searchFunction()}>
                 <img src={imageURL? imageURL : "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/%2717_Acura_MDX.jpg/280px-%2717_Acura_MDX.jpg"} 
                   style={{ height: '60px' }} alt=""/>
                 <ReactStars
