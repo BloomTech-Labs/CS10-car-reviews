@@ -14,10 +14,11 @@ class MainContent extends Component {
         popularCars: [],
         reviews: [],
         popularReviewers: [],
-        counter: 0
+        count: 0
       };
 
     componentDidMount() {
+        this.getUserCounter();
         const localcarsURL = "http://localhost:3001/api/popular/popular_cars";
         const localreviewsURL = "http://localhost:3001/api/popular/featured_reviews";
         const popularReviewersURL = "http://localhost:3001/api/popular/popular_reviewers"
@@ -38,9 +39,10 @@ class MainContent extends Component {
         });
     }
 
+
     updateUserCounter = () => {
         const counter = this.state.counter;
-        
+        // this.getUserCounter();
         console.log('the counter is ',counter);
         const config = {
           headers: { 'jwt': localStorage.getItem('jwt') }
@@ -49,24 +51,25 @@ class MainContent extends Component {
           .then(response => {
             console.log(response);
             const newstate = {counter: counter + 1}
-            this.setState(newstate)
-            // if (this.state.alerts.password) this.handleAlerts('password');
-            // if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
-             //localStorage.setItem('jwt', response.data.JWT);
+            console.log('new response', newstate)
+            this.setState(newstate);
+
           })
           .catch(err => {
-            // if (!this.state.alerts.password) this.handleAlerts('password');
-            // if (this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
             console.warn(err);
           });
+
+          
         }
 
 
+        // if(this.state.counter > 3 && !this.state.paid) {
+        //     alert('Please pay for a subscription or come back tommorow for more free reviews!')
+        //     return console.log('to many views');
+        //   } else if(this.state.counter <= 3 || this.state.paid) {
+
+
         getUserCounter = () => {
-            // const newReview = this.state['review'];
-            // const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
-            // const localRequests = 'http://localhost:3001/api/reviews';
-            const counter = this.state.counter;
             axios
               .get('http://localhost:3001/api/users/data', {
                 headers: {
@@ -74,8 +77,6 @@ class MainContent extends Component {
                 }
               })
               .then(response => {
-                // console.log(response);
-                console.log(response.data.timesViewed);
                 const newstate = {counter: response.data.timesViewed}
                 this.setState(newstate)
                 
@@ -83,8 +84,9 @@ class MainContent extends Component {
               .catch(err => console.warn(err));
           };
 
+    
+
     render() {
-        this.getUserCounter(); 
         return (
             
             <div className="main-content">
@@ -94,8 +96,8 @@ class MainContent extends Component {
                     <Row>
                         {this.state.reviews.map(review => {
                             return (
-                                <Col lg="3" md="6" key={review._id}>
-                                    <ReviewModal {...review} onclick = {this.updateUserCounter}/>
+                                <Col lg="3" md="6" key={review._id} onClick ={this.updateUserCounter}>
+                                    <ReviewModal {...review}/>
                                 </Col>
                             );
                         })}
