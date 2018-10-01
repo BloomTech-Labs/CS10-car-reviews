@@ -3,26 +3,16 @@
     color: #2F77F3;
     border: none !important;
     text-align: left;
-    height: 355px;
-    width: 255px;
     margin-bottom: 30px;
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    /* display: flex;
-    flex-wrap: wrap; */
-
 }
 
 .modal-button:hover {
     background-color: #77A6F7;
     /* background-color: #B4B6BA; */
 }
-
-/* .modal-button p {
-    display: flex;
-    flex-wrap: wrap;
-} */
 
 .modal-header {
     background-color: #77A6F7;

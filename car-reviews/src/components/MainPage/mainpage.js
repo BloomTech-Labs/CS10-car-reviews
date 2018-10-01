@@ -3,7 +3,7 @@ import SearchBar from './searchbar';
 import MainContent from './maincontent';
 import axios from 'axios';
 
-const dbRequests = `https://lambda-car-reviews.herokuapp.com/auth/verify`;
+const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
 const localRequests = `http://localhost:3001/auth/verify`
 
 // This file contains the various components that make up the landing page
@@ -18,7 +18,7 @@ class MainPage extends Component {
     const localJWT = localStorage.getItem('jwt');
     if (!localJWT) this.handleLogin(false);
     else {
-      axios.get(localRequests, { headers: { jwt: localJWT } })
+      axios.get(dbRequests, { headers: { jwt: localJWT } })
         .then(response => {
           const { tokenIsValid } = response.data
           if (tokenIsValid) this.handleLogin(tokenIsValid);

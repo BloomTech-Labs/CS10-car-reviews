@@ -55,7 +55,7 @@ class ResultsModal extends Component {
     // const localRequests = 'http://localhost:3001/api/reviews';
     const counter = this.state.counter;
     axios
-      .get('http://localhost:3001/api/users/data', {
+      .get('https://back-lambda-car-reviews.herokuapp.com/api/users/data', {
         headers: {
           JWT: localStorage.getItem('jwt')
         }
@@ -77,7 +77,7 @@ class ResultsModal extends Component {
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
-    axios.put('http://localhost:3001/api/users/data', { counter }, config)
+    axios.put('https://back-lambda-car-reviews.herokuapp.com/api/users/data', { counter }, config)
       .then(response => {
         console.log(response);
         const newstate = {counter: counter + 1, paid: response.data.paid}

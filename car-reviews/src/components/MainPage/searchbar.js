@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import './hamburgermenu.css';
 import HamburgerMenu from './hamburgermenu';
+import LoginRegisterModal from '../Modals/loginregistermodal';
 import {CarQuery} from 'car-query';
 import axios from 'axios';
 
@@ -67,6 +68,10 @@ class Searchbar extends React.Component {
         year: false,
         model: false,
         trim: false
+      },
+      modalState: {
+        isOpen: true,
+        type: 'login'
       }
     };
   }
@@ -169,7 +174,7 @@ class Searchbar extends React.Component {
     }
 
     axios
-      .post('http://localhost:3001/api/reviews/search', searchCriteria)
+      .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', searchCriteria)
       .then(response => {
         this.setState({ searchResults: response.data, searching: true });
       })
@@ -193,9 +198,6 @@ class Searchbar extends React.Component {
     }
   }
 
-  
-
-
   handleRenderSignin = () => {
     if (!this.props.isLoggedIn) {
       return (
@@ -218,13 +220,24 @@ class Searchbar extends React.Component {
       );
     }
   };
+
+  handleModalState = (modalType) => {
+    const newState = Object.assign({}, this.state);
+    newState.modalState.type = modalType;
+    newState.modalState.isOpen = !this.state.modalState.isOpen;
+    this.setState(newState);
+  }
   
   render() {
     return (
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
-          <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
+          <LoginRegisterModal 
+            isOpen={this.state.modalState.isOpen}
+            type={this.state.modalState.type}
+            handleModalState={this.handleModalState}
+          />
             <div className="searchfields">
               <select
                 className="dropdowns"

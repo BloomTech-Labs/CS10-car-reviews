@@ -40,7 +40,7 @@ class ReviewEditModal extends Component {
           };
 
           axios
-            .put(`http://localhost:3001/api/reviews/${this.props.id}`, editedContent, config)
+            .put(`https://back-lambda-car-reviews.herokuapp.com/api/reviews/${this.props.id}`, editedContent, config)
             .then(response => {
               console.log('editNote:', response);
             })
