@@ -13,7 +13,8 @@ class MainContent extends Component {
     state = {
         popularCars: [],
         reviews: [],
-        popularReviewers: []
+        popularReviewers: [],
+        counter: 0
       };
 
     componentDidMount() {
@@ -37,8 +38,55 @@ class MainContent extends Component {
         });
     }
 
-    render() { 
-        return ( 
+    updateUserCounter = () => {
+        const counter = this.state.counter;
+        
+        console.log('the counter is ',counter);
+        const config = {
+          headers: { 'jwt': localStorage.getItem('jwt') }
+        };
+        axios.put('http://localhost:3001/api/users/data', { counter }, config)
+          .then(response => {
+            console.log(response);
+            const newstate = {counter: counter + 1}
+            this.setState(newstate)
+            // if (this.state.alerts.password) this.handleAlerts('password');
+            // if (!this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
+             //localStorage.setItem('jwt', response.data.JWT);
+          })
+          .catch(err => {
+            // if (!this.state.alerts.password) this.handleAlerts('password');
+            // if (this.state.alerts.passwordSuccess) this.handleAlerts('passwordSuccess');
+            console.warn(err);
+          });
+        }
+
+
+        getUserCounter = () => {
+            // const newReview = this.state['review'];
+            // const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+            // const localRequests = 'http://localhost:3001/api/reviews';
+            const counter = this.state.counter;
+            axios
+              .get('http://localhost:3001/api/users/data', {
+                headers: {
+                  JWT: localStorage.getItem('jwt')
+                }
+              })
+              .then(response => {
+                // console.log(response);
+                console.log(response.data.timesViewed);
+                const newstate = {counter: response.data.timesViewed}
+                this.setState(newstate)
+                
+              })
+              .catch(err => console.warn(err));
+          };
+
+    render() {
+        this.getUserCounter(); 
+        return (
+            
             <div className="main-content">
             <div style={{ height: '20px'}}></div>
                 <Container>
@@ -47,7 +95,7 @@ class MainContent extends Component {
                         {this.state.reviews.map(review => {
                             return (
                                 <Col lg="3" md="6" key={review._id}>
-                                    <ReviewModal {...review}/>
+                                    <ReviewModal {...review} onclick = {this.updateUserCounter}/>
                                 </Col>
                             );
                         })}

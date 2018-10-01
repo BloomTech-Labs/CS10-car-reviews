@@ -15,8 +15,6 @@ class MainPage extends Component {
   }
 
   componentWillMount(){
-    let oldvalue = localStorage.getItem("value");
-    localStorage.setItem("value", oldvalue);
     const localJWT = localStorage.getItem('jwt');
     if (!localJWT) this.handleLogin(false);
     else {
@@ -46,14 +44,10 @@ class MainPage extends Component {
         <div>
           <SearchBar isLoggedIn={isLoggedIn} />
         </div>
-        <MainContent />
-        <a
-          href="https://lambdaschool.com"
-          style={{ paddingBottom: '30px' }}
-          target="_blank"
-        >
-          About The Team
-        </a>
+        <div className="search-container">
+          <MainContent />
+          <a href="https://lambdaschool.com" style={{ paddingBottom: '30px' }}>About The Team</a>
+        </div>
       </div>
     );
   }
