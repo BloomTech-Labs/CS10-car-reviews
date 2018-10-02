@@ -184,7 +184,7 @@ class Searchbar extends React.Component {
         pathname: '/searchpage',
         state: {
           isLoggedIn: this.props.isLoggedIn,
-          searchResults: this.state.searchResults,
+          searchResults: this.state.selectedValues,
           currentPage: '/searchpage'
         }
       }} />
@@ -221,7 +221,6 @@ class Searchbar extends React.Component {
   
   render() {
     return (
-      <div>
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
@@ -294,8 +293,7 @@ class Searchbar extends React.Component {
                     >Search</Button>
                   </div>
             </div>
-        </div>
-        {/* {this.state.searchResults[0] && <SearchResults searchResults={this.state.searchResults} />} */}
+        {/* {this.state.searchResults.length > 0 && <SearchResults searchResults={this.state.searchResults} />} */}
       </div>
     );
   }

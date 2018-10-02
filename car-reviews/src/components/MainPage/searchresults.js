@@ -6,6 +6,7 @@ import data from '../../data';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown, Col} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import ResultsModal from '../Modals/resultsmodal';
+import axios from 'axios';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
@@ -33,7 +34,8 @@ class SearchResults extends Component {
     this.state = {
       dropdownOpen: false,
       usernames: [],
-      usernameSelected: ''
+      usernameSelected: '',
+      results: []
     };
   }
    
@@ -46,31 +48,30 @@ class SearchResults extends Component {
   handleRenderSearchResults = () => {
     const searchArr = [];
       if (this.state.usernameSelected) {
-          for (let i = 0; i < this.props.location.state.searchResults.length; i ++) {
-              searchArr.push(this.props.location.state.searchResults[i])
+          for (let i = 0; i < this.state.results.length; i ++) {
+              searchArr.push(this.state.results[i])
               searchArr[i].reviews = searchArr[i].reviews.filter(review => review.user.username === this.state.usernameSelected);
           }
-          console.log(searchArr);
           return ( searchArr.map((car) => {
             console.log("CAR DATA: ", car);
             return (
             <Col lg="3" md="6" key={car._id}>
                 <div style={styles.resultCardStyles}>
                     {car.reviews.map((review) => 
-                        <ResultsModal {...car} {...review} 
+                        <ResultsModal key={review._id} {...car} {...review} 
                     />)}
                 </div>
             </Col>
             );
         }));
       } else {
-        return ( this.props.location.state.searchResults.map((car) => {
+        return ( this.state.results.map((car) => {
             console.log("CAR DATA: ", car);
             return (
             <Col lg="3" md="6" key={car._id}>
                 <div style={styles.resultCardStyles}>
                     {car.reviews.map((review) => 
-                        <ResultsModal {...car} {...review} 
+                        <ResultsModal key={review._id} {...car} {...review} 
                     />)}
                 </div>
             </Col>
@@ -81,8 +82,7 @@ class SearchResults extends Component {
   }
 
   handleRedirect = () => {
-      if (!this.props.location.state || !this.props.location.state.searchResults[0] 
-        || this.props.location.state === undefined) {
+      if (!this.props.location.state.searchResults) {
         return <Redirect to='/' />
       } else {
           return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
@@ -91,19 +91,44 @@ class SearchResults extends Component {
 
   handleReviewerFilter(username) {
     this.setState({ usernameSelected: username });
-    this.handleRenderSearchResults();
   }
 
   componentDidMount() {
-    if (this.props.location.state.searchResults[0]) {
+    // if (this.props.location.state.searchResults) {
+        console.log(this.props.location.state.searchResults);
+        const searchCriteria = {};
         const usernamesArr = [];
-        for (let i = 0; i < this.props.location.state.searchResults.length; i++) {
-            for(let j = 0; j < this.props.location.state.searchResults[i].reviews.length; j++) {
-                usernamesArr.push(this.props.location.state.searchResults[i].reviews[j].user.username);
-            }
+        const { year, make, model, trim } = this.props.location.state.searchResults;
+
+        if (year) {
+            searchCriteria.year = year;
+        } 
+        if (make) {
+            searchCriteria.make = make.make;
+        } 
+        if (model) {
+            searchCriteria.model = model.model;
+        } 
+        if (trim) {
+            searchCriteria.edition = trim.trim;
+        } else if (!year && !make && !model && !trim){
+            console.log(`There are no selected values in the search criteria`);
         }
-        this.setState({ usernames: [...new Set (usernamesArr)] });
-    } 
+        axios
+            .post('http://localhost:3001/api/reviews/search', searchCriteria)
+            .then(cars => {
+                for (let i = 0; i < cars.length; i++) {
+                    for(let j = 0; j < cars[i].reviews.length; j++) {
+                        usernamesArr.push(cars[i].reviews[j].user.username);
+                    }
+                }
+                this.setState({results: cars,
+                    usernames: [...new Set (usernamesArr)] }, console.log(this.state));
+            })
+            .catch(err => {
+                console.log("ERROR: ", err.message)
+            });
+    // } 
   }
 
     render() {
