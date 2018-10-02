@@ -53,7 +53,8 @@
     text-align: left;
     background-color: #D3E3FC;
     height: 100%; 
-    background-image: linear-gradient(rgba(124, 111, 111, 0.5), rgba(255,255,255,0.5)), url("../Assets/Aleksesjs_Bergmanis.jpg");
+    /* background-image: linear-gradient(rgba(124, 111, 111, 0.5), rgba(255,255,255,0.5)), url("../Assets/Aleksesjs_Bergmanis.jpg"); */
+    background-image: url("../Assets/Aleksesjs_Bergmanis.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -71,6 +72,7 @@
 
 .main-card {
     background-color: white;
+    background-image: linear-gradient(rgba(124, 111, 111, 0.5), rgba(255,255,255,0.5));
     color: #2F77F3;
     border: none !important;
     text-align: left;
