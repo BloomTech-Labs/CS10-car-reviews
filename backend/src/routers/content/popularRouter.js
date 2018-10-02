@@ -31,7 +31,7 @@ router.get('/featured_reviews', (req, res) => {
 
 // sorts and returns popular cars
 router.get('/popular_cars', (req, res) => {
-    CarModel.find({}).sort({averageScore: -1}).limit(8)
+    CarModel.find( { reviews: { $not: { $size: 0 } } } ).sort({averageScore: -1}).limit(8)
     .then(car => res.status(200).json(car))
     .catch(err => res.status(500).json({ popRouterError: err.message }))
 });
