@@ -65,7 +65,6 @@ class SearchResults extends Component {
         }));
       } else {
         return ( this.props.location.state.searchResults.map((car) => {
-            console.log("CAR DATA: ", car);
             return (
             <Col lg="3" md="6" key={car._id}>
                 <div style={styles.resultCardStyles}>

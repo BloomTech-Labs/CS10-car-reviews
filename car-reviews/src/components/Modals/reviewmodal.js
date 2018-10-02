@@ -94,7 +94,7 @@ class ReviewModal extends Component {
   
   render() {
     const { score, createOn, title, content, carImage } = this.props;
-    console.log("MODAL PROPS: ", this.props)
+    // console.log("MODAL PROPS: ", this.props)
     const { year, make, model, edition } = this.props.car;
     return (
       <div>

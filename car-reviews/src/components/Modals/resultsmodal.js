@@ -98,7 +98,7 @@ class ResultsModal extends Component {
     // ** NOTE: You shouldn't try and destructure values that may or may not be on the object, as it will crash the whole app (carImage, for example)
       const { year, make, model, edition, title, content, score, averageScore, user } = this.props;
       // const { username } = this.props.user;
-      console.log("RESULTS MODAL PROPS: ", this.props);
+      // console.log("RESULTS MODAL PROPS: ", this.props);
       
     return (
       <div>

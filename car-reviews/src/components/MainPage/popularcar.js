@@ -4,7 +4,6 @@ import { Button, Row, Col, Container } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import './mainpage.css';
-import placeholder from '../../logo.svg';
 
 
 class PopularCar extends Component {

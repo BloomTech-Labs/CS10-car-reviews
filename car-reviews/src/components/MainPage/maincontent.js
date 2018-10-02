@@ -4,7 +4,6 @@ import { Button, Row, Col, Container } from 'reactstrap';
 import ReviewModal from '../Modals/reviewmodal';
 import PopularCar from './popularcar';
 import axios from 'axios';
-import ReactStars from 'react-stars';
 import './mainpage.css';
 
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
@@ -116,8 +115,6 @@ class MainContent extends Component {
               })
               .catch(err => console.warn(err));
           };
-
-    
 
     render() { 
         return (
