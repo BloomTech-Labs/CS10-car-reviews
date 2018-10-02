@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './reviewlist.css';
 import { Col } from 'reactstrap';
 import MyReviewsModal from '../Modals/myreviewsmodal';
@@ -22,12 +22,12 @@ class ReviewList extends Component {
         JWT: localStorage.getItem('jwt')
       }
     };
-    // const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+    const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
 
     axios
       .all([
-        axios.get('http://localhost:3001/api/users/data', config),
-        axios.get('http://localhost:3001/api/reviews', config)
+        axios.get(requestURL, config),
+        axios.get(requestURL, config)
       ])
       .then(
         axios.spread((userRes, reviewsRes) => {
@@ -46,7 +46,7 @@ class ReviewList extends Component {
     };
 
     axios
-      .delete(`http://localhost:3001/api/reviews/${id}`, config)
+      .delete(`https://back-lambda-car-reviews.herokuapp.com/api/reviews/${id}`, config)
       .then(response => {
         console.log('deleteNote:', response);
       })
@@ -102,7 +102,7 @@ class ReviewList extends Component {
           />
         </div>
         <Col lg="3" md="6" className="reviewCardContainer">
-          {this.state.data.reviews.map(review => {
+          { this.state.data.reviews[0] ? this.state.data.reviews.map(review => {
             return (
               <MyReviewsModal
                 key={review._id}
@@ -112,7 +112,7 @@ class ReviewList extends Component {
                 updateReview={this.handleUpdate}
               />
             );
-          })}
+          }) : <Fragment/>}
         </Col>
       </div>
     );

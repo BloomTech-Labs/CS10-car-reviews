@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import './hamburgermenu.css';
 import HamburgerMenu from './hamburgermenu';
+import LoginRegisterModal from '../Modals/loginregistermodal';
 import axios from 'axios';
 import SearchResults from './searchresults';
 
@@ -66,9 +67,18 @@ class Searchbar extends React.Component {
         year: false,
         model: false,
         trim: false
+      },
+      modalState: {
+        isOpen: false,
+        type: 'login'
       }
     };
   }
+
+  // componentWillMount(){
+  //   console.log(this.props.isLoggedIn);
+  //   this.setState({ localIsLoggedIn: this.props.isLoggedIn });
+  // }
 
   componentDidMount() {
     axios.get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
@@ -167,7 +177,7 @@ class Searchbar extends React.Component {
       console.log(`There are no selected values in the search criteria`);
     }
     axios
-      .post('http://localhost:3001/api/reviews/search', searchCriteria)
+      .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', searchCriteria)
       .then(response => {
         this.setState({ searchResults: response.data, searching: true });
       })
@@ -191,21 +201,15 @@ class Searchbar extends React.Component {
     }
   }
 
-  
-
-
   handleRenderSignin = () => {
     if (!this.props.isLoggedIn) {
       return (
         <div className="login">
-
-
-          <Link to="/login">
             <div style={styles.loginContainerStyles}>
-              <Button className="searchbar-buttons">Sign In</Button>
+              <Button onClick={this.handleModalState('login', true)} className="searchbar-buttons">Sign In</Button>
+              <Button onClick={this.handleModalState('register', true)} className="searchbar-buttons">Register</Button>
               <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
             </div>
-          </Link>
         </div>
       );
     } else {
@@ -216,6 +220,66 @@ class Searchbar extends React.Component {
       );
     }
   };
+
+  handleModalState = (modalType, status) => () => {
+    const newState = Object.assign({}, this.state);
+    newState.modalState.type = modalType;
+    newState.modalState.isOpen = status;
+    this.setState(newState);
+  }
+
+  handleChangeModalType = modalType => {
+    const newState = Object.assign({}, this.state);
+    newState.modalState.type = modalType;
+    this.setState(newState);
+  }
+
+  handleReviewButton = () => {
+    if (this.props.isLoggedIn){
+      return (
+        <div style={styles.buttonContainerStyles}>
+          <Link style={styles.linkStyles}  to='/MyReviews'>
+              <Button
+                className="searchbar-buttons"
+              >
+                Review
+              </Button>
+              </Link>
+              <div style={styles.linkStyles}>
+                <Button 
+                  className="searchbar-buttons"
+                  onClick={()=>this.searchFunction()}
+                >Search</Button>
+              </div>
+        </div>
+      )
+    } else {
+      return (
+        <div style={styles.buttonContainerStyles}>
+              <div style={styles.linkStyles}>
+              <Button
+                className="searchbar-buttons"
+                onClick={this.handleModalState('login', true)}
+              >
+                Review
+              </Button>
+              </div>
+              <div style={styles.linkStyles}>
+                <Button 
+                  className="searchbar-buttons"
+                  onClick={()=>this.searchFunction()}
+                >Search</Button>
+              </div>
+        </div>
+      )
+    }
+  }
+
+  handleSetJwtState = (type, jwt) => {
+    localStorage.setItem('jwt', jwt);
+    this.props.handleLogin(true);
+    this.setState({ modalState: { isOpen: false, type } })
+  }
   
   render() {
     return (
@@ -223,7 +287,13 @@ class Searchbar extends React.Component {
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
-          <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
+          <LoginRegisterModal 
+            isOpen={this.state.modalState.isOpen}
+            type={this.state.modalState.type}
+            handleModalState={this.handleModalState}
+            handleChangeModalType={this.handleChangeModalType}
+            handleSetJwtState={this.handleSetJwtState}
+          />
             <div className="searchfields">
               <select
                 className="dropdowns"
@@ -277,21 +347,7 @@ class Searchbar extends React.Component {
               </select> : <Fragment />}
             </div> 
             
-            <div style={styles.buttonContainerStyles}>
-              <Link style={styles.linkStyles}  to='/MyReviews'>
-                  <Button
-                    className="searchbar-buttons"
-                  >
-                    Review
-                  </Button>
-                  </Link>
-                  <div style={styles.linkStyles}>
-                    <Button 
-                      className="searchbar-buttons"
-                      onClick={()=>this.searchFunction()}
-                    >Search</Button>
-                  </div>
-            </div>
+            {this.handleReviewButton()}
         </div>
         {/* {this.state.searchResults[0] && <SearchResults searchResults={this.state.searchResults} />} */}
       </div>
