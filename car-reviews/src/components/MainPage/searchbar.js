@@ -5,12 +5,10 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import './hamburgermenu.css';
 import HamburgerMenu from './hamburgermenu';
-import {CarQuery} from 'car-query';
 import axios from 'axios';
 import SearchResults from './searchresults';
 
-const carQuery = new CarQuery();
-const API_KEY = 'b684b562f269e246688693389';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 // * TODO: Make colors for the Review and Search buttons match
 const styles = {

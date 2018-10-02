@@ -53,7 +53,8 @@
     text-align: left;
     background-color: #D3E3FC;
     height: 100%; 
-    background-image: linear-gradient(rgba(124, 111, 111, 0.5), rgba(255,255,255,0.5)), url("../Assets/Aleksesjs_Bergmanis.jpg");
+    background-image: linear-gradient(rgba(124, 111, 111, 0.4), rgba(255,255,255,0.4)), url("../Assets/Aleksesjs_Bergmanis.jpg");
+    /* background-image: url("../Assets/Aleksesjs_Bergmanis.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

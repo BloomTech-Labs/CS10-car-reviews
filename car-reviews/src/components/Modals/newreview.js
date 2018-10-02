@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import ReactStars from 'react-stars';
 import './newreview.css';
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class NewReviewModal extends Component {
