@@ -156,11 +156,13 @@ router.delete('/:id', verifyJWTMiddleware, (req, res) => {
     const { id } = req.params;
     ReviewModel.findByIdAndRemove(id)
       .then(deletedReview => {
-        res.json(deletedReview);
         return CarModel.findByIdAndUpdate(deletedReview.car, { "$pull": { reviews: id }}, {new: true})
        })
       .then(updatedCar => {
         return UserModel.findByIdAndUpdate(req._id, { "$pull": { reviews: id }}, {new: true})
+       })
+       .then(updatedUser => {
+         res.json(updatedUser);
        })
       .catch(err => res.status(500).json({ error: err.message }));
 });
@@ -188,6 +190,7 @@ router.post("/search", (req, res) => {
     if (reviewer) { 
       searchObj.reviewer = reviewer;
     }
+    searchObj.reviews = { $not: { $size: 0 } };
     console.log(searchObj, '189');
     if (reviewer) {
         CarModel.find(searchObj).select('make model year -_id edition averageScore')

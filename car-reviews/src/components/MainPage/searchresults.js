@@ -105,11 +105,7 @@ class SearchResults extends Component {
     } 
   }
 
-    render() { 
-        console.log(this.props.location.state);
-        console.log(this.state.usernames.length);
-        console.log(this.state.usernames);
-        console.log(this.state);
+    render() {
         return (
             <div>
                 {this.handleRedirect()}
