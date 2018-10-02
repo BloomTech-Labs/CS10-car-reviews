@@ -5,9 +5,9 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    Button
+    Button,
+    Alert
 } from 'reactstrap';
-import { Link } from 'react-router-dom'
 
 const styles = {
     modalStyles: {
@@ -64,6 +64,12 @@ class LoginRegisterModal extends Component {
                 email: '',
                 password: '',
                 password2: ''
+            },
+            alerts: {
+                login: false,
+                register: false,
+                passMatchErr: false,
+                emailValidErr: false,
             }
         }
     }
@@ -75,12 +81,56 @@ class LoginRegisterModal extends Component {
         this.setState(newState);
     }
 
+    handleAlerts = (type) => {
+        const newState = Object.assign({}, this.state);
+        newState.alerts[type] = !this.state.alerts[type];
+        this.setState(newState);
+    }
+
     handleSubmittal = formType => event => {
         event.preventDefault();
         const deployedURL = `https://back-lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localURL = `http://localhost:3001/auth/${formType}`
         const userState = Object.assign({}, this.state[formType]);
         
+        // ** OPTIONAL: Externalize logic to a helper method
+        if (formType === 'register'){
+            if (!this.state.register.email.includes('@') || !this.state.register.email.includes('.')){
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        emailValidErr: true
+                    }
+                })
+                return console.log(`Invalid email format`);
+            } else {
+                console.log(this.state.alerts.emailValidErr);
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        emailValidErr: false
+                    }
+                }, () => console.log(this.state.alerts.emailValidErr));
+            }
+
+            if (this.state.register.password !== this.state.register.password2){
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        passMatchErr: true
+                    }
+                })
+                return console.log(`Passwords don't match`);
+            } else {
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        passMatchErr: false
+                    }
+                })
+            }
+        }
+
         axios.post(deployedURL, userState)
             .then(res => {
                 // * TODO: remove alert
@@ -101,7 +151,8 @@ class LoginRegisterModal extends Component {
                 
             })
             .catch(err => {
-                // * TODO: set alert to active
+                // * TODO: Add alerts for specific errors on the backend
+                if (!this.state.alerts[formType]) this.handleAlerts(formType);
                 console.warn(err);
             });
     }
@@ -139,6 +190,7 @@ class LoginRegisterModal extends Component {
                                     color='primary'
                                     style={styles.submitButtonStyles}
                                 >Submit</Button>
+                                <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                             </form>
                         </ModalBody>
                         <ModalFooter style={styles.footerStyles}>
@@ -204,6 +256,9 @@ class LoginRegisterModal extends Component {
                                 color='primary'
                                 style={styles.submitButtonStyles}
                             >Submit</Button>
+                            <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
+                            <Alert isOpen={this.state.alerts.passMatchErr} color='danger'>The passwords you entered don't match, please try again</Alert>
+                            <Alert isOpen={this.state.alerts.emailValidErr} color='danger'>Please enter a valid email address</Alert>
                         </form>
                     </ModalBody>
                     <ModalFooter style={styles.footerStyles}>
