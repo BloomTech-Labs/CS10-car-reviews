@@ -61,6 +61,16 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
         .catch(err => {
             res.status(500).json({ databaseError: err });
         });
+    } 
+    if (req.body.newDate) {
+        objForUpdate.date = req.body.NewDate;
+        UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
+        .then(userRecord => {
+            res.json(userRecord) 
+        })
+        .catch(err => {
+            res.status(500).json({ databaseError: err });
+        });
     } else {
         UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
             .then(userRecord => {

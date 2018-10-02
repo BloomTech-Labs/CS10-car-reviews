@@ -60,7 +60,7 @@ class MainContent extends Component {
         const config = {
           headers: { 'jwt': localStorage.getItem('jwt') }
         };
-        axios.put('http://localhost:3001/api/users/data', { counter }, config)
+        axios.put('http://localhost:3001/api/users/data', { counter, newDate }, config)
           .then(response => {
             console.log(response);
             const newstate = {counter: counter + 1}
