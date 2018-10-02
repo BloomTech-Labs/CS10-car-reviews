@@ -99,11 +99,11 @@ class ReviewModal extends Component {
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle}>
+            <p>{`${year} ${make} ${model}`}</p>
             <div>
               <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
             </div>
-            <p>{`${year} ${make} ${model}`}</p>
-            <p>{edition}</p>
+            {/* <p>{edition}</p> */}
             <ReactStars
               type= "number"
               name= "score"
@@ -114,7 +114,7 @@ class ReviewModal extends Component {
               size={36}
               color2={'#ffd700'} />
             {/* <p>Star Rating {score}</p> */}
-            <CardText style={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText>
+            {/* <CardText style={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText> */}
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">

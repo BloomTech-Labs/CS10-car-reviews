@@ -1,14 +1,16 @@
 .modal-button {
     background-color: white;
+    background-image: linear-gradient( rgba(255,255,255,0.5), rgba(124, 111, 111, 0.5));
     color: #2F77F3;
     border: none !important;
-    text-align: left;
-    height: 355px;
+    /* text-align: left; */
+    height: 300px;
     width: 255px;
-    margin-bottom: 30px;
+    margin: 30px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    /* font-size: 1.5em; */
     /* display: flex;
     flex-wrap: wrap; */
 
