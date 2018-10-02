@@ -163,7 +163,7 @@ class NewReviewModal extends Component {
     const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
     const localRequests = 'http://localhost:3001/api/reviews';
     axios
-      .post(localRequests, newReview, {
+      .post(requestURL, newReview, {
         headers: {
           JWT: localStorage.getItem('jwt')
         }

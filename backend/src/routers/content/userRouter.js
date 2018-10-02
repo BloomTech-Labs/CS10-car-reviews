@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
 
-console.log('I am hitting this');
+
 // importing models
 const UserModel = require('../../models/UserModel');
 

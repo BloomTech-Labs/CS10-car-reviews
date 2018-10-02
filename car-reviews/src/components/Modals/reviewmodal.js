@@ -53,7 +53,7 @@ class ReviewModal extends Component {
     // const localRequests = 'http://localhost:3001/api/reviews';
     // const counter = this.state.counter;
     axios
-      .get('http://localhost:3001/api/users/data', {
+      .get('https://back-lambda-car-reviews.herokuapp.com/api/users/data', {
         headers: {
           JWT: localStorage.getItem('jwt')
         }
@@ -75,7 +75,7 @@ class ReviewModal extends Component {
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
-    axios.put('http://localhost:3001/api/users/data', { counter }, config)
+    axios.put('https://back-lambda-car-reviews.herokuapp.com/api/users/data', { counter }, config)
       .then(response => {
         console.log("USER view count", response);
         const newstate = {counter: counter + 1, paid: response.data.paid}
@@ -94,7 +94,6 @@ class ReviewModal extends Component {
   
   render() {
     const { score, createOn, title, content, carImage } = this.props;
-    console.log("MODAL PROPS: ", this.props)
     const { year, make, model, edition } = this.props.car;
     return (
       <div>
@@ -120,7 +119,6 @@ class ReviewModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
             <p style={{ fontSize: '1.7em' }}>{`${year} ${make} ${model} ${edition}`}</p>
-            <h5>{`Review by: ${this.props.user.username}`}</h5>
             <ReactStars
               type= "number"
               name= "score"
@@ -130,7 +128,8 @@ class ReviewModal extends Component {
               value={score}
               size={36}
               color2={'#ffd700'} />
-            {/* <p>Rating: {score} out of 5</p> */}
+            <p>Rating: {score} out of 5</p>
+            {/* <h5>{`Review by: ${username}`}</h5> */}
           </ModalHeader>
           <ModalBody className="modal-body">
             <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>

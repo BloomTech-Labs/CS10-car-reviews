@@ -83,12 +83,14 @@ class UserSettings extends Component {
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
-    const localRequests = 'http://localhost:3001/api/users/data'
+    const localRequests = 'http://localhost:3001/api/users/data';
+    const deployedRequests = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+
     if (password2 !== password || !password || !password2) {
       if (!this.state.alerts.password) this.handleAlerts('password');
       return console.warn(`Passwords do not match`);
     }
-    axios.put(localRequests, { password }, config)
+    axios.put(deployedRequests, { password }, config)
       .then(res => {
         console.log(res);
         if (this.state.alerts.password) this.handleAlerts('password');
@@ -115,11 +117,13 @@ class UserSettings extends Component {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
     const localRequests = 'http://localhost:3001/api/users/data'
+    const deployedRequests = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+
     if (username2 !== username || !username || !username2) {
       if (!this.state.alerts.username) this.handleAlerts('username');
       return console.warn(`Usernames do not match`)
     }
-    axios.put(localRequests, { username }, config)
+    axios.put(deployedRequests, { username }, config)
       .then(res => {
         console.log(res);
         if (this.state.alerts.username) this.handleAlerts('username');
@@ -145,12 +149,14 @@ class UserSettings extends Component {
     const config = {
       headers: { 'jwt': localStorage.getItem('jwt') }
     };
-    const localRequests = 'http://localhost:3001/api/users/data'
+    const localRequests = 'http://localhost:3001/api/users/data';
+    const deployedRequests = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+
     if (email2 !== email || !email || !email2) {
       if (!this.state.alerts.email) this.handleAlerts('email');
       return console.warn(`Email addresses do not match`);
     }
-    axios.put(localRequests, { newEmail: email }, config)
+    axios.put(deployedRequests, { newEmail: email }, config)
       .then(res => {
         console.log(res)
         if (this.state.alerts.email) this.handleAlerts('email');

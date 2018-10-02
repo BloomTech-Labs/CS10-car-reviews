@@ -35,11 +35,14 @@ class MainContent extends Component {
         const localcarsURL = "http://localhost:3001/api/popular/popular_cars";
         const localreviewsURL = "http://localhost:3001/api/popular/featured_reviews";
         const popularReviewersURL = "http://localhost:3001/api/popular/popular_reviewers"
-        const deployedURL = "https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_cars";
+
+        const deployedPopCars = "https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_cars";
+        const deployedFeatReviews = "https://back-lambda-car-reviews.herokuapp.com/api/popular/featured_reviews";
+        const deployedPopReviewers = "https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_reviewers";
         axios.all([
-            axios.get(localcarsURL),
-            axios.get(localreviewsURL),
-            axios.get(popularReviewersURL)
+            axios.get(deployedPopCars),
+            axios.get(deployedFeatReviews),
+            axios.get(deployedPopReviewers)
         ])
         .then(axios.spread((carsRes, reviewsRes, reviewersRes) => {
             this.setState({ popularCars: carsRes.data, 
@@ -122,7 +125,6 @@ class MainContent extends Component {
     render() { 
         return (
             <div className="main-content-container" >
-
             <div className="main-content">
             <div style={{ height: '20px'}}></div>
                 <Container>
@@ -161,7 +163,7 @@ class MainContent extends Component {
                     </Row>
                 </Container>
                 <div style={{ height: '100px'}}></div>
-            </div>
+                </div>
             </div>
         );
     }
