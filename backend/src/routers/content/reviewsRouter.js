@@ -171,14 +171,26 @@ router.post("/search", (req, res) => {
     
     // here we setup a search object that only adds values that are actually passed in to the .find method
     const searchObj = {};
-    if (year) searchObj.year = year;
-    if (make) searchObj.make = make;
-    if (model) searchObj.model = model;
-    if (trim) searchObj.trim = trim;
-    if (reviewer) searchObj.reviewer = reviewer;
-
+    if (year) { 
+      searchObj.year = year;
+    }
+    if (make) {
+      searchObj.make = make;
+    }
+    if (model) { 
+      searchObj.model = model;
+    }
+    if (trim) {
+      searchObj.edition = trim;
+    } else if (edition) {
+      searchObj.edition = edition;
+    }
+    if (reviewer) { 
+      searchObj.reviewer = reviewer;
+    }
+    console.log(searchObj, '189');
     if (reviewer) {
-        CarModel.find(searchObj).select('make model year -_id edition averageScore')
+        CarModel.findOne(searchObj).select('make model year -_id edition averageScore')
             .populate({
                 path: 'reviews', 
                 model: 'reviews', 
@@ -189,7 +201,7 @@ router.post("/search", (req, res) => {
             .then(cars=> res.json(cars))
             .catch(err => res.status(500).json({ error: err.message }));
     } else {
-        CarModel.find(searchObj).select('make model year -_id edition averageScore')
+        CarModel.findOne(searchObj).select('make model year -_id edition averageScore')
             .populate({
                 path: 'reviews', 
                 model: 'reviews',
