@@ -7,6 +7,7 @@ import {
     ModalFooter,
     Button
 } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 const styles = {
     modalStyles: {
@@ -30,6 +31,20 @@ const styles = {
     },
     submitButtonStyles: {
         marginLeft: '33%',
+    },
+    footerStyles: {
+        display: 'flex',
+        justifyContent: 'center',
+        // flexDirection: 'column',
+    },
+    footerTextStyles: {
+        textAlign: 'center'
+    },
+    footerLinkStyles: {
+        cursor: 'pointer',
+        color: 'blue',
+        textDecoration: 'underline',
+        textAlign: 'center'
     }
 }
 
@@ -96,7 +111,7 @@ class LoginRegisterModal extends Component {
                 <div>
                     <Modal style={styles.modalStyles} isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
                         <ModalHeader style={styles.headerStyles}>
-                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState}>X</Button>
+                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('login')}>X</Button>
                             <p>Login</p>
                         </ModalHeader>
                         <ModalBody>
@@ -125,10 +140,10 @@ class LoginRegisterModal extends Component {
                                 >Submit</Button>
                             </form>
                         </ModalBody>
-                        <ModalFooter>
-                            <p>Already have an account?</p>
-                            <Button onClick={() => this.props.handleChangeModalType('register')}>Register</Button>
-                        </ModalFooter>
+                        <ModalFooter style={styles.footerStyles}>
+                            <p style={styles.footerTextStyles}>Already have an account?</p>
+                            <p onClick={() => this.props.handleChangeModalType('register')} style={styles.footerLinkStyles}>Click here</p>
+                    </ModalFooter>
                     </Modal>
                 </div>
             )
@@ -137,7 +152,7 @@ class LoginRegisterModal extends Component {
             return(
                 <Modal style={styles.modalStyles} isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
                     <ModalHeader style={styles.headerStyles}>
-                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState}>X</Button>
+                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('register')}>X</Button>
                             <p>Register</p>
                         </ModalHeader>
                     <ModalBody>
@@ -190,9 +205,9 @@ class LoginRegisterModal extends Component {
                             >Submit</Button>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                            <p>Already have an account?</p>
-                            <Button onClick={() => this.props.handleChangeModalType('login')}>Login</Button>
+                    <ModalFooter style={styles.footerStyles}>
+                            <p style={styles.footerTextStyles}>Already have an account?</p>
+                            <p onClick={() => this.props.handleChangeModalType('login')} style={styles.footerLinkStyles}>Click here</p>
                     </ModalFooter>
                 </Modal>
             )
