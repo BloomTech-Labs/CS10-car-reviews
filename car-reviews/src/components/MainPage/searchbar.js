@@ -71,7 +71,7 @@ class Searchbar extends React.Component {
       },
       modalState: {
         isOpen: true,
-        type: 'register'
+        type: 'login'
       }
     };
   }
