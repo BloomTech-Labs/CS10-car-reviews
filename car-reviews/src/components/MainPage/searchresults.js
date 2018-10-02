@@ -81,7 +81,8 @@ class SearchResults extends Component {
   }
 
   handleRedirect = () => {
-      if (!this.props.location.state || !this.props.location.state.searchResults[0]) {
+      if (!this.props.location.state || !this.props.location.state.searchResults[0] 
+        || this.props.location.state === undefined) {
         return <Redirect to='/' />
       } else {
           return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
