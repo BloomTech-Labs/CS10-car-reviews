@@ -30,11 +30,6 @@ const UserModel = mongoose.Schema({
       default: 0, 
       index: true
   },
-    date: {
-      type: Date,
-      default: Date.now(),
-      index: true
-    },
     customerId: {
       type: String,
       required: false
