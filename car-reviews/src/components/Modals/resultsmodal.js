@@ -96,8 +96,8 @@ class ResultsModal extends Component {
   
   render() {
     // ** NOTE: You shouldn't try and destructure values that may or may not be on the object, as it will crash the whole app (carImage, for example)
-      const { year, make, model, edition } = this.props;
-      const { title, content, score, user } = this.props.reviews[0];
+      const { year, make, model, edition, title, content, score, averageScore, user } = this.props;
+      // const { username } = this.props.user;
       console.log("RESULTS MODAL PROPS: ", this.props);
       
     return (
@@ -121,10 +121,10 @@ class ResultsModal extends Component {
               edit= {false}
               half={true}
               count={5}
-              value={score}
+              value={averageScore}
               size={36}
               color2={'#ffd700'} />
-            <p>Star Rating {score}</p>
+            <p>Star Rating {averageScore}</p>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
@@ -138,7 +138,7 @@ class ResultsModal extends Component {
               value={score}
               size={36}
               color2={'#ffd700'} />
-            <h5>{`Review by: ${user}`}</h5>
+            <h5>{`Review by: ${user.username}`}</h5>
           </ModalHeader>
           <ModalBody className="modal-body">
             {/* <img src={carImage} style={{ height: '100%', width: '100%' }} /> */}

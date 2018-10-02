@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
+
+const currentDate = new Date();
+
+const date = currentDate.getDate();
+const month = currentDate.getMonth();
+const year = currentDate.getFullYear()
+const oldDateString = date + "-" +(month + 1) + "-" + year;
+
 const UserModel = mongoose.Schema({
     fullname: {
       type: String,
@@ -24,6 +32,11 @@ const UserModel = mongoose.Schema({
         type: String,
         required: true,
         minlength: 4,
+    },
+    date: {
+      type: Date,
+      default: oldDateString,
+      index: true
     },
     timesViewed: {
       type: Number,

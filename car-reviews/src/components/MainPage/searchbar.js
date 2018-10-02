@@ -6,11 +6,10 @@ import { Link, Redirect } from 'react-router-dom';
 import './hamburgermenu.css';
 import HamburgerMenu from './hamburgermenu';
 import LoginRegisterModal from '../Modals/loginregistermodal';
-import {CarQuery} from 'car-query';
 import axios from 'axios';
+import SearchResults from './searchresults';
 
-const carQuery = new CarQuery();
-const API_KEY = 'b684b562f269e246688693389';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 // * TODO: Make colors for the Review and Search buttons match
 const styles = {
@@ -177,7 +176,6 @@ class Searchbar extends React.Component {
     } else if (!year && !make && !model && !trim){
       console.log(`There are no selected values in the search criteria`);
     }
-
     axios
       .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', searchCriteria)
       .then(response => {
@@ -285,6 +283,7 @@ class Searchbar extends React.Component {
   
   render() {
     return (
+      <div>
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
@@ -350,6 +349,8 @@ class Searchbar extends React.Component {
             
             {this.handleReviewButton()}
         </div>
+        {/* {this.state.searchResults[0] && <SearchResults searchResults={this.state.searchResults} />} */}
+      </div>
     );
   }
 }
