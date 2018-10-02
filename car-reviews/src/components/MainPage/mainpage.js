@@ -47,7 +47,7 @@ class MainPage extends Component {
             handleLogin={this.handleLogin}
           />
         </div>
-        <MainContent />
+        <MainContent isLoggedIn={isLoggedIn} />
         <a
           href="https://lambdaschool.com"
           style={{ paddingBottom: '30px' }}

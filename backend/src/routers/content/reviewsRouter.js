@@ -156,34 +156,50 @@ router.delete('/:id', verifyJWTMiddleware, (req, res) => {
     const { id } = req.params;
     ReviewModel.findByIdAndRemove(id)
       .then(deletedReview => {
-        res.json(deletedReview);
         return CarModel.findByIdAndUpdate(deletedReview.car, { "$pull": { reviews: id }}, {new: true})
        })
       .then(updatedCar => {
         return UserModel.findByIdAndUpdate(req._id, { "$pull": { reviews: id }}, {new: true})
        })
+       .then(updatedUser => {
+         res.json(updatedUser);
+       })
       .catch(err => res.status(500).json({ error: err.message }));
 });
 
 // search router:
-router.post('/search', (req, res) => {
-    const { year, make, model, trim, reviewer} = req.body;
+router.post("/search", (req, res) => {
+    const { year, make, model, trim, reviewer, edition} = req.body;
     
     // here we setup a search object that only adds values that are actually passed in to the .find method
     const searchObj = {};
-    if (year) searchObj.year = year;
-    if (make) searchObj.make = make;
-    if (model) searchObj.model = model;
-    if (trim) searchObj.trim = trim;
-    if (reviewer) searchObj.reviewer = reviewer;
-
+    if (year) { 
+      searchObj.year = year;
+    }
+    if (make) {
+      searchObj.make = make;
+    }
+    if (model) { 
+      searchObj.model = model;
+    }
+    if (trim) {
+      searchObj.edition = trim;
+    } else if (edition) {
+      searchObj.edition = edition;
+    }
+    if (reviewer) { 
+      searchObj.reviewer = reviewer;
+    }
+    searchObj.reviews = { $not: { $size: 0 } };
+    console.log(searchObj, '189');
     if (reviewer) {
         CarModel.find(searchObj).select('make model year -_id edition averageScore')
             .populate({
                 path: 'reviews', 
                 model: 'reviews', 
                 match: { user: reviewer },
-                select: 'title content score user carImage -_id'
+                select: 'title content score user carImage',
+                populate: { path: 'user' }
             })
             .then(cars=> res.json(cars))
             .catch(err => res.status(500).json({ error: err.message }));
@@ -192,10 +208,11 @@ router.post('/search', (req, res) => {
             .populate({
                 path: 'reviews', 
                 model: 'reviews',
-                select: 'title content score user carImage -_id'
+                select: 'title content score user carImage',
+                populate: { path: 'user', model: 'users' }
             })
             .then(cars=> {
-                console.log(cars);
+                console.log(cars, '200');
                 res.json(cars);
             })
             .catch(err => res.status(500).json({ error: err.message }));
