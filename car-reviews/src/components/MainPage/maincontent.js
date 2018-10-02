@@ -72,7 +72,7 @@ class MainContent extends Component {
                 window.location = '/';
                 // return console.log('to many views');
             } else if(this.state.counter <= 3 || response.data.paid) {
-                //do nothing
+                //do nothing until its time.
             }
 
           })
