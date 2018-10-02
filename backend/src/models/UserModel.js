@@ -25,6 +25,11 @@ const UserModel = mongoose.Schema({
         required: true,
         minlength: 4,
     },
+    date: {
+      type: Date,
+      default: Date.now(),
+      index: true
+    },
     timesViewed: {
       type: Number,
       default: 0, 
