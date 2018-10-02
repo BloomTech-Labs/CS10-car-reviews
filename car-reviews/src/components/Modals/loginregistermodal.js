@@ -8,6 +8,21 @@ import {
     Button
 } from 'reactstrap';
 
+const styles = {
+    headerStyles: {
+        // display: 'flex',
+        // justifyContent: 'center'
+    },
+    closeButtonStyles: {
+        display: 'inline-block',
+        marginLeft: 320
+    },
+    headerTextStyles: {
+        display: 'inline-block',
+        marginLeft: 10
+    }
+}
+
 class LoginRegisterModal extends Component {
     constructor(props){
         super(props);
@@ -68,40 +83,49 @@ class LoginRegisterModal extends Component {
     handleRenderFormType = () => {
         if (this.props.type === 'login') {
             return (
-                <Modal isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
-                    <ModalHeader>Login</ModalHeader>
-                    <ModalBody>
-                        <form>
-                            <input 
-                                type='text'
-                                name='email'
-                                placeholder='Enter your email...'
-                                value={this.state.login.email}
-                                onChange={this.handleUpdateText('login')}
-                            />
-                            <input 
-                                type='password'
-                                name='password'
-                                placeholder='Enter your password...'
-                                value={this.state.login.password}
-                                onChange={this.handleUpdateText('login')}
-                            />
-                            <Button 
-                                type='submit' 
-                                onClick={this.handleSubmittal('login')}
-                                color='primary'
-                            >Submit</Button>
-                            <p>Don't have an account?</p>
-                            <Button onClick={() => this.props.handleChangeModalType('register')}>Register</Button>
-                        </form>
-                    </ModalBody>
-                </Modal>
+                <div>
+                    <Button color="danger" onClick={this.props.toggleModal}>{this.props.buttonLabel}</Button>
+                    <Modal isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
+                        <ModalHeader style={styles.headerStyles}>
+                            <p style={styles.headerTextStyles}>Login</p>
+                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState}>X</Button>
+                        </ModalHeader>
+                        <ModalBody>
+                            <form>
+                                <input 
+                                    type='text'
+                                    name='email'
+                                    placeholder='Enter your email...'
+                                    value={this.state.login.email}
+                                    onChange={this.handleUpdateText('login')}
+                                />
+                                <input 
+                                    type='password'
+                                    name='password'
+                                    placeholder='Enter your password...'
+                                    value={this.state.login.password}
+                                    onChange={this.handleUpdateText('login')}
+                                />
+                                <Button 
+                                    type='submit' 
+                                    onClick={this.handleSubmittal('login')}
+                                    color='primary'
+                                >Submit</Button>
+                                <p>Don't have an account?</p>
+                                <Button onClick={() => this.props.handleChangeModalType('register')}>Register</Button>
+                            </form>
+                        </ModalBody>
+                    </Modal>
+                </div>
             )
         }
         if (this.props.type === 'register'){
             return(
                 <Modal isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
-                    <ModalHeader>Register</ModalHeader>
+                    <ModalHeader style={styles.headerStyles}>
+                            <p style={styles.headerTextStyles}>Register</p>
+                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState}>X</Button>
+                        </ModalHeader>
                     <ModalBody>
                         <form>
                             <input 
@@ -144,6 +168,7 @@ class LoginRegisterModal extends Component {
                                 onClick={this.handleSubmittal('register')}
                                 color='primary'
                             >Submit</Button>
+                            {/* TODO: Change the login and register switches */}
                             <p>Already have an account?</p>
                             <Button onClick={() => this.props.handleChangeModalType('login')}>Login</Button>
                         </form>
