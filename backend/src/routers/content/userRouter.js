@@ -61,9 +61,9 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
         .catch(err => {
             res.status(500).json({ databaseError: err });
         });
-    }
+    } 
     if (req.body.newDate) {
-        objForUpdate.date = req.body.newDate;
+        objForUpdate.date = req.body.NewDate;
         UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
         .then(userRecord => {
             res.json(userRecord) 
@@ -71,8 +71,7 @@ router.put('/data', verifyJWTMiddleware, hashPassword, (req, res) => {
         .catch(err => {
             res.status(500).json({ databaseError: err });
         });
-    } 
-    else {
+    } else {
         UserModel.findOneAndUpdate({email: oldEmail} , objForUpdate, {new: true})
             .then(userRecord => {
                 const { fullname, username, email, _id } = userRecord;

@@ -56,15 +56,15 @@ class MainContent extends Component {
         console.log('the ols date is', oldDate);
 
         // this.getUserCounter();
-        console.log('the counter is ',counter);
+        // console.log('the counter is ',counter);
         const config = {
           headers: { 'jwt': localStorage.getItem('jwt') }
         };
-        axios.put('http://localhost:3001/api/users/data', { counter }, config)
+        axios.put('http://localhost:3001/api/users/data', { counter, newDate }, config)
           .then(response => {
             console.log(response);
             const newstate = {counter: counter + 1}
-            console.log('new response', newstate)
+            // console.log('new response', newstate)
             this.setState(newstate);
             
             if((this.state.counter > 3 && !response.data.paid) || (oldDate === newDate &&  this.state.counter > 3 && !response.data.paid )) {
@@ -72,7 +72,7 @@ class MainContent extends Component {
                 window.location = '/';
                 // return console.log('to many views');
             } else if(this.state.counter <= 3 || response.data.paid) {
-                //do nothing
+                //do nothing until its time.
             }
 
           })
