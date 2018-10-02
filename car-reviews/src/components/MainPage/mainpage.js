@@ -42,7 +42,10 @@ class MainPage extends Component {
     return (
       <div>
         <div>
-          <SearchBar isLoggedIn={isLoggedIn} />
+          <SearchBar 
+            isLoggedIn={isLoggedIn} 
+            handleLogin={this.handleLogin}
+          />
         </div>
         <MainContent />
         <a

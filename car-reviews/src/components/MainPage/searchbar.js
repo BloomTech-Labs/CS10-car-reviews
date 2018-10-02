@@ -76,6 +76,11 @@ class Searchbar extends React.Component {
     };
   }
 
+  // componentWillMount(){
+  //   console.log(this.props.isLoggedIn);
+  //   this.setState({ localIsLoggedIn: this.props.isLoggedIn });
+  // }
+
   componentDidMount() {
     axios.get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
       .then(res => {
@@ -203,8 +208,8 @@ class Searchbar extends React.Component {
       return (
         <div className="login">
             <div style={styles.loginContainerStyles}>
-              <Button onClick={this.handleModalState('login')} className="searchbar-buttons">Sign In</Button>
-              <Button onClick={this.handleModalState('register')} className="searchbar-buttons">Register</Button>
+              <Button onClick={this.handleModalState('login', true)} className="searchbar-buttons">Sign In</Button>
+              <Button onClick={this.handleModalState('register', true)} className="searchbar-buttons">Register</Button>
               <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
             </div>
         </div>
@@ -218,10 +223,10 @@ class Searchbar extends React.Component {
     }
   };
 
-  handleModalState = modalType => () => {
+  handleModalState = (modalType, status) => () => {
     const newState = Object.assign({}, this.state);
     newState.modalState.type = modalType;
-    newState.modalState.isOpen = !this.state.modalState.isOpen;
+    newState.modalState.isOpen = status;
     this.setState(newState);
   }
 
@@ -229,6 +234,53 @@ class Searchbar extends React.Component {
     const newState = Object.assign({}, this.state);
     newState.modalState.type = modalType;
     this.setState(newState);
+  }
+
+  handleReviewButton = () => {
+    if (this.props.isLoggedIn){
+      return (
+        <div style={styles.buttonContainerStyles}>
+          <Link style={styles.linkStyles}  to='/MyReviews'>
+              <Button
+                className="searchbar-buttons"
+              >
+                Review
+              </Button>
+              </Link>
+              <div style={styles.linkStyles}>
+                <Button 
+                  className="searchbar-buttons"
+                  onClick={()=>this.searchFunction()}
+                >Search</Button>
+              </div>
+        </div>
+      )
+    } else {
+      return (
+        <div style={styles.buttonContainerStyles}>
+              <div style={styles.linkStyles}>
+              <Button
+                className="searchbar-buttons"
+                onClick={this.handleModalState('login', true)}
+              >
+                Review
+              </Button>
+              </div>
+              <div style={styles.linkStyles}>
+                <Button 
+                  className="searchbar-buttons"
+                  onClick={()=>this.searchFunction()}
+                >Search</Button>
+              </div>
+        </div>
+      )
+    }
+  }
+
+  handleSetJwtState = (type, jwt) => {
+    localStorage.setItem('jwt', jwt);
+    this.props.handleLogin(true);
+    this.setState({ modalState: { isOpen: false, type } })
   }
   
   render() {
@@ -241,6 +293,7 @@ class Searchbar extends React.Component {
             type={this.state.modalState.type}
             handleModalState={this.handleModalState}
             handleChangeModalType={this.handleChangeModalType}
+            handleSetJwtState={this.handleSetJwtState}
           />
             <div className="searchfields">
               <select
@@ -295,21 +348,7 @@ class Searchbar extends React.Component {
               </select> : <Fragment />}
             </div> 
             
-            <div style={styles.buttonContainerStyles}>
-              <Link style={styles.linkStyles}  to='/MyReviews'>
-                  <Button
-                    className="searchbar-buttons"
-                  >
-                    Review
-                  </Button>
-                  </Link>
-                  <div style={styles.linkStyles}>
-                    <Button 
-                      className="searchbar-buttons"
-                      onClick={()=>this.searchFunction()}
-                    >Search</Button>
-                  </div>
-            </div>
+            {this.handleReviewButton()}
         </div>
     );
   }

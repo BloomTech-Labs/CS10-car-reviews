@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 const styles = {
     modalStyles: {
         width: '20%',
+        marginTop: '10%'
     },
     headerStyles: {
         display: 'flex',
@@ -83,7 +84,7 @@ class LoginRegisterModal extends Component {
         axios.post(deployedURL, userState)
             .then(res => {
                 // * TODO: remove alert
-                localStorage.setItem('jwt', res.data.JWT);
+                this.props.handleSetJwtState(formType, res.data.JWT);
                 this.setState({
                     login: {
                         email: '',
@@ -97,7 +98,7 @@ class LoginRegisterModal extends Component {
                         password2: ''
                     }
                 });
-                this.props.handleModalState();
+                
             })
             .catch(err => {
                 // * TODO: set alert to active
@@ -111,7 +112,7 @@ class LoginRegisterModal extends Component {
                 <div>
                     <Modal style={styles.modalStyles} isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
                         <ModalHeader style={styles.headerStyles}>
-                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('login')}>X</Button>
+                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('login', false)}>X</Button>
                             <p>Login</p>
                         </ModalHeader>
                         <ModalBody>
@@ -152,7 +153,7 @@ class LoginRegisterModal extends Component {
             return(
                 <Modal style={styles.modalStyles} isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
                     <ModalHeader style={styles.headerStyles}>
-                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('register')}>X</Button>
+                            <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('register', false)}>X</Button>
                             <p>Register</p>
                         </ModalHeader>
                     <ModalBody>
