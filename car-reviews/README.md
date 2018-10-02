@@ -13,20 +13,46 @@
 After doing research, we decided to use the color scheme above because the standard Blue, Gray, and White scheme is a standard that works. This particular comination of colors is useful for what is called 'flat-design', meaning very minimal and subtle 3D effects. 
 
 * Color Scheme:
-    - #77A6F7 - light blue
+
+    - ![light blue](https://www.beautycolorcode.com/77a6f7.png)
+    - #77A6F7 / rgb(119,166,247) - light blue
+    - https://www.color-hex.com/color/77a6f7
         - This, in combination with white, will be our 'dominant color', used for backgrounds of the search bar, nav bar, and other backgrounds. Blue evokes trust, security, and calmness, which are feelings we want our Users to feel when reading reviews.
-    - #2F77F3 - darker blue
+
+    
+
+    - ![darker blue](https://www.beautycolorcode.com/2F77F3.png)
+    - #2F77F3 / rgb(47,119,243) - darker blue
+    - https://www.color-hex.com/color/2f77f3
         - This color is used when a darker shade of blue is neccessary to make something stand out against a white background, like fonts.
-    - #FFFFFF - white
+
+
+
+    - ![white](https://www.beautycolorcode.com/FFFFFF.png)
+    - #FFFFFF / rgb(255, 255, 255) - white
+    - https://www.color-hex.com/color/ffffff
         - White will be our other 'dominant color', being the default background for the majority of the app.
-    - #D3E3FC - light blue/gray
+    
+    
+    
+    - ![light blue/gray](https://www.beautycolorcode.com/D3E3FC.png)
+    - #D3E3FC / rgb(211,227,252) - light blue/gray
+    - https://www.color-hex.com/color/d3e3fc
         - This color should be used for Modal Buttons, and perhaps borders as well. This complements both Blue and White.
-    - #B4B6BA - Gray
+    
+    
+    
+    - ![gray](https://www.beautycolorcode.com/B4B6BA.png)
+    - #B4B6BA / rgb(180,182,186) - Gray
+    - https://www.color-hex.com/color/b4b6ba
         - This is a darker shade of gray to be used for contrasting the lighter elements.
-    - #00887A - turquoise
+    
+    
+    
+    - ![turquoise](https://www.beautycolorcode.com/00887a.png)
+    - #00887A / rgb(0,136,122)- turquoise
+    - https://www.color-hex.com/color/00887a
         - This color will be our main go-to for Buttons and Components that need to "pop" or have attention drawn to it without standing out in 'loud' way. 
-    - #FFCCBC - beige/salmon
-        - This color will be used for components that need to standout, but need to be differentiated from turquoise. This color should be used sparingly. 
 
 * Fonts:
     - Julius Sans One - headers
