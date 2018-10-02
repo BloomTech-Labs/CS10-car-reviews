@@ -50,6 +50,11 @@ class Billing extends Component {
                           <form onSubmit={this.handleSubmitPassword}>
                           
                             <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 year unlimited reviews',  6.99)} >1 Year Subscription = 6.99</Button>
+                            <Checkout
+                            name={this.state.name}
+                            description={this.state.description}
+                            amount={this.state.amount}
+                            />
                             </form>
                         </CardBody>
                         </Card>
@@ -63,6 +68,11 @@ class Billing extends Component {
                           <form onSubmit={this.handleSubmitPassword}>
                           
                           <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','6 month unlimited reviews', 3.99)} >6 month Subscription = 3.99</Button>
+                          <Checkout
+                            name={this.state.name}
+                            description={this.state.description}
+                            amount={this.state.amount}
+                          />  
                             </form>
                         </CardBody>
                         </Card>
@@ -76,17 +86,17 @@ class Billing extends Component {
                           <form onSubmit={this.handleSubmitPassword}>
                           
                           <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 month unlimited reviews', 0.99)} >1 month Subscription = 0.99</Button>
+                          <Checkout
+                            name={this.state.name}
+                            description={this.state.description}
+                            amount={this.state.amount}
+                          />
                             </form>
                         </CardBody>
                         </Card>
                         </Col>
                               
                     </Row> 
-                    <Checkout
-                        name={this.state.name}
-                        description={this.state.description}
-                        amount={this.state.amount}
-                    />
                     </div>
                 </Elements>
                 </StripeProvider>
