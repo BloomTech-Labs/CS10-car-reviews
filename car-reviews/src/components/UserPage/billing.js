@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Container, Row, Col } from 'reactstrap';
+import {
+    Card, 
+    CardTitle,
+    CardBody,
+    Alert
+  } from 'reactstrap';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import './billing.css'
 import Checkout from './checkout';
@@ -37,19 +43,44 @@ class Billing extends Component {
                     <CardCVCElement/>
                     <PostalCodeElement/> */}
                     <Row> 
-                        <Col md="12">
-                            <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 year unlimited reviews: 40% OFF!',  6.99)} >1 Year Subscription = 6.99</Button>
+                        <Col md="4">
+                        <Card>
+                        <CardBody>
+                          <CardTitle>1 year unlimited reviews: 40% OFF!</CardTitle>
+                          <form onSubmit={this.handleSubmitPassword}>
+                          
+                            <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 year unlimited reviews',  6.99)} >1 Year Subscription = 6.99</Button>
+                            </form>
+                        </CardBody>
+                        </Card>
                         </Col>   
                     </Row> 
                     <Row> 
-                        <Col md="12">
-                            <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','6 month unlimited reviews: 33% OFF!', 3.99)} >6 month Subscription = 3.99</Button>
-                        </Col>   
+                        <Col md="4">
+                        <Card>
+                        <CardBody>
+                          <CardTitle>6 month unlimited reviews: 33% OFF!</CardTitle>
+                          <form onSubmit={this.handleSubmitPassword}>
+                          
+                          <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','6 month unlimited reviews', 3.99)} >6 month Subscription = 3.99</Button>
+                            </form>
+                        </CardBody>
+                        </Card>
+                        </Col>
                     </Row> 
                     <Row> 
-                        <Col md="12">
-                            <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 month unlimited reviews', 0.99)} >1 month Subscription = 0.99</Button>
-                        </Col>   
+                    <Col md="4">
+                        <Card>
+                        <CardBody>
+                          <CardTitle>1 month unlimited reviews</CardTitle>
+                          <form onSubmit={this.handleSubmitPassword}>
+                          
+                          <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 month unlimited reviews', 0.99)} >1 month Subscription = 0.99</Button>
+                            </form>
+                        </CardBody>
+                        </Card>
+                        </Col>
+                              
                     </Row> 
                     <Checkout
                         name={this.state.name}
