@@ -8,8 +8,6 @@ import HamburgerMenu from './hamburgermenu';
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-// const API_KEY = "b684b562f269e246688693389";
-console.log("process.env", API_KEY)
 
 // * TODO: Make colors for the Review and Search buttons match
 const styles = {
