@@ -15,14 +15,17 @@
     height: 90vh;
     width: 100%;
 }
+.Card {
+    border: 1px solid red!important; 
+}
 
 
 
 .PurchaseCard {
     border: 1px solid black;
-    /* display: flex !important; */
+    display: flex;
     /* display: inline-block; */
-    justify-content: center;
+    /* justify-content: ; */
     /* margin-left: 5px; */
 }
 
