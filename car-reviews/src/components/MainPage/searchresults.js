@@ -29,10 +29,11 @@ class SearchResults extends Component {
     super(props);
     
     this.toggle = this.toggle.bind(this);
+    this.handleReviewerFilter = this.handleReviewerFilter.bind(this);
     this.state = {
       dropdownOpen: false,
-      data: data,
-      usernames: []
+      usernames: [],
+      usernameSelected: ''
     };
   }
    
@@ -43,61 +44,72 @@ class SearchResults extends Component {
   }
 
   handleRenderSearchResults = () => {
-        if (this.props.location.state !== undefined) {
-            if (this.props.location.state.searchResults.length > 1) {
-                return ( this.props.location.state.searchResults.map((car) => {
-                    console.log("CAR DATA: ", car);
-                    return (
-                    <Col lg="3" md="6" key={car._id}>
-                        <div style={styles.resultCardStyles}>
-                            <ResultsModal {...car} />
-                        </div>
-                    </Col>
-                    );
-                }));
-            } else {
-                console.log("CAR DATA: ", this.props.location.state.searchResults);
-                return (
-                    <Col lg="3" md="6" key={this.props.location.state.searchResults._id}>
-                        <div style={styles.resultCardStyles}>
-                            <ResultsModal {...this.props.location.state.searchResults} />
-                        </div>
-                    </Col>
-                );
-            }
-        }
-    }
+    const searchArr = [];
+      if (this.state.usernameSelected) {
+          for (let i = 0; i < this.props.location.state.searchResults.length; i ++) {
+              searchArr.push(this.props.location.state.searchResults[i])
+              searchArr[i].reviews = searchArr[i].reviews.filter(review => review.user.username === this.state.usernameSelected);
+          }
+          console.log(searchArr);
+          return ( searchArr.map((car) => {
+            console.log("CAR DATA: ", car);
+            return (
+            <Col lg="3" md="6" key={car._id}>
+                <div style={styles.resultCardStyles}>
+                    {car.reviews.map((review) => 
+                        <ResultsModal {...car} {...review} 
+                    />)}
+                </div>
+            </Col>
+            );
+        }));
+      } else {
+        return ( this.props.location.state.searchResults.map((car) => {
+            console.log("CAR DATA: ", car);
+            return (
+            <Col lg="3" md="6" key={car._id}>
+                <div style={styles.resultCardStyles}>
+                    {car.reviews.map((review) => 
+                        <ResultsModal {...car} {...review} 
+                    />)}
+                </div>
+            </Col>
+            );
+        }));
+      }
+     
+  }
 
   handleRedirect = () => {
-      if (this.props.location.state === undefined){
+      if (!this.props.location.state || !this.props.location.state.searchResults[0]) {
         return <Redirect to='/' />
       } else {
           return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
       }
   }
 
-  handleFilter = (type) => {
-
+  handleReviewerFilter(username) {
+    this.setState({ usernameSelected: username });
+    this.handleRenderSearchResults();
   }
 
   componentDidMount() {
-    if (this.props.location.state !== undefined) {
-        let usernamesArr = [];
+    if (this.props.location.state.searchResults[0]) {
+        const usernamesArr = [];
         for (let i = 0; i < this.props.location.state.searchResults.length; i++) {
             for(let j = 0; j < this.props.location.state.searchResults[i].reviews.length; j++) {
                 usernamesArr.push(this.props.location.state.searchResults[i].reviews[j].user.username);
             }
         }
-        this.setState({ usernames: usernamesArr }, () => console.log(this.state));
-    } else {
-        console.log('problem');
-    }
+        this.setState({ usernames: [...new Set (usernamesArr)] });
+    } 
   }
 
     render() { 
         console.log(this.props.location.state);
         console.log(this.state.usernames.length);
         console.log(this.state.usernames);
+        console.log(this.state);
         return (
             <div>
                 {this.handleRedirect()}
@@ -111,7 +123,7 @@ class SearchResults extends Component {
                             <DropdownMenu>
                                 {this.state.usernames.map((username) => {
                                     return (
-                                        <DropdownItem>{username}</DropdownItem>
+                                        <DropdownItem onClick={() => this.handleReviewerFilter(username)}>{username}</DropdownItem>
                                     );
                                 })}
                             </DropdownMenu>

@@ -167,7 +167,6 @@ class Searchbar extends React.Component {
     } else if (!year && !make && !model && !trim){
       console.log(`There are no selected values in the search criteria`);
     }
-
     axios
       .post('http://localhost:3001/api/reviews/search', searchCriteria)
       .then(response => {

@@ -167,7 +167,7 @@ router.delete('/:id', verifyJWTMiddleware, (req, res) => {
 
 // search router:
 router.post("/search", (req, res) => {
-    const { year, make, model, trim, reviewer} = req.body;
+    const { year, make, model, trim, reviewer, edition} = req.body;
     
     // here we setup a search object that only adds values that are actually passed in to the .find method
     const searchObj = {};
@@ -190,7 +190,7 @@ router.post("/search", (req, res) => {
     }
     console.log(searchObj, '189');
     if (reviewer) {
-        CarModel.findOne(searchObj).select('make model year -_id edition averageScore')
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
             .populate({
                 path: 'reviews', 
                 model: 'reviews', 
@@ -201,7 +201,7 @@ router.post("/search", (req, res) => {
             .then(cars=> res.json(cars))
             .catch(err => res.status(500).json({ error: err.message }));
     } else {
-        CarModel.findOne(searchObj).select('make model year -_id edition averageScore')
+        CarModel.find(searchObj).select('make model year -_id edition averageScore')
             .populate({
                 path: 'reviews', 
                 model: 'reviews',
