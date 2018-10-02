@@ -25,9 +25,9 @@ class PopularCar extends Component {
 
     searchFunction = () => {
         console.log(this.state.selectedValues);
-        const { year, make, model, trim } = this.state.selectedValues
+        const { make, model } = this.state.selectedValues
         axios
-            .post('http://localhost:3001/api/reviews/search', {year, make, model, trim})
+            .post('http://localhost:3001/api/reviews/search', { make, model })
             .then(response => {
                 this.setState({ searchResults: response.data, searching: true });
             })
