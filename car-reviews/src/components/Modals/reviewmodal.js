@@ -100,7 +100,8 @@ class ReviewModal extends Component {
       <div>
         <Button className="modal-button" onClick={this.toggle}>
             <p>{`${year} ${make} ${model}`}</p>
-            <div>
+            <p>{`Review by: ${this.props.user.username}`}</p>
+            <div style={{ height: '150px' }}>
               <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
             </div>
             {/* <p>{edition}</p> */}
