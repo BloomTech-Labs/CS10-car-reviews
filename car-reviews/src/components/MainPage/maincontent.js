@@ -10,14 +10,21 @@ import './mainpage.css';
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
 // because they will need to be clicked on to open the review page. This is rendered in MainPage.
 
+const currentDate = new Date();
+
+const date = currentDate.getDate();
+const month = currentDate.getMonth(); 
+const year = currentDate.getFullYear()
+const dateString = date + "-" +(month + 1) + "-" + year;
+
 class MainContent extends Component {
     state = {
         popularCars: [],
         reviews: [],
         popularReviewers: [],
         counter: 0,
-        newdate: new Date,
-        olddate: null,
+        newdate: dateString,
+        olddate:  dateString,
       };
 
     componentDidMount() {
@@ -52,6 +59,8 @@ class MainContent extends Component {
         const oldDate = this.state.olddate;
 
 
+
+
         console.log('the new date is', newDate);
         console.log('the ols date is', oldDate);
 
@@ -64,7 +73,7 @@ class MainContent extends Component {
           .then(response => {
             console.log(response);
             const newstate = {counter: counter + 1}
-            // console.log('new response', newstate)
+             console.log('you haven ', newstate, ' reviews left')
             this.setState(newstate);
             
             if((this.state.counter > 3 && !response.data.paid) || (oldDate === newDate &&  this.state.counter > 3 && !response.data.paid )) {
