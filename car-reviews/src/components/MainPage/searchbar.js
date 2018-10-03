@@ -1,4 +1,3 @@
-
 import React, { Fragment } from 'react';
 import './mainpage.css';
 import { Button } from 'reactstrap';
