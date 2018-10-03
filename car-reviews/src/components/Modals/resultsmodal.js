@@ -121,14 +121,15 @@ class ResultsModal extends Component {
               edit= {false}
               half={true}
               count={5}
-              value={averageScore}
+              value={score}
               size={36}
               color2={'#ffd700'} />
-            <p>Star Rating {averageScore}</p>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle} className="modal-header">
-            <h2>{`${year} ${make} ${model} ${edition}`}</h2>
+          <ModalHeader toggle={this.toggle}>
+            <div className="modal-header">
+              <h2>{`${year} ${make} ${model} ${edition}`}</h2>
+            </div>
             <ReactStars
               type= "number"
               name= "score"
@@ -138,12 +139,12 @@ class ResultsModal extends Component {
               value={score}
               size={36}
               color2={'#ffd700'} />
-            <h5>{`Review by: ${user.username}`}</h5>
+            {`Review by: ${user.username}`}
           </ModalHeader>
-          <ModalBody className="modal-body">
+          <ModalBody>
             {/* <img src={carImage} style={{ height: '100%', width: '100%' }} /> */}
-            <p>{title}</p>
-            <p>{content}</p>
+            <div className="modal-body"><h3>{title}</h3></div>
+            <div className="modal-body">{content}</div>
           </ModalBody>
         </Modal>
       </div>
