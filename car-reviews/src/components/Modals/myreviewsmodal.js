@@ -46,7 +46,7 @@ class MyReviewsModal extends Component {
   };
 
   axios
-    .put(`http://localhost:3001/api/reviews/${this.props._id}`, editedContent, config)
+    .put(`https://back-lambda-car-reviews.herokuapp.com/api/reviews/${this.props._id}`, editedContent, config)
     .then(response => {
       console.log('editNote:', response);
     })
@@ -62,10 +62,8 @@ class MyReviewsModal extends Component {
     console.log('props', this.props);
     return (
       <div>
-        <Button className="modal-button" onClick={this.toggle}>
-          <div>
-            <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
-          </div>
+        <Button className="my-modal-button" onClick={this.toggle}>
+          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
           <ReactStars
               type= "number"
               name= "score"

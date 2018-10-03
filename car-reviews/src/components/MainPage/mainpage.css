@@ -12,12 +12,6 @@
     margin-right: 25px;
 }
 
-.auto-logo {
-    color: white;
-    font-size: 3em;
-    font-family: 'Julius Sans One', sans-serif;
-}
-
 .searchfields {
     display: flex;
     justify-content: center;
@@ -62,12 +56,9 @@
 
 
 .header {
-    background-color: white;
-    color: #2F77F3;
+    background-color: #2F77F3;
     background-image: linear-gradient(to right, white,#2F77F3);
     font-size: 2.2em;
-    border-radius: 15px;
-    padding-left: 10px;
 }
 
 .main-card {
@@ -93,13 +84,11 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../Assets/markus_spiske_2.jpg");
+    background-image: url("../Assets/markus_spiske_2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
-    display: flex;
-    flex-wrap: wrap;
 }
 .filter-row {
     display: flex;

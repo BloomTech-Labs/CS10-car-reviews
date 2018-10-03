@@ -43,7 +43,7 @@ class LoginRegister extends Component {
     }
     handleSubmitForm = (formType) => (event) => {
         event.preventDefault();
-        const requestURL = `https://lambda-car-reviews.herokuapp.com/auth/${formType}`;
+        const requestURL = `https://back-lambda-car-reviews.herokuapp.com/auth/${formType}`;
         const localRequests = `http://localhost:3001/auth/${formType}`
         const userForm = Object.assign({}, this.state[formType]);
         
@@ -75,7 +75,7 @@ class LoginRegister extends Component {
         }
 
 
-        axios.post(localRequests, userForm)
+        axios.post(requestURL, userForm)
             .then(response => {
                 // removes the alert if it's present
                 if (this.state.alerts[formType]) this.handleAlerts(formType);
