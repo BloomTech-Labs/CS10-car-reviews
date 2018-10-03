@@ -105,26 +105,26 @@ class SearchResults extends Component {
 //       }
 //   }
 
-//   handleReviewerFilter(username) {
-//     this.setState({ usernameSelected: username });
-//   }
+  handleReviewerFilter(username) {
+    this.setState({ usernameSelected: username });
+  }
 
-  handleChange = event => {
-    this.setState({ usernameSelected: event.target.value });
-  };
+//   handleChange = event => {
+//     this.setState({ usernameSelected: event.target.value });
+//   };
 
-//   componentDidMount() {
-//     // if (this.props.searchResults[0]) {
-//         const { searchResults } = this.props;
-//         const usernamesArr = [];
-//         for (let i = 0; i < searchResults.length; i++) {
-//             for(let j = 0; j < searchResults[i].reviews.length; j++) {
-//                 usernamesArr.push(searchResults[i].reviews[j].user.username);
-//             }
-//         }
-//         this.setState({ usernames: [...new Set (usernamesArr)] });
-//     // } 
-//   }
+  componentDidMount() {
+    // if (this.props.searchResults[0]) {
+        const { searchResults } = this.props;
+        const usernamesArr = [];
+        for (let i = 0; i < searchResults.length; i++) {
+            for(let j = 0; j < searchResults[i].reviews.length; j++) {
+                usernamesArr.push(searchResults[i].reviews[j].user.username);
+            }
+        }
+        this.setState({ usernames: [...new Set (usernamesArr)] });
+    // } 
+  }
 
     render() {
         const filteredList = this.filter(this.props.searchResults, this.state.usernameSelected);
@@ -139,11 +139,11 @@ class SearchResults extends Component {
                                 Reviewer
                             </DropdownToggle>
                             <DropdownMenu>
-                                {/* {this.state.usernames.map((username) => {
+                                {this.state.usernames.map((username) => {
                                     return (
                                         <DropdownItem onClick={() => this.handleReviewerFilter(username)}>{username}</DropdownItem>
                                     );
-                                })} */}
+                                })}
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         <UncontrolledDropdown className="dropdowns">
@@ -173,7 +173,7 @@ class SearchResults extends Component {
                         </UncontrolledDropdown>
                     </div>
                 </div>
-                <input onChange={this.handleChange} value={this.state.usernameSelected} />
+                {/* <input onChange={this.handleChange} value={this.state.usernameSelected} /> */}
                 <div style={styles.resultStyles}>
                     {/* {this.handleRenderSearchResults()} */}
                     {filteredList.map(car => {
