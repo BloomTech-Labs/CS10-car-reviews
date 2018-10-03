@@ -219,81 +219,78 @@ class Searchbar extends React.Component {
   
   render() {
     return (
-      <div>
-        <div className="searchbar">
-          {this.handleRenderSignin()}
-          {/* {this.handleRedirect()} */}
-          <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
-            <div className="searchfields">
-              <select
-                className="dropdowns"
-                name="make"
-                onChange={this.handleChangeMake}
+      <div className="searchbar">
+        {this.handleRenderSignin()}
+        {this.handleRedirect()}
+        <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
+          <div className="searchfields">
+            <select
+              className="dropdowns"
+              name="make"
+              onChange={this.handleChangeMake}
+            >
+            <option>Select a Make</option>
+            {this.state.makes.map((make) => {
+              return (
+                <option key={make.make_id}>{make.make}</option>
+              )
+            })}
+            </select>
+
+            {this.state.displayDropdowns.year ? <select
+              className="dropdowns"
+              name="year"
+              onChange={this.handleChangeYear}
+            >
+            <option>Select a Year</option>
+            {this.state.years.map((year) => {
+              return <option key={year.year}>{year.year}</option>
+            })}
+            </select> : <Fragment />}
+
+            {this.state.displayDropdowns.model ? <select
+              className="dropdowns"
+              name="model"
+              onChange={this.handleChangeModels}
               >
-              <option>Select a Make</option>
-              {this.state.makes.map((make) => {
-                return (
-                  <option key={make.make_id}>{make.make}</option>
-                )
+
+              <option>Select a Model</option>
+            {this.state.models.map((model) => {
+              return <option key={model.model_id}>{model.model}</option>
               })}
-              </select>
-
-              {this.state.displayDropdowns.year ? <select
-                className="dropdowns"
-                name="year"
-                onChange={this.handleChangeYear}
-              >
-              <option>Select a Year</option>
-              {this.state.years.map((year) => {
-                return <option key={year.year}>{year.year}</option>
-              })}
-              </select> : <Fragment />}
-
-              {this.state.displayDropdowns.model ? <select
-                className="dropdowns"
-                name="model"
-                onChange={this.handleChangeModels}
-                >
-
-                <option>Select a Model</option>
-              {this.state.models.map((model) => {
-                return <option key={model.model_id}>{model.model}</option>
-                })}
-              </select> : <Fragment />}
-              
-                
-              {this.state.displayDropdowns.trim ? <select
-                className="dropdowns"
-                name="trim"
-                onChange={this.handleChangeTrim}
-              >
-                <option>Select a Trim</option>
-
-              {this.state.trims.map((trim) => {
-                return (
-                  <option key={trim.trim_id}>{trim.trim}</option>
-                )
-              })}
-              </select> : <Fragment />}
-            </div> 
+            </select> : <Fragment />}
             
-            <div style={styles.buttonContainerStyles}>
-              <Link style={styles.linkStyles}  to='/MyReviews'>
-                  <Button
+              
+            {this.state.displayDropdowns.trim ? <select
+              className="dropdowns"
+              name="trim"
+              onChange={this.handleChangeTrim}
+            >
+              <option>Select a Trim</option>
+
+            {this.state.trims.map((trim) => {
+              return (
+                <option key={trim.trim_id}>{trim.trim}</option>
+              )
+            })}
+            </select> : <Fragment />}
+          </div> 
+          
+          <div style={styles.buttonContainerStyles}>
+            <Link style={styles.linkStyles}  to='/MyReviews'>
+                <Button
+                  className="searchbar-buttons"
+                >
+                  Review
+                </Button>
+                </Link>
+                <div style={styles.linkStyles}>
+                  <Button 
                     className="searchbar-buttons"
-                  >
-                    Review
-                  </Button>
-                  </Link>
-                  <div style={styles.linkStyles}>
-                    <Button 
-                      className="searchbar-buttons"
-                      onClick={()=>this.searchFunction()}
-                    >Search</Button>
-                  </div>
-            </div>
-        </div>
-        {this.state.searchResults[0] && <SearchResults searchResults={this.state.searchResults}/>}
+                    onClick={()=>this.searchFunction()}
+                  >Search</Button>
+                </div>
+          </div>
       </div>
     );
   }
