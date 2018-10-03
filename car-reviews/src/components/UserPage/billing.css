@@ -1,29 +1,30 @@
 .billing-container {
-    width: 100%;
-    background-image: url("../Assets/Pok_Rie.jpg");
-    /* Center and scale the image nicely */
+    position: absolute;
+    bottom: 0;
+    top: 73px;
+    /* width: 100%; */
+    background-color: #D3E3FC;
+    /* background-image: url("../Assets/Pok_Rie.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: center; */
 }
 
-.BillingBox {
-    /* display: flex !important; */
-    /* border: 5px solid black; */
+/* .BillingBox {
     text-align: center;
 
     padding-top: 60px;
     height: 90vh;
     width: 100%;
-}
+} */
 
 .element {
     color: white;
-	text-shadow:
+	/* text-shadow:
 		-1px -1px 0 #000,
 		1px -1px 0 #000,
 		-1px 1px 0 #000,
-		1px 1px 0 #000;
+		1px 1px 0 #000; */
 }
 
 /* H3{

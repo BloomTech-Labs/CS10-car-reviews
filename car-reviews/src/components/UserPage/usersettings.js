@@ -15,7 +15,9 @@ const styles = {
     width: "40%",
     height: "45%",
     margin: '1%',
-    marginTop: '10%'
+    marginTop: '10%',
+    background: 'white !important',
+    opacity: '1'
   },
   inputStyles: {
     width: '60%',

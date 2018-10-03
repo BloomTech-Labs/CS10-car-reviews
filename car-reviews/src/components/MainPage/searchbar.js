@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import './hamburgermenu.css';
 import HamburgerMenu from './hamburgermenu';
+import Navbar from './navbar';
 import LoginRegisterModal from '../Modals/loginregistermodal';
 import axios from 'axios';
 
@@ -206,14 +207,15 @@ class Searchbar extends React.Component {
             <div style={styles.loginContainerStyles}>
               <Button onClick={this.handleModalState('login', true)} className="searchbar-buttons">Sign In</Button>
               <Button onClick={this.handleModalState('register', true)} className="searchbar-buttons">Register</Button>
-              <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
+              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
             </div>
         </div>
       );
     } else {
       return (
-        <div id="hamburgerMenu">
-          <HamburgerMenu right />
+        <div style={{ height: '30px' }}>
+          {/* <HamburgerMenu right /> */}
+          {/* <Navbar /> */}
         </div>
       );
     }
@@ -281,9 +283,12 @@ class Searchbar extends React.Component {
   
   render() {
     return (
+      <div>
+      <div style={{ height: '70px' }}></div>
       <div className="searchbar">
         {this.handleRenderSignin()}
         {this.handleRedirect()}
+        <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
         <LoginRegisterModal 
           isOpen={this.state.modalState.isOpen}
           type={this.state.modalState.type}
@@ -345,6 +350,7 @@ class Searchbar extends React.Component {
           </div> 
           
           {this.handleReviewButton()}
+      </div>
       </div>
     );
   }

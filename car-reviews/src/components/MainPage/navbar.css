@@ -1,0 +1,28 @@
+.navbar-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #2F77F3;
+    z-index: 3;
+}
+
+.nc {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbar-item {
+    color: white;
+    font-size: 1.3em;
+}
+
+.navbar-item:hover {
+    color: #D3E3FC;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
+}
