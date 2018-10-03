@@ -14,18 +14,6 @@ import memoize from "memoize-one";
 // search results. As with the main content, I chose to represent the result cards as Buttons. 
 // This is rendered in MainPage.
 
-const styles = {
-    resultCardStyles: {
-
-
-    },
-    resultStyles: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: 20
-    }
-}
-
 class SearchResults extends Component {
   constructor(props) {
     super(props);
@@ -35,12 +23,46 @@ class SearchResults extends Component {
       dropdownOpen: false,
       usernames: [],
       usernameSelected: '',
+      sortBy: ''
     };
   }
 
   filter = memoize(
     (list, filterText) => list.filter(item => item.user.username.includes(filterText))
   );
+
+  sort = (list, sortBy) => {
+    switch (sortBy) {
+        case 'ratingAsc':
+            return list.sort(function(a, b) {
+                return a.score - b.score;
+            });
+        case 'ratingDsc':
+            return list.sort(function(a, b) {
+                return b.score - a.score;
+            }); 
+        case 'yearAsc':
+            return list.sort(function(a, b) {
+                return a.car.year - b.car.year;
+            }); 
+        case 'yearDsc':
+            return list.sort(function(a, b) {
+                return b.car.year - a.car.year;
+            });
+        default:
+            return list.sort(function(a, b) {
+                var nameA = a.user.username.toUpperCase(); 
+                var nameB = b.user.username.toUpperCase(); 
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+    }
+  }
    
   toggle() {
     this.setState(prevState => ({
@@ -61,6 +83,10 @@ class SearchResults extends Component {
     this.setState({ usernameSelected: username });
   }
 
+  handleSortFilter(sortingOption) {
+    this.setState({ sortBy: sortingOption });
+  }
+
   handleResetFilter() {
     this.setState({ usernameSelected: '' });
   }
@@ -75,7 +101,8 @@ class SearchResults extends Component {
   }
 
     render() {
-        const filteredList = this.filter(this.props.location.state.searchResults, this.state.usernameSelected);
+        const { usernameSelected, sortBy } = this.state;
+        const filteredList = this.sort(this.filter(this.props.location.state.searchResults, usernameSelected), sortBy);
         return (
             <div>
                 {this.handleRedirect()}
@@ -99,15 +126,6 @@ class SearchResults extends Component {
                                 })}
                             </DropdownMenu>
                         </UncontrolledDropdown>
-                        <UncontrolledDropdown className="dropdowns">
-                            <DropdownToggle caret>
-                                Owned
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>Rented</DropdownItem>
-                                <DropdownItem>Driven</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
                     </div>
                     <div className="sort-by">
                         <h5>Sort by:</h5>
@@ -116,12 +134,18 @@ class SearchResults extends Component {
                                 Reviewer
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem>Rating Up</DropdownItem>
-                                <DropdownItem>Rating Down</DropdownItem>
-                                <DropdownItem>Year Up</DropdownItem>
-                                <DropdownItem>Year Down</DropdownItem>
-                                <DropdownItem>Date of Review</DropdownItem>
-                                <DropdownItem divider />
+                                <DropdownItem onClick={()=> this.handleSortFilter('ratingAsc')}>
+                                    Rating Up
+                                </DropdownItem>
+                                <DropdownItem onClick={()=> this.handleSortFilter('ratingDsc')}>
+                                    Rating Down
+                                </DropdownItem>
+                                <DropdownItem onClick={()=> this.handleSortFilter('yearAsc')}>
+                                    Year Up
+                                </DropdownItem>
+                                <DropdownItem onClick={()=> this.handleSortFilter('yearDsc')}>
+                                    Year Down
+                                </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </div>
