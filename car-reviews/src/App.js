@@ -11,6 +11,7 @@ import Login from './components/MainPage/loginregister';
 import AuthService from './components/Auth/authservice';
 
 const Auth = new AuthService();
+console.log("AM I LOGGED IN? ", Auth.loggedIn())
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -28,7 +29,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/searchpage" component={SearchResults} />
-          {/* <PrivateRoute path="/UserPage" component={UserPage} /> */}
+          {/* <PrivateRoute path="/userpage" component={UserPage} /> */}
+          {/* <PrivateRoute path="/UserPage" component={()=> <UserPage isLoggedIn={isLoggedIn}/>} /> */}
           <PrivateRoute path="/Billing" component={BillingContainer} />
           <PrivateRoute path="/MyReviews" component={MyReviews} />
           <PrivateRoute path="/Settings" component={Settings} />

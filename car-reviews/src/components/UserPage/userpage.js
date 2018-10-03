@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import Header from './header';
-import LeftNavBar from './leftnavbar';
+import Navbar from '../MainPage/navbar';
+import ReviewList from './reviewlist';
+import Billing from './billing';
+import Settings from './usersettings';
 
+// console.log("AM i Logged in here? ", isLoggedin)
 class UserPage extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <LeftNavBar />
+        {/* <Navbar 
+        isLoggedin={this.props.isLoggedin}
+        />
+        <ReviewList />
+        <Billing />
+        <Settings /> */}
       </div>
     );
   }

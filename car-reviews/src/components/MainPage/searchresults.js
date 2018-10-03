@@ -110,7 +110,9 @@ class SearchResults extends Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <Navbar 
+                    isLoggedIn={this.props.location.state.isLoggedIn}
+                />
                 {this.handleRedirect()}
                 <div className="filter-row">
                     <div className="filters"> 
