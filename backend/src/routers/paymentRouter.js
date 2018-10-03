@@ -69,7 +69,10 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
                       // asynchronously called
                     //   console.log('subscription is :', subscription)
                     }
-                  );
+                  )
+                  .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
+                  .then(response => {res.json( response )})
+                  .catch(err => res.status(500).json({ error: err.message }));;
             
             }
           );
@@ -83,10 +86,7 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
     }
 
       
-    // stripe.charges.create(req.body)
-    //     .then(response => UserModel.findOneAndUpdate({email: email} , {paid: true}, {new: true}))
-    //     .then(response => {res.json( response )})
-    //     .catch(err => res.status(500).json({ error: err.message }));
+  
 });
 
 // exporting the router
