@@ -2,9 +2,9 @@
     position: fixed;
     top: 0;
     width: 100%;
+    /* height: 150px; */
     display: flex;
     /* justify-content: center; */
-    
     justify-content: space-evenly;
     background-color: #2F77F3;
     z-index: 3;
@@ -16,10 +16,4 @@
 
 .navbar-item:hover {
     color: #D3E3FC;
-}
-
-.auto-logo {
-    color: white;
-    font-size: 3em;
-    font-family: 'Julius Sans One', sans-serif;
 }

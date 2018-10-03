@@ -12,6 +12,11 @@
     margin-right: 25px;
 }
 
+.auto-logo {
+    color: white;
+    font-size: 3em;
+    font-family: 'Julius Sans One', sans-serif;
+}
 
 .searchfields {
     display: flex;

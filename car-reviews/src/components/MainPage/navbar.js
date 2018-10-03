@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from '../Auth/authservice';
-import { Row } from 'reactstrap'
+import { Container, Row } from 'reactstrap'
 import './navbar.css';
 import LoginRegisterModal from '../Modals/loginregistermodal';
 
@@ -41,7 +41,7 @@ class Navbar extends Component {
   renderSignout = () => {
     if (!this.props.isLoggedIn) {
       return (
-        <div className="navbar-container">
+        <div>
           <a className="navbar-item" href="/">
             Home
           </a>
@@ -90,46 +90,10 @@ class Navbar extends Component {
   render() { 
     return (
       <div className="navbar-container">
-        {/* <Row>
-          <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
-        </Row> */}
-        {/* <Row> */}
           {this.renderSignout()}
-        {/* </Row> */}
       </div>
     );
   }
 }
  
 export default Navbar;
-// export default props => {
-//   const signOut = () => {
-//     Auth.logout();
-//   };
-
-//   return (
-//     <div {...props} className="navbar-container">
-//       <a className="navbar-item" href="/">
-//         Home
-//       </a>
-
-//       {/* <a className="navbar-item" href="/searchpage">
-//         Search
-//       </a> */}
-
-//       <a className="navbar-item" href="/MyReviews">
-//         My Reviews
-//       </a>
-
-//       <a className="navbar-item" href="/Billing">
-//         Billing
-//       </a>
-//       <a className="navbar-item" href="/Settings">
-//         Settings
-//       </a>
-//       <a className="navbar-item" href="/" onClick={signOut}>
-//         Sign Out
-//       </a>
-//     </div>
-//   );
-// };
