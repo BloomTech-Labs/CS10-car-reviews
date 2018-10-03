@@ -92,7 +92,7 @@ class SearchResults extends Component {
                                 </DropdownItem>
                                 {this.state.usernames.map((username) => {
                                     return (
-                                        <DropdownItem 
+                                        <DropdownItem key={username}
                                         onClick={() => this.handleReviewerFilter(username)}>{username}
                                         </DropdownItem>
                                     );
