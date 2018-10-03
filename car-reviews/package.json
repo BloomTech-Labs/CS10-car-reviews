@@ -10,6 +10,7 @@
     "enzyme-adapter-react-16": "^1.5.0",
     "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
+    "memoize-one": "^4.0.2",
     "react": "^16.5.0",
     "react-burger-menu": "^2.5.2",
     "react-dom": "^16.5.0",

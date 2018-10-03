@@ -3,9 +3,11 @@ import placeholder from '../../logo.svg';
 import './mainpage.css';
 import SearchBar from './searchbar';
 import data from '../../data';
-import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown, Col} from 'reactstrap';
+import {DropdownToggle, DropdownMenu, DropdownItem, 
+    Button, UncontrolledDropdown, Col, Container, Row} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import ResultsModal from '../Modals/resultsmodal';
+import memoize from "memoize-one";
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
@@ -29,55 +31,21 @@ class SearchResults extends Component {
     super(props);
     
     this.toggle = this.toggle.bind(this);
-    this.handleReviewerFilter = this.handleReviewerFilter.bind(this);
     this.state = {
       dropdownOpen: false,
       usernames: [],
-      usernameSelected: ''
+      usernameSelected: '',
     };
   }
+
+  filter = memoize(
+    (list, filterText) => list.filter(item => item.user.username.includes(filterText))
+  );
    
   toggle() {
     this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen
     }));
-  }
-
-  handleRenderSearchResults = () => {
-    const searchArr = [];
-      if (this.state.usernameSelected) {
-          for (let i = 0; i < this.props.location.state.searchResults.length; i ++) {
-              searchArr.push(this.props.location.state.searchResults[i])
-              searchArr[i].reviews = searchArr[i].reviews.filter(review => review.user.username === this.state.usernameSelected);
-          }
-          console.log(searchArr);
-          return ( searchArr.map((car) => {
-            console.log("CAR DATA: ", car);
-            return (
-            <Col lg="3" md="6" key={car._id}>
-                <div style={styles.resultCardStyles}>
-                    {car.reviews.map((review) => 
-                        <ResultsModal {...car} {...review} 
-                    />)}
-                </div>
-            </Col>
-            );
-        }));
-      } else {
-        return ( this.props.location.state.searchResults.map((car) => {
-            console.log("CAR DATA: ", car);
-            return (
-            <Col lg="3" md="6" key={car._id}>
-                <div style={styles.resultCardStyles}>
-                    {car.reviews.map((review) => 
-                        <ResultsModal {...car} {...review} 
-                    />)}
-                </div>
-            </Col>
-            );
-        }));
-      }
-     
   }
 
   handleRedirect = () => {
@@ -91,22 +59,23 @@ class SearchResults extends Component {
 
   handleReviewerFilter(username) {
     this.setState({ usernameSelected: username });
-    this.handleRenderSearchResults();
+  }
+
+  handleResetFilter() {
+    this.setState({ usernameSelected: '' });
   }
 
   componentDidMount() {
-    if (this.props.location.state.searchResults[0]) {
-        const usernamesArr = [];
-        for (let i = 0; i < this.props.location.state.searchResults.length; i++) {
-            for(let j = 0; j < this.props.location.state.searchResults[i].reviews.length; j++) {
-                usernamesArr.push(this.props.location.state.searchResults[i].reviews[j].user.username);
-            }
-        }
-        this.setState({ usernames: [...new Set (usernamesArr)] });
-    } 
+    const { searchResults } = this.props.location.state;
+    const usernamesArr = [];
+    for (let i = 0; i < searchResults.length; i++) {
+        usernamesArr.push(searchResults[i].user.username);
+    }
+    this.setState({ usernames: [...new Set (usernamesArr)] });
   }
 
     render() {
+        const filteredList = this.filter(this.props.location.state.searchResults, this.state.usernameSelected);
         return (
             <div>
                 {this.handleRedirect()}
@@ -118,9 +87,14 @@ class SearchResults extends Component {
                                 Reviewer
                             </DropdownToggle>
                             <DropdownMenu>
+                                <DropdownItem onClick={() => this.handleResetFilter()}>
+                                    All Users
+                                </DropdownItem>
                                 {this.state.usernames.map((username) => {
                                     return (
-                                        <DropdownItem onClick={() => this.handleReviewerFilter(username)}>{username}</DropdownItem>
+                                        <DropdownItem key={username}
+                                        onClick={() => this.handleReviewerFilter(username)}>{username}
+                                        </DropdownItem>
                                     );
                                 })}
                             </DropdownMenu>
@@ -152,9 +126,15 @@ class SearchResults extends Component {
                         </UncontrolledDropdown>
                     </div>
                 </div>
-                <div style={styles.resultStyles}>
-                    {this.handleRenderSearchResults()}
-                </div>
+                <Container>
+                    <Row>
+                        {filteredList.map(review =>
+                            <Col lg="3" md="6" key={review._id}>
+                                <ResultsModal {...review.car} {...review}  {...review.user} />
+                            </Col>
+                        )}
+                    </Row>    
+                </Container>
             </div>
         );
     }

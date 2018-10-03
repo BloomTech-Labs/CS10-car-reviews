@@ -191,7 +191,6 @@ router.post("/search", (req, res) => {
       searchObj.reviewer = reviewer;
     }
     searchObj.reviews = { $not: { $size: 0 } };
-    console.log(searchObj, '189');
     if (reviewer) {
         CarModel.find(searchObj).select('make model year -_id edition averageScore')
             .populate({
@@ -204,18 +203,26 @@ router.post("/search", (req, res) => {
             .then(cars=> res.json(cars))
             .catch(err => res.status(500).json({ error: err.message }));
     } else {
-        CarModel.find(searchObj).select('make model year -_id edition averageScore')
-            .populate({
-                path: 'reviews', 
-                model: 'reviews',
-                select: 'title content score user carImage',
-                populate: { path: 'user', model: 'users' }
-            })
-            .then(cars=> {
-                console.log(cars, '200');
-                res.json(cars);
-            })
-            .catch(err => res.status(500).json({ error: err.message }));
+        CarModel.find(searchObj).select('id')
+        .then(cars => {
+          console.log(cars)
+          return ReviewModel.find( { car: { $in: cars } } )
+              .populate({
+                path: 'car', 
+                model: 'cars',
+                select: 'make model year edition averageScore imageURL',
+              })
+              .populate({
+                path: 'user', 
+                model: 'users',
+                select: 'username',
+              })
+        })
+        .then(reviews=> {
+          console.log(reviews, '200');
+          res.json(reviews);
+        })
+        .catch(err => res.status(500).json({ error: err.message }));
     }
 })
 
