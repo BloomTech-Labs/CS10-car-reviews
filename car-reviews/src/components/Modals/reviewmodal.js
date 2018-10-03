@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } f
 import axios from 'axios';
 import ReactStars from 'react-stars'
 import './reviewmodal.css';
+import defaultImg from '../../default_img.png';
 
 // This component is the review modal. It is rendered in maincontent.js
 
@@ -93,8 +94,14 @@ class ReviewModal extends Component {
     ///////////////////////////////////////////////
   
   render() {
-    const { score, createOn, title, content, carImage } = this.props;
+    const { score, createOn, title, content } = this.props;
     const { year, make, model, edition } = this.props.car;
+    let carImage;
+    if (this.props.carImage) {
+      carImage  = this.props.carImage;
+    } else {
+      carImage = defaultImg;
+    }
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle}>
