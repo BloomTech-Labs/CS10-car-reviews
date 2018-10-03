@@ -46,10 +46,6 @@ class Navbar extends Component {
             Home
           </a>
     
-          {/* <a className="navbar-item" href="/searchpage">
-            Search
-          </a> */}
-    
           <a className="navbar-item" href="/MyReviews">
             My Reviews
           </a>
@@ -60,9 +56,6 @@ class Navbar extends Component {
           <a className="navbar-item" href="/Settings">
             Settings
           </a>
-          {/* <a className="navbar-item" href="/" onClick={this.signOut}>
-            Sign Out
-          </a> */}
         </div>
       );
     } else {
@@ -71,10 +64,6 @@ class Navbar extends Component {
           <a className="navbar-item" href="/">
             Home
           </a>
-    
-          {/* <a className="navbar-item" href="/searchpage">
-            Search
-          </a> */}
     
           <a className="navbar-item" href="/MyReviews">
             My Reviews
