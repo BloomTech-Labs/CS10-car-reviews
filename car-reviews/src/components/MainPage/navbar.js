@@ -41,7 +41,7 @@ class Navbar extends Component {
   renderSignout = () => {
     if (!this.props.isLoggedIn) {
       return (
-        <div>
+        <div className="nc">
           <a className="navbar-item" href="/">
             Home
           </a>
@@ -60,7 +60,7 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <div>
+        <div className="nc">
           <a className="navbar-item" href="/">
             Home
           </a>

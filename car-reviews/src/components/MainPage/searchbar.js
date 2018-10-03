@@ -209,7 +209,7 @@ class Searchbar extends React.Component {
             <div style={styles.loginContainerStyles}>
               <Button onClick={this.handleModalState('login', true)} className="searchbar-buttons">Sign In</Button>
               <Button onClick={this.handleModalState('register', true)} className="searchbar-buttons">Register</Button>
-              <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link>
+              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
             </div>
         </div>
       );
@@ -286,7 +286,7 @@ class Searchbar extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ height: '24px' }}></div>
+        <div style={{ height: '70px' }}></div>
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}
