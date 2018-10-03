@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import AuthService from '../Auth/authservice';
-import { Container, Row } from 'reactstrap'
+import flRev from '../Assets/flat_review.png'
+import flBil from '../Assets/flat_billing.png';
+import flSet from '../Assets/flat_settings.png';
 import './navbar.css';
-import LoginRegisterModal from '../Modals/loginregistermodal';
 
 
 const Auth = new AuthService();
@@ -19,25 +20,6 @@ class Navbar extends Component {
      }
   }
 
-  // handleModalState = (modalType, status) => () => {
-  //   const newState = Object.assign({}, this.state);
-  //   newState.modalState.type = modalType;
-  //   newState.modalState.isOpen = status;
-  //   this.setState(newState);
-  // }
-
-  // handleChangeModalType = modalType => {
-  //   const newState = Object.assign({}, this.state);
-  //   newState.modalState.type = modalType;
-  //   this.setState(newState);
-  // }
-
-  // handleSetJwtState = (type, jwt) => {
-  //   localStorage.setItem('jwt', jwt);
-  //   this.props.handleLogin(true);
-  //   this.setState({ modalState: { isOpen: false, type } })
-  // }
-
   renderSignout = () => {
     if (!this.props.isLoggedIn) {
       return (
@@ -47,13 +29,28 @@ class Navbar extends Component {
           </a>
     
           <a className="navbar-item" href="/MyReviews">
+            <img 
+              src={flRev} 
+              alt="review-icon" 
+              className="icon"
+            />
             My Reviews
           </a>
     
           <a className="navbar-item" href="/Billing">
+            <img 
+              src={flBil} 
+              alt="billing-icon" 
+              className="icon"
+            />
             Billing
           </a>
           <a className="navbar-item" href="/Settings">
+            <img 
+              src={flSet} 
+              alt="settings-icon" 
+              className="icon"
+            />
             Settings
           </a>
         </div>
@@ -66,13 +63,28 @@ class Navbar extends Component {
           </a>
     
           <a className="navbar-item" href="/MyReviews">
+            <img 
+              src={flRev} 
+              alt="review-icon" 
+              className="icon"
+            />
             My Reviews
           </a>
     
           <a className="navbar-item" href="/Billing">
+            <img 
+              src={flBil} 
+              alt="billing-icon" 
+              className="icon"
+            />
             Billing
           </a>
           <a className="navbar-item" href="/Settings">
+            <img 
+              src={flSet} 
+              alt="settings-icon" 
+              className="icon"
+            />
             Settings
           </a>
           <a className="navbar-item" href="/" onClick={this.signOut}>

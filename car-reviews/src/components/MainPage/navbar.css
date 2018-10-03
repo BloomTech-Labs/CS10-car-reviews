@@ -21,3 +21,8 @@
 .navbar-item:hover {
     color: #D3E3FC;
 }
+
+.icon {
+    height: 30px;
+    width: 30px;
+}
