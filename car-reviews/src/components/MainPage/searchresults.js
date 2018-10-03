@@ -6,6 +6,7 @@ import data from '../../data';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown, Col} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import ResultsModal from '../Modals/resultsmodal';
+import memoize from "memoize-one";
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
@@ -29,13 +30,25 @@ class SearchResults extends Component {
     super(props);
     
     this.toggle = this.toggle.bind(this);
-    this.handleReviewerFilter = this.handleReviewerFilter.bind(this);
+    // this.handleReviewerFilter = this.handleReviewerFilter.bind(this);
     this.state = {
       dropdownOpen: false,
       usernames: [],
-      usernameSelected: ''
+      usernameSelected: '',
     };
   }
+
+  filter = memoize((list, filterText) => {
+      const newList = list.slice();
+      for (let i = newList.length - 1; i >= 0; i--) {
+        newList[i].reviews = newList[i].reviews.filter(review => review.user.username.includes(filterText));
+        if (list[i].reviews.length === 0) {
+            newList.splice(i, 1);
+        }
+      }
+      return newList;
+    }
+  );
    
   toggle() {
     this.setState(prevState => ({
@@ -44,10 +57,13 @@ class SearchResults extends Component {
   }
 
   handleRenderSearchResults = () => {
+    console.log(this.state);
+    console.log(this.props);
+    const { searchResults, usernameSelected } = this.state; 
     const searchArr = [];
-      if (this.state.usernameSelected) {
-          for (let i = 0; i < this.props.location.state.searchResults.length; i ++) {
-              searchArr.push(this.props.location.state.searchResults[i])
+      if (usernameSelected) {
+          for (let i = 0; i < searchResults.length; i ++) {
+              searchArr.push(searchResults[i])
               searchArr[i].reviews = searchArr[i].reviews.filter(review => review.user.username === this.state.usernameSelected);
           }
           console.log(searchArr);
@@ -57,20 +73,20 @@ class SearchResults extends Component {
             <Col lg="3" md="6" key={car._id}>
                 <div style={styles.resultCardStyles}>
                     {car.reviews.map((review) => 
-                        <ResultsModal {...car} {...review} 
+                        <ResultsModal key={review._id} {...car} {...review} 
                     />)}
                 </div>
             </Col>
             );
         }));
       } else {
-        return ( this.props.location.state.searchResults.map((car) => {
+        return (searchResults.map((car) => {
             console.log("CAR DATA: ", car);
             return (
             <Col lg="3" md="6" key={car._id}>
                 <div style={styles.resultCardStyles}>
                     {car.reviews.map((review) => 
-                        <ResultsModal {...car} {...review} 
+                        <ResultsModal  key={review._id} {...car} {...review} 
                     />)}
                 </div>
             </Col>
@@ -80,36 +96,41 @@ class SearchResults extends Component {
      
   }
 
-  handleRedirect = () => {
-      if (!this.props.location.state || !this.props.location.state.searchResults[0] 
-        || this.props.location.state === undefined) {
-        return <Redirect to='/' />
-      } else {
-          return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
-      }
-  }
+//   handleRedirect = () => {
+//       if (!this.props.location.state || !this.props.location.state.searchResults[0] 
+//         || this.props.location.state === undefined) {
+//         return <Redirect to='/' />
+//       } else {
+//           return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
+//       }
+//   }
 
-  handleReviewerFilter(username) {
-    this.setState({ usernameSelected: username });
-    this.handleRenderSearchResults();
-  }
+//   handleReviewerFilter(username) {
+//     this.setState({ usernameSelected: username });
+//   }
 
-  componentDidMount() {
-    if (this.props.location.state.searchResults[0]) {
-        const usernamesArr = [];
-        for (let i = 0; i < this.props.location.state.searchResults.length; i++) {
-            for(let j = 0; j < this.props.location.state.searchResults[i].reviews.length; j++) {
-                usernamesArr.push(this.props.location.state.searchResults[i].reviews[j].user.username);
-            }
-        }
-        this.setState({ usernames: [...new Set (usernamesArr)] });
-    } 
-  }
+  handleChange = event => {
+    this.setState({ usernameSelected: event.target.value });
+  };
+
+//   componentDidMount() {
+//     // if (this.props.searchResults[0]) {
+//         const { searchResults } = this.props;
+//         const usernamesArr = [];
+//         for (let i = 0; i < searchResults.length; i++) {
+//             for(let j = 0; j < searchResults[i].reviews.length; j++) {
+//                 usernamesArr.push(searchResults[i].reviews[j].user.username);
+//             }
+//         }
+//         this.setState({ usernames: [...new Set (usernamesArr)] });
+//     // } 
+//   }
 
     render() {
+        const filteredList = this.filter(this.props.searchResults, this.state.usernameSelected);
         return (
             <div>
-                {this.handleRedirect()}
+                {/* {this.handleRedirect()} */}
                 <div className="filter-row">
                     <div className="filters"> 
                         <h5>Filter by:</h5>
@@ -118,11 +139,11 @@ class SearchResults extends Component {
                                 Reviewer
                             </DropdownToggle>
                             <DropdownMenu>
-                                {this.state.usernames.map((username) => {
+                                {/* {this.state.usernames.map((username) => {
                                     return (
                                         <DropdownItem onClick={() => this.handleReviewerFilter(username)}>{username}</DropdownItem>
                                     );
-                                })}
+                                })} */}
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         <UncontrolledDropdown className="dropdowns">
@@ -152,8 +173,13 @@ class SearchResults extends Component {
                         </UncontrolledDropdown>
                     </div>
                 </div>
+                <input onChange={this.handleChange} value={this.state.usernameSelected} />
                 <div style={styles.resultStyles}>
-                    {this.handleRenderSearchResults()}
+                    {/* {this.handleRenderSearchResults()} */}
+                    {filteredList.map(car => {
+                        const reviews = car.reviews.map(review => <ResultsModal key={review._id} {...car} {...review} />)
+                        return reviews
+                    })}
                 </div>
             </div>
         );

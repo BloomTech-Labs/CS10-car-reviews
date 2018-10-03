@@ -222,7 +222,7 @@ class Searchbar extends React.Component {
       <div>
         <div className="searchbar">
           {this.handleRenderSignin()}
-          {this.handleRedirect()}
+          {/* {this.handleRedirect()} */}
           <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
             <div className="searchfields">
               <select
@@ -293,7 +293,7 @@ class Searchbar extends React.Component {
                   </div>
             </div>
         </div>
-        {/* {this.state.searchResults[0] && <SearchResults searchResults={this.state.searchResults} />} */}
+        {this.state.searchResults[0] && <SearchResults searchResults={this.state.searchResults}/>}
       </div>
     );
   }
