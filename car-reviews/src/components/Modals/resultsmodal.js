@@ -92,10 +92,9 @@ class ResultsModal extends Component {
         console.warn(err);
       });
     }
-    ///////////////////////////////////////////////
   
   render() {
-      const { year, make, model, edition, title, content, score, createOn, user } = this.props;
+      const { year, make, model, edition, title, content, score, user } = this.props;
       console.log("RESULTS MODAL PROPS: ", this.props);
       
     return (
