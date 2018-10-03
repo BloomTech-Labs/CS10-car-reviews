@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from '../Auth/authservice';
+import { Row } from 'reactstrap'
 import './navbar.css';
 import LoginRegisterModal from '../Modals/loginregistermodal';
 
@@ -66,7 +67,7 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <div className="navbar-container">
+        <div>
           <a className="navbar-item" href="/">
             Home
           </a>
@@ -99,8 +100,13 @@ class Navbar extends Component {
 
   render() { 
     return (
-      <div>
-        {this.renderSignout()}
+      <div className="navbar-container">
+        {/* <Row>
+          <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
+        </Row> */}
+        {/* <Row> */}
+          {this.renderSignout()}
+        {/* </Row> */}
       </div>
     );
   }

@@ -12,6 +12,7 @@
     margin-right: 25px;
 }
 
+
 .searchfields {
     display: flex;
     justify-content: center;
@@ -56,10 +57,13 @@
 
 
 .header {
-    background-color: #2F77F3;
+    background-color: white;
+    color: #2F77F3;
     background-image: linear-gradient(to right, white,#2F77F3);
-    font-size: 2.2em;
-}
+    font-size: 2.2em;		     
+    border-radius: 15px;
+    padding-left: 10px;
+}		 
 
 .main-card {
     background-color: white;
