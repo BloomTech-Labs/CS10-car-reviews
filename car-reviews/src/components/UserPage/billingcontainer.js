@@ -14,7 +14,7 @@ class BillingContainer extends Component {
           {/*Passing in the section Billing as props to the Header component*/}
           <Navbar />
         </div>
-        <div className="settingsContainer">
+        <div>
           {/* <LeftNavBar /> */}
           <Billing />
         </div>

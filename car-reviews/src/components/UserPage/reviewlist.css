@@ -1,13 +1,13 @@
 .wrapperContainer {
   position: absolute;
   bottom: 0;
-  top: 24px;
+  top: 72px;
   width: 100%;
-  background-color: #D3E3FC;
-  /* background-image: url("../Assets/Markus_Spiske.jpg");
+  /* background-color: #D3E3FC; */
+  background-image: url("../Assets/Markus_Spiske.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
 }
 
 .fullScreenReview {
@@ -20,6 +20,8 @@
 }
 
 .plusButton {
+  background-color: #00887A;
+  color: white;
   width: 45px;
   height: 45px;
   border-radius: 25px;
@@ -28,6 +30,7 @@
   font-size: 1.6rem;
   margin-top: 20px;
   outline: none !important;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
 }
 
 .reviewCardContainer {
@@ -47,11 +50,13 @@
 }
 
 .reviewSpecial {
+  background-color: white;
   margin: 25px 1rem;
   width: 200px;
   min-height: 170px;
   overflow: hidden;
-  border: solid 0.5px #979797;
+  /* border: solid 0.5px #979797; */
+  border: none !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 5px;

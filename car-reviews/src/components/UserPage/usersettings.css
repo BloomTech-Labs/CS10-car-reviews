@@ -1,15 +1,15 @@
 .user-settings-container {
   position: absolute;
   bottom: 0;
-  top: 24px;
+  top: 72px;
   display: flex;
   justify-content: space-around;
   width: 100%;
-  background-color: #D3E3FC;
-  /* background-image: url("../Assets/1.jpg");
+  /* background-color: #D3E3FC; */
+  background-image: url("../Assets/1.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
 }
 
 .userinfoContainer {
