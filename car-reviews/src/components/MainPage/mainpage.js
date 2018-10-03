@@ -43,7 +43,10 @@ class MainPage extends Component {
     return (
       <div>
         <div>
-          <Navbar />
+          <Navbar 
+            isLoggedIn={isLoggedIn} 
+            handleLogin={this.handleLogin}
+          />
           <SearchBar 
             isLoggedIn={isLoggedIn} 
             handleLogin={this.handleLogin}
