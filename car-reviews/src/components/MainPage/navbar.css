@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-evenly;
     background-color: #2F77F3;
+    z-index: 3;
 }
 
 .navbar-item {

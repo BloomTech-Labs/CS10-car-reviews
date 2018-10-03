@@ -6,6 +6,7 @@ import data from '../../data';
 import {DropdownToggle, DropdownMenu, DropdownItem, Button, UncontrolledDropdown, Col} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import ResultsModal from '../Modals/resultsmodal';
+import Navbar from './navbar';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
@@ -109,6 +110,7 @@ class SearchResults extends Component {
     render() {
         return (
             <div>
+                <Navbar />
                 {this.handleRedirect()}
                 <div className="filter-row">
                     <div className="filters"> 

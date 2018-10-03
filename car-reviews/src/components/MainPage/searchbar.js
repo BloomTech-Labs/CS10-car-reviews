@@ -215,7 +215,7 @@ class Searchbar extends React.Component {
       );
     } else {
       return (
-        <div id="hamburgerMenu">
+        <div style={{ height: '30px' }}>
           {/* <HamburgerMenu right /> */}
           {/* <Navbar /> */}
         </div>
@@ -286,6 +286,7 @@ class Searchbar extends React.Component {
   render() {
     return (
       <div>
+        <div style={{ height: '24px' }}></div>
         <div className="searchbar">
           {this.handleRenderSignin()}
           {this.handleRedirect()}

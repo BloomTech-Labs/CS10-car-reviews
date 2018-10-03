@@ -15,9 +15,9 @@ export default props => {
         Home
       </a>
 
-      <a className="navbar-item" href="/searchpage">
+      {/* <a className="navbar-item" href="/searchpage">
         Search
-      </a>
+      </a> */}
 
       <a className="navbar-item" href="/MyReviews">
         My Reviews

@@ -1,10 +1,13 @@
 .wrapperContainer {
+  position: absolute;
+  bottom: 0;
+  top: 24px;
   width: 100%;
-  background-image: url("../Assets/Markus_Spiske.jpg");
-  /* Center and scale the image nicely */
+  background-color: #D3E3FC;
+  /* background-image: url("../Assets/Markus_Spiske.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 
 .fullScreenReview {

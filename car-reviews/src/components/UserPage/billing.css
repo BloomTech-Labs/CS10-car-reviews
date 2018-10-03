@@ -1,21 +1,22 @@
 .billing-container {
+    position: absolute;
+    bottom: 0;
+    top: 24px;
     width: 100%;
-    background-image: url("../Assets/Pok_Rie.jpg");
-    /* Center and scale the image nicely */
+    background-color: #D3E3FC;
+    /* background-image: url("../Assets/Pok_Rie.jpg");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
 }
 
-.BillingBox {
-    /* display: flex !important; */
-    /* border: 5px solid black; */
+/* .BillingBox {
     text-align: center;
 
     padding-top: 60px;
     height: 90vh;
     width: 100%;
-}
+} */
 
 .element {
     color: white;
