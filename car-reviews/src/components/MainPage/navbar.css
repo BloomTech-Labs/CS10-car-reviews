@@ -1,0 +1,12 @@
+.navbar-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #2F77F3;
+}
+
+.navbar-item {
+    color: white;
+}

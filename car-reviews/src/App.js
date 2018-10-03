@@ -28,7 +28,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/searchpage" component={SearchResults} />
-          <PrivateRoute path="/UserPage" component={UserPage} />
+          {/* <PrivateRoute path="/UserPage" component={UserPage} /> */}
           <PrivateRoute path="/Billing" component={BillingContainer} />
           <PrivateRoute path="/MyReviews" component={MyReviews} />
           <PrivateRoute path="/Settings" component={Settings} />

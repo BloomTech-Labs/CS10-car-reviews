@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import './hamburgermenu.css';
 import HamburgerMenu from './hamburgermenu';
+import Navbar from './navbar';
 import LoginRegisterModal from '../Modals/loginregistermodal';
 import axios from 'axios';
 import SearchResults from './searchresults';
@@ -215,7 +216,8 @@ class Searchbar extends React.Component {
     } else {
       return (
         <div id="hamburgerMenu">
-          <HamburgerMenu right />
+          {/* <HamburgerMenu right /> */}
+          {/* <Navbar /> */}
         </div>
       );
     }

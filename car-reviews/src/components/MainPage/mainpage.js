@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from './searchbar';
 import MainContent from './maincontent';
 import axios from 'axios';
+import Navbar from './navbar';
 
 const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
 const localRequests = `http://localhost:3001/auth/verify`
@@ -42,6 +43,7 @@ class MainPage extends Component {
     return (
       <div>
         <div>
+          <Navbar />
           <SearchBar 
             isLoggedIn={isLoggedIn} 
             handleLogin={this.handleLogin}
