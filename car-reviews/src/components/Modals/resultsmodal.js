@@ -99,18 +99,11 @@ class ResultsModal extends Component {
     return (
       <Col lg="3" md="6">
         <Button className='modal-button' onClick={this.toggle}>
-            {carImage ? <img src={carImage} style={{ maxHeight: '100%', maxWidth: '100%' }} /> : <img src ={defaultImg} style={{ height: 'auto', maxWidth: '75%' }} />}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              flexWrap: 'wrap',
-              marginTop: 13
-            }}>
-              <p style={{marginRight: 5, marginBottom: 2}}>{year}</p>
-              <p style={{marginRight: 5, marginBottom: 2}}>{make}</p>
-              <p style={{marginRight: 5, marginBottom: 2}}>{model}</p>
-              <p style={{marginRight: 5, marginBottom: 2}}>{edition}</p>
-            </div>
+          <p style={{ fontSize: '1.1em'}}>{`${year} ${make} ${model}`}</p>     
+          <div style={{ height: '150px' }}>
+            <img src={carImage ? carImage : defaultImg} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center'}}>
             <ReactStars
               type= "number"
               name= "score"
@@ -120,6 +113,8 @@ class ResultsModal extends Component {
               value={score}
               size={30}
               color2={'#ffd700'} />
+          </div>
+          <p style={{ fontSize: '.8em'}}>{`Review by: ${this.props.user.username}`}</p>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>

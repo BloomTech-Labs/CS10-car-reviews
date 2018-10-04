@@ -8,7 +8,6 @@
     overflow: hidden;  
     white-space: normal; /* important!!! fixes problem of text being cut off */
     text-overflow: ellipsis;
-    font-size: 1.2em;    
     -webkit-transition:  -webkit-transform .5s ease-in-out;
     -moz-transition: -moz-transform .2s ease-in-out;
     -o-transition: -o-transform .2s ease-in-out;

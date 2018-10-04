@@ -98,23 +98,22 @@ class ReviewModal extends Component {
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle}>
-            <p>{`${year} ${make} ${model}`}</p>
-            <p>{`Review by: ${this.props.user.username}`}</p>
+            <p style={{ fontSize: '1.1em'}}>{`${year} ${make} ${model}`}</p>     
             <div style={{ height: '150px' }}>
-              <img src={carImage ? carImage : defaultImg} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
+              <img src={carImage ? carImage : defaultImg} style={{ maxHeight: '100%', maxWidth: '100%' }} alt=""/>
             </div>
-            {/* <p>{edition}</p> */}
-            <ReactStars
-              type= "number"
-              name= "score"
-              edit= {false}
-              half={true}
-              count={5}
-              value={score}
-              size={30}
-              color2={'#ffd700'} />
-            {/* <p>Star Rating {score}</p> */}
-            {/* <CardText style={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText> */}
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
+              <ReactStars
+                type= "number"
+                name= "score"
+                edit= {false}
+                half={true}
+                count={5}
+                value={score}
+                size={30}
+                color2={'#ffd700'} />
+            </div>
+            <p style={{ fontSize: '.8em'}}>{`Review by: ${this.props.user.username}`}</p>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
@@ -128,8 +127,6 @@ class ReviewModal extends Component {
               value={score}
               size={30}
               color2={'#ffd700'} />
-            <p>Rating: {score} out of 5</p>
-            {/* <h5>{`Review by: ${username}`}</h5> */}
           </ModalHeader>
           <ModalBody className="modal-body">
             {carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/> : 
@@ -137,10 +134,6 @@ class ReviewModal extends Component {
             <p>{title}</p>
             <p>{content}</p>
           </ModalBody>
-          {/* <ModalFooter className="modal-footer">
-            <p style={{ textAlign: 'left' }}>{title}</p>
-            <p style={{ textAlign: 'left' }}>{content}</p>
-          </ModalFooter> */}
         </Modal>
       </div>
     );
