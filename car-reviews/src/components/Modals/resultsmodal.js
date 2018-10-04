@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert, Col } from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, Col } from 'reactstrap';
 import axios from 'axios';
 import ReactStars from 'react-stars'
-// import '../MainPage/mainpage.css';
+
 import './reviewmodal.css';
+import defaultImg from '../Assets/default_img.png';
 
 // This component is the review modal. It is rendered in maincontent.js
 
@@ -94,13 +95,11 @@ class ResultsModal extends Component {
     }
   
   render() {
-      const { year, make, model, edition, title, content, score, user } = this.props;
-      console.log("RESULTS MODAL PROPS: ", this.props);
-      
+    const { year, make, model, edition, title, content, score, user, carImage } = this.props;
     return (
       <Col lg="3" md="6">
         <Button className='modal-button' onClick={this.toggle}>
-            { /*this.props.reviews[0].carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} /> : <Fragment /> */}
+            {carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} /> : <img src ={defaultImg} />}
             <div style={{
               display: 'flex',
               justifyContent: 'space-around',
