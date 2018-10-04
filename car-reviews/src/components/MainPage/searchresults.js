@@ -108,6 +108,7 @@ class SearchResults extends Component {
             <div>
                 <Navbar 
                     isLoggedIn={this.props.location.state.isLoggedIn}
+                    handleModalState={() => console.log('test')}
                 />
                 {this.handleRedirect()}
                 <div className="filter-row">

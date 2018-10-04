@@ -43,6 +43,7 @@ class MyReviews extends Component {
           <Navbar 
             isLoggedIn={isLoggedIn} 
             handleLogin={this.handleLogin}
+            handleModalState={() => console.log('test')}
           />
         </div>
         <div className="settingsContainer">
