@@ -20,81 +20,6 @@ class Navbar extends Component {
      }
   }
 
-  renderSignout = () => {
-    if (!this.props.isLoggedIn) {
-      return (
-        <div className="nc">
-          <a className="navbar-item" href="/">
-            Home
-          </a>
-    
-          <a className="navbar-item" href="/MyReviews">
-            <img 
-              src={flRev} 
-              alt="review-icon" 
-              className="icon"
-            />
-            My Reviews
-          </a>
-    
-          <a className="navbar-item" href="/Billing">
-            <img 
-              src={flBil} 
-              alt="billing-icon" 
-              className="icon"
-            />
-            Billing
-          </a>
-          <a className="navbar-item" href="/Settings">
-            <img 
-              src={flSet} 
-              alt="settings-icon" 
-              className="icon"
-            />
-            Settings
-          </a>
-        </div>
-      );
-    } else {
-      return (
-        <div className="nc">
-          <a className="navbar-item" href="/">
-            Home
-          </a>
-    
-          <a className="navbar-item" href="/MyReviews">
-            <img 
-              src={flRev} 
-              alt="review-icon" 
-              className="icon"
-            />
-            My Reviews
-          </a>
-    
-          <a className="navbar-item" href="/Billing">
-            <img 
-              src={flBil} 
-              alt="billing-icon" 
-              className="icon"
-            />
-            Billing
-          </a>
-          <a className="navbar-item" href="/Settings">
-            <img 
-              src={flSet} 
-              alt="settings-icon" 
-              className="icon"
-            />
-            Settings
-          </a>
-          <a className="navbar-item" href="/" onClick={this.signOut}>
-            Sign Out
-          </a>
-        </div>
-      );
-    }
-  }
-
   signOut = () => {
     Auth.logout();
   };
@@ -102,7 +27,45 @@ class Navbar extends Component {
   render() { 
     return (
       <div className="navbar-container">
-          {this.renderSignout()}
+          <div className="nc">
+          <a className="navbar-item" href="/">
+            Home
+          </a>
+    
+          <a className="navbar-item" href="/MyReviews">
+            <img 
+              src={flRev} 
+              alt="review-icon" 
+              className="icon"
+            />
+            My Reviews
+          </a>
+    
+          <a className="navbar-item" href="/Billing">
+            <img 
+              src={flBil} 
+              alt="billing-icon" 
+              className="icon"
+            />
+            Billing
+          </a>
+          <a className="navbar-item" href="/Settings">
+            <img 
+              src={flSet} 
+              alt="settings-icon" 
+              className="icon"
+            />
+            Settings
+          </a>
+          {this.props.isLoggedIn ? 
+            <a className="navbar-item" href="/" onClick={this.signOut}>
+              Sign Out
+            </a> : 
+            <p className="navbar-item" onClick={this.props.handleModalState('login', true)}>
+              Sign In
+            </p> 
+        }
+        </div>
       </div>
     );
   }

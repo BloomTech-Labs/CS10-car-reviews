@@ -11,11 +11,12 @@ import {
 
 const styles = {
     modalStyles: {
-        width: '20%',
+        width: '40%',
         marginTop: '10%'
     },
     headerStyles: {
         display: 'flex',
+        backgroundColor: 'rgb(119, 166, 247)'
     },
     formStyles: {
         width: '100%',
@@ -31,7 +32,7 @@ const styles = {
         width: '80%'
     },
     submitButtonStyles: {
-        marginLeft: '33%',
+        marginLeft: '40%',
     },
     footerStyles: {
         display: 'flex',
@@ -39,13 +40,15 @@ const styles = {
         // flexDirection: 'column',
     },
     footerTextStyles: {
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 15
     },
     footerLinkStyles: {
         cursor: 'pointer',
         color: 'blue',
         textDecoration: 'underline',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: 15
     }
 }
 
