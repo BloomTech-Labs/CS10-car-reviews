@@ -126,18 +126,11 @@ class MainContent extends Component {
       axios
           .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', { reviewer })
           .then(response => {
-              console.log(response);
-              this.setState({ searchResults: response.data });
+              this.setState({ searchResults: response.data }, () => this.setState({ searching: true }));
           })
           .catch(err => {
               console.log("ERROR: ", err.message)
           });
-    }
-
-    componentDidUpdate() {
-        if (this.state.searchResults[0]) {
-            this.setState({ searching: true })
-        }
     }
 
     handleRedirect = () => {
@@ -182,10 +175,10 @@ class MainContent extends Component {
                     </Row>
                     <div style={{ height: '50px'}}></div>
                     <h3 className="header">Popular Reviewers</h3>
-                    <Row>
+                    <Row style={{ marginTop: '30px' }}>
                         {this.state.popularReviewers.map(reviewer => {
                             return (
-                                <Col lg="3" md="6" key={reviewer._id}>
+                                <Col lg="3" md="6" key={reviewer._id} style={{ marginBottom:'35px' }}>
                                     <Button className="main-card" 
                                     onClick={()=>this.userToSearch(reviewer.username)}> 
                                         <p>{reviewer.username}</p>

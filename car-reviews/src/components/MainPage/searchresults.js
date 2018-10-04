@@ -155,7 +155,7 @@ class SearchResults extends Component {
                     </div>
                 </div>
                 <Container style={{ marginBottom: '100px' }}>
-                    <Row style = {{padding: '15px 0 15px 0'}}>
+                    <Row style = {{ marginTop: '20px' }}>
                         {filteredList.map(review =>
                             <ResultsModal key={review._id} {...review.car} {...review}  {...review.user} />
                         )}
