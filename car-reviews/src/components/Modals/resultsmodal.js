@@ -95,7 +95,7 @@ class ResultsModal extends Component {
   
   render() {
       const { year, make, model, edition, title, content, score, user } = this.props;
-      console.log("RESULTS MODAL PROPS: ", this.props);
+      // console.log("RESULTS MODAL PROPS: ", this.props);
       
     return (
       <div>

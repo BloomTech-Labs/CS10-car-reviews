@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import placeholder from '../../logo.svg';
 import './mainpage.css';
-import SearchBar from './searchbar';
+import ResultsSearchBar from './resultssearchbar';
 import data from '../../data';
 import {DropdownToggle, DropdownMenu, DropdownItem, 
     Button, UncontrolledDropdown, Col, Container, Row} from 'reactstrap';
@@ -28,7 +28,6 @@ class SearchResults extends Component {
       usernames: [],
       usernameSelected: '',
       sortBy: '',
-      isLoggedIn: false
     };
   }
 
@@ -80,7 +79,7 @@ class SearchResults extends Component {
         || this.props.location.state === undefined) {
         return <Redirect to='/' />
       } else {
-          return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn} handleLogin={this.handleLogin}/>
+          return <ResultsSearchBar isLoggedIn={this.props.location.state.isLoggedIn} handleLogin={this.handleLogin}/>
       }
   }
 

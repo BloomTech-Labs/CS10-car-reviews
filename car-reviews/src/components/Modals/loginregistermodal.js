@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import {
     Modal,
@@ -129,6 +130,7 @@ class LoginRegisterModal extends Component {
                     }
                 })
             }
+            
         }
 
         axios.post(deployedURL, userState)
@@ -148,7 +150,6 @@ class LoginRegisterModal extends Component {
                         password2: ''
                     }
                 });
-                
             })
             .catch(err => {
                 // * TODO: Add alerts for specific errors on the backend
@@ -185,9 +186,9 @@ class LoginRegisterModal extends Component {
                                     onChange={this.handleUpdateText('login')}
                                 />
                                 <Button 
-                                    type='submit' 
-                                    onClick={this.handleSubmittal('login')}
+                                    type='submit'
                                     color='primary'
+                                    onClick={this.handleSubmittal('login')} 
                                     style={styles.submitButtonStyles}
                                 >Submit</Button>
                                 <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
