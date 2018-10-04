@@ -93,21 +93,15 @@ class ReviewModal extends Component {
     }
   
   render() {
-    const { score, createOn, title, content } = this.props;
+    const { score, createOn, title, content, carImage } = this.props;
     const { year, make, model, edition } = this.props.car;
-    let carImage;
-    if (this.props.carImage) {
-      carImage  = this.props.carImage;
-    } else {
-      carImage = defaultImg;
-    }
     return (
       <div>
         <Button className="modal-button" onClick={this.toggle}>
             <p>{`${year} ${make} ${model}`}</p>
             <p>{`Review by: ${this.props.user.username}`}</p>
             <div style={{ height: '150px' }}>
-              <img src={carImage} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
+              <img src={carImage ? carImage : defaultImg} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
             </div>
             {/* <p>{edition}</p> */}
             <ReactStars
