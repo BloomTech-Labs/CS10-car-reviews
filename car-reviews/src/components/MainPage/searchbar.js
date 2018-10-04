@@ -199,27 +199,6 @@ class Searchbar extends React.Component {
     }
   }
 
-  handleRenderSignin = () => {
-    if (!this.props.isLoggedIn) {
-      return (
-        <div className="login">
-            <div style={styles.loginContainerStyles}>
-              <Button onClick={this.handleModalState('login', true)} className="searchbar-buttons">Sign In</Button>
-              <Button onClick={this.handleModalState('register', true)} className="searchbar-buttons">Register</Button>
-              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
-            </div>
-        </div>
-      );
-    } else {
-      return (
-        <div style={{ height: '30px' }}>
-          {/* <HamburgerMenu right /> */}
-          {/* <Navbar /> */}
-        </div>
-      );
-    }
-  };
-
   handleModalState = (modalType, status) => () => {
     const newState = Object.assign({}, this.state);
     newState.modalState.type = modalType;
@@ -285,7 +264,6 @@ class Searchbar extends React.Component {
       <div>
       <div style={{ height: '70px' }}></div>
       <div className="searchbar">
-        {this.handleRenderSignin()}
         {this.handleRedirect()}
         <div className="auto-logo">
           <img
