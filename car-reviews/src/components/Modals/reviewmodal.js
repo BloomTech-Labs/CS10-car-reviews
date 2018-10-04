@@ -132,7 +132,8 @@ class ReviewModal extends Component {
             {/* <h5>{`Review by: ${username}`}</h5> */}
           </ModalHeader>
           <ModalBody className="modal-body">
-            <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+            {carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/> : 
+              <img src={defaultImg} style={{ height: '50%', width: '50%' }} alt=""/>}
             <p>{title}</p>
             <p>{content}</p>
           </ModalBody>
