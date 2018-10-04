@@ -107,7 +107,7 @@ class ReviewModal extends Component {
             <p>{`${year} ${make} ${model}`}</p>
             <p>{`Review by: ${this.props.user.username}`}</p>
             <div style={{ height: '150px' }}>
-              <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+              <img src={carImage} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
             </div>
             {/* <p>{edition}</p> */}
             <ReactStars

@@ -99,7 +99,7 @@ class ResultsModal extends Component {
     return (
       <Col lg="3" md="6">
         <Button className='modal-button' onClick={this.toggle}>
-            {carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} /> : <img src ={defaultImg} />}
+            {carImage ? <img src={carImage} style={{ maxHeight: '100%', maxWidth: '100%' }} /> : <img src ={defaultImg} style={{ height: 'auto', maxWidth: '75%' }} />}
             <div style={{
               display: 'flex',
               justifyContent: 'space-around',
