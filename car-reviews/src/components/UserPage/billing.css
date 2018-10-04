@@ -3,38 +3,13 @@
     bottom: 0;
     top: 73px;
     width: 100% !important;
-    /* background-color: #D3E3FC; */
-    background-image: linear-gradient(rgba(124, 111, 111, 0.3), rgba(255,255,255,0.4)), url("../Assets/Pok_Rie.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: center;
 }
-
-/* .BillingBox {
-    text-align: center;
-
-    padding-top: 60px;
-    height: 90vh;
-    width: 100%;
-} */
 
 .element {
     color: white;
-	/* text-shadow:
-		-1px -1px 0 #000,
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000; */
 }
 
-/* H3{
-    color:black;
-    font-weight: bold;
-    background-color: blue;
-    opacity: 0.4;
-} */
 .card {
-    /* border: 3px solid black; */
     height: 100%;
     opacity: 0.9;
 }
@@ -44,14 +19,7 @@
     border: 1px solid black;
     display: flex;
     height: 80%;
-    /* display: inline-block; */
-    /* justify-content: ; */
-    /* margin-left: 5px; */
 }
-
-/* Elements {
-    border: 1px solid black;
-} */
 
 .BillingContainer {
     text-align: left;
@@ -64,15 +32,10 @@
 }
 
 .button {
-    /* display: block !important; */
-    /* width: 200px; */
     height: 50px;
     margin-top: 20px;
 }
 
 .btn-primary{
-    /* background-color: red; */
-    /* border: 1px solid red; */
     margin: 20px;
-
 }
