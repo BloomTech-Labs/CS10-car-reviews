@@ -91,7 +91,6 @@ class ReviewModal extends Component {
         console.warn(err);
       });
     }
-    ///////////////////////////////////////////////
   
   render() {
     const { score, createOn, title, content } = this.props;
