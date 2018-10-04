@@ -154,12 +154,10 @@ class SearchResults extends Component {
                         </UncontrolledDropdown>
                     </div>
                 </div>
-                <Container>
-                    <Row>
+                <Container style={{ marginBottom: '100px' }}>
+                    <Row style = {{ marginTop: '20px' }}>
                         {filteredList.map(review =>
-                            <Col lg="3" md="6" key={review._id}>
-                                <ResultsModal {...review.car} {...review}  {...review.user} />
-                            </Col>
+                            <ResultsModal key={review._id} {...review.car} {...review}  {...review.user} />
                         )}
                     </Row>    
                 </Container>

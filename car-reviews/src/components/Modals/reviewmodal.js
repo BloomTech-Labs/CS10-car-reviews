@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } f
 import axios from 'axios';
 import ReactStars from 'react-stars'
 import './reviewmodal.css';
+import defaultImg from '../Assets/default_img.png';
 
 // This component is the review modal. It is rendered in maincontent.js
 
@@ -90,7 +91,6 @@ class ReviewModal extends Component {
         console.warn(err);
       });
     }
-    ///////////////////////////////////////////////
   
   render() {
     const { score, createOn, title, content, carImage } = this.props;
@@ -101,7 +101,7 @@ class ReviewModal extends Component {
             <p>{`${year} ${make} ${model}`}</p>
             <p>{`Review by: ${this.props.user.username}`}</p>
             <div style={{ height: '150px' }}>
-              <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+              <img src={carImage ? carImage : defaultImg} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
             </div>
             {/* <p>{edition}</p> */}
             <ReactStars
@@ -132,7 +132,8 @@ class ReviewModal extends Component {
             {/* <h5>{`Review by: ${username}`}</h5> */}
           </ModalHeader>
           <ModalBody className="modal-body">
-            <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+            {carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} alt=""/> : 
+              <img src={defaultImg} style={{ height: '50%', width: '50%' }} alt=""/>}
             <p>{title}</p>
             <p>{content}</p>
           </ModalBody>

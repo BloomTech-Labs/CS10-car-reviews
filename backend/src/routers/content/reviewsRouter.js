@@ -192,20 +192,28 @@ router.post("/search", (req, res) => {
     }
     searchObj.reviews = { $not: { $size: 0 } };
     if (reviewer) {
-        CarModel.find(searchObj).select('make model year -_id edition averageScore')
-            .populate({
-                path: 'reviews', 
-                model: 'reviews', 
-                match: { user: reviewer },
-                select: 'title content score user carImage',
-                populate: { path: 'user' }
-            })
-            .then(cars=> res.json(cars))
-            .catch(err => res.status(500).json({ error: err.message }));
+        UserModel.findOne({username: reviewer})
+        .then(user => {
+          return ReviewModel.find( {user: user._id} )
+              .populate({
+                path: 'car', 
+                model: 'cars',
+                select: 'make model year edition averageScore imageURL',
+              })
+              .populate({
+                path: 'user', 
+                model: 'users',
+                select: 'username',
+              })
+        })
+        .then(reviews=> {
+          console.log(reviews, '210');
+          res.json(reviews);
+        })
+        .catch(err => res.status(500).json({ error: err.message }));
     } else {
         CarModel.find(searchObj).select('id')
         .then(cars => {
-          console.log(cars)
           return ReviewModel.find( { car: { $in: cars } } )
               .populate({
                 path: 'car', 
