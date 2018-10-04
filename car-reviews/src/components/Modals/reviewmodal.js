@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } f
 import axios from 'axios';
 import ReactStars from 'react-stars'
 import './reviewmodal.css';
-import defaultImg from '../../default_img.png';
+import defaultImg from '../Assets/default_img.png';
 
 // This component is the review modal. It is rendered in maincontent.js
 
