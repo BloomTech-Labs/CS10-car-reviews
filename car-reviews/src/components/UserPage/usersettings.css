@@ -5,11 +5,6 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
-  /* background-color: #D3E3FC; */
-  background-image: linear-gradient(rgba(124, 111, 111, 0.1), rgba(255,255,255,0.3)), url("../Assets/1.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .userinfoContainer {
