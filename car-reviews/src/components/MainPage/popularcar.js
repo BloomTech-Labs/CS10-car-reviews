@@ -70,7 +70,7 @@ class PopularCar extends Component {
                   half={true}
                   count={5}
                   value={Math.round(averageScore * 100) / 100}
-                  size={36}
+                  size={30}
                   color2={'#ffd700'} />
                 <p>{year} {make} {model}</p>
                 <p>{edition}</p>

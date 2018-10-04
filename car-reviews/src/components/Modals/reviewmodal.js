@@ -111,7 +111,7 @@ class ReviewModal extends Component {
               half={true}
               count={5}
               value={score}
-              size={36}
+              size={30}
               color2={'#ffd700'} />
             {/* <p>Star Rating {score}</p> */}
             {/* <CardText style={{ color: '#77A6F7'}}>{`Updated ${new Date(createOn).toString().substring(4,10)}`}</CardText> */}
@@ -126,7 +126,7 @@ class ReviewModal extends Component {
               half={true}
               count={5}
               value={score}
-              size={36}
+              size={30}
               color2={'#ffd700'} />
             <p>Rating: {score} out of 5</p>
             {/* <h5>{`Review by: ${username}`}</h5> */}

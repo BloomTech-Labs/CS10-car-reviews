@@ -82,7 +82,7 @@ class MyReviewsModal extends Component {
             half={true}
             count={5}
             value={this.props.score}
-            size={36}
+            size={30}
             color2={'#ffd700'}
           />
           <p>{`Star Rating: ${this.props.score}`}</p>
@@ -122,7 +122,7 @@ class MyReviewsModal extends Component {
               half={true}
               count={5}
               value={this.props.score}
-              size={36}
+              size={30}
               color2={'#ffd700'}
             />
             <p>{`Rating: ${this.props.score} out of 5`}</p>

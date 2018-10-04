@@ -118,7 +118,7 @@ class ResultsModal extends Component {
               half={true}
               count={5}
               value={score}
-              size={36}
+              size={30}
               color2={'#ffd700'} />
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -133,7 +133,7 @@ class ResultsModal extends Component {
               half={true}
               count={5}
               value={score}
-              size={36}
+              size={30}
               color2={'#ffd700'} />
             {`Review by: ${user.username}`}
           </ModalHeader>
