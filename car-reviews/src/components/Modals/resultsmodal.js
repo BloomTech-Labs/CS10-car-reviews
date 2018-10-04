@@ -107,10 +107,10 @@ class ResultsModal extends Component {
               flexWrap: 'wrap',
               marginTop: 13
             }}>
-              <p>{year}</p>
-              <p>{make}</p>
-              <p>{model}</p>
-              <p>{edition}</p>
+              <p style={{marginRight: 5, marginBottom: 2}}>{year}</p>
+              <p style={{marginRight: 5, marginBottom: 2}}>{make}</p>
+              <p style={{marginRight: 5, marginBottom: 2}}>{model}</p>
+              <p style={{marginRight: 5, marginBottom: 2}}>{edition}</p>
             </div>
             <ReactStars
               type= "number"
