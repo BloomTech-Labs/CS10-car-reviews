@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from '../Auth/authservice';
+import home from '../Assets/home.png';
 import flRev from '../Assets/flat_review.png'
 import flBil from '../Assets/flat_billing.png';
 import flSet from '../Assets/flat_settings.png';
@@ -25,6 +26,11 @@ class Navbar extends Component {
       return (
         <div className="nc">
           <a className="navbar-item" href="/">
+              <img 
+              src={home} 
+              alt="home-icon" 
+              className="icon"
+            />
             Home
           </a>
     
