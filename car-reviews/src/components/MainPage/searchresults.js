@@ -7,6 +7,7 @@ import {DropdownToggle, DropdownMenu, DropdownItem,
     Button, UncontrolledDropdown, Col, Container, Row} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import ResultsModal from '../Modals/resultsmodal';
+import Navbar from './navbar';
 import memoize from "memoize-one";
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
@@ -105,6 +106,9 @@ class SearchResults extends Component {
         const filteredList = this.sort(this.filter(this.props.location.state.searchResults, usernameSelected), sortBy);
         return (
             <div>
+                <Navbar 
+                    isLoggedIn={this.props.location.state.isLoggedIn}
+                />
                 {this.handleRedirect()}
                 <div className="filter-row">
                     <div className="filters"> 
