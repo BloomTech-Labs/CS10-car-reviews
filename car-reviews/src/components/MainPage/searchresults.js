@@ -9,11 +9,14 @@ import { Redirect } from 'react-router-dom';
 import ResultsModal from '../Modals/resultsmodal';
 import Navbar from './navbar';
 import memoize from "memoize-one";
+import axios from 'axios';
 
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
 // search results. As with the main content, I chose to represent the result cards as Buttons. 
 // This is rendered in MainPage.
+const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
+
 
 class SearchResults extends Component {
   constructor(props) {
@@ -24,7 +27,8 @@ class SearchResults extends Component {
       dropdownOpen: false,
       usernames: [],
       usernameSelected: '',
-      sortBy: ''
+      sortBy: '',
+      isLoggedIn: false
     };
   }
 
@@ -76,7 +80,7 @@ class SearchResults extends Component {
         || this.props.location.state === undefined) {
         return <Redirect to='/' />
       } else {
-          return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn}/>
+          return <SearchBar isLoggedIn={this.props.location.state.isLoggedIn} handleLogin={this.handleLogin}/>
       }
   }
 
@@ -95,10 +99,31 @@ class SearchResults extends Component {
   componentDidMount() {
     const { searchResults } = this.props.location.state;
     const usernamesArr = [];
+    const localJWT = localStorage.getItem('jwt');
+
     for (let i = 0; i < searchResults.length; i++) {
         usernamesArr.push(searchResults[i].user.username);
     }
     this.setState({ usernames: [...new Set (usernamesArr)] });
+
+    if (!localJWT) this.handleLogin(false);
+    else {
+      axios.get(dbRequests, { headers: { jwt: localJWT } })
+        .then(response => {
+          const { tokenIsValid } = response.data
+          if (tokenIsValid) this.handleLogin(tokenIsValid);
+          else this.handleLogin(false);
+        })
+        .catch(err => {
+          console.log(err);
+          this.handleLogin(false);
+        })
+    }
+  }
+
+  handleLogin = (status) => {
+    console.log(`JWT is ${status}`)
+    this.setState({ isLoggedIn: status });
   }
 
     render() {
@@ -108,6 +133,7 @@ class SearchResults extends Component {
             <div>
                 <Navbar 
                     isLoggedIn={this.props.location.state.isLoggedIn}
+                    handleLogin={this.handleLogin}
                 />
                 {this.handleRedirect()}
                 <div className="filter-row">
