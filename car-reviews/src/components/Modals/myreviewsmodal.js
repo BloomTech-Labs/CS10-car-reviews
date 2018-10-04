@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Input } from 'reactstrap';
-import placeholder from '../../logo.svg';
+import { Button, Modal, ModalHeader, ModalBody, Input } from 'reactstrap';
 import axios from 'axios';
-import EditableContent from './editablecontent';
 import './myreviewsmodal.css';
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
 
 class MyReviewsModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
-      title: this.props.title, 
+      title: this.props.title,
       content: this.props.content,
       score: this.props.score,
-      carImage: this.props.carImage
+      carImage: this.props.carImage,
+      editing: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -25,54 +24,65 @@ class MyReviewsModal extends Component {
     });
   }
 
+  toggleEdit = () => {
+    this.setState({ editing: !this.state.editing });
+  };
+
   deleteReview = id => {
     this.props.removeReview(id);
     this.toggle();
   };
-
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   save = () => {
+    console.log('The save is being called', this.state);
+    const editedContent = {
+      title: this.state.title,
+      content: this.state.content,
+      score: this.state.score,
+      carImage: this.state.carImage
+    };
+    const config = {
+      headers: {
+        JWT: localStorage.getItem('jwt')
+      }
+    };
 
-    console.log('The save is being called' , this.state)
-  const editedContent = {title: this.state.title , content: this.state.content, score: this.state.score, carImage: this.state.carImage};
-  const config = {
-    headers: {
-      JWT: localStorage.getItem('jwt')
-    }
+    axios
+      .put(
+        `https://back-lambda-car-reviews.herokuapp.com/api/reviews/${this.props._id}`,
+        editedContent,
+        config
+      )
+      .then(response => {
+        console.log('editNote:', response);
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      });
+
+    this.toggleEdit();
   };
 
-  axios
-    .put(`https://back-lambda-car-reviews.herokuapp.com/api/reviews/${this.props._id}`, editedContent, config)
-    .then(response => {
-      console.log('editNote:', response);
-    })
-    .catch(err => {
-      console.log('Error: ', err);
-    });
-
-    this.toggle();
-}
-
   render() {
-
     console.log('props', this.props);
     return (
       <div>
         <Button className="my-modal-button" onClick={this.toggle}>
-          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt="" />
           <ReactStars
-              type= "number"
-              name= "score"
-              edit= {false}
-              half={true}
-              count={5}
-              value={this.props.score}
-              size={36}
-              color2={'#ffd700'} />
+            type="number"
+            name="score"
+            edit={false}
+            half={true}
+            count={5}
+            value={this.props.score}
+            size={36}
+            color2={'#ffd700'}
+          />
           <p>{`Star Rating: ${this.props.score}`}</p>
           <p>{`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}
  ${this.props.car.edition}`}</p>
@@ -86,28 +96,64 @@ class MyReviewsModal extends Component {
               {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
                 this.props.car.edition
               } `}
-            <button onClick={() => this.deleteReview(this.props._id)}>delete review</button>
-            <button onClick={() => this.save()}>edit review</button>
+              <button
+                className="searchbar-buttons"
+                onClick={() => this.deleteReview(this.props._id)}
+              >
+                delete review
+              </button>
+              {this.state.editing ? (
+                <button className="searchbar-buttons" onClick={this.save}>
+                  save review
+                </button>
+              ) : (
+                <button className="searchbar-buttons" onClick={this.toggleEdit}>
+                  edit review
+                </button>
+              )}
             </p>
             {/* <p>{`Review by: ${this.props.user.username}`}</p> */}
             <ReactStars
-              type= "number"
-              name= "score"
-              edit= {false}
+              type="number"
+              name="score"
+              edit={false}
               half={true}
               count={5}
               value={this.props.score}
               size={36}
-              color2={'#ffd700'} />
+              color2={'#ffd700'}
+            />
             <p>{`Rating: ${this.props.score} out of 5`}</p>
           </ModalHeader>
           <ModalBody className="my-modal-body">
             {this.props.carImage ? (
-              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+              <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt="" />
             ) : null}
             <hr />
-            <Input name='title' type='text' onChange={this.handleChange} value={this.state.title}>{this.props.title}</Input>
-            <Input name='content' type='text' onChange={this.handleChange} value={this.state.content}>{this.props.content}</Input>
+            {this.state.editing ? (
+              <div>
+                <Input
+                  name="title"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.title}
+                />
+                <p />
+                <textarea
+                  cols="49"
+                  row="50"
+                  name="content"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.content}
+                />
+              </div>
+            ) : (
+              <div>
+                <p>{this.state.title}</p>
+                <p>{this.state.content}</p>
+              </div>
+            )}
           </ModalBody>
         </Modal>
       </div>
