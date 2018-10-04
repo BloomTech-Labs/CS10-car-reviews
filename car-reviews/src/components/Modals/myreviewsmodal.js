@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Input } from 'reactstrap';
-import placeholder from '../../logo.svg';
+import defaultImg from '../Assets/default_img.png';
 import axios from 'axios';
 import EditableContent from './editablecontent';
 import './myreviewsmodal.css';
@@ -63,7 +63,8 @@ class MyReviewsModal extends Component {
     return (
       <div>
         <Button className="my-modal-button" onClick={this.toggle}>
-          <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt=""/>
+          {this.props.carImage ? <img src={this.props.carImage} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
+            : <img src={defaultImg} style={{ height: 'auto', maxWidth: '75%' }} alt=""/>}
           <ReactStars
               type= "number"
               name= "score"
