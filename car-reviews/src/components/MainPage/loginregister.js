@@ -1,107 +1,92 @@
 import React, { Component, Fragment } from 'react';
-import axios from 'axios'
+import { Redirect } from 'react-router-dom';
+import NavBar from './navbar';
+import axios from 'axios';
 import {
-    Col,
-    Label,
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
     Button,
     Alert
-} from 'reactstrap'; 
+} from 'reactstrap';
 import './loginregister.css';
-import { Redirect } from 'react-router-dom';
 
+const styles = {
+    modalStyles: {
+        width: '20%',
+        marginTop: '10%',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    headerStyles: {
+        display: 'flex',
+        backgroundColor: 'rgb(119,166,247)'
+    },
+    formStyles: {
+        width: '100%',
+        marginBottom: 0
+    },
+    closeButtonStyles: {
+        position: 'absolute',
+        right: '6%',
+    },
+    inputStyles: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '80%'
+    },
+    submitButtonStyles: {
+        marginLeft: '5%',
+    },
+    footerStyles: {
+        display: 'flex',
+        justifyContent: 'center',
+        // flexDirection: 'column',
+    },
+    footerTextStyles: {
+        textAlign: 'center'
+    },
+    footerLinkStyles: {
+        cursor: 'pointer',
+        color: 'blue',
+        textDecoration: 'underline',
+        textAlign: 'center'
+    }
+}
 
-// * TODO: Check if the user already has a valid JWT when they first visit the page and when they navigate to login/signup
-// * TODO: Style login forms
-// ** OPTIONAL: Create multiple alerts for all the different possible errors (no email, no password, both, etc.)
 class LoginRegister extends Component {
-    state = {
-        login: {
-            email: '',
-            password: ''
-        },
-        register: {
-            fullname: '',
-            username: '',
-            email: '',
-            password: '',
-            password2: ''
-        },
-        redirect: {
-            status:false
-        },
-        alerts: {
-            login: false,
-            register: false,
-            passMatchErr: false,
-            emailValidErr: false,
+    constructor(props){
+        super(props);
+
+        this.state = {
+            login: {
+                email: '',
+                password: '',
+            },
+            register: {
+                fullname: '',
+                username: '',
+                email: '',
+                password: '',
+                password2: ''
+            },
+            alerts: {
+                login: false,
+                register: false,
+                passMatchErr: false,
+                emailValidErr: false,
+            },
+            redirect: false,
+            type: 'login'
         }
     }
-    handleUpdateForms = (type, field) => (event) => {
+
+    handleUpdateText = formType => event => {
+        const { name, value } = event.target;
         const newState = Object.assign({}, this.state);
-        newState[type][field] = event.target.value;
+        newState[formType][name] = value;
         this.setState(newState);
-    }
-    handleSubmitForm = (formType) => (event) => {
-        event.preventDefault();
-        const requestURL = `https://back-lambda-car-reviews.herokuapp.com/auth/${formType}`;
-        const localRequests = `http://localhost:3001/auth/${formType}`
-        const userForm = Object.assign({}, this.state[formType]);
-        
-        // * TODO: Make sure that all fields are filled out before attempting the POST
-        if (formType === 'register'){
-            if (this.state.register.email.includes('@')){
-                if (!this.state.register.email.includes('.')){
-                    this.setState({
-                        alerts: {
-                            ...this.state.alerts,
-                            emailValidErr: true
-                        }
-                    })
-                    return console.log(`Email isn't real!`)
-                } else {
-                    console.log('they check out, let em pass')
-                }
-            }
-
-            if (this.state.register.password !== this.state.register.password2){
-                this.setState({
-                    alerts: {
-                        ...this.state.alerts,
-                        passMatchErr: true,
-                    }
-                })
-                return console.log(`Passwords don't match, dog!`)
-            }
-        }
-
-
-        axios.post(requestURL, userForm)
-            .then(response => {
-                // removes the alert if it's present
-                if (this.state.alerts[formType]) this.handleAlerts(formType);
-                // when the user successfully logs in/registers they are issued a JWT that is saved in storage with the key 'jwt'
-                localStorage.setItem('jwt', response.data.JWT);
-                // here the login status of the user is changed to 'true' when the login/register is successful
-                this.setState({
-                    login: {
-                        email: '',
-                        password: ''
-                    },
-                    register: {
-                        fullname: '',
-                        username: '',
-                        email: '',
-                        password: ''
-                    },
-                    redirect: {
-                        status:true
-                    }
-                })
-            })
-            .catch(err => {
-                if (!this.state.alerts[formType]) this.handleAlerts(formType);
-                console.warn(err);
-            });
     }
 
     handleAlerts = (type) => {
@@ -110,89 +95,203 @@ class LoginRegister extends Component {
         this.setState(newState);
     }
 
-    handleEmailValidation = () => {
-
+    handleChangeModalType = type => {
+        this.setState({
+            type: type
+        })
     }
 
-    handleRedirect =() => {
-        if(this.state.redirect.status){
-          return  <Redirect to='/'  />
-        } else {
-           return <div className="login-container">
+    handleSubmittal = formType => event => {
+        event.preventDefault();
+        const deployedURL = `https://back-lambda-car-reviews.herokuapp.com/auth/${formType}`;
+        const localURL = `http://localhost:3001/auth/${formType}`
+        const userState = Object.assign({}, this.state[formType]);
+        
+        // ** OPTIONAL: Externalize logic to a helper method
+        if (formType === 'register'){
+            if (!this.state.register.email.includes('@') || !this.state.register.email.includes('.')){
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        emailValidErr: true
+                    }
+                })
+                return console.log(`Invalid email format`);
+            } else {
+                console.log(this.state.alerts.emailValidErr);
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        emailValidErr: false
+                    }
+                }, () => console.log(this.state.alerts.emailValidErr));
+            }
 
-            <Col sm="4">
-                        <form onSubmit={this.handleSubmitForm('login')}>
-                        <Label>Login Please!</Label>
+            if (this.state.register.password !== this.state.register.password2){
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        passMatchErr: true
+                    }
+                })
+                return console.log(`Passwords don't match`);
+            } else {
+                this.setState({
+                    alerts: {
+                        ...this.state.alerts,
+                        passMatchErr: false
+                    }
+                })
+            }
+            
+        }
+
+        axios.post(deployedURL, userState)
+            .then(res => {
+                // * TODO: remove alert
+                localStorage.setItem('jwt', res.data.JWT);
+                this.setState({
+                    login: {
+                        email: '',
+                        password: '',
+                    },
+                    register: {
+                        fullname: '',
+                        username: '',
+                        email: '',
+                        password: '',
+                        password2: ''
+                    },
+                    redirect: true
+                });
+            })
+            .catch(err => {
+                // * TODO: Add alerts for specific errors on the backend
+                if (!this.state.alerts[formType]) this.handleAlerts(formType);
+                console.warn(err);
+            });
+    }
+
+    handleRenderFormType = () => {
+        if (this.state.redirect){
+            // * OPTIONAL: Have it redirect to whatever page the user was trying to view
+            return <Redirect to='/' />
+        }
+        if (this.state.type === 'login') {
+            return (
+                    <Card style={styles.modalStyles}>
+                        <CardHeader style={styles.headerStyles}>
+                            {/* utton style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('login', false)}>X</Button><B */}
+                            <p>Login</p>
+                        </CardHeader>
+                        <CardBody>
+                            <form style={styles.formStyles}>
+                                <input 
+                                    type='text'
+                                    name='email'
+                                    placeholder='Enter your email...'
+                                    value={this.state.login.email}
+                                    style={styles.inputStyles}
+                                    onChange={this.handleUpdateText('login')}
+                                />
+                                <input 
+                                    type='password'
+                                    name='password'
+                                    placeholder='Enter your password...'
+                                    value={this.state.login.password}
+                                    style={styles.inputStyles}
+                                    onChange={this.handleUpdateText('login')}
+                                />
+                                <Button 
+                                    type='submit'
+                                    color='primary'
+                                    onClick={this.handleSubmittal('login')} 
+                                    style={styles.submitButtonStyles}
+                                >Submit</Button>
+                                <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
+                            </form>
+                        </CardBody>
+                        <CardFooter style={styles.footerStyles}>
+                            <p style={styles.footerTextStyles}>Already have an account?</p>
+                            <p onClick={() => this.handleChangeModalType('register')} style={styles.footerLinkStyles}>Click here</p>
+                    </CardFooter>
+                </Card>
+            )
+        }
+        if (this.state.type === 'register'){
+            return(
+                <Card style={styles.modalStyles}>
+                    <CardHeader style={styles.headerStyles}>
+                            <p>Register</p>
+                        </CardHeader>
+                    <CardBody>
+                        <form style={styles.formStyles}>
                             <input 
-                                value={this.state.login.email} 
-                                placeholder='Enter your email...' 
-                                onChange={this.handleUpdateForms('login', 'email')}     
+                                type='text'
+                                name='fullname'
+                                placeholder='Enter your full name...'
+                                value={this.state.register.fullname}
+                                style={styles.inputStyles}
+                                onChange={this.handleUpdateText('register')}
+                            />
+                            <input 
+                                type='text'
+                                name='username'
+                                placeholder='Enter your username...'
+                                value={this.state.register.username}
+                                style={styles.inputStyles}
+                                onChange={this.handleUpdateText('register')}
+                            />
+                            <input 
+                                type='text'
+                                name='email'
+                                placeholder='Enter your email...'
+                                value={this.state.register.email}
+                                style={styles.inputStyles}
+                                onChange={this.handleUpdateText('register')}
                             />
                             <input 
                                 type='password'
-                                value={this.state.login.password} 
-                                placeholder='Enter your password...' 
-                                onChange={this.handleUpdateForms('login', 'password')}   
+                                name='password'
+                                placeholder='Enter your password...'
+                                value={this.state.register.password}
+                                style={styles.inputStyles}
+                                onChange={this.handleUpdateText('register')}
                             />
-                            <Button type='submit' color ="primary">Login</Button>
-                            <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
+                            <input 
+                                type='password'
+                                name='password2'
+                                placeholder='Re-enter password...'
+                                value={this.state.register.password2}
+                                style={styles.inputStyles}
+                                onChange={this.handleUpdateText('register')}
+                            />
+                            <Button 
+                                type='submit' 
+                                onClick={this.handleSubmittal('register')}
+                                color='primary'
+                                style={styles.submitButtonStyles}
+                            >Submit</Button>
+                            <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
+                            <Alert isOpen={this.state.alerts.passMatchErr} color='danger'>The passwords you entered don't match, please try again</Alert>
+                            <Alert isOpen={this.state.alerts.emailValidErr} color='danger'>Please enter a valid email address</Alert>
                         </form>
-                    </Col>
-               
-                <Col className="login-mid">
-                    {/* This is an intentional blank space */}
-                </Col>
-                
-                
-                <Col sm="4">
-                    {/* Right pane: Login */}
-                    { /* * TODO: Add logic to hide register fields until a button is clicked */}
-                    <form onSubmit={this.handleSubmitForm('register')}>
-                    {/* <Label>Register if you do not have an account yet!</Label> */}
-                        <input 
-                            value={this.state.register.fullname} 
-                            placeholder='Enter your fullname...' 
-                            onChange={this.handleUpdateForms('register', 'fullname')}   
-                        />
-                        <input 
-                            // * NOTE: Hide characters
-                            value={this.state.register.username} 
-                            placeholder='Enter your username...' 
-                            onChange={this.handleUpdateForms('register', 'username')}   
-                        />
-                        <input 
-                            value={this.state.register.email} 
-                            placeholder='Enter your email...' 
-                            onChange={(this.handleUpdateForms('register', 'email'))}   
-                        />
-                        <input 
-                            // * NOTE: Hide characters
-                            value={this.state.register.password} 
-                            type='password'
-                            placeholder='Enter your password...' 
-                            onChange={this.handleUpdateForms('register', 'password')}   
-                        />
-                        <input 
-                            type='password'
-                            value={this.state.register.password2} 
-                            placeholder='Re-enter password...' 
-                            onChange={this.handleUpdateForms('register', 'password2')}   
-                            />
-                         <Button className="general-button">Register</Button>
-                         <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
-                         <Alert isOpen={this.state.alerts.passMatchErr} color='danger'>The passwords you entered don't match, please try again</Alert>
-                         <Alert isOpen={this.state.alerts.emailValidErr} color='danger'>Please enter a valid email address</Alert>
-                    </form>
-                </Col>
-                </div>
+                    </CardBody>
+                    <CardFooter style={styles.footerStyles}>
+                            <p style={styles.footerTextStyles}>Already have an account?</p>
+                            <p onClick={() => this.handleChangeModalType('login')} style={styles.footerLinkStyles}>Click here</p>
+                    </CardFooter>
+                </Card>
+            )
         }
-        
     }
+
     render(){
         return(
-            <Fragment>
-               {this.handleRedirect()} 
-            </Fragment>
+            <div>
+                <NavBar />
+                {this.handleRenderFormType()}
+            </div>
         )
     }
 }

@@ -204,7 +204,7 @@ class LoginRegisterModal extends Component {
         }
         if (this.props.type === 'register'){
             return(
-                <Modal style={styles.modalStyles} isOpen={this.props.isOpen} toggle={this.props.toggleModal}>
+                <Modal style={styles.modalStyles} isOpen={true} toggle={this.props.toggleModal}>
                     <ModalHeader style={styles.headerStyles}>
                             <Button style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('register', false)}>X</Button>
                             <p>Register</p>

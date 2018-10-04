@@ -10,6 +10,8 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 import './billing.css'
 import Checkout from './checkout';
 
+const stripeKey = process.env.REACT_APP_STRIPE_KEY;
+
 
 class Billing extends Component {
     constructor(props) {
@@ -35,7 +37,7 @@ class Billing extends Component {
                 {/* <h3 className="element"> Billing </h3>
                 <label className= "element"> payment info</label> */}
                 <div style={{ height: '100px' }} />
-                <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+                <StripeProvider apiKey={stripeKey}>
                 <Elements>
                     <Row>
                         <Col md="4">
