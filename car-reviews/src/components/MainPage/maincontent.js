@@ -135,7 +135,7 @@ class MainContent extends Component {
 
     handleRedirect = () => {
         if (this.state.searching) {
-          return <Redirect to={{
+          return <Redirect push to={{
             pathname: '/searchpage',
             state: {
               isLoggedIn: this.props.isLoggedIn,
