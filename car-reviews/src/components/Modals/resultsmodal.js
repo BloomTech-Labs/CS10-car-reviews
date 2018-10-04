@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Alert } from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, Col } from 'reactstrap';
 import axios from 'axios';
 import ReactStars from 'react-stars'
-// import '../MainPage/mainpage.css';
+
 import './reviewmodal.css';
+import defaultImg from '../Assets/default_img.png';
 
 // This component is the review modal. It is rendered in maincontent.js
 
@@ -94,13 +95,11 @@ class ResultsModal extends Component {
     }
   
   render() {
-      const { year, make, model, edition, title, content, score, user } = this.props;
-      console.log("RESULTS MODAL PROPS: ", this.props);
-      
+    const { year, make, model, edition, title, content, score, user, carImage } = this.props;
     return (
-      <div>
+      <Col lg="3" md="6">
         <Button className='modal-button' onClick={this.toggle}>
-            { /*this.props.reviews[0].carImage ? <img src={carImage} style={{ height: '100%', width: '100%' }} /> : <Fragment /> */}
+            {carImage ? <img src={carImage} style={{ maxHeight: '100%', maxWidth: '100%' }} /> : <img src ={defaultImg} style={{ height: 'auto', maxWidth: '75%' }} />}
             <div style={{
               display: 'flex',
               justifyContent: 'space-around',
@@ -108,9 +107,9 @@ class ResultsModal extends Component {
               marginTop: 13
             }}>
               <p style={{marginRight: 5, marginBottom: 2}}>{year}</p>
-              <p style={{marginRight: 5, marginBottom: 2}}> {make} </p>
-              <p style={{marginRight: 5, marginBottom: 2}}> {model} </p>
-              <p style={{marginRight: 5, marginBottom: 2}}> {edition} </p>
+              <p style={{marginRight: 5, marginBottom: 2}}>{make}</p>
+              <p style={{marginRight: 5, marginBottom: 2}}>{model}</p>
+              <p style={{marginRight: 5, marginBottom: 2}}>{edition}</p>
             </div>
             <ReactStars
               type= "number"
@@ -144,7 +143,7 @@ class ResultsModal extends Component {
             <div className="modal-body">{content}</div>
           </ModalBody>
         </Modal>
-      </div>
+      </Col>
     );
   }
 }

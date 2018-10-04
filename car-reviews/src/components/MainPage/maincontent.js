@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import placeholder from '../../logo.svg';
 import { Button, Row, Col, Container } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
+
+import axios from 'axios';
 import ReviewModal from '../Modals/reviewmodal';
 import PopularCar from './popularcar';
-import axios from 'axios';
-import ReactStars from 'react-stars';
 import './mainpage.css';
 
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
@@ -25,6 +25,8 @@ class MainContent extends Component {
         counter: 0,
         newdate: dateString,
         olddate:  dateString,
+        searchResults: [],
+        searching: false
       };
 
     componentDidMount() {
@@ -72,7 +74,7 @@ class MainContent extends Component {
         const config = {
           headers: { 'jwt': localStorage.getItem('jwt') }
         };
-        axios.put('http://localhost:3001/api/users/data', { counter, newDate }, config)
+        axios.put('https://back-lambda-car-reviews.herokuapp.com/api/users/data', { counter, newDate }, config)
           .then(response => {
             console.log(response);
             const newstate = {counter: counter + 1}
@@ -96,35 +98,58 @@ class MainContent extends Component {
         }
 
 
-        getUserCounter = () => {
-            axios
-              .get('http://localhost:3001/api/users/data', {
-                headers: {
-                  JWT: localStorage.getItem('jwt')
-                }
-              })
-              .then(response => {
-                
+    getUserCounter = () => {
+        axios
+            .get('https://back-lambda-car-reviews.herokuapp.com/api/users/data', {
+            headers: {
+                JWT: localStorage.getItem('jwt')
+            }
+            })
+            .then(response => {
+            
 
-                if(this.state.olddate !== this.state.newdate){ 
-                    console.log('The dates do not match!')
-                    const newstate = {counter: 0, olddate: response.data.date}
-                    this.setState(newstate)
-                } else {
-                    const newstate = {counter: response.data.timesViewed, olddate: response.data.date}
-                    this.setState(newstate)
-                }
-                
-                
-              })
-              .catch(err => console.warn(err));
-          };
+            if(this.state.olddate !== this.state.newdate){ 
+                console.log('The dates do not match!')
+                const newstate = {counter: 0, olddate: response.data.date}
+                this.setState(newstate)
+            } else {
+                const newstate = {counter: response.data.timesViewed, olddate: response.data.date}
+                this.setState(newstate)
+            }
+            
+            
+            })
+            .catch(err => console.warn(err));
+        };
 
-    
+    userToSearch = (reviewer) => {
+      axios
+          .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', { reviewer })
+          .then(response => {
+              this.setState({ searchResults: response.data }, () => this.setState({ searching: true }));
+          })
+          .catch(err => {
+              console.log("ERROR: ", err.message)
+          });
+    }
+
+    handleRedirect = () => {
+        if (this.state.searching) {
+          return <Redirect push to={{
+            pathname: '/searchpage',
+            state: {
+              isLoggedIn: this.props.isLoggedIn,
+              searchResults: this.state.searchResults,
+              currentPage: '/searchpage'
+            }
+          }} />
+        }
+    }
 
     render() { 
         return (
             <div className="main-content-container" >
+            {this.handleRedirect()}
             <div className="main-content">
             <div style={{ height: '20px'}}></div>
                 <Container>
@@ -150,11 +175,12 @@ class MainContent extends Component {
                     </Row>
                     <div style={{ height: '50px'}}></div>
                     <h3 className="header">Popular Reviewers</h3>
-                    <Row>
+                    <Row style={{ marginTop: '30px' }}>
                         {this.state.popularReviewers.map(reviewer => {
                             return (
-                                <Col lg="3" md="6" key={reviewer._id}>
-                                    <Button className="main-card"> 
+                                <Col lg="3" md="6" key={reviewer._id} style={{ marginBottom:'35px' }}>
+                                    <Button className="main-card" 
+                                    onClick={()=>this.userToSearch(reviewer.username)}> 
                                         <p>{reviewer.username}</p>
                                     </Button>
                                 </Col>
