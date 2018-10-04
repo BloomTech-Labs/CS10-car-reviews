@@ -30,10 +30,11 @@ class Billing extends Component {
       }
     render(){
         return(
-            <Container className="billing-container">
+            <div className="billing-container">
                 {/* <div className="BillingBox"> */}
-                <h3 className="element"> Billing </h3>
-                <label className= "element"> payment info</label>
+                {/* <h3 className="element"> Billing </h3>
+                <label className= "element"> payment info</label> */}
+                <div style={{ height: '100px' }} />
                 <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
                 <Elements>
                     <Row>
@@ -82,7 +83,7 @@ class Billing extends Component {
                 </Elements>
                 </StripeProvider>
                 {/* </div> */}
-            </Container>
+            </div>
         )
     }
     

@@ -46,9 +46,7 @@ class BillingContainer extends Component {
             handleLogin={this.handleLogin}
           />
         </div>
-        <div>
-          <Billing />
-        </div>
+        <Billing />
       </div>
     );
   }

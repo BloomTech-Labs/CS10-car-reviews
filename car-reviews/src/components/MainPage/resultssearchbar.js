@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 import './mainpage.css';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import './hamburgermenu.css';
-import LoginRegisterModal from '../Modals/loginregistermodal';
-import logo from '../Assets/auto-logo.png'
+import './mainpage.css';
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -39,7 +37,7 @@ const styles = {
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
 
-class Searchbar extends React.Component {
+class ResultsSearchbar extends React.Component {
   constructor(props) {
     super(props);
     
@@ -186,7 +184,7 @@ class Searchbar extends React.Component {
 
   handleRedirect = (page) => {
     if (this.state.searching) {
-      return <Redirect push to={{
+      return <Redirect to={{
         pathname: '/searchpage',
         state: {
           isLoggedIn: this.props.isLoggedIn,
@@ -282,30 +280,9 @@ class Searchbar extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="results-searchbar">
       <div style={{ height: '70px' }}></div>
-      <div className="searchbar">
-        {this.handleRenderSignin()}
-        {this.handleRedirect()}
-        <div className="auto-logo">
-          <img
-            src={logo}
-            style={{ height: '50px', width: '50px' }}
-            alt="auto-logo"
-          />
-          {/* <div className="auto-logo">Auto</div>
-          <div className="auto-logo">Review</div>
-          <div className="auto-logo">For</div>
-          <div className="auto-logo">You!</div> */}
-          AUTO REVIEW FOR YOU!
-        </div>
-        <LoginRegisterModal 
-          isOpen={this.state.modalState.isOpen}
-          type={this.state.modalState.type}
-          handleModalState={this.handleModalState}
-          handleChangeModalType={this.handleChangeModalType}
-          handleSetJwtState={this.handleSetJwtState}
-        />
+      <div>
           <div className="searchfields">
             <select
               className="dropdowns"
@@ -366,4 +343,4 @@ class Searchbar extends React.Component {
   }
 }
 
-export default Searchbar;
+export default ResultsSearchbar;
