@@ -4,7 +4,7 @@
     top: 73px;
     width: 100% !important;
     /* background-color: #D3E3FC; */
-    background-image: url("../Assets/Pok_Rie.jpg");
+    background-image: linear-gradient(rgba(124, 111, 111, 0.3), rgba(255,255,255,0.4)), url("../Assets/Pok_Rie.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: center;

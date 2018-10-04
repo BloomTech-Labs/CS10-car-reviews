@@ -16,7 +16,18 @@
     color: white;
     font-size: 3em;
     font-family: 'Julius Sans One', sans-serif;
+    /* -webkit-transition:  -webkit-transform .5s ease-in-out;
+    -moz-transition: -moz-transform .2s ease-in-out;
+    -o-transition: -o-transform .2s ease-in-out;
+    -ms-transition: -ms-transform .2s ease-in-out; 
+    transition: transform .2s ease-in-out; */
 }
+
+/* .auto-logo:hover {
+    -webkit-transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    transform:scale(1.1);
+} */
 
 .searchfields {
     display: flex;

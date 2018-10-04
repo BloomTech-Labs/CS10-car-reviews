@@ -293,6 +293,10 @@ class Searchbar extends React.Component {
             style={{ height: '50px', width: '50px' }}
             alt="auto-logo"
           />
+          {/* <div className="auto-logo">Auto</div>
+          <div className="auto-logo">Review</div>
+          <div className="auto-logo">For</div>
+          <div className="auto-logo">You!</div> */}
           AUTO REVIEW FOR YOU!
         </div>
         <LoginRegisterModal 

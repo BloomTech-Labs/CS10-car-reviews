@@ -26,7 +26,7 @@ class Navbar extends Component {
       return (
         <div className="nc">
           <a className="navbar-item" href="/">
-              <img 
+            <img 
               src={home} 
               alt="home-icon" 
               className="icon"
@@ -65,6 +65,11 @@ class Navbar extends Component {
       return (
         <div className="nc">
           <a className="navbar-item" href="/">
+            <img 
+              src={home} 
+              alt="home-icon" 
+              className="icon"
+            />
             Home
           </a>
     
