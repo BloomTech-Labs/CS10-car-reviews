@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import placeholder from '../../logo.svg';
 import './mainpage.css';
-import ResultsSearchBar from './resultssearchbar';
-import data from '../../data';
+import ResultsSearchbar from './resultssearchbar';
 import {DropdownToggle, DropdownMenu, DropdownItem, 
     Button, UncontrolledDropdown, Col, Container, Row} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
@@ -79,7 +77,7 @@ class SearchResults extends Component {
         || this.props.location.state === undefined) {
         return <Redirect to='/' />
       } else {
-          return <ResultsSearchBar isLoggedIn={this.props.location.state.isLoggedIn} handleLogin={this.handleLogin}/>
+          return <ResultsSearchbar isLoggedIn={this.props.location.state.isLoggedIn} handleLogin={this.handleLogin}/>
       }
   }
 
@@ -136,11 +134,10 @@ class SearchResults extends Component {
                 />
                 {this.handleRedirect()}
                 <div className="filter-row">
-                    <div className="filters"> 
-                        <h5>Filter by:</h5>
+                    <div className="filters">
                         <UncontrolledDropdown className="dropdowns">
-                            <DropdownToggle caret>
-                                Reviewer
+                            <DropdownToggle caret className="searchbar-buttons">
+                                Filter By:
                             </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem onClick={() => this.handleResetFilter()}>
@@ -157,10 +154,9 @@ class SearchResults extends Component {
                         </UncontrolledDropdown>
                     </div>
                     <div className="sort-by">
-                        <h5>Sort by:</h5>
                         <UncontrolledDropdown className="dropdowns">
-                            <DropdownToggle caret>
-                                Reviewer
+                            <DropdownToggle caret className="searchbar-buttons">
+                                Sort By:
                             </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem onClick={()=> this.handleSortFilter('ratingAsc')}>

@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 import './mainpage.css';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import './hamburgermenu.css';
 import LoginRegisterModal from '../Modals/loginregistermodal';
-import logo from '../Assets/auto-logo.png'
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -223,6 +221,7 @@ class Searchbar extends React.Component {
                 Review
               </Button>
               </Link>
+              <div style={{ width: '20px' }} />
               <div style={styles.linkStyles}>
                 <Button 
                   className="searchbar-buttons"
@@ -262,19 +261,10 @@ class Searchbar extends React.Component {
   render() {
     return (
       <div>
-      <div style={{ height: '70px' }}></div>
+      <div style={{ height: '65px' }}></div>
       <div className="searchbar">
         {this.handleRedirect()}
         <div className="auto-logo">
-          <img
-            src={logo}
-            style={{ height: '50px', width: '50px' }}
-            alt="auto-logo"
-          />
-          {/* <div className="auto-logo">Auto</div>
-          <div className="auto-logo">Review</div>
-          <div className="auto-logo">For</div>
-          <div className="auto-logo">You!</div> */}
           AUTO REVIEW FOR YOU!
         </div>
         <LoginRegisterModal 

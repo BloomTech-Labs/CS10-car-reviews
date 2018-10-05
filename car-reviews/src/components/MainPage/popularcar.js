@@ -59,21 +59,21 @@ class PopularCar extends Component {
           <div>
             {this.handleRedirect()}
             <Button className="modal-button" onClick={()=>this.searchFunction()}>
-                <div>
-                    <img src={imageURL? imageURL : defaultImg} 
-                    style={{ height: '50%', width: '50%' }} alt=""/>
+                <p style={{ fontSize: '1.1em'}}>{` ${make} ${model}`}</p>     
+                <div style={{ height: '150px' }}>
+                <img src={imageURL ? imageURL : defaultImg} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
                 </div>
-                <ReactStars
-                  type= "number"
-                  name= "score"
-                  edit= {false}
-                  half={true}
-                  count={5}
-                  value={Math.round(averageScore * 100) / 100}
-                  size={36}
-                  color2={'#ffd700'} />
-                <p>{year} {make} {model}</p>
-                <p>{edition}</p>
+                <div style={{ display: 'flex', justifyContent: 'center'}}>
+                {/* <ReactStars
+                    type= "number"
+                    name= "score"
+                    edit= {false}
+                    half={true}
+                    count={5}
+                    value={Math.round(averageScore * 100) / 100}
+                    size={30}
+                    color2={'#ffd700'} /> */}
+                </div>
             </Button>
           </div>
         );

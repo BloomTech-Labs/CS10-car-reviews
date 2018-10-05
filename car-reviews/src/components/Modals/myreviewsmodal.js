@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Input } from 'reactstrap';
 import defaultImg from '../Assets/default_img.png';
 import axios from 'axios';
-import './myreviewsmodal.css';
+import './reviewmodal.css';
 import ReactStars from 'react-stars';
 
 class MyReviewsModal extends Component {
@@ -72,28 +72,28 @@ class MyReviewsModal extends Component {
     console.log('props', this.props);
     return (
       <div>
-        <Button className="my-modal-button" onClick={this.toggle}>
-          {this.props.carImage ? <img src={this.props.carImage} style={{ height: '100%', maxWidth: '100%' }} alt=""/>
-            : <img src={defaultImg} style={{ height: 'auto', maxWidth: '75%' }} alt=""/>}
-          <ReactStars
-            type="number"
-            name="score"
-            edit={false}
-            half={true}
-            count={5}
-            value={this.props.score}
-            size={36}
-            color2={'#ffd700'}
-          />
-          <p>{`Star Rating: ${this.props.score}`}</p>
-          <p>{`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}
- ${this.props.car.edition}`}</p>
-          {/* <CardText className="cardText">{`Updated ${
-                  review.updated_on
-                }`}</CardText> */}
+        <Button className="modal-button" onClick={this.toggle}>
+          <p style={{ fontSize: '1.1em'}}>
+            {`${this.props.year} ${this.props.make} ${this.props.model}`}
+          </p>     
+          <div style={{ height: '150px' }}>
+            <img src={this.props.carImage ? this.props.carImage : defaultImg}
+            style={{ height: '100%', maxWidth: '100%' }} alt=""/>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center'}}>
+            <ReactStars
+              type= "number"
+              name= "score"
+              edit= {false}
+              half={true}
+              count={5}
+              value={this.props.score}
+              size={30}
+              color2={'#ffd700'} />
+          </div>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle} className="my-modal-header">
+          <ModalHeader toggle={this.toggle} className="modal-header">
             <p>
               {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
                 this.props.car.edition
@@ -122,12 +122,12 @@ class MyReviewsModal extends Component {
               half={true}
               count={5}
               value={this.props.score}
-              size={36}
+              size={30}
               color2={'#ffd700'}
             />
             <p>{`Rating: ${this.props.score} out of 5`}</p>
           </ModalHeader>
-          <ModalBody className="my-modal-body">
+          <ModalBody className="modal-body">
             {this.props.carImage ? (
               <img src={this.props.carImage} style={{ height: '100%', width: '100%' }} alt="" />
             ) : null}

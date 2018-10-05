@@ -1,7 +1,7 @@
 /* Search Bar Styles */
-.searchbar {
+/* .searchbar {
     background-color: #77A6F7;
-}
+} */
 
 .login {
     display: flex;
@@ -13,21 +13,13 @@
 }
 
 .auto-logo {
-    color: white;
+    margin-top: 30px;
+    color: #2F77F3;
     font-size: 3em;
     font-family: 'Julius Sans One', sans-serif;
-    /* -webkit-transition:  -webkit-transform .5s ease-in-out;
-    -moz-transition: -moz-transform .2s ease-in-out;
-    -o-transition: -o-transform .2s ease-in-out;
-    -ms-transition: -ms-transform .2s ease-in-out; 
-    transition: transform .2s ease-in-out; */
+    font-weight: bold;
+    text-decoration-line: underline;
 }
-
-/* .auto-logo:hover {
-    -webkit-transform:scale(1.1);
-    -moz-transform:scale(1.1);
-    transform:scale(1.1);
-} */
 
 .searchfields {
     display: flex;
@@ -46,19 +38,22 @@
 }
 
 .searchbar-buttons {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 15px;
-    width: 100%;
-    background-color: white;
-    color: #77A6F7;
-    border: none !important;
-    font-size: 1.3em;
-    height: 50px;
-}
-.searchbar-buttons:hover {
+    /* margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 15px; */
+    width: 120px;
     background-color: #2F77F3;
     color: white;
+    border: none !important;
+    font-size: 1.1em;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+.searchbar-buttons:hover {
+    background-color: white;
+    color: #2F77F3;
 }
 
 /* End of Search Bar Styles */
@@ -68,21 +63,15 @@
 .main-content {
     margin-bottom: 45px;
     text-align: left;
-    background-color: #D3E3FC;
-    height: 100%; 
-    background-image: linear-gradient(rgba(124, 111, 111, 0.4), rgba(255,255,255,0.4)), url("../Assets/Aleksesjs_Bergmanis.jpg");
-    /* background-image: url("../Assets/Aleksesjs_Bergmanis.jpg"); */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: 100%;
 }
 
 
 .header {
     background-color: white;
     color: #2F77F3;
-    background-image: linear-gradient(to right, white,#2F77F3);
-    font-size: 2.2em;		     
+    font-size: 2.2em;
+    font-weight: bold;		     
     border-radius: 15px;
     padding-left: 10px;
 }		 
@@ -110,16 +99,11 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    background-image: url("../Assets/markus_spiske_2.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     z-index: -1;
 }
 .filter-row {
     display: flex;
-    justify-content: center;
-    margin-top: 60px;
+    justify-content: space-around;
 }
 
 .filters {
@@ -138,3 +122,15 @@
 
 /* End of Search Results Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.team-link {
+    width: 100%;
+    background-color: #2F77F3;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.team-link:hover {
+    color: white;
+}
