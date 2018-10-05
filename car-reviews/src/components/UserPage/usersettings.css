@@ -42,6 +42,14 @@
 .accordion-button {
   width: 248.615px; 
   text-align: center;
+  background-color: #2f77f3;
+  color: white;
+  border: none;
+}
+
+.accordion-button:hover {
+  background-color: white; 
+  color: #2f77f3;
 }
 
 /* general-button styling in /MainPage/loginregister.css */

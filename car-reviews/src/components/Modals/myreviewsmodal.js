@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Input } from 'reactstrap';
+import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Input } from 'reactstrap';
 import defaultImg from '../Assets/default_img.png';
 import axios from 'axios';
 import './reviewmodal.css';
+import './myreviewsmodal.css';
 import ReactStars from 'react-stars';
 
 class MyReviewsModal extends Component {
@@ -71,7 +72,7 @@ class MyReviewsModal extends Component {
   render() {
     console.log('props', this.props);
     return (
-      <div>
+      <Col lg="3" md="6" sm="12">
         <Button className="modal-button" onClick={this.toggle}>
           <p style={{ fontSize: '1.1em'}}>
             {`${this.props.year} ${this.props.make} ${this.props.model}`}
@@ -95,26 +96,11 @@ class MyReviewsModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
             <p>
-              {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model} ${
-                this.props.car.edition
-              } `}
-              <button
-                className="searchbar-buttons"
-                onClick={() => this.deleteReview(this.props._id)}
-              >
-                delete review
-              </button>
-              {this.state.editing ? (
-                <button className="searchbar-buttons" onClick={this.save}>
-                  save review
-                </button>
-              ) : (
-                <button className="searchbar-buttons" onClick={this.toggleEdit}>
-                  edit review
-                </button>
-              )}
+              {`${this.props.year} ${this.props.make} ${this.props.model} ${
+                this.props.car.edition}`}
+
             </p>
-            {/* <p>{`Review by: ${this.props.user.username}`}</p> */}
+            
             <ReactStars
               type="number"
               name="score"
@@ -125,7 +111,29 @@ class MyReviewsModal extends Component {
               size={30}
               color2={'#ffd700'}
             />
-            <p>{`Rating: ${this.props.score} out of 5`}</p>
+
+            <div className="mrb-container">
+
+            {this.state.editing ? (
+                <button className="my-review-buttons" onClick={this.save}>
+                  save review
+                </button>
+              ) : (
+                <button className="my-review-buttons" onClick={this.toggleEdit}>
+                  edit review
+                </button>
+              )}
+
+              <div style={{width:10}} />
+
+              <button
+                className="my-review-buttons"
+                onClick={() => this.deleteReview(this.props._id)}
+              >
+                delete review
+              </button>
+
+            </div>
           </ModalHeader>
           <ModalBody className="modal-body">
             {this.props.carImage ? (
@@ -158,7 +166,7 @@ class MyReviewsModal extends Component {
             )}
           </ModalBody>
         </Modal>
-      </div>
+      </Col>
     );
   }
 }
