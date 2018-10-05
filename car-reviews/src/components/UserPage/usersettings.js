@@ -209,11 +209,11 @@ class UserSettings extends Component {
           <Row className="mt-3">
             {/* <div style={{display:'flex', flexDirection:'column'}}> */}
             <Col md="12" lg="12" sm="12">
-              <Button color="primary" onClick={() => this.toggle('passwordCollapse')} className="accordion-button">
+              <Button color="primary" onClick={() => this.toggle('passwordCollapse')} className="accordion-button mt-3" style={{ marginBottom: '1rem' }}>
                 Change Your Password</Button>
                 <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
                 <Collapse isOpen={this.state.collapsers.passwordCollapse}>
-                <Card style={styles.cardStyles}>
+                <Card style={styles.cardStyles} className="mb-3">
                   <CardBody>
                     <CardTitle>Change Your Password</CardTitle>
                       <form onSubmit={this.handleSubmitPassword}>
@@ -245,7 +245,7 @@ class UserSettings extends Component {
                   </CardBody>       
                 </Card>
               </Collapse>
-              <Button color="primary" onClick={() => this.toggle('usernameCollapse')} className="accordion-button">
+              <Button color="primary" onClick={() => this.toggle('usernameCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
                   Change Your Username</Button>
 
 
@@ -253,7 +253,7 @@ class UserSettings extends Component {
 
                   <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
               <Collapse isOpen={this.state.collapsers.usernameCollapse}>
-                <Card style={styles.cardStyles}>
+                <Card style={styles.cardStyles} className="mb-3">
                   <CardBody>
                     <CardTitle>Change Your Username</CardTitle>
                       <form onSubmit={this.handleSubmitUsername}>
@@ -284,13 +284,13 @@ class UserSettings extends Component {
                   </Card>
                 </Collapse>
 
-                                  <Button color="primary" onClick={() => this.toggle('emailCollapse')} className="accordion-button">
+                                  <Button color="primary" onClick={() => this.toggle('emailCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
                   Change Your Email Address</Button>
 </Col>
                 
                   <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
                 <Collapse isOpen={this.state.collapsers.emailCollapse}>
-                <Card style={styles.cardStyles}>
+                <Card style={styles.cardStyles} className="mb-3">
                   <CardBody>
                     <CardTitle>Change Your Email Address</CardTitle>
                     <form onSubmit={this.handleSubmitEmail}>

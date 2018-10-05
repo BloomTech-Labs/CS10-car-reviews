@@ -50,18 +50,6 @@
   }
 }
 
-@media (max-width: 1202px) and (min-width: 1050px) {
-  .accordion-button {
-    margin-left: -20%;
-  }
-}
-
-@media (max-width: 1050px) and (min-width: 992px) {
-  .accordion-button {
-    margin-left: -5%;
-  }
-}
-
 
 /* general-button styling in /MainPage/loginregister.css */
 
