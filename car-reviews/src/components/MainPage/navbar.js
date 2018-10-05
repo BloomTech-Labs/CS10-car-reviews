@@ -25,6 +25,7 @@ class Navbar extends Component {
     Auth.logout();
   };
 
+
   render() { 
     return (
       <div className="navbar-container">
@@ -37,32 +38,40 @@ class Navbar extends Component {
             /> */}
             Home
           </a>
-    
-          <a className="navbar-item" href="/MyReviews">
-            <img 
-              src={flRev} 
-              alt="review-icon" 
-              className="icon"
-            />
-            My Reviews
-          </a>
-    
-          <a className="navbar-item" href="/Billing">
-            <img 
-              src={flBil} 
-              alt="billing-icon" 
-              className="icon"
-            />
-            Billing
-          </a>
-          <a className="navbar-item" href="/Settings">
-            <img 
-              src={flSet} 
-              alt="settings-icon" 
-              className="icon"
-            />
-            Settings
-          </a>
+
+          {this.props.isLoggedIn && 
+            <a className="navbar-item" href="/MyReviews">
+              <img 
+                src={flRev} 
+                alt="review-icon" 
+                className="icon"
+              />
+              My Reviews
+            </a> 
+          }
+
+          {this.props.isLoggedIn && 
+            <a className="navbar-item" href="/Billing">
+              <img 
+                src={flBil} 
+                alt="billing-icon" 
+                className="icon"
+              />
+              Billing
+            </a>
+          }
+
+          {this.props.isLoggedIn && 
+            <a className="navbar-item" href="/Settings">
+              <img 
+                src={flSet} 
+                alt="settings-icon" 
+                className="icon"
+              />
+              Settings
+            </a>
+          }
+
           {!this.props.isLoggedIn ?
             <a className='navbar-item' href="/login">Sign In</a> :
             <a className="navbar-item" href="/" onClick={this.signOut}>Sign Out</a>
