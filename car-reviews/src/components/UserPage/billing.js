@@ -9,6 +9,7 @@ import {
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import './billing.css'
 import Checkout from './checkout';
+import { carPic } from '../Assets/31.svg';
 
 const stripeKey = process.env.REACT_APP_STRIPE_KEY;
 
@@ -33,31 +34,32 @@ class Billing extends Component {
     render(){
         return(
             <div className="billing-container">
-                {/* <div className="BillingBox"> */}
-                {/* <h3 className="element"> Billing </h3>
-                <label className= "element"> payment info</label> */}
-                <div style={{ height: '100px' }} />
                 <StripeProvider apiKey={stripeKey}>
                 <Elements>
+                    <div>
                     <Row>
-                        <Col md="4">
-                            <Card >
-                            <CardBody>
-                              <CardTitle>1 year unlimited reviews: 40% OFF!</CardTitle>
-                                <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 year unlimited reviews',  6.99)} >1 Year Subscription = 6.99</Button>
-                                <Checkout
-                                name={'Trusted Car Reviews'}
-                                description={'1 year unlimited reviews'}
-                                amount={6.99}
-                                />
-                            </CardBody>
+                        <Col>
+                            <Card style={{ border: 'none !important' }}>
+                                <CardBody style={{ border: 'none !important' }}>
+                                    <CardTitle>1 year unlimited reviews: 40% OFF!</CardTitle>
+                                    <Button
+                                        className="billing-button"
+                                        onClick={() => this.onPriceClick('Trusted Car Reviews','1 year unlimited reviews',  6.99)}
+                                    >$6.99!</Button>
+                                    <Checkout
+                                        name={'Trusted Car Reviews'}
+                                        description={'1 year unlimited reviews'}
+                                        amount={6.99}
+                                    />
+                                </CardBody>
                             </Card>
-                        </Col>   
-                        <Col md="4">
                             <Card>
                             <CardBody>
                               <CardTitle>6 month unlimited reviews: 33% OFF!</CardTitle>
-                              <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','6 month unlimited reviews', 3.99)} >6 month Subscription = 3.99</Button>
+                              <Button
+                                className="billing-button"
+                                onClick={() => this.onPriceClick('Trusted Car Reviews','6 month unlimited reviews', 3.99)}
+                                >$3.99!</Button>
                               <Checkout
                                 name={`Trusted Car Reviews`}
                                 description={'6 month unlimited reviews'}
@@ -66,13 +68,14 @@ class Billing extends Component {
                              
                             </CardBody>
                             </Card>
-                        </Col>
-                    <Col md="4">
                             <Card>
                             <CardBody>
                               <CardTitle>1 month unlimited reviews Trial Level</CardTitle>
                               
-                              <Button className="button" color="primary" onClick={() => this.onPriceClick('Trusted Car Reviews','1 month unlimited reviews', 0.99)} >1 month Subscription = 0.99</Button>
+                              <Button
+                                className="billing-button"
+                                onClick={() => this.onPriceClick('Trusted Car Reviews','1 month unlimited reviews', 0.99)}
+                                >$0.99!</Button>
                               <Checkout
                                 name={'Trusted Car Reviews'}
                                 description={'1 month unlimited reviews'}
@@ -80,11 +83,23 @@ class Billing extends Component {
                               />
                             </CardBody>
                             </Card>
-                        </Col>   
+                        </Col>
+                        {/* <Col></Col>
+                        <Col>
+                            <img
+                                src={carPic}
+                                style={{ height: '250px', width: '250px' }}
+                                alt="billing-design"
+                            />
+                        </Col> */}
                     </Row>
+                    {/* <a
+                        href="https://www.vecteezy.com"
+                        style={{ position: 'fixed', bottom: '0', display: 'flex'}}
+                    >Vector Art by www.vecteezy.com</a> */}
+                    </div>
                 </Elements>
                 </StripeProvider>
-                {/* </div> */}
             </div>
         )
     }

@@ -10,7 +10,7 @@
 }
 
 .card {
-    height: 100%;
+    /* height: 100%; */
     opacity: 0.9;
 }
 
@@ -29,9 +29,22 @@
     text-align: center;
 }
 
-.button {
-    height: 50px;
-    margin-top: 20px;
+.billing-button {
+    height: 32px;
+    margin-right: 10px;
+    background-color: #2F77F3;
+    color: white;
+    border: none !important;
+}
+
+.billing-button:hover {
+    background-color: white;
+    color: #2F77F3;
+}
+
+.billing-button:focus {
+    background-color: #00887A;
+    color: white;
 }
 
 .btn-primary{

@@ -3,10 +3,10 @@
     color: #2F77F3;
     border: none !important; 
     min-height: 300px; /* so that the bottom of the content is not cut off */
-    width: 100%; /* to acheive responsiveness; its width is already set by its parent - reactStrap Col */ 
+    width: 102%; /* to acheive responsiveness; its width is already set by its parent - reactStrap Col */ 
     margin: 30px;
     overflow: hidden;  
-    white-space: wrap; /* important!!! fixes problem of text being cut off */
+    white-space: nowrap; /* important!!! fixes problem of text being cut off */
     text-overflow: ellipsis;
     -webkit-transition:  -webkit-transform .5s ease-in-out;
     -moz-transition: -moz-transform .2s ease-in-out;

@@ -223,6 +223,7 @@ class Searchbar extends React.Component {
                 Review
               </Button>
               </Link>
+              <div style={{ width: '20px' }} />
               <div style={styles.linkStyles}>
                 <Button 
                   className="searchbar-buttons"

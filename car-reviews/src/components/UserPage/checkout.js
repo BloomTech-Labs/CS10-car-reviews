@@ -3,7 +3,7 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
 const STRIPE_PUBLISHABLE = `pk_test_gyGeHhPwsQ6mp7K1lSleMa4c`;
-const PAYMENT_SERVER_URL = 'https://back-lambda-car-reviews.herokuapp.com/Payment';
+const PAYMENT_SERVER_URL = 'https://localhost:3001/Payment';
 
 const CURRENCY = 'USD';
 

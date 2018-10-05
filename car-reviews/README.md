@@ -59,7 +59,7 @@ After doing research, we decided to use the color scheme above because the stand
     - Montserrat - body
 
 * Photo Credits:
-    - photo by Bruno Bergher on Unsplash
+    - default car image by Rubén Oro
 
 # Component Structure
 - src/App.js

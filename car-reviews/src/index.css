@@ -7,3 +7,7 @@ body {
 img {
   object-fit: contain !important;
 }
+
+CardBody {
+  border: none !important;
+}
