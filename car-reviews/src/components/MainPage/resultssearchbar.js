@@ -184,7 +184,7 @@ class ResultsSearchbar extends React.Component {
 
   handleRedirect = (page) => {
     if (this.state.searching) {
-      return <Redirect to={{
+      return <Redirect push to={{
         pathname: '/searchpage',
         state: {
           isLoggedIn: this.props.isLoggedIn,
@@ -281,6 +281,7 @@ class ResultsSearchbar extends React.Component {
   render() {
     return (
       <div className="results-searchbar">
+      {this.handleRedirect()}
       <div style={{ height: '70px' }}></div>
       <div>
           <div className="searchfields">

@@ -1,15 +1,10 @@
 .user-settings-container {
-  position: absolute;
+  position: absolute; 
   bottom: 0;
   top: 72px;
   display: flex;
   justify-content: space-around;
   width: 100%;
-  /* background-color: #D3E3FC; */
-  background-image: linear-gradient(rgba(124, 111, 111, 0.1), rgba(255,255,255,0.3)), url("../Assets/1.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .userinfoContainer {
@@ -43,6 +38,30 @@
   background-color: white;
   margin: 40px auto;
 }
+
+.accordion-button {
+  width: 248.615px; 
+  text-align: start;
+}
+
+@media (max-width: 1202px) {
+  .accordion-button {
+    width: auto;
+  }
+}
+
+@media (max-width: 1202px) and (min-width: 1050px) {
+  .accordion-button {
+    margin-left: -20%;
+  }
+}
+
+@media (max-width: 1050px) and (min-width: 992px) {
+  .accordion-button {
+    margin-left: -5%;
+  }
+}
+
 
 /* general-button styling in /MainPage/loginregister.css */
 

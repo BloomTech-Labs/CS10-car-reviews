@@ -4,7 +4,10 @@ import {
   CardTitle,
   CardBody,
   Button,
-  Alert
+  Alert,
+  Collapse, 
+  Row,
+  Col,Container, UncontrolledCollapse
 } from 'reactstrap';
 import axios from 'axios';
 import './usersettings.css';
@@ -12,10 +15,7 @@ import './usersettings.css';
 // * TODO: Center vertically
 const styles = {
   cardStyles: {
-    width: "40%",
-    height: "45%",
     margin: '1%',
-    marginTop: '10%',
     background: 'white !important',
     opacity: '1'
   },
@@ -29,12 +29,7 @@ const styles = {
   },
   inputGroupStyles: {
     marginBottom: "5%",
-  },
-  // containerStyles: {
-  //   display: 'flex',
-  //   justifyContent: 'space-around',
-  //   width: '100%',
-  // }
+  }
 }
 
 // A form component that will display the name and email of a logged in user and allow them to change them and/or their password. Renders within the Settings component.
@@ -188,99 +183,128 @@ class UserSettings extends Component {
   render() {
     return (
       <div className="user-settings-container">
-      {/* <div style={styles.containerStyles}> */}
-        <Card style={styles.cardStyles}>
-          <CardBody>
-            <CardTitle>Change Your Password</CardTitle>
-            <form onSubmit={this.handleSubmitPassword}>
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>New Password</p>
-                <input
-                  type='password'
-                  style={styles.inputStyles} 
-                  placeholder='New password...'
-                  value={this.state.passwords.password}
-                  onChange={this.handleChange('passwords', 'password')}
-                />
-              </div>
+        <Container>
+          <Row className="mt-5">
+            <Col md="12" lg="3" sm="12">
+            <Button color="primary" id="toggler-password" className="accordion-button">
+              Change Your Password</Button>
+          </Col>
+          <Col md="12" lg="6" sm="12" className="mt-3">
+            <UncontrolledCollapse toggler="#toggler-password">
+              <Card style={styles.cardStyles}>
+                <CardBody>
+                  <CardTitle>Change Your Password</CardTitle>
+                    <form onSubmit={this.handleSubmitPassword}>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>New Password</p>
+                        <input
+                          type='password'
+                          style={styles.inputStyles} 
+                          placeholder='New password...'
+                          value={this.state.passwords.password}
+                          onChange={this.handleChange('passwords', 'password')}
+                        />
+                      </div>
 
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>Re-Enter New Password</p>
-                <input 
-                  type='password'
-                  style={styles.inputStyles}
-                  placeholder='Re-enter new password...'
-                  value={this.state.passwords.password2}
-                  onChange={this.handleChange('passwords', 'password2')}
-                />
-              </div>
-              <Button type="submit" className="general-button">Save Changes</Button>
-              <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
-              <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
-            </form>
-          </CardBody>
-        </Card>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>Re-Enter New Password</p>
+                        <input 
+                          type='password'
+                          style={styles.inputStyles}
+                          placeholder='Re-enter new password...'
+                          value={this.state.passwords.password2}
+                          onChange={this.handleChange('passwords', 'password2')}
+                        />
+                      </div>
+                      <Button type="submit" className="general-button">Save Changes</Button>
+                      <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
+                      <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
+                    </form>
+                </CardBody>       
+              </Card>
+            </UncontrolledCollapse>
+          </Col>
+        </Row>
+        <Row className="mt-1">
+          <Col md="12" lg="3" sm="12">
+            <Button color="primary" id="toggler-username" className="accordion-button">
+              Change Your Username</Button>
+          </Col>
+          <Col md="12" lg="6" sm="12" className="mt-3">
+            <UncontrolledCollapse toggler="#toggler-username">
+              <Card style={styles.cardStyles}>
+                <CardBody>
+                  <CardTitle>Change Your Username</CardTitle>
+                    <form onSubmit={this.handleSubmitUsername}>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>New Username</p>
+                        <input
+                          style={styles.inputStyles} 
+                          placeholder='New username...'
+                          value={this.state.usernames.username}
+                          onChange={this.handleChange('usernames', 'username')}
+                        />
+                      </div>
 
-        <Card style={styles.cardStyles}>
-          <CardBody>
-            <CardTitle>Change Your Username</CardTitle>
-            <form onSubmit={this.handleSubmitUsername}>
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>New Username</p>
-                <input
-                  style={styles.inputStyles} 
-                  placeholder='New username...'
-                  value={this.state.usernames.username}
-                  onChange={this.handleChange('usernames', 'username')}
-                />
-              </div>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>Re-Enter New Username</p>
+                        <input 
+                          style={styles.inputStyles}
+                          placeholder='Re-enter new username'
+                          value={this.state.usernames.username2}
+                          onChange={this.handleChange('usernames', 'username2')}
+                        />
+                      </div>
+                      <Button type="submit" className="general-button">Save Changes</Button>
+                      <Alert isOpen={this.state.alerts.username} color='danger'>There was an issue changing your username, please try again</Alert>
+                      <Alert isOpen={this.state.alerts.usernameSuccess} color='primary'>Your username has successfully been changed!</Alert>
+                    </form>
+                  </CardBody>
+                </Card>
+              </UncontrolledCollapse>
+            </Col>
+        </Row>
+        <Row className="mt-1" style={{marginBottom: 100}}>
+          <Col md="12" lg="3" sm="12">
+            <Button color="primary" id="toggler-email" className="accordion-button">
+              Change Your Email Address</Button>
+          </Col>
+          <Col md="12" lg="6" sm="12" className="mt-3">
+            <UncontrolledCollapse toggler="#toggler-email">
+              <Card style={styles.cardStyles}>
+                <CardBody>
+                  <CardTitle>Change Your Email Address</CardTitle>
+                      <form onSubmit={this.handleSubmitEmail}>
+                        <div style={styles.inputGroupStyles}>
+                          <p style={styles.labelStyles}>New Email Address</p>
+                          <input
+                            style={styles.inputStyles} 
+                            placeholder='New email...'
+                            value={this.state.password}
+                            onChange={this.handleChange('emails', 'email')}
+                          />
+                        </div>
 
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>Re-Enter New Username</p>
-                <input 
-                  style={styles.inputStyles}
-                  placeholder='Re-enter new username'
-                  value={this.state.usernames.username2}
-                  onChange={this.handleChange('usernames', 'username2')}
-                />
-              </div>
-              <Button type="submit" className="general-button">Save Changes</Button>
-              <Alert isOpen={this.state.alerts.username} color='danger'>There was an issue changing your username, please try again</Alert>
-              <Alert isOpen={this.state.alerts.usernameSuccess} color='primary'>Your username has successfully been changed!</Alert>
-            </form>
-          </CardBody>
-        </Card>
-
-        <Card style={styles.cardStyles}>
-          <CardBody>
-            <CardTitle>Change Your Email Address</CardTitle>
-            <form onSubmit={this.handleSubmitEmail}>
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>New Email Address</p>
-                <input
-                  style={styles.inputStyles} 
-                  placeholder='New email...'
-                  value={this.state.password}
-                  onChange={this.handleChange('emails', 'email')}
-                />
-              </div>
-
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>Re-Enter New Email</p>
-                <input 
-                  style={styles.inputStyles}
-                  placeholder='Re-enter new email'
-                  value={this.state.password2}
-                  onChange={this.handleChange('emails', 'email2')}
-                />
-              </div>
-              <Button type="submit" className="general-button">Save Changes</Button>
-              <Alert isOpen={this.state.alerts.email} color='danger'>There was an issue changing your email, please try again</Alert>
-              <Alert isOpen={this.state.alerts.emailSuccess} color='primary'>Your email has successfully been changed!</Alert>
-            </form>
-          </CardBody>
-        </Card>
-      </div>
+                        <div style={styles.inputGroupStyles}>
+                          <p style={styles.labelStyles}>Re-Enter New Email</p>
+                          <input 
+                            style={styles.inputStyles}
+                            placeholder='Re-enter new email'
+                            value={this.state.password2}
+                            onChange={this.handleChange('emails', 'email2')}
+                          />
+                        </div>
+                        <Button type="submit" className="general-button">Save Changes</Button>
+                        <Alert isOpen={this.state.alerts.email} color='danger'>There was an issue changing your email, please try again</Alert>
+                        <Alert isOpen={this.state.alerts.emailSuccess} color='primary'>Your email has successfully been changed!</Alert>
+                      </form>
+                  </CardBody>
+                </Card>
+              </UncontrolledCollapse>
+            </Col>
+        </Row>
+      </Container> 
+    </div>
     );
   }
 }
