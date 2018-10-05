@@ -130,6 +130,8 @@
     width: 100%;
     background-color: #2F77F3;
     color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .team-link:hover {
