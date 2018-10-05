@@ -207,51 +207,54 @@ class UserSettings extends Component {
       <div className="user-settings-container">
         <Container>
           <Row className="mt-3">
-            {/* <div style={{display:'flex', flexDirection:'column'}}> */}
             <Col md="12" lg="12" sm="12">
+
               <Button color="primary" onClick={() => this.toggle('passwordCollapse')} className="accordion-button mt-3" style={{ marginBottom: '1rem' }}>
                 Change Your Password</Button>
-                <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
-                <Collapse isOpen={this.state.collapsers.passwordCollapse}>
+
+              <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
+
+              <Collapse isOpen={this.state.collapsers.passwordCollapse}>
                 <Card style={styles.cardStyles} className="mb-3">
                   <CardBody>
                     <CardTitle>Change Your Password</CardTitle>
-                      <form onSubmit={this.handleSubmitPassword}>
-                        <div style={styles.inputGroupStyles}>
-                          <p style={styles.labelStyles}>New Password</p>
-                          <input
-                            type='password'
-                            style={styles.inputStyles} 
-                            placeholder='New password...'
-                            value={this.state.passwords.password}
-                            onChange={this.handleChange('passwords', 'password')}
-                          />
-                        </div>
 
-                        <div style={styles.inputGroupStyles}>
-                          <p style={styles.labelStyles}>Re-Enter New Password</p>
-                          <input 
-                            type='password'
-                            style={styles.inputStyles}
-                            placeholder='Re-enter new password...'
-                            value={this.state.passwords.password2}
-                            onChange={this.handleChange('passwords', 'password2')}
-                          />
-                        </div>
-                        <Button type="submit" className="general-button">Save Changes</Button>
-                        <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
-                        <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
-                      </form>
+                    <form onSubmit={this.handleSubmitPassword}>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>New Password</p>
+                        <input
+                          type='password'
+                          style={styles.inputStyles} 
+                          placeholder='New password...'
+                          value={this.state.passwords.password}
+                          onChange={this.handleChange('passwords', 'password')}
+                        />
+                      </div>
+
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>Re-Enter New Password</p>
+                        <input 
+                          type='password'
+                          style={styles.inputStyles}
+                          placeholder='Re-enter new password...'
+                          value={this.state.passwords.password2}
+                          onChange={this.handleChange('passwords', 'password2')}
+                        />
+                      </div>
+                      <Button type="submit" className="general-button">Save Changes</Button>
+                      <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
+                      <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
+                    </form>
+
                   </CardBody>       
                 </Card>
               </Collapse>
-              <Button color="primary" onClick={() => this.toggle('usernameCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
-                  Change Your Username</Button>
+            <Button color="primary" onClick={() => this.toggle('usernameCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
+                Change Your Username
+            </Button>
+            </Col>
 
-
-</Col>
-
-                  <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
+            <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
               <Collapse isOpen={this.state.collapsers.usernameCollapse}>
                 <Card style={styles.cardStyles} className="mb-3">
                   <CardBody>
@@ -284,11 +287,12 @@ class UserSettings extends Component {
                   </Card>
                 </Collapse>
 
-                                  <Button color="primary" onClick={() => this.toggle('emailCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
-                  Change Your Email Address</Button>
-</Col>
+                <Button color="primary" onClick={() => this.toggle('emailCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
+                  Change Your Email Address
+                </Button>
+                </Col>
                 
-                  <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
+                <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
                 <Collapse isOpen={this.state.collapsers.emailCollapse}>
                 <Card style={styles.cardStyles} className="mb-3">
                   <CardBody>
@@ -320,21 +324,8 @@ class UserSettings extends Component {
                   </CardBody>
                 </Card>
               </Collapse>
-          </Col>
-             </Col>  
-              
-                  
-              
-
-            {/* </div> */}
-          
-              
-          
-          
-             
-              
-          
-             
+            </Col>
+            </Col>
           </Row>
       </Container> 
     </div>
