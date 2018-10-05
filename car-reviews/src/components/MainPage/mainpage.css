@@ -1,7 +1,7 @@
 /* Search Bar Styles */
-.searchbar {
+/* .searchbar {
     background-color: #77A6F7;
-}
+} */
 
 .login {
     display: flex;
@@ -35,19 +35,22 @@
 }
 
 .searchbar-buttons {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 15px;
-    width: 100%;
-    background-color: white;
-    color: #77A6F7;
-    border: none !important;
-    font-size: 1.3em;
-    height: 50px;
-}
-.searchbar-buttons:hover {
+    /* margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 15px; */
+    width: 120px;
     background-color: #2F77F3;
     color: white;
+    border: none !important;
+    font-size: 1.1em;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+.searchbar-buttons:hover {
+    background-color: white;
+    color: #2F77F3;
 }
 
 /* End of Search Bar Styles */
@@ -101,8 +104,7 @@
 }
 .filter-row {
     display: flex;
-    justify-content: center;
-    margin-top: 60px;
+    justify-content: space-around;
 }
 
 .filters {

@@ -2,7 +2,9 @@ import React, { Fragment } from 'react';
 import './mainpage.css';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import './mainpage.css';
+import './hamburgermenu.css';
+import LoginRegisterModal from '../Modals/loginregistermodal';
+import logo from '../Assets/auto-logo.png'
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -70,11 +72,6 @@ class ResultsSearchbar extends React.Component {
       }
     };
   }
-
-  // componentWillMount(){
-  //   console.log(this.props.isLoggedIn);
-  //   this.setState({ localIsLoggedIn: this.props.isLoggedIn });
-  // }
 
   componentDidMount() {
     axios.get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
@@ -184,7 +181,7 @@ class ResultsSearchbar extends React.Component {
 
   handleRedirect = (page) => {
     if (this.state.searching) {
-      return <Redirect to={{
+      return <Redirect push to={{
         pathname: '/searchpage',
         state: {
           isLoggedIn: this.props.isLoggedIn,
@@ -196,27 +193,6 @@ class ResultsSearchbar extends React.Component {
       return <Fragment />
     }
   }
-
-  handleRenderSignin = () => {
-    if (!this.props.isLoggedIn) {
-      return (
-        <div className="login">
-            <div style={styles.loginContainerStyles}>
-              <Button onClick={this.handleModalState('login', true)} className="searchbar-buttons">Sign In</Button>
-              <Button onClick={this.handleModalState('register', true)} className="searchbar-buttons">Register</Button>
-              {/* <Link  to='/'><Button className="searchbar-buttons">Home</Button></Link> */}
-            </div>
-        </div>
-      );
-    } else {
-      return (
-        <div style={{ height: '30px' }}>
-          {/* <HamburgerMenu right /> */}
-          {/* <Navbar /> */}
-        </div>
-      );
-    }
-  };
 
   handleModalState = (modalType, status) => () => {
     const newState = Object.assign({}, this.state);
@@ -242,6 +218,7 @@ class ResultsSearchbar extends React.Component {
                 Review
               </Button>
               </Link>
+              <div style={{ width: '20px' }} />
               <div style={styles.linkStyles}>
                 <Button 
                   className="searchbar-buttons"
@@ -280,9 +257,17 @@ class ResultsSearchbar extends React.Component {
   
   render() {
     return (
-      <div className="results-searchbar">
-      <div style={{ height: '70px' }}></div>
       <div>
+      <div style={{ height: '65px' }}></div>
+      <div className="searchbar">
+        {this.handleRedirect()}
+        <LoginRegisterModal 
+          isOpen={this.state.modalState.isOpen}
+          type={this.state.modalState.type}
+          handleModalState={this.handleModalState}
+          handleChangeModalType={this.handleChangeModalType}
+          handleSetJwtState={this.handleSetJwtState}
+        />
           <div className="searchfields">
             <select
               className="dropdowns"
