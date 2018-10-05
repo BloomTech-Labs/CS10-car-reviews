@@ -18,10 +18,8 @@ const router = express.Router();
 // adding the routes
 router.get('/', (req, res) => res.send(`The home router is working!`)); // test router
 
-
-
-
-router.post("/", verifyJWTMiddleware, (req, res) => {
+router.post("/", (req, res) => {
+  console.log('payment test');
     const email = req.email;
     const source = req.body.source;
     const description = req.body.description;
@@ -35,6 +33,7 @@ router.post("/", verifyJWTMiddleware, (req, res) => {
         chosenplan = 'plan_DfkBSehKoaV8LZ';
     } else {
         console.log('An error occured no plan was chosen', description);
+        return res.send(`An error occured, no plan was chosen`)
     }
     if(description !== null) {
 
