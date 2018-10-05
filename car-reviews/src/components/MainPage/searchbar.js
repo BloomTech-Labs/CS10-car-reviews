@@ -3,7 +3,6 @@ import './mainpage.css';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import LoginRegisterModal from '../Modals/loginregistermodal';
-import logo from '../Assets/auto-logo.png'
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -266,17 +265,7 @@ class Searchbar extends React.Component {
       <div className="searchbar">
         {this.handleRedirect()}
         <div className="auto-logo">
-          <img
-            src={logo}
-            style={{ height: '50px', width: '50px' }}
-            alt="auto-logo"
-          />
           AUTO REVIEW FOR YOU!
-          <img
-            src={logo}
-            style={{ height: '50px', width: '50px' }}
-            alt="auto-logo"
-          />
         </div>
         <LoginRegisterModal 
           isOpen={this.state.modalState.isOpen}

@@ -4,7 +4,6 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import './hamburgermenu.css';
 import LoginRegisterModal from '../Modals/loginregistermodal';
-import logo from '../Assets/auto-logo.png'
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;

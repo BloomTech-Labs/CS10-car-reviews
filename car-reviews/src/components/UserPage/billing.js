@@ -9,7 +9,6 @@ import {
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import './billing.css'
 import Checkout from './checkout';
-import { carPic } from '../Assets/31.svg';
 
 const stripeKey = process.env.REACT_APP_STRIPE_KEY;
 
@@ -84,19 +83,7 @@ class Billing extends Component {
                             </CardBody>
                             </Card>
                         </Col>
-                        {/* <Col></Col>
-                        <Col>
-                            <img
-                                src={carPic}
-                                style={{ height: '250px', width: '250px' }}
-                                alt="billing-design"
-                            />
-                        </Col> */}
                     </Row>
-                    {/* <a
-                        href="https://www.vecteezy.com"
-                        style={{ position: 'fixed', bottom: '0', display: 'flex'}}
-                    >Vector Art by www.vecteezy.com</a> */}
                     </div>
                 </Elements>
                 </StripeProvider>

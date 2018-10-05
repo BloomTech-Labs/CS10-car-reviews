@@ -18,6 +18,7 @@
     font-size: 3em;
     font-family: 'Julius Sans One', sans-serif;
     font-weight: bold;
+    text-decoration-line: underline;
 }
 
 .searchfields {
@@ -98,10 +99,6 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    background-image: url("../Assets/markus_spiske_2.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     z-index: -1;
 }
 .filter-row {
