@@ -44,12 +44,4 @@
   text-align: center;
 }
 
-@media (max-width: 1202px) {
-  .accordion-button {
-    width: auto;
-  }
-}
-
-
 /* general-button styling in /MainPage/loginregister.css */
-
