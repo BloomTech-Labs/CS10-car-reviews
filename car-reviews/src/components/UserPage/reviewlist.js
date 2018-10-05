@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './reviewlist.css';
-import { Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import MyReviewsModal from '../Modals/myreviewsmodal';
 import NewReviewModal from '../Modals/newreview';
 import axios from 'axios';
@@ -96,7 +96,8 @@ class ReviewList extends Component {
             userInfo={this.state.data.user}
           />
         </div>
-        <Col lg="3" md="6" className="reviewCardContainer">
+        <Container style={{ marginBottom: '100px' }}>
+          <Row style = {{ marginTop: '20px' }}>
           {this.state.data.reviews.map(review => {
             return (
               <MyReviewsModal
@@ -108,7 +109,8 @@ class ReviewList extends Component {
               />
             );
           })}
-        </Col>
+          </Row>
+        </Container>
       </div>
     );
 
