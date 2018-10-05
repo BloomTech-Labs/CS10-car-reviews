@@ -60,6 +60,7 @@ After doing research, we decided to use the color scheme above because the stand
 
 * Photo Credits:
     - default car image by Rubén Oro
+    - traffic light icon Copyright (C) <2016>  <Nick Roach>
 
 # Component Structure
 - src/App.js

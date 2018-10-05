@@ -61,11 +61,12 @@ class MainPage extends Component {
           >
             Click here to learn about The Team!
           </a>
-          {/* <div style={{ width: '10px' }} />
-          Graphics from  <a 
+          <div style={{ width: '10px' }} />
+          Blue Car Icon - <a 
                           href="https://pngtree.com/freepng/blue-flat-car_1154079.html"
                           style={{ color: 'white'}}
-                          >pngtree.com</a> */}
+                          target="_blank"
+                          >pngtree.com</a>
         </div>
       </div>
     );
