@@ -41,7 +41,7 @@
 
 .accordion-button {
   width: 248.615px; 
-  text-align: start;
+  text-align: center;
 }
 
 @media (max-width: 1202px) {
