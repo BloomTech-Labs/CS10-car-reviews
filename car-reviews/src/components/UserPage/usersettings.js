@@ -42,6 +42,7 @@ const styles = {
 class UserSettings extends Component {
   constructor(props) {
     super(props);
+    this.toggle = this.toggle.bind(this);
     this.state = {
       passwords: {
         password: '',
@@ -62,9 +63,29 @@ class UserSettings extends Component {
         passwordSuccess: false,
         usernameSuccess: false,
         emailSuccess: false,
+      },
+      collapsers: { 
+        passwordCollapse: false,
+        usernameCollapse: false,
+        emailCollapse: false
       }
     };
 
+  }
+
+  toggle(type) {
+    this.setState((state) => ({
+      collapsers: {
+        [type]: state['collapsers'][type],
+        [!type]: false
+      }
+    }), 
+      () => this.setState((state) => ({
+        collapsers: {
+          [type]: !state['collapsers'][type]
+        }
+      }))
+    );
   }
 
   handleChange = (type1, type2) => (event) =>{
@@ -186,11 +207,11 @@ class UserSettings extends Component {
         <Container>
           <Row className="mt-5">
             <Col md="12" lg="3" sm="12">
-            <Button color="primary" id="toggler-password" className="accordion-button">
+            <Button color="primary" onClick={() => this.toggle('passwordCollapse')} className="accordion-button">
               Change Your Password</Button>
           </Col>
           <Col md="12" lg="6" sm="12" className="mt-3">
-            <UncontrolledCollapse toggler="#toggler-password">
+            <Collapse isOpen={this.state.collapsers.passwordCollapse}>
               <Card style={styles.cardStyles}>
                 <CardBody>
                   <CardTitle>Change Your Password</CardTitle>
@@ -222,16 +243,16 @@ class UserSettings extends Component {
                     </form>
                 </CardBody>       
               </Card>
-            </UncontrolledCollapse>
+            </Collapse>
           </Col>
         </Row>
         <Row className="mt-1">
           <Col md="12" lg="3" sm="12">
-            <Button color="primary" id="toggler-username" className="accordion-button">
+            <Button color="primary" onClick={() => this.toggle('usernameCollapse')} className="accordion-button">
               Change Your Username</Button>
           </Col>
           <Col md="12" lg="6" sm="12" className="mt-3">
-            <UncontrolledCollapse toggler="#toggler-username">
+            <Collapse isOpen={this.state.collapsers.usernameCollapse}>
               <Card style={styles.cardStyles}>
                 <CardBody>
                   <CardTitle>Change Your Username</CardTitle>
@@ -261,16 +282,16 @@ class UserSettings extends Component {
                     </form>
                   </CardBody>
                 </Card>
-              </UncontrolledCollapse>
+              </Collapse>
             </Col>
         </Row>
         <Row className="mt-1" style={{marginBottom: 100}}>
           <Col md="12" lg="3" sm="12">
-            <Button color="primary" id="toggler-email" className="accordion-button">
+            <Button color="primary" onClick={() => this.toggle('emailCollapse')} className="accordion-button">
               Change Your Email Address</Button>
           </Col>
           <Col md="12" lg="6" sm="12" className="mt-3">
-            <UncontrolledCollapse toggler="#toggler-email">
+            <Collapse isOpen={this.state.collapsers.emailCollapse}>
               <Card style={styles.cardStyles}>
                 <CardBody>
                   <CardTitle>Change Your Email Address</CardTitle>
@@ -300,7 +321,7 @@ class UserSettings extends Component {
                       </form>
                   </CardBody>
                 </Card>
-              </UncontrolledCollapse>
+              </Collapse>
             </Col>
         </Row>
       </Container> 
