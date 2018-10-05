@@ -189,8 +189,8 @@ class NewReviewModal extends Component {
         });
 
         if (this.state.success) {
+          this.props.addReview();
           this.toggle();
-          window.location.reload(); // Need a way for the screen to rerender the changes without me doing it explicitly.
         }
       })
       .catch(err => {
