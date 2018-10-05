@@ -3,7 +3,8 @@ import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
 const STRIPE_PUBLISHABLE = `pk_test_gyGeHhPwsQ6mp7K1lSleMa4c`;
-const PAYMENT_SERVER_URL = 'http://localhost:3001/Payment';
+//use https on both payment server url and dbrequests inside billing container
+const PAYMENT_SERVER_URL = 'https://back-lambda-car-reviews.herokuapp.com/Payment';
 
 const CURRENCY = 'USD';
 
