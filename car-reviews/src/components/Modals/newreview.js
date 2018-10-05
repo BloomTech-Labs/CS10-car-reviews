@@ -360,7 +360,7 @@ class NewReviewModal extends Component {
                 value={this.state.review.score}
                 // this.state.review.score
                 onChange={this.ratingChanged('review', 'score')}
-                size={36}
+                size={30}
                 color2={'#ffd700'}
               />
 

@@ -3,11 +3,6 @@
   bottom: 0;
   top: 72px;
   width: 100%;
-  /* background-color: #D3E3FC; */
-  background-image: url("../Assets/Markus_Spiske.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .fullScreenReview {

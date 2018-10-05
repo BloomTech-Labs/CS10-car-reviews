@@ -53,13 +53,21 @@ class MainPage extends Component {
           />
         </div>
         <MainContent isLoggedIn={isLoggedIn} />
-        <a
-          href="https://lambdaschool.com"
-          style={{ paddingBottom: '30px' }}
-          target="_blank"
-        >
-          About The Team
-        </a>
+        <div className="team-link">
+          <a
+            href="https://lambdaschool.com"
+            className="team-link"
+            target="_blank"
+          >
+            Click here to learn about The Team!
+          </a>
+          <div style={{ width: '10px' }} />
+          Blue Car Icon - <a 
+                          href="https://pngtree.com/freepng/blue-flat-car_1154079.html"
+                          style={{ color: 'white'}}
+                          target="_blank"
+                          >pngtree.com</a>
+        </div>
       </div>
     );
   }
