@@ -13,9 +13,11 @@
 }
 
 .auto-logo {
-    color: white;
+    margin-top: 30px;
+    color: #2F77F3;
     font-size: 3em;
     font-family: 'Julius Sans One', sans-serif;
+    font-weight: bold;
 }
 
 .searchfields {
@@ -123,3 +125,13 @@
 
 /* End of Search Results Styles */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.team-link {
+    width: 100%;
+    background-color: #2F77F3;
+    color: white;
+}
+
+.team-link:hover {
+    color: white;
+}

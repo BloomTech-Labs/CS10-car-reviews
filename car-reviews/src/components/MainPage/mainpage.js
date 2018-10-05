@@ -53,13 +53,15 @@ class MainPage extends Component {
           />
         </div>
         <MainContent isLoggedIn={isLoggedIn} />
-        <a
-          href="https://lambdaschool.com"
-          style={{ paddingBottom: '30px' }}
-          target="_blank"
-        >
-          About The Team
-        </a>
+        <div className="team-link">
+          <a
+            href="https://lambdaschool.com"
+            className="team-link"
+            target="_blank"
+          >
+            About The Team
+          </a>
+        </div>
       </div>
     );
   }

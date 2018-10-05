@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import './mainpage.css';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
-import './hamburgermenu.css';
 import LoginRegisterModal from '../Modals/loginregistermodal';
 import logo from '../Assets/auto-logo.png'
 import axios from 'axios';
@@ -272,11 +271,12 @@ class Searchbar extends React.Component {
             style={{ height: '50px', width: '50px' }}
             alt="auto-logo"
           />
-          {/* <div className="auto-logo">Auto</div>
-          <div className="auto-logo">Review</div>
-          <div className="auto-logo">For</div>
-          <div className="auto-logo">You!</div> */}
           AUTO REVIEW FOR YOU!
+          <img
+            src={logo}
+            style={{ height: '50px', width: '50px' }}
+            alt="auto-logo"
+          />
         </div>
         <LoginRegisterModal 
           isOpen={this.state.modalState.isOpen}
