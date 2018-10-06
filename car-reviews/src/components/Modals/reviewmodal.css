@@ -15,6 +15,12 @@
     transition: transform .2s ease-in-out;
 }  
 
+@media (max-width: 700px) {
+    .modal-button {
+        width: 80%;
+    }
+}
+
 .modal-button:hover {
     background-color: rgba(119,166,247, 0.8);
     -webkit-transform:scale(1.1);

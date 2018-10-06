@@ -96,7 +96,7 @@ class ReviewModal extends Component {
     const { score, createOn, title, content, carImage } = this.props;
     const { year, make, model, edition } = this.props.car;
     return (
-      <div>
+      <div className='button-container'>
         <Button className="modal-button" onClick={this.toggle}>
             <p style={{ fontSize: '1.1em'}}>{`${year} ${make} ${model}`}</p>     
             <div style={{ height: '150px' }}>

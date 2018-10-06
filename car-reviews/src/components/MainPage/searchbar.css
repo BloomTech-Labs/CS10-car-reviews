@@ -1,0 +1,16 @@
+@media (max-width: 1300px) {
+    .searchbar-buttons-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+    };
+}
+
+@media (max-width: 1300px) {
+    .searchbar-buttons-links {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+    };
+}

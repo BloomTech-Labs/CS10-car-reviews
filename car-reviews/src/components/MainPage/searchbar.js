@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import LoginRegisterModal from '../Modals/loginregistermodal';
 import axios from 'axios';
+import "./searchbar.css";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -15,15 +16,15 @@ const styles = {
     color: '#77A6F7',
   },
   buttonContainerStyles: {
-    display: 'flex',
-    justifyContent: 'center'
+    // display: 'flex',
+    // justifyContent: 'center'
   },
   linkStyles: {
     textDecoration: 'none',
     width: '8%',
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 15,
+    
+    // marginBottom: 15,
+    display: 'inline-block',
   },
   loginContainerStyles: {
     display: 'flex',
@@ -213,16 +214,15 @@ class Searchbar extends React.Component {
   handleReviewButton = () => {
     if (this.props.isLoggedIn){
       return (
-        <div style={styles.buttonContainerStyles}>
-          <Link style={styles.linkStyles}  to='/MyReviews'>
+        <div className='searchbar-buttons-container' style={styles.buttonContainerStyles}>
+          <Link className='searchbar-buttons-links' style={styles.linkStyles}  to='/MyReviews'>
               <Button
                 className="searchbar-buttons"
               >
                 Review
               </Button>
               </Link>
-              <div style={{ width: '20px' }} />
-              <div style={styles.linkStyles}>
+              <div className='searchbar-buttons-links' style={styles.linkStyles}>
                 <Button 
                   className="searchbar-buttons"
                   onClick={()=>this.searchFunction()}
@@ -232,8 +232,8 @@ class Searchbar extends React.Component {
       )
     } else {
       return (
-        <div style={styles.buttonContainerStyles}>
-              <div style={styles.linkStyles}>
+        <div className='searchbar-buttons-container' style={styles.buttonContainerStyles}>
+              <div className='searchbar-buttons-links' style={styles.linkStyles}>
               <Button
                 className="searchbar-buttons"
                 onClick={this.handleModalState('login', true)}
@@ -241,7 +241,7 @@ class Searchbar extends React.Component {
                 Review
               </Button>
               </div>
-              <div style={styles.linkStyles}>
+              <div className='searchbar-buttons-links' style={styles.linkStyles}>
                 <Button 
                   className="searchbar-buttons"
                   onClick={()=>this.searchFunction()}
