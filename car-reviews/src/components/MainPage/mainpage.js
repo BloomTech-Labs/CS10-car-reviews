@@ -3,8 +3,7 @@ import SearchBar from './searchbar';
 import MainContent from './maincontent';
 import axios from 'axios';
 import Navbar from './navbar';
-import Media from 'react-media';
-import HamburgerMenu from './hamburgermenu';
+
 
 const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
 const localRequests = `http://localhost:3001/auth/verify`
@@ -45,16 +44,10 @@ class MainPage extends Component {
     return (
       <div>
         <div>
-          <Media query="(max-width: 550px)">
-            {matches => 
-              matches ?
-                <HamburgerMenu />
-                : <Navbar 
-                isLoggedIn={isLoggedIn} 
+          <Navbar 
+              isLoggedIn={isLoggedIn} 
                 handleLogin={this.handleLogin}
-              />
-            }
-          </Media>
+            />
           <SearchBar 
             isLoggedIn={isLoggedIn} 
             handleLogin={this.handleLogin}

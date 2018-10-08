@@ -179,19 +179,19 @@ class LoginRegister extends Component {
         }
         if (this.state.type === 'login') {
             return (
-                    <Card style={styles.modalStyles}>
-                        <CardHeader style={styles.headerStyles}>
+                    <Card className='login-card'>
+                        <CardHeader className='login-header'>
                             {/* utton style={styles.closeButtonStyles} color="danger" onClick={this.props.handleModalState('login', false)}>X</Button><B */}
                             <p>Login</p>
                         </CardHeader>
                         <CardBody>
-                            <form style={styles.formStyles}>
+                            <form className='login-form'>
                                 <input 
                                     type='text'
                                     name='email'
                                     placeholder='Enter your email...'
                                     value={this.state.login.email}
-                                    style={styles.inputStyles}
+                                    className='login-input'
                                     onChange={this.handleUpdateText('login')}
                                 />
                                 <input 
@@ -199,39 +199,39 @@ class LoginRegister extends Component {
                                     name='password'
                                     placeholder='Enter your password...'
                                     value={this.state.login.password}
-                                    style={styles.inputStyles}
+                                    className='login-input'
                                     onChange={this.handleUpdateText('login')}
                                 />
                                 <Button 
                                     type='submit'
                                     color='primary'
                                     onClick={this.handleSubmittal('login')} 
-                                    style={styles.submitButtonStyles}
+                                    className='login-button'
                                 >Submit</Button>
                                 <Alert isOpen={this.state.alerts.login} color='danger'>Incorrect email and/or password, please try again</Alert>
                             </form>
                         </CardBody>
-                        <CardFooter style={styles.footerStyles}>
-                            <p style={styles.footerTextStyles}>Already have an account?</p>
-                            <p onClick={() => this.handleChangeModalType('register')} style={styles.footerLinkStyles}>Click here</p>
+                        <CardFooter className='login-footer'>
+                            <p className='login-footer-text'>Already have an account?</p>
+                            <p onClick={() => this.handleChangeModalType('register')} className='login-footer-link'>Click here</p>
                     </CardFooter>
                 </Card>
             )
         }
         if (this.state.type === 'register'){
             return(
-                <Card style={styles.modalStyles}>
-                    <CardHeader style={styles.headerStyles}>
+                <Card className='login-card'>
+                    <CardHeader className='login-header'>
                             <p>Register</p>
                         </CardHeader>
                     <CardBody>
-                        <form style={styles.formStyles}>
+                        <form className='login-form'>
                             <input 
                                 type='text'
                                 name='fullname'
                                 placeholder='Enter your full name...'
                                 value={this.state.register.fullname}
-                                style={styles.inputStyles}
+                                className='login-input'
                                 onChange={this.handleUpdateText('register')}
                             />
                             <input 
@@ -239,7 +239,7 @@ class LoginRegister extends Component {
                                 name='username'
                                 placeholder='Enter your username...'
                                 value={this.state.register.username}
-                                style={styles.inputStyles}
+                                className='login-input'
                                 onChange={this.handleUpdateText('register')}
                             />
                             <input 
@@ -247,7 +247,7 @@ class LoginRegister extends Component {
                                 name='email'
                                 placeholder='Enter your email...'
                                 value={this.state.register.email}
-                                style={styles.inputStyles}
+                                className='login-input'
                                 onChange={this.handleUpdateText('register')}
                             />
                             <input 
@@ -255,7 +255,7 @@ class LoginRegister extends Component {
                                 name='password'
                                 placeholder='Enter your password...'
                                 value={this.state.register.password}
-                                style={styles.inputStyles}
+                                className='login-input'
                                 onChange={this.handleUpdateText('register')}
                             />
                             <input 
@@ -263,23 +263,23 @@ class LoginRegister extends Component {
                                 name='password2'
                                 placeholder='Re-enter password...'
                                 value={this.state.register.password2}
-                                style={styles.inputStyles}
+                                className='login-input'
                                 onChange={this.handleUpdateText('register')}
                             />
                             <Button 
                                 type='submit' 
                                 onClick={this.handleSubmittal('register')}
                                 color='primary'
-                                style={styles.submitButtonStyles}
+                                className='login-button'
                             >Submit</Button>
                             <Alert isOpen={this.state.alerts.register} color='danger'>There was an error registering you, please check your credentials and try again</Alert>
                             <Alert isOpen={this.state.alerts.passMatchErr} color='danger'>The passwords you entered don't match, please try again</Alert>
                             <Alert isOpen={this.state.alerts.emailValidErr} color='danger'>Please enter a valid email address</Alert>
                         </form>
                     </CardBody>
-                    <CardFooter style={styles.footerStyles}>
-                            <p style={styles.footerTextStyles}>Already have an account?</p>
-                            <p onClick={() => this.handleChangeModalType('login')} style={styles.footerLinkStyles}>Click here</p>
+                    <CardFooter className='login-footer'>
+                            <p className='login-footer-text'>Already have an account?</p>
+                            <p onClick={() => this.handleChangeModalType('login')} className='login-footer-link'>Click here</p>
                     </CardFooter>
                 </Card>
             )
