@@ -14,7 +14,7 @@ import './loginregister.css';
 
 const styles = {
     modalStyles: {
-        width: '20%',
+        width: '40%',
         marginTop: '10%',
         marginLeft: 'auto',
         marginRight: 'auto'
@@ -212,7 +212,7 @@ class LoginRegister extends Component {
                             </form>
                         </CardBody>
                         <CardFooter style={styles.footerStyles}>
-                            <p style={styles.footerTextStyles}>Already have an account?</p>
+                            <p style={styles.footerTextStyles}>Already have an account? </p>
                             <p onClick={() => this.handleChangeModalType('register')} style={styles.footerLinkStyles}>Click here</p>
                     </CardFooter>
                 </Card>
@@ -278,8 +278,8 @@ class LoginRegister extends Component {
                         </form>
                     </CardBody>
                     <CardFooter style={styles.footerStyles}>
-                            <p style={styles.footerTextStyles}>Already have an account?</p>
-                            <p onClick={() => this.handleChangeModalType('login')} style={styles.footerLinkStyles}>Click here</p>
+                            <p style={styles.footerTextStyles}>Don't have an account? </p>
+                            <p onClick={() => this.handleChangeModalType('login')} style={styles.footerLinkStyles}> Click here</p>
                     </CardFooter>
                 </Card>
             )

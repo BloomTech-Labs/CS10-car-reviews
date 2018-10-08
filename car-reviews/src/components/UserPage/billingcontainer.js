@@ -4,7 +4,7 @@ import Navbar from '../MainPage/navbar';
 import axios from 'axios';
 import './settings.css';
 
-const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
+const dbRequests = `http://localhost:3001/auth/verify`;
 
 class BillingContainer extends Component {
   constructor(props) {
