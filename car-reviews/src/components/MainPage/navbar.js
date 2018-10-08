@@ -10,7 +10,7 @@ const styles = {
   hamburgerStyles: {
     display: 'flex',
     justifyContent: 'flex-end',
-    marginBottom: 20
+    marginBottom: 20,
   }
 }
 

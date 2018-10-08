@@ -214,20 +214,20 @@ class Searchbar extends React.Component {
   handleReviewButton = () => {
     if (this.props.isLoggedIn){
       return (
-        <div className='searchbar-buttons-container' style={styles.buttonContainerStyles}>
-          <Link className='searchbar-buttons-links' style={styles.linkStyles}  to='/MyReviews'>
-              <Button
-                className="searchbar-buttons"
-              >
-                Review
-              </Button>
-              </Link>
-              <div className='searchbar-buttons-links' style={styles.linkStyles}>
-                <Button 
-                  className="searchbar-buttons"
-                  onClick={()=>this.searchFunction()}
-                >Search</Button>
-              </div>
+        <div className='searchbar-buttons-container'>
+          <Link className='searchbar-buttons-links' to='/MyReviews'>
+            <Button
+              className="searchbar-buttons"
+            >
+              Review
+            </Button>
+          </Link>
+          <div className='searchbar-buttons-links'>
+            <Button 
+              className="searchbar-buttons"
+              onClick={()=>this.searchFunction()}
+            >Search</Button>
+          </div>
         </div>
       )
     } else {

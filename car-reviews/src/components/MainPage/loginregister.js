@@ -12,49 +12,6 @@ import {
 } from 'reactstrap';
 import './loginregister.css';
 
-const styles = {
-    modalStyles: {
-        width: '20%',
-        marginTop: '10%',
-        marginLeft: 'auto',
-        marginRight: 'auto'
-    },
-    headerStyles: {
-        display: 'flex',
-        backgroundColor: 'rgb(119,166,247)'
-    },
-    formStyles: {
-        width: '100%',
-        marginBottom: 0
-    },
-    closeButtonStyles: {
-        position: 'absolute',
-        right: '6%',
-    },
-    inputStyles: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        width: '80%'
-    },
-    submitButtonStyles: {
-        marginLeft: '5%',
-    },
-    footerStyles: {
-        display: 'flex',
-        justifyContent: 'center',
-        // flexDirection: 'column',
-    },
-    footerTextStyles: {
-        textAlign: 'center'
-    },
-    footerLinkStyles: {
-        cursor: 'pointer',
-        color: 'blue',
-        textDecoration: 'underline',
-        textAlign: 'center'
-    }
-}
-
 class LoginRegister extends Component {
     constructor(props){
         super(props);
