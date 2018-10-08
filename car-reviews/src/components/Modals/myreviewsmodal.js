@@ -74,7 +74,7 @@ class MyReviewsModal extends Component {
       <div>
         <Button className="modal-button" onClick={this.toggle}>
           <p style={{ fontSize: '1.1em'}}>
-            {`${this.props.year} ${this.props.make} ${this.props.model}`}
+            {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}`}
           </p>     
           <div style={{ height: '150px' }}>
             <img src={this.props.carImage ? this.props.carImage : defaultImg}
