@@ -58,12 +58,10 @@ class Searchbar extends React.Component {
         year: '',
         make: '',
         model: '',
-        trim: ''
       },
       displayDropdowns: {
         year: false,
         model: false,
-        trim: false
       },
       modalState: {
         isOpen: false,
@@ -309,21 +307,6 @@ class Searchbar extends React.Component {
             {this.state.models.map((model) => {
               return <option key={model.model_id}>{model.model}</option>
               })}
-            </select> : <Fragment />}
-            
-              
-            {this.state.displayDropdowns.trim ? <select
-              className="dropdowns"
-              name="trim"
-              onChange={this.handleChangeTrim}
-            >
-              <option>Select a Trim</option>
-
-            {this.state.trims.map((trim) => {
-              return (
-                <option key={trim.trim_id}>{trim.trim}</option>
-              )
-            })}
             </select> : <Fragment />}
           </div> 
           

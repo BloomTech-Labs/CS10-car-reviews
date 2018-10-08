@@ -16,10 +16,6 @@ class HamburgerMenu extends Component {
           Home
         </a>
   
-        <a className="menu-item" href="/searchpage">
-          Search
-        </a>
-  
         <a className="menu-item" href="/MyReviews">
           My Reviews
         </a>
@@ -27,9 +23,11 @@ class HamburgerMenu extends Component {
         <a className="menu-item" href="/Billing">
           Billing
         </a>
+        
         <a className="menu-item" href="/Settings">
           Settings
         </a>
+
         {!this.props.isLoggedIn ?
           <a className='navbar-item' href="/login">Sign In</a> :
           <a className="navbar-item" href="/" onClick={this.signOut}>Sign Out</a>
