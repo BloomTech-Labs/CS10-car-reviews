@@ -5,6 +5,14 @@ import MyReviewsModal from '../Modals/myreviewsmodal';
 import NewReviewModal from '../Modals/newreview';
 import axios from 'axios';
 
+const config = {
+  headers: {
+    JWT: localStorage.getItem('jwt')
+  }
+};
+const requestUserURL = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+const requestReviewsURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+
 class ReviewList extends Component {
   constructor(props) {
     super(props);
@@ -17,14 +25,6 @@ class ReviewList extends Component {
   }
 
   componentDidMount = () => {
-    const config = {
-      headers: {
-        JWT: localStorage.getItem('jwt')
-      }
-    };
-    const requestUserURL = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
-    const requestReviewsURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
-
     axios.all([axios.get(requestUserURL, config), axios.get(requestReviewsURL, config)]).then(
       axios.spread((userRes, reviewsRes) => {
         this.setState({
@@ -32,6 +32,15 @@ class ReviewList extends Component {
         });
       })
     );
+  };
+
+  addReview = () => {
+    axios
+      .get(requestReviewsURL, config)
+      .then(response => {
+        this.setState({ data: { ...this.state.data, reviews: response.data } });
+      })
+      .catch(err => console.log(err.warn));
   };
 
   handleRemove = id => {
@@ -50,27 +59,13 @@ class ReviewList extends Component {
         console.log('Error: ', err);
       });
 
-    window.location.reload();
+    this.setState({
+      data: {
+        ...this.state.data,
+        reviews: this.state.data.reviews.filter(review => review._id !== id)
+      }
+    });
   };
-
-  // handleUpdate = id => {
-  //   const config = {
-  //     headers: {
-  //       JWT: localStorage.getItem('jwt')
-  //     }
-  //   };
-
-  //   axios
-  //     .put(`http://localhost:3001/api/reviews/${id}`, config)
-  //     .then(response => {
-  //       console.log('deleteNote:', response);
-  //     })
-  //     .catch(err => {
-  //       console.log('Error: ', err);
-  //     });
-
-  //   window.location.reload();
-  // };
 
   render() {
     const fullScreenReview = (
@@ -81,6 +76,7 @@ class ReviewList extends Component {
             className={'plusButton'}
             buttonLabel={'+'}
             userInfo={this.state.data.user}
+            addReview={this.addReview}
           />
         </div>
       </div>
@@ -94,21 +90,21 @@ class ReviewList extends Component {
             className={'plusButton'}
             buttonLabel={'+'}
             userInfo={this.state.data.user}
+            addReview={this.addReview}
           />
         </div>
         <Container style={{ marginBottom: '100px' }}>
-          <Row style = {{ marginTop: '20px' }}>
-          {this.state.data.reviews.map(review => {
-            return (
-              <MyReviewsModal
-                key={review._id}
-                className={'review'}
-                {...review}
-                removeReview={this.handleRemove}
-                updateReview={this.handleUpdate}
-              />
-            );
-          })}
+          <Row style={{ marginTop: '20px' }}>
+            {this.state.data.reviews.map(review => {
+              return (
+                <MyReviewsModal
+                  key={review._id}
+                  className={'review'}
+                  {...review}
+                  removeReview={this.handleRemove}
+                />
+              );
+            })}
           </Row>
         </Container>
       </div>
