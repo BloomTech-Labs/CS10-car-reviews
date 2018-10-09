@@ -278,7 +278,7 @@ class LoginRegister extends Component {
                         </form>
                     </CardBody>
                     <CardFooter style={styles.footerStyles}>
-                            <p style={styles.footerTextStyles}>Already have an account?</p>
+                            <p style={styles.footerTextStyles}>Don't have an account?</p>
                             <p onClick={() => this.handleChangeModalType('login')} style={styles.footerLinkStyles}>Click here</p>
                     </CardFooter>
                 </Card>

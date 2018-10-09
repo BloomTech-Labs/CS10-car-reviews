@@ -4,7 +4,11 @@ import {
   CardTitle,
   CardBody,
   Button,
-  Alert
+  Alert,
+  Collapse, 
+  Row,
+  Col, 
+  Container
 } from 'reactstrap';
 import axios from 'axios';
 import './usersettings.css';
@@ -12,10 +16,7 @@ import './usersettings.css';
 // * TODO: Center vertically
 const styles = {
   cardStyles: {
-    width: "40%",
-    height: "45%",
     margin: '1%',
-    marginTop: '10%',
     background: 'white !important',
     opacity: '1'
   },
@@ -29,12 +30,7 @@ const styles = {
   },
   inputGroupStyles: {
     marginBottom: "5%",
-  },
-  // containerStyles: {
-  //   display: 'flex',
-  //   justifyContent: 'space-around',
-  //   width: '100%',
-  // }
+  }
 }
 
 // A form component that will display the name and email of a logged in user and allow them to change them and/or their password. Renders within the Settings component.
@@ -47,6 +43,7 @@ const styles = {
 class UserSettings extends Component {
   constructor(props) {
     super(props);
+    this.toggle = this.toggle.bind(this);
     this.state = {
       passwords: {
         password: '',
@@ -67,9 +64,29 @@ class UserSettings extends Component {
         passwordSuccess: false,
         usernameSuccess: false,
         emailSuccess: false,
+      },
+      collapsers: { 
+        passwordCollapse: true,
+        usernameCollapse: false,
+        emailCollapse: false
       }
     };
 
+  }
+
+  toggle(type) {
+    this.setState((state) => ({
+      collapsers: {
+        [type]: state['collapsers'][type],
+        [!type]: false
+      }
+    }), 
+      () => this.setState((state) => ({
+        collapsers: {
+          [type]: !state['collapsers'][type]
+        }
+      }))
+    );
   }
 
   handleChange = (type1, type2) => (event) =>{
@@ -188,99 +205,130 @@ class UserSettings extends Component {
   render() {
     return (
       <div className="user-settings-container">
-      {/* <div style={styles.containerStyles}> */}
-        <Card style={styles.cardStyles}>
-          <CardBody>
-            <CardTitle>Change Your Password</CardTitle>
-            <form onSubmit={this.handleSubmitPassword}>
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>New Password</p>
-                <input
-                  type='password'
-                  style={styles.inputStyles} 
-                  placeholder='New password...'
-                  value={this.state.passwords.password}
-                  onChange={this.handleChange('passwords', 'password')}
-                />
-              </div>
+        <Container>
+          <Row className="mt-3">
+            <Col md="12" lg="12" sm="12">
 
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>Re-Enter New Password</p>
-                <input 
-                  type='password'
-                  style={styles.inputStyles}
-                  placeholder='Re-enter new password...'
-                  value={this.state.passwords.password2}
-                  onChange={this.handleChange('passwords', 'password2')}
-                />
-              </div>
-              <Button type="submit" className="general-button">Save Changes</Button>
-              <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
-              <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
-            </form>
-          </CardBody>
-        </Card>
+              <Button color="primary" onClick={() => this.toggle('passwordCollapse')} className="accordion-button mt-3" style={{ marginBottom: '1rem' }}>
+                Change Your Password</Button>
 
-        <Card style={styles.cardStyles}>
-          <CardBody>
-            <CardTitle>Change Your Username</CardTitle>
-            <form onSubmit={this.handleSubmitUsername}>
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>New Username</p>
-                <input
-                  style={styles.inputStyles} 
-                  placeholder='New username...'
-                  value={this.state.usernames.username}
-                  onChange={this.handleChange('usernames', 'username')}
-                />
-              </div>
+              <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
 
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>Re-Enter New Username</p>
-                <input 
-                  style={styles.inputStyles}
-                  placeholder='Re-enter new username'
-                  value={this.state.usernames.username2}
-                  onChange={this.handleChange('usernames', 'username2')}
-                />
-              </div>
-              <Button type="submit" className="general-button">Save Changes</Button>
-              <Alert isOpen={this.state.alerts.username} color='danger'>There was an issue changing your username, please try again</Alert>
-              <Alert isOpen={this.state.alerts.usernameSuccess} color='primary'>Your username has successfully been changed!</Alert>
-            </form>
-          </CardBody>
-        </Card>
+              <Collapse isOpen={this.state.collapsers.passwordCollapse}>
+                <Card style={styles.cardStyles} className="mb-3">
+                  <CardBody>
+                    <CardTitle>Change Your Password</CardTitle>
 
-        <Card style={styles.cardStyles}>
-          <CardBody>
-            <CardTitle>Change Your Email Address</CardTitle>
-            <form onSubmit={this.handleSubmitEmail}>
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>New Email Address</p>
-                <input
-                  style={styles.inputStyles} 
-                  placeholder='New email...'
-                  value={this.state.password}
-                  onChange={this.handleChange('emails', 'email')}
-                />
-              </div>
+                    <form onSubmit={this.handleSubmitPassword}>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>New Password</p>
+                        <input
+                          type='password'
+                          style={styles.inputStyles} 
+                          placeholder='New password...'
+                          value={this.state.passwords.password}
+                          onChange={this.handleChange('passwords', 'password')}
+                        />
+                      </div>
 
-              <div style={styles.inputGroupStyles}>
-                <p style={styles.labelStyles}>Re-Enter New Email</p>
-                <input 
-                  style={styles.inputStyles}
-                  placeholder='Re-enter new email'
-                  value={this.state.password2}
-                  onChange={this.handleChange('emails', 'email2')}
-                />
-              </div>
-              <Button type="submit" className="general-button">Save Changes</Button>
-              <Alert isOpen={this.state.alerts.email} color='danger'>There was an issue changing your email, please try again</Alert>
-              <Alert isOpen={this.state.alerts.emailSuccess} color='primary'>Your email has successfully been changed!</Alert>
-            </form>
-          </CardBody>
-        </Card>
-      </div>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>Re-Enter New Password</p>
+                        <input 
+                          type='password'
+                          style={styles.inputStyles}
+                          placeholder='Re-enter new password...'
+                          value={this.state.passwords.password2}
+                          onChange={this.handleChange('passwords', 'password2')}
+                        />
+                      </div>
+                      <Button type="submit" className="general-button">Save Changes</Button>
+                      <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
+                      <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
+                    </form>
+
+                  </CardBody>       
+                </Card>
+              </Collapse>
+            <Button color="primary" onClick={() => this.toggle('usernameCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
+                Change Your Username
+            </Button>
+            </Col>
+
+            <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
+              <Collapse isOpen={this.state.collapsers.usernameCollapse}>
+                <Card style={styles.cardStyles} className="mb-3">
+                  <CardBody>
+                    <CardTitle>Change Your Username</CardTitle>
+                      <form onSubmit={this.handleSubmitUsername}>
+                        <div style={styles.inputGroupStyles}>
+                          <p style={styles.labelStyles}>New Username</p>
+                          <input
+                            style={styles.inputStyles} 
+                            placeholder='New username...'
+                            value={this.state.usernames.username}
+                            onChange={this.handleChange('usernames', 'username')}
+                          />
+                        </div>
+
+                        <div style={styles.inputGroupStyles}>
+                          <p style={styles.labelStyles}>Re-Enter New Username</p>
+                          <input 
+                            style={styles.inputStyles}
+                            placeholder='Re-enter new username'
+                            value={this.state.usernames.username2}
+                            onChange={this.handleChange('usernames', 'username2')}
+                          />
+                        </div>
+                        <Button type="submit" className="general-button">Save Changes</Button>
+                        <Alert isOpen={this.state.alerts.username} color='danger'>There was an issue changing your username, please try again</Alert>
+                        <Alert isOpen={this.state.alerts.usernameSuccess} color='primary'>Your username has successfully been changed!</Alert>
+                      </form>
+                    </CardBody>
+                  </Card>
+                </Collapse>
+
+                <Button color="primary" onClick={() => this.toggle('emailCollapse')} className="accordion-button mt-1" style={{ marginBottom: '1rem' }}>
+                  Change Your Email Address
+                </Button>
+                </Col>
+                
+                <Col md="12" lg={{size:6, offset:3}} sm="12" className="mt-1">
+                <Collapse isOpen={this.state.collapsers.emailCollapse}>
+                <Card style={styles.cardStyles} className="mb-3">
+                  <CardBody>
+                    <CardTitle>Change Your Email Address</CardTitle>
+                    <form onSubmit={this.handleSubmitEmail}>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>New Email Address</p>
+                        <input
+                          style={styles.inputStyles} 
+                          placeholder='New email...'
+                          value={this.state.password}
+                          onChange={this.handleChange('emails', 'email')}
+                        />
+                      </div>
+
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>Re-Enter New Email</p>
+                        <input 
+                          style={styles.inputStyles}
+                          placeholder='Re-enter new email'
+                          value={this.state.password2}
+                          onChange={this.handleChange('emails', 'email2')}
+                        />
+                      </div>
+                      <Button type="submit" className="general-button">Save Changes</Button>
+                      <Alert isOpen={this.state.alerts.email} color='danger'>There was an issue changing your email, please try again</Alert>
+                      <Alert isOpen={this.state.alerts.emailSuccess} color='primary'>Your email has successfully been changed!</Alert>
+                    </form>
+                  </CardBody>
+                </Card>
+              </Collapse>
+            </Col>
+            </Col>
+          </Row>
+      </Container> 
+    </div>
     );
   }
 }

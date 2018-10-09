@@ -1,4 +1,4 @@
-.my-modal-button {
+/* .modal-button {
     background-color: white;
     color: #2F77F3;
     border: none !important;
@@ -11,20 +11,36 @@
     white-space: nowrap;
 }
 
-.my-modal-button:hover {
+.modal-button:hover {
     background-color: #77A6F7;
     /* background-color: #B4B6BA; */
-}
 
-.my-modal-header {
+/* .modal-header {
     background-color: #77A6F7;
     color: white;
     font-family: 'Montserrat', sans-serif;
 }
 
-.my-modal-body {
+.modal-body {
     text-align: left;
     background-color: white;
     color: #2F77F3;
     font-family: 'Montserrat', sans-serif;
+} */
+
+.mrb-container {
+    display: flex;
+    justify-content: flex-end;
+} 
+
+.my-review-buttons {
+    background-color: #2f77f3;
+    color: white;
+    border: none !important;
+    margin-top: 5px;
+}
+
+.my-review-buttons:hover {
+    color: #2f77f3;
+    background-color: white;
 }
