@@ -10,22 +10,26 @@ describe('Testing the ReviewModel', () => {
 
     beforeEach(done => {
         newReview = new ReviewModel({
+            title: 'a title',
             content: 'some content',
-            score: 5
+            score: 5,
+            testEntry: true,
         });
 
         newUser = new UserModel({
             fullname: 'user1',
             username: 'user1',
             email: 'user1@user.com',
-            password: 'user1'
+            password: 'user1',
+            testEntry: true,
         });
 
         newCar = new CarModel({
             make: 'Mitsubishi',
             model: 'Eclipse Cross',
             year: 2019,
-            edition: 'SEL'
+            averageScore: 5, 
+            testEntry: true,
         });
         
         newReview.car = newCar;
