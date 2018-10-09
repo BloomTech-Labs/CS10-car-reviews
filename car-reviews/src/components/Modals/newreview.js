@@ -303,7 +303,7 @@ class NewReviewModal extends Component {
             {this.state.review.carImage ? (
               <img
                 src={this.state.review.carImage}
-                style={{ height: '100%', width: '100%' }}
+                style={{ height: '100%', width: '100%', marginLeft: 'auto', marginRight: 'auto' }}
                 alt=""
               />
             ) : (
@@ -314,7 +314,7 @@ class NewReviewModal extends Component {
           </ModalBody>
 
           <ModalFooter className="new-review-footer">
-            <form >
+            <form style={{marginLeft: 'auto', marginRight: 'auto'}}>
               <ReactStars
                 type="number"
                 name="score"
