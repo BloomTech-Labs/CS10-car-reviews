@@ -9,11 +9,20 @@ describe('Testing the CarModel', () => {
             make: 'Mitsubishi',
             model: 'Eclipse Cross',
             year: 2019,
-            edition: 'SEL'
+            edition: 'SEL',
+            averageScore: 5,
+            testEntry: true
         });
         
         done();
     })
+
+    afterEach(done => {
+        newCar.remove()
+            .then(() => done());
+    })
+
+    afterEach
 
     // saves the car record and then makes sure it is stored properly
     it('adds a new car to the database', (done) => {
@@ -30,7 +39,7 @@ describe('Testing the CarModel', () => {
     });
 
     // saves a new car record then makes sure it can be removed
-    it('adds and removes a new user from the database', (done) => {
+    it('adds and removes a new car from the database', (done) => {
         newCar.save()
             .then(() => {
                 newCar.remove()

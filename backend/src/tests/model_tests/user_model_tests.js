@@ -3,7 +3,7 @@ const UserModel = require('../../models/UserModel');
 
 // * NOTE: Because each user document has to be unique, we create a new user for each test here
 // ** OPTIONAL: Add .catch handlers for catching errors
-describe('Testing the User Models on the DB', () => {
+describe('Testing the UserModel', () => {
     let newUser;
 
     beforeEach(done => {
@@ -11,9 +11,15 @@ describe('Testing the User Models on the DB', () => {
             fullname: 'user1',
             username: 'user1',
             email: 'user1@user.com',
-            password: 'user1'
+            password: 'user1',
+            testEntry: true,
         });
         done();
+    });
+
+    afterEach(done => {
+        newUser.remove()
+            .then(() => done());
     })
 
     // saves the user record then makes sure it is stored properly
