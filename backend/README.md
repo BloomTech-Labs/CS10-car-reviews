@@ -167,7 +167,7 @@ Sends back all of the featured reviews, sorted, for the landing page
 ### reviewsRouter
 #### General Notes:
 - Handles all requests to create, remove, update, and delete a review.
-- Also handles requests to retrive review data aacording to the parameters received.
+- Also handles requests to retrieve review data according to the parameters received.
 - ReviewsRouter includes a provision for the functionality of the front-end review search feature.
 
 #### Endpoints:
