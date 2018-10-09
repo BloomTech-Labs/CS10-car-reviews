@@ -194,6 +194,32 @@ All parameters are expected to be passed through the request body
 - `Body`: Responds with the new review created
 - `Errors`: responds with a status of `500` and a JSON response with a key of `error`
 
+##### GET to '/api/reviews'
+- Retrieves all reviews of a given user.
+- User data is expected to be passed into req.headers with key 'jwt'
+- JWT is checked for validity, and user data is accessed via the JWT.
+
+###### Response 
+- `Status`: 200
+- `Body`: Responds with all reviews of given user
+- `Errors`: responds with a status of `500` and a JSON response with a key of `error`
+
+##### PUT to '/api/reviews/:id'
+- Id parameter must correspond to a review _id in the database.
+- Edits an individual review.
+- User data is expected to be passed into req.headers with key 'jwt'.
+- JWT is checked for validity, and user data is accessed via the JWT.
+
+###### Parameters
+All parameters are expected to be passed through the request body
+- `title`: String, required
+- `content`: String, required, 
+- `score`: Number, required, 
+- `carImage`: String (url), not required
+- `updatedOn`: Number, required
+- `make`: String, required
+- `model`: String, required 
+
 ## Testing: COMPLETED
 - All testing is run through Mocha and Chai
 

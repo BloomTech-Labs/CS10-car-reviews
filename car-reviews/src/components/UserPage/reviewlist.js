@@ -103,7 +103,7 @@ class ReviewList extends Component {
               <MyReviewsModal
                 key={review._id}
                 className={'review'}
-                {...review}
+                {...review}{...review.car}{...review.user}
                 removeReview={this.handleRemove}
                 updateReview={this.handleUpdate}
               />
