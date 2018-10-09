@@ -47,8 +47,8 @@
     border: none !important;
     font-size: 1.1em;
     height: 40px;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     z-index: 2;
 }
 .searchbar-buttons:hover {
