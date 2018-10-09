@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import AuthService from '../Auth/authservice';
 import './navbar.css';
 import Media from 'react-media';
@@ -31,6 +31,7 @@ class Navbar extends Component {
   };
 
   render() { 
+    console.log(this.props.isLoggedIn);
     return (
       <div className="navbar-container">
           <Media query='(max-width: 550px)'>
@@ -45,17 +46,29 @@ class Navbar extends Component {
                   Home
                 </a>
           
-                <a className="navbar-item" href="/MyReviews">
-                  My Reviews
-                </a>
-          
-                <a className="navbar-item" href="/Billing">
-                  Billing
-                </a>
+                
 
-                <a className="navbar-item" href="/Settings">
-                  Settings
-                </a>
+                {this.props.isLoggedIn ? 
+                  <a className="navbar-item" href="/MyReviews">
+                    My Reviews
+                  </a>:
+                  <Fragment />
+                }
+
+                {this.props.isLoggedIn ? 
+                  <a className="navbar-item" href="/Billing">
+                    Billing
+                  </a> :
+                  <Fragment />
+                }
+
+                {this.props.isLoggedIn ? 
+                  <a className="navbar-item" href="/Settings">
+                    Settings
+                  </a>:
+                  <Fragment />
+                }
+
                 {!this.props.isLoggedIn ?
                   <a className='navbar-item' href="/login">Sign In</a> :
                   <a className="navbar-item" href="/" onClick={this.signOut}>Sign Out</a>
