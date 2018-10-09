@@ -30,6 +30,7 @@ class Navbar extends Component {
     Auth.logout();
   };
 
+
   render() { 
     return (
       <div className="navbar-container">

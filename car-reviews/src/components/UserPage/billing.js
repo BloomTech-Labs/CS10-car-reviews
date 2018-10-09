@@ -38,8 +38,8 @@ class Billing extends Component {
                     <div>
                     <Row>
                         <Col>
-                            <Card style={{ border: 'none !important' }}>
-                                <CardBody style={{ border: 'none !important' }}>
+                            <Card style={{ border: 'none' }}>
+                                <CardBody>
                                     <CardTitle>1 year unlimited reviews: 40% OFF!</CardTitle>
                                     <Button
                                         className="billing-button"
@@ -52,7 +52,7 @@ class Billing extends Component {
                                     />
                                 </CardBody>
                             </Card>
-                            <Card>
+                            <Card style={{ border: 'none' }}>
                             <CardBody>
                               <CardTitle>6 month unlimited reviews: 33% OFF!</CardTitle>
                               <Button
@@ -67,7 +67,7 @@ class Billing extends Component {
                              
                             </CardBody>
                             </Card>
-                            <Card>
+                            <Card style={{ border: 'none' }}>
                             <CardBody>
                               <CardTitle>1 month unlimited reviews Trial Level</CardTitle>
                               
