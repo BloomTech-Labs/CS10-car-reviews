@@ -35,7 +35,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
   if (req.carID != null) {
     console.log("looking for CAR IMAGE URL: ", req.body)
     const car = req.carID;
-    ReviewModel.create({ title, user, content, score, car, carImage, testEntry })
+    ReviewModel.create({ title, user, content, score, car, carImage })
       .then(newReview => {
         // adds review id to the user document of the author
         const id = newReview.user;
@@ -68,7 +68,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
       })
       .catch(err => res.status(500).json({ error: err.message }));
   } else {
-    CarModel.create({ year, make, model, edition, averageScore: score, imageURL: carImage, testEntry })
+    CarModel.create({ year, make, model, averageScore: score, imageURL: carImage })
       .then(newCar => {
         const car = newCar._id;
         carID = newCar._id;
@@ -184,10 +184,7 @@ router.post("/search", (req, res) => {
     }
     if (trim) {
       searchObj.edition = trim;
-    } else if (edition) {
-      searchObj.edition = edition;
-    }
-    if (reviewer) { 
+    } if (reviewer) { 
       searchObj.reviewer = reviewer;
     }
     searchObj.reviews = { $not: { $size: 0 } };
@@ -218,7 +215,7 @@ router.post("/search", (req, res) => {
               .populate({
                 path: 'car', 
                 model: 'cars',
-                select: 'make model year edition averageScore imageURL',
+                select: 'make model year averageScore imageURL',
               })
               .populate({
                 path: 'user', 
