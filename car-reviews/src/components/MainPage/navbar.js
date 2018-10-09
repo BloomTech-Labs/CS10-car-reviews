@@ -21,6 +21,7 @@ class Navbar extends Component {
     Auth.logout();
   };
 
+
   render() { 
     return (
       <div className="navbar-container">
@@ -28,18 +29,25 @@ class Navbar extends Component {
           <a className="navbar-item" href="/">
             Home
           </a>
-    
-          <a className="navbar-item" href="/MyReviews">
-            My Reviews
-          </a>
-    
-          <a className="navbar-item" href="/Billing">
-            Billing
-          </a>
 
-          <a className="navbar-item" href="/Settings">
-            Settings
-          </a>
+          {this.props.isLoggedIn && 
+            <a className="navbar-item" href="/MyReviews">
+              My Reviews
+            </a> 
+          }
+
+          {this.props.isLoggedIn && 
+            <a className="navbar-item" href="/Billing">
+              Billing
+            </a>
+          }
+
+          {this.props.isLoggedIn && 
+            <a className="navbar-item" href="/Settings">
+              Settings
+            </a>
+          }
+
           {!this.props.isLoggedIn ?
             <a className='navbar-item' href="/login">Sign In</a> :
             <a className="navbar-item" href="/" onClick={this.signOut}>Sign Out</a>
