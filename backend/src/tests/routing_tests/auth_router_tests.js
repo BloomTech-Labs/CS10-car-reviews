@@ -27,7 +27,7 @@ describe('testing the authRouter', () => {
             .then(() => done());
     })
 
-    it.only(`POST to '/auth/register' registers a user and returns a JWT through the response body`, (done) => {
+    it(`POST to '/auth/register' registers a user and returns a JWT through the response body`, (done) => {
         chai.request(server)
             .post('/auth/register')
             .send(newUser)
@@ -40,7 +40,7 @@ describe('testing the authRouter', () => {
             })
     })
 
-    it.only(`POST to '/auth/login' authenticates a user and returns a JWT through the response body`, (done) => {
+    it(`POST to '/auth/login' authenticates a user and returns a JWT through the response body`, (done) => {
         chai.request(server)
             .post('/auth/login')
             .send(newUser)
@@ -54,7 +54,7 @@ describe('testing the authRouter', () => {
             })
     })
 
-    it.only(`Post to '/auth/verify' and successfully verifies the JWT from the login`, (done) => {
+    it(`Post to '/auth/verify' and successfully verifies the JWT from the login`, (done) => {
         chai.request(server)
             .get('/auth/verify')
             .set('jwt', testJwt)

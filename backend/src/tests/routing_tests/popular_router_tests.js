@@ -14,6 +14,7 @@ describe('Tests the popular router', () => {
     // creates new entries before each test so that we can get a review back
     beforeEach(done => {
         newReview = new ReviewModel({
+            title: 'a title',
             content: 'some content',
             score: 5,
             testEntry: true
@@ -31,12 +32,13 @@ describe('Tests the popular router', () => {
             make: 'Mitsubishi',
             model: 'Eclipse Cross',
             year: 2019,
-            edition: 'SEL',
-            testEntry: true
+            averageScore: 5,
+            testEntry: true,
         });
         
         newReview.car = newCar;
         newReview.user = newUser;
+        newCar.reviews.push(newReview);
 
         Promise.all([ newReview.save(), newUser.save(), newCar.save() ])
             .then(() => done());
@@ -49,7 +51,7 @@ describe('Tests the popular router', () => {
     })
 
 
-    it(`GET to '/api/popular/featured_reviews' returns reviews`, (done) => {
+    it.only(`GET to '/api/popular/featured_reviews' returns reviews`, (done) => {
         chai.request(server)
             .get('/api/popular/featured_reviews')
             .end((err, res) => {
@@ -61,7 +63,7 @@ describe('Tests the popular router', () => {
             })
     })
 
-    it(`GET to '/api/popular/popular_cars' returns cars`, (done) => {
+    it.only(`GET to '/api/popular/popular_cars' returns cars`, (done) => {
         chai.request(server)
             .get('/api/popular/popular_cars')
             .end((err, res) => {
@@ -73,7 +75,7 @@ describe('Tests the popular router', () => {
             })
     })
 
-    it(`GET to '/api/popular/popular_reviewers' returns cars`, (done) => {
+    it.only(`GET to '/api/popular/popular_reviewers' returns reviewers`, (done) => {
         chai.request(server)
             .get('/api/popular/popular_reviewers')
             .end((err, res) => {
