@@ -14,11 +14,14 @@
 - The UserModel has a pre-save hook that automatically hashes passwords stored with BcryptJS
 
 Properties:
-- fullname: String, required, lowercased
-- username: String, unique, required, lowercased
-- email: String, unique, required, lowercased
-- password: String, required, minlength of 4
-- reviews: array of objects, many-to-one relation to the user
+- `fullname`: String, required, lowercased
+- `username`: String, unique, required, lowercased
+- `email`: String, unique, required, lowercased
+- `password`: String, required, minlength of 4
+- `reviews`: array of objects, many-to-one relation to the user
+- `paid`: Boolean, defaults to false, updates to true if user buys a subscription
+- `timesViewed`: Number, defaults to 0, indexed, keeps track of amount of reviews viewed by each user per day, in conjuction with the next property
+-`date`: Date, defaults to current date, indexed
 
 ### ReviewModel
 #### General Notes:
