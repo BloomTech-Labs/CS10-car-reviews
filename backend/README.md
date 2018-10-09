@@ -212,13 +212,25 @@ All parameters are expected to be passed through the request body
 
 ###### Parameters
 All parameters are expected to be passed through the request body
-- `title`: String, required
-- `content`: String, required, 
-- `score`: Number, required, 
-- `carImage`: String (url), not required
-- `updatedOn`: Number, required
-- `make`: String, required
-- `model`: String, required 
+- `title`: String, required, 
+- `content`: String, required
+
+###### Response 
+- `Status`: 200
+- `Body`: Responds with updated review.
+- `Errors`: responds with a status of `500` and a JSON response with a key of `error`
+
+##### DELETE to '/api/reviews/:id'
+- Id parameter must correspond to a review _id in the database.
+- Deletes an individual review.
+- User data is expected to be passed into req.headers with key 'jwt'.
+- JWT is checked for validity, and user data is accessed via the JWT.
+- Deletes review data from user, car, and review collections.
+
+###### Response 
+- `Status`: 200
+- `Body`: Responds with updated user info (showing that review has been deleted).
+- `Errors`: responds with a status of `500` and a JSON response with a key of `error`
 
 ## Testing: COMPLETED
 - All testing is run through Mocha and Chai
