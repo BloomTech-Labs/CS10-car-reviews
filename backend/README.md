@@ -126,15 +126,37 @@ No parameters expected
 - `Body`: responds with the sorted array of featured reviews 
 - `Errors`: responds with a status of `500` and a JSON response with a key of `popRouterError`
 
-### popularRouter
+### userRouter
 #### General Notes:
 - handles all requests that deal with getting a specific user's data
 - sub router of the contentRouter
 
 #### Endpoints:
-##### POST to '/api/users/data'
+##### GET to '/api/users/data'
 - returns the entire user record
 - populates the reviews relational data for the record
+
+##### PUT to '/api/users/data'
+- This endpoint allows a user to change their personal data.
+- A valid JWT is required to access this endpoint.
+- User identity is verified via the JWT.
+
+###### Parameters
+- Accepts any of the following types of data corresponding to the user sent on the body of the request:
+    - `email`: String, lowercased automatically
+    - `password`: String, minimum length of 4
+    - `username`: String, lowercased automatically
+
+- Also accepts:
+    - `counter`: Number, to keep track of amount of reviews viewed per user per day.
+    - `newDate`: Date, to reset the counter if the date has changed since the user last viewed reviews.
+
+###### Response 
+- `Status`: 200
+- `Body`: 
+    - If user data was updated: Responds with new JWT with updated user data.
+    - If counter or date were updated: Responds with the full user record with updated data 
+- `Errors`: responds with a status of `500` and a JSON response with a key of `databaseError`
 
 ## Testing: COMPLETED
 - All testing is run through Mocha and Chai
