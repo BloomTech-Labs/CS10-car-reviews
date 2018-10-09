@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly HamburgerMenu component 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <HamburgerMenu />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "bodyClassName": "",
+      "burgerBarClassName": "",
+      "burgerButtonClassName": "",
+      "children": Array [
+        <a
+          className="menu-item"
+          href="/"
+>
+          Home
+</a>,
+        <a
+          className="menu-item"
+          href="/MyReviews"
+>
+          My Reviews
+</a>,
+        <a
+          className="menu-item"
+          href="/Billing"
+>
+          Billing
+</a>,
+        <a
+          className="menu-item"
+          href="/Settings"
+>
+          Settings
+</a>,
+        <a
+          className="navbar-item"
+          href="/login"
+>
+          Sign In
+</a>,
+      ],
+      "className": "",
+      "crossButtonClassName": "",
+      "crossClassName": "",
+      "disableCloseOnEsc": false,
+      "id": "",
+      "itemClassName": "",
+      "itemListClassName": "",
+      "menuClassName": "",
+      "morphShapeClassName": "",
+      "noOverlay": false,
+      "onStateChange": [Function],
+      "outerContainerId": "",
+      "overlayClassName": "",
+      "pageWrapId": "",
+      "styles": Object {},
+      "width": 300,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Home",
+          "className": "menu-item",
+          "href": "/",
+        },
+        "ref": null,
+        "rendered": "Home",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "My Reviews",
+          "className": "menu-item",
+          "href": "/MyReviews",
+        },
+        "ref": null,
+        "rendered": "My Reviews",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Billing",
+          "className": "menu-item",
+          "href": "/Billing",
+        },
+        "ref": null,
+        "rendered": "Billing",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Settings",
+          "className": "menu-item",
+          "href": "/Settings",
+        },
+        "ref": null,
+        "rendered": "Settings",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Sign In",
+          "className": "navbar-item",
+          "href": "/login",
+        },
+        "ref": null,
+        "rendered": "Sign In",
+        "type": "a",
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "bodyClassName": "",
+        "burgerBarClassName": "",
+        "burgerButtonClassName": "",
+        "children": Array [
+          <a
+            className="menu-item"
+            href="/"
+>
+            Home
+</a>,
+          <a
+            className="menu-item"
+            href="/MyReviews"
+>
+            My Reviews
+</a>,
+          <a
+            className="menu-item"
+            href="/Billing"
+>
+            Billing
+</a>,
+          <a
+            className="menu-item"
+            href="/Settings"
+>
+            Settings
+</a>,
+          <a
+            className="navbar-item"
+            href="/login"
+>
+            Sign In
+</a>,
+        ],
+        "className": "",
+        "crossButtonClassName": "",
+        "crossClassName": "",
+        "disableCloseOnEsc": false,
+        "id": "",
+        "itemClassName": "",
+        "itemListClassName": "",
+        "menuClassName": "",
+        "morphShapeClassName": "",
+        "noOverlay": false,
+        "onStateChange": [Function],
+        "outerContainerId": "",
+        "overlayClassName": "",
+        "pageWrapId": "",
+        "styles": Object {},
+        "width": 300,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Home",
+            "className": "menu-item",
+            "href": "/",
+          },
+          "ref": null,
+          "rendered": "Home",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "My Reviews",
+            "className": "menu-item",
+            "href": "/MyReviews",
+          },
+          "ref": null,
+          "rendered": "My Reviews",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Billing",
+            "className": "menu-item",
+            "href": "/Billing",
+          },
+          "ref": null,
+          "rendered": "Billing",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Settings",
+            "className": "menu-item",
+            "href": "/Settings",
+          },
+          "ref": null,
+          "rendered": "Settings",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Sign In",
+            "className": "navbar-item",
+            "href": "/login",
+          },
+          "ref": null,
+          "rendered": "Sign In",
+          "type": "a",
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
