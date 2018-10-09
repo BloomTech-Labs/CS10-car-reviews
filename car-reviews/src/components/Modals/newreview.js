@@ -118,7 +118,7 @@ class NewReviewModal extends Component {
       )
       .then(res => {
         newState.models = res.data.result;
-        this.setState(newState, () => console.log(this.state));
+        this.setState(newState);
       });
   };
 
@@ -146,7 +146,7 @@ class NewReviewModal extends Component {
       )
       .then(res => {
         newState.trims = res.data.result;
-        this.setState(newState, () => console.log(this.state));
+        this.setState(newState);
       });
   };
 
