@@ -314,7 +314,7 @@ class NewReviewModal extends Component {
           </ModalBody>
 
           <ModalFooter className="new-review-footer">
-            <form>
+            <form >
               <ReactStars
                 type="number"
                 name="score"
@@ -331,13 +331,14 @@ class NewReviewModal extends Component {
               <input
                 type="text"
                 name="title"
+                className='content-input'
                 value={this.state.review.title}
                 onChange={this.handleChange('review', 'title')}
                 placeholder="Write the title here..."
               />
               <p>
                 <textarea
-                  className="contentInput"
+                  className="content-input"
                   row="50"
                   cols="50"
                   placeholder="Write your review here..."

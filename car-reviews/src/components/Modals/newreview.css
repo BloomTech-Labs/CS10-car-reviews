@@ -21,3 +21,16 @@
 .submit-button:hover {
     background-color: #00887A;
 }
+
+.new-review-footer-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media (max-width: 480px){
+    .content-input {
+        width: 80%;
+        margin-left: 9%
+    }
+}
