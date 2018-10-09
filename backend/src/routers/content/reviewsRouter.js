@@ -22,6 +22,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
     year,
     make,
     model,
+    testEntry,
   } = req.body;
   const user = req._id;
   let carID;
@@ -34,7 +35,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
   if (req.carID != null) {
     console.log("looking for CAR IMAGE URL: ", req.body)
     const car = req.carID;
-    ReviewModel.create({ title, user, content, score, car, carImage })
+    ReviewModel.create({ title, user, content, score, car, carImage, testEntry })
       .then(newReview => {
         // adds review id to the user document of the author
         const id = newReview.user;
@@ -67,7 +68,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
       })
       .catch(err => res.status(500).json({ error: err.message }));
   } else {
-    CarModel.create({ year, make, model, edition, averageScore: score, imageURL: carImage })
+    CarModel.create({ year, make, model, edition, averageScore: score, imageURL: carImage, testEntry })
       .then(newCar => {
         const car = newCar._id;
         carID = newCar._id;

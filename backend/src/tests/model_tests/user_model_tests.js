@@ -15,6 +15,11 @@ describe('Testing the UserModel', () => {
             testEntry: true,
         });
         done();
+    });
+
+    afterEach(done => {
+        newUser.remove()
+            .then(() => done());
     })
 
     // saves the user record then makes sure it is stored properly

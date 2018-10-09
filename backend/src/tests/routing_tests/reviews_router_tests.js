@@ -48,6 +48,7 @@ describe('Tests the reviews router', () => {
         reviewPost.make = newCar.make;
         reviewPost.model = newCar.model;
         reviewPost.carImage = 'test';
+        reviewPost.testEntry = true;
 
         newCar.save()
             .then(() => done());
@@ -86,7 +87,6 @@ describe('Tests the reviews router', () => {
     })
 
     it(`POST to '/api/reviews' and sends back a successful create statement`, done => {
-        console.log(testJwt);
         chai.request(server)
             .post('/api/reviews')
             .send(reviewPost)
@@ -94,7 +94,6 @@ describe('Tests the reviews router', () => {
             .end((err, res) => {
                 if (err) console.warn(err);
                 else {
-                    console.log(res.body, res.status);
                     assert(res.body.content === 'some content');
                     assert(res.status === 200);
                     done();
