@@ -40,7 +40,7 @@ Properties:
 - `make`: String, required
 - `model`: String, required
 - `year`: Number, required
-- `edition`: String, required
+- `edition`: String, not required
 - `reviews`: array of objects, one-to-many relation to the car
 
 
@@ -231,6 +231,33 @@ All parameters are expected to be passed through the request body
 - `Status`: 200
 - `Body`: Responds with updated user info (showing that review has been deleted).
 - `Errors`: responds with a status of `500` and a JSON response with a key of `error`
+
+##### POST to '/api/reviews/search'
+- Searchs for reviews based on the car or user data passed in via the request body.
+- All parameters are optional: An empty request body will simply return all reviews in the database.
+- More specific parameters recieved return more specific search results, according to the parameters received.
+
+###### Parameters
+- If car parameters are received, the response is an array of review data, along with car data and user data for each review.
+- Car parameters include any of the following:
+    - `make`: String
+    - `model`: String
+    - `year`: Number
+    - `edition`: String
+    - `trim`: String
+- If user parameters are recieved, the API responds with all reviews by that user.
+- User parameter include only:
+    - `username`: String
+
+###### Response 
+- `Status`: 200
+- `Body`: Responds with an array of reviews with review data (title, content, rating, etc.), with car data      for each review (make, model, year, trim), as well as user data (username).
+- `Errors`: responds with a status of `500` and a JSON response with a key of `error`
+
+###### Parameters
+All parameters are expected to be passed through the request body
+- `title`: String, required, 
+- `content`: String, required
 
 ## Testing: COMPLETED
 - All testing is run through Mocha and Chai
