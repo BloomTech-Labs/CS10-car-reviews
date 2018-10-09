@@ -20,7 +20,7 @@ Properties:
 - `password`: String, required, minlength of 4
 - `reviews`: array of objects, many-to-one relation to the user
 - `paid`: Boolean, defaults to false, updates to true if user buys a subscription
-- `timesViewed`: Number, defaults to 0, indexed, keeps track of amount of reviews viewed by each user per day, in conjuction with the next property
+- `timesViewed`: Number, defaults to 0, indexed, keeps track of amount of reviews viewed by each user per day,      in conjuction with the next property
 -`date`: Date, defaults to current date, indexed
 
 ### ReviewModel
@@ -41,8 +41,8 @@ Properties:
 - `model`: String, required
 - `year`: Number, required
 - `edition`: String, not required
-- `reviews`: array of objects, one-to-many relation to the car
-
+- `reviews`: Array of objects, one-to-many relation to the car
+- `imageURL`: Array of Strings (urls) corresponding to images associated with the car, uploaded by users when creating a review
 
 ### Model Tests: COMPLETED
 - Run tests with `yarn test`
@@ -258,6 +258,30 @@ All parameters are expected to be passed through the request body
 All parameters are expected to be passed through the request body
 - `title`: String, required, 
 - `content`: String, required
+
+### paymentRouter
+#### General Notes:
+- Processes payments for various subscription options.
+- Sends data to Stripe payment processing, and updates user data in the users collection as well
+
+#### Endpoints:
+##### POST to '/api/payment'
+- User data is expected to be passed into req.headers with key 'jwt'.
+- JWT is checked for validity, and user data is accessed via the JWT.
+- Sends info to Stripe for processing, then updates users collection in database and notifies front-end of success or failure.
+
+###### Parameters
+All parameters are expected to be passed through the request body
+- `description`: String, must be one of the following:
+    - '1 year unlimited reviews'
+    - '6 month unlimited reviews'
+    - '1 month unlimited reviews'
+- `source`: Object, stripe token
+
+###### Response 
+- `Status`: 200
+- `Body`: Responds with an user data of the now paying user, showing the 'paid' field set to true
+- `Errors`: responds with a status of `500` and a JSON response with a key of `error`
 
 ## Testing: COMPLETED
 - All testing is run through Mocha and Chai
