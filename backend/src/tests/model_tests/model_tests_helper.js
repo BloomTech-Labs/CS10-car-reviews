@@ -2,6 +2,10 @@
 // * NOTE: This file is used to initialize a connection to the server before any tests run and externalize other functionality
 // here we setup and initialize Mongoose just like we would normally:
 const mongoose = require('mongoose');
+const server = require('../../server');
+require('dotenv').config();
+
+console.log('testing', process.env.MONGODB_URI);
 
 const UserModel = require('../../models/UserModel');
 const ReviewModel = require('../../models/ReviewModel');
@@ -16,7 +20,7 @@ mongoose.set('useCreateIndex', true); // collection.ensureIndex is also deprecat
 
 // connects to the database before the tests start
 before(done => {
-    mongoose.connect('mongodb://localhost:27017/store', databaseOptions);
+    mongoose.connect(process.env.MONGODB_URI, databaseOptions);
     mongoose.connection
         .once('open', () => done()) // here no test will run until done() is executed
         .on('error', (err) => console.warn(`There was an error connecting to the database: \n${err}`));

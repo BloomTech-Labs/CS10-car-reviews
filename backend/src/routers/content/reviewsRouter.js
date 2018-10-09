@@ -22,7 +22,6 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
     year,
     make,
     model,
-    edition
   } = req.body;
   const user = req._id;
   let carID;

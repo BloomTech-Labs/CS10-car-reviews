@@ -51,7 +51,7 @@ describe('Tests the popular router', () => {
     })
 
 
-    it.only(`GET to '/api/popular/featured_reviews' returns reviews`, (done) => {
+    it(`GET to '/api/popular/featured_reviews' returns reviews`, (done) => {
         chai.request(server)
             .get('/api/popular/featured_reviews')
             .end((err, res) => {
@@ -63,7 +63,7 @@ describe('Tests the popular router', () => {
             })
     })
 
-    it.only(`GET to '/api/popular/popular_cars' returns cars`, (done) => {
+    it(`GET to '/api/popular/popular_cars' returns cars`, (done) => {
         chai.request(server)
             .get('/api/popular/popular_cars')
             .end((err, res) => {
@@ -75,7 +75,7 @@ describe('Tests the popular router', () => {
             })
     })
 
-    it.only(`GET to '/api/popular/popular_reviewers' returns reviewers`, (done) => {
+    it(`GET to '/api/popular/popular_reviewers' returns reviewers`, (done) => {
         chai.request(server)
             .get('/api/popular/popular_reviewers')
             .end((err, res) => {

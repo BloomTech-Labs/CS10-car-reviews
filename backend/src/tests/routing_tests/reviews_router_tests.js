@@ -8,22 +8,24 @@ const CarModel = require('../../models/CarModel')
 
 chai.use(chaiHttp);
 
-describe('Tests the popular router', () => {
-    let newReview, newUser, newCar;
+describe('Tests the reviews router', () => {
+    let newReview, newUser, userId, newCar, testJwt;
+    const reviewPost = {};
 
     // creates new entries before each test so that we can get a review back
     beforeEach(done => {
         newReview = new ReviewModel({
+            title: 'a title',
             content: 'some content',
             score: 5,
-            testEntry: true
+            testEntry: true,
         });
 
         newUser = new UserModel({
-            fullname: 'user1',
-            username: 'user1',
-            email: 'user1@user.com',
-            password: 'user1',
+            fullname: 'testuser1',
+            username: 'testuser1',
+            email: 'testuser1@user.com',
+            password: 'testuser1',
             testEntry: true
         });
 
@@ -31,14 +33,23 @@ describe('Tests the popular router', () => {
             make: 'Mitsubishi',
             model: 'Eclipse Cross',
             year: 2019,
-            edition: 'SEL',
+            averageScore: 5,
             testEntry: true
         });
         
         newReview.car = newCar;
         newReview.user = newUser;
 
-        Promise.all([ newUser.save(), newCar.save() ])
+        reviewPost.user = newUser._id;
+        reviewPost.title = newReview.title;
+        reviewPost.content = newReview.content;
+        reviewPost.score = newCar.averageScore;
+        reviewPost.year = newCar.year;
+        reviewPost.make = newCar.make;
+        reviewPost.model = newCar.model;
+        reviewPost.carImage = 'test';
+
+        newCar.save()
             .then(() => done());
     })
 
@@ -47,15 +58,45 @@ describe('Tests the popular router', () => {
             .then(() => done())
     })
 
-    it(`POST to '/api/reviews' and sends back a successful create statement`, done => {
+    it(`POST to '/auth/register' registers a user and returns a JWT through the response body`, (done) => {
         chai.request(server)
-            .post('/api/reviews')
-            .send(newReview)
+            .post('/auth/register')
+            .send(newUser)
             .end((err, res) => {
                 if (err) console.warn(err);
                 else {
+                    assert(res.body.JWT);
+                    done();
+                }
+            })
+    })
+
+    it(`POST to '/auth/login' authenticates a user and returns a JWT through the response body`, (done) => {
+        chai.request(server)
+            .post('/auth/login')
+            .send(newUser)
+            .end((err, res) => {
+                if (err) console.warn(err);
+                else {
+                    assert(res.body.JWT);
+                    testJwt = res.body.JWT;
+                    done();
+                }
+            })
+    })
+
+    it(`POST to '/api/reviews' and sends back a successful create statement`, done => {
+        console.log(testJwt);
+        chai.request(server)
+            .post('/api/reviews')
+            .send(reviewPost)
+            .set('jwt', testJwt)
+            .end((err, res) => {
+                if (err) console.warn(err);
+                else {
+                    console.log(res.body, res.status);
                     assert(res.body.content === 'some content');
-                    assert(res.status === 201);
+                    assert(res.status === 200);
                     done();
                 }
             })
