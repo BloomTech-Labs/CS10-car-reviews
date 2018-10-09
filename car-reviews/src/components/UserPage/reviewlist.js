@@ -102,7 +102,6 @@ class ReviewList extends Component {
                 className={'review'}
                 {...review} {...review.car}
                 removeReview={this.handleRemove}
-                updateReview={this.handleUpdate}
               />
             );
           })}
