@@ -128,11 +128,11 @@ class SearchResults extends Component {
         const filteredList = this.sort(this.filter(this.props.location.state.searchResults, usernameSelected), sortBy);
         return (
             <div>
+                {this.handleRedirect()}
                 <Navbar 
                     isLoggedIn={this.props.location.state.isLoggedIn}
                     handleLogin={this.handleLogin}
                 />
-                {this.handleRedirect()}
                 <div className="filter-row">
                     <div className="filters">
                         <UncontrolledDropdown className="dropdowns">
