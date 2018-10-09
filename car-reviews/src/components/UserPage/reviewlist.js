@@ -94,18 +94,18 @@ class ReviewList extends Component {
           />
         </div>
         <Container style={{ marginBottom: '100px' }}>
-          <Row style = {{ marginTop: '20px' }}>
-          {this.state.data.reviews.map(review => {
-            return (
-              <MyReviewsModal
-                key={review._id}
-                className={'review'}
-                {...review} {...review.car}
-                removeReview={this.handleRemove}
-                updateReview={this.handleUpdate}
-              />
-            );
-          })}
+          <Row style={{ marginTop: '20px' }}>
+            {this.state.data.reviews.map(review => {
+              return (
+                <MyReviewsModal
+                  key={review._id}
+                  className={'review'}
+                  {...review}
+                  {...review.car}
+                  removeReview={this.handleRemove}
+                />
+              );
+            })}
           </Row>
         </Container>
       </div>

@@ -1,5 +1,5 @@
 .user-settings-container {
-  position: absolute; 
+  position: absolute;
   bottom: 0;
   top: 72px;
   display: flex;
@@ -40,7 +40,7 @@
 }
 
 .accordion-button {
-  width: 248.615px; 
+  width: 248.615px;
   text-align: center;
   background-color: #2f77f3;
   color: white;
@@ -48,8 +48,6 @@
 }
 
 .accordion-button:hover {
-  background-color: white; 
+  background-color: white;
   color: #2f77f3;
 }
-
-/* general-button styling in /MainPage/loginregister.css */
