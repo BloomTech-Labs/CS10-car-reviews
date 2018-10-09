@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const server = require('../../server');
 require('dotenv').config();
 
-console.log('testing', process.env.MONGODB_URI);
 
 const UserModel = require('../../models/UserModel');
 const ReviewModel = require('../../models/ReviewModel');
