@@ -14,19 +14,24 @@ describe('Testing relational data', () => {
             fullname: 'user4',
             username: 'user4',
             email: 'user4@user.com',
-            password: 'user4'
+            password: 'user4',
+            testEntry: true,
         });
 
         newReview = new ReviewModel({
+            title: "here's a title",
             content: "here's some content",
-            score: 5
+            score: 5,
+            testEntry: true,
         });
 
         newCar = new CarModel({
             make: "Mitsubishi",
             model: "Lancer",
             year: 2009,
-            edition: "SE"
+            edition: "SE",
+            averageScore: 5,
+            testEntry: true
         });
 
         // here we add our references to the documents
