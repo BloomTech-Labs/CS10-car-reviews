@@ -74,23 +74,27 @@ class MyReviewsModal extends Component {
     return (
       <Col lg="3" md="6" sm="12">
         <Button className="modal-button" onClick={this.toggle}>
-          <p style={{ fontSize: '1.1em'}}>
-            {`${this.props.year} ${this.props.make} ${this.props.model}`}
-          </p>     
+          <p style={{ fontSize: '1.1em' }}>
+            {`${this.props.car.year} ${this.props.car.make} ${this.props.car.model}`}
+          </p>
           <div style={{ height: '150px' }}>
-            <img src={this.props.carImage ? this.props.carImage : defaultImg}
-            style={{ height: '100%', maxWidth: '100%' }} alt=""/>
+            <img
+              src={this.props.carImage ? this.props.carImage : defaultImg}
+              style={{ height: '100%', maxWidth: '100%' }}
+              alt=""
+            />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center'}}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <ReactStars
-              type= "number"
-              name= "score"
-              edit= {false}
+              type="number"
+              name="score"
+              edit={false}
               half={true}
               count={5}
               value={this.props.score}
               size={30}
-              color2={'#ffd700'} />
+              color2={'#ffd700'}
+            />
           </div>
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

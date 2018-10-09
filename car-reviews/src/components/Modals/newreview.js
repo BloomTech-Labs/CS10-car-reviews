@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Alert, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import ReactStars from 'react-stars';
@@ -34,10 +34,16 @@ class NewReviewModal extends Component {
         model: false,
         trim: false
       },
+      alerts: {
+        carInputErr: false,
+        reviewInputErr: false,
+        scoreInputErr: false
+      },
       years: [],
       makes: [],
       models: [],
-      trims: []
+      trims: [],
+      success: false
     };
   }
 
@@ -158,8 +164,6 @@ class NewReviewModal extends Component {
 
   submitNewReview = () => {
     const newReview = this.state['review'];
-    console.log('THE WHOLE STATE: ', this.state);
-    console.log('CHCK FOR REVIEW: ', newReview);
     const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
     const localRequests = 'http://localhost:3001/api/reviews';
     axios
@@ -180,16 +184,72 @@ class NewReviewModal extends Component {
             title: '',
             content: '',
             score: ''
-          }
+          },
+          success: true
         });
+
+        if (this.state.success) {
+          this.props.addReview();
+          this.toggle();
+        }
       })
-      .catch(err => console.warn(err));
+      .catch(err => {
+        this.setState({ success: false });
+        this.reviewValidation(newReview);
+        console.warn(err);
+      });
   };
 
-  onClick = event => {
-    this.submitNewReview();
-    this.toggle();
-    window.location.reload(); // Need a way for the screen to rerender the changes without me doing it explicitly.
+  reviewValidation = review => {
+    const { year, make, model, edition, title, content, score } = review;
+
+    if (year.length === 0 || make.length === 0 || model.length === 0 || edition.length === 0) {
+      this.setState({
+        alerts: {
+          ...this.state.alerts,
+          carInputErr: true
+        }
+      });
+    } else {
+      this.setState({
+        alerts: {
+          ...this.state.alerts,
+          carInputErr: false
+        }
+      });
+    }
+
+    if (title.length === 0 || content.length === 0) {
+      this.setState({
+        alerts: {
+          ...this.state.alerts,
+          reviewInputErr: true
+        }
+      });
+    } else {
+      this.setState({
+        alerts: {
+          ...this.state.alerts,
+          reviewInputErr: false
+        }
+      });
+    }
+
+    if (score.length === 0) {
+      this.setState({
+        alerts: {
+          ...this.state.alerts,
+          scoreInputErr: true
+        }
+      });
+    } else {
+      this.setState({
+        alerts: {
+          ...this.state.alerts,
+          scoreInputErr: false
+        }
+      });
+    }
   };
 
   handleDrop = files => {
@@ -322,9 +382,18 @@ class NewReviewModal extends Component {
                   onChange={this.handleChange('review', 'content')}
                 />
               </p>
+              <Alert isOpen={this.state.alerts.carInputErr} color="danger">
+                Please select a car make, year, model, and edition to create a car review
+              </Alert>
+              <Alert isOpen={this.state.alerts.reviewInputErr} color="danger">
+                Please provide a title and content to create a car review
+              </Alert>
+              <Alert isOpen={this.state.alerts.scoreInputErr} color="danger">
+                Please provide a rating for the car you are reviewing
+              </Alert>
             </form>
           </ModalFooter>
-          <button className="submit-button" onClick={this.onClick}>
+          <button className="submit-button" onClick={this.submitNewReview}>
             Submit
           </button>
         </Modal>
