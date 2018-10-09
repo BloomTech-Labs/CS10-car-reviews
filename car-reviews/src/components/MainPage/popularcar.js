@@ -6,7 +6,6 @@ import axios from 'axios';
 
 import './mainpage.css';
 import defaultImg from '../Assets/default_img.png';
-import SearchFilter from './searchfilter'
 
 class PopularCar extends Component {
     constructor(props) {
@@ -25,15 +24,16 @@ class PopularCar extends Component {
     }
 
     searchFunction = () => {
-        const { year, make, model, trim } = this.state.selectedValues;
+        console.log(this.state.selectedValues);
+        const { year, make, model, trim } = this.state.selectedValues
         axios
             .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', 
-                {year, make, model})
+                {year, make, model, trim})
             .then(response => {
                 this.setState({ searchResults: response.data, searching: true });
             })
             .catch(err => {
-                console.log("ERROR: ", err.message);
+                console.log("ERROR: ", err.message)
             });
     }
 

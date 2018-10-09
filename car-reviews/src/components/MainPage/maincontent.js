@@ -179,7 +179,7 @@ class MainContent extends Component {
                         {this.state.popularReviewers.map(reviewer => {
                             return (
                                 <Col lg="3" md="6" key={reviewer._id} style={{ marginBottom:'35px' }}>
-                                    <Button className="main-card"
+                                    <Button className="main-card" 
                                     onClick={()=>this.userToSearch(reviewer.username)}> 
                                         <p>{reviewer.username}</p>
                                     </Button>
