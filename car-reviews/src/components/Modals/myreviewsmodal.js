@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, CardText, Input } from 'reactstrap';
+import { Col, Button, Modal, ModalHeader, ModalBody, Input } from 'reactstrap';
 import defaultImg from '../Assets/default_img.png';
 import axios from 'axios';
 import './reviewmodal.css';
@@ -40,7 +40,6 @@ class MyReviewsModal extends Component {
   };
 
   save = () => {
-    console.log('The save is being called', this.state);
     const editedContent = {
       title: this.state.title,
       content: this.state.content,
@@ -70,7 +69,6 @@ class MyReviewsModal extends Component {
   };
 
   render() {
-    console.log('props', this.props);
     return (
       <Col lg="3" md="6" sm="12">
         <Button className="modal-button" onClick={this.toggle}>
@@ -101,10 +99,10 @@ class MyReviewsModal extends Component {
           <ModalHeader toggle={this.toggle} className="modal-header">
             <p>
               {`${this.props.year} ${this.props.make} ${this.props.model} ${
-                this.props.car.edition}`}
-
+                this.props.car.edition
+              }`}
             </p>
-            
+
             <ReactStars
               type="number"
               name="score"
@@ -117,8 +115,7 @@ class MyReviewsModal extends Component {
             />
 
             <div className="mrb-container">
-
-            {this.state.editing ? (
+              {this.state.editing ? (
                 <button className="my-review-buttons" onClick={this.save}>
                   save review
                 </button>
@@ -128,7 +125,7 @@ class MyReviewsModal extends Component {
                 </button>
               )}
 
-              <div style={{width:10}} />
+              <div style={{ width: 10 }} />
 
               <button
                 className="my-review-buttons"
@@ -136,7 +133,6 @@ class MyReviewsModal extends Component {
               >
                 delete review
               </button>
-
             </div>
           </ModalHeader>
           <ModalBody className="modal-body">
