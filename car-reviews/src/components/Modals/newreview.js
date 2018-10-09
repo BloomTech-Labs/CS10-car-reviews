@@ -17,7 +17,6 @@ class NewReviewModal extends Component {
         year: '',
         make: '',
         model: '',
-        edition: '',
         carImage: '',
         title: '',
         content: '',
@@ -27,17 +26,13 @@ class NewReviewModal extends Component {
         year: '',
         make: '',
         model: '',
-        trim: ''
       },
       displayDropdowns: {
         year: false,
-        model: false,
-        trim: false
       },
       years: [],
       makes: [],
       models: [],
-      trims: []
     };
   }
 
@@ -145,17 +140,6 @@ class NewReviewModal extends Component {
       });
   };
 
-  handleChangeTrim = e => {
-    const { value } = e.target;
-    const newState = Object.assign({}, this.state);
-    this.state.trims.map(trim => {
-      if (trim.trim === value)
-        newState.selectedValues.trim = { trimId: trim.trim_id, trim: trim.trim };
-      newState.review.edition = trim.trim;
-    });
-    this.setState(newState);
-  };
-
   submitNewReview = () => {
     const newReview = this.state['review'];
     console.log('THE WHOLE STATE: ', this.state);
@@ -163,7 +147,7 @@ class NewReviewModal extends Component {
     const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
     const localRequests = 'http://localhost:3001/api/reviews';
     axios
-      .post(requestURL, newReview, {
+      .post(localRequests, newReview, {
         headers: {
           JWT: localStorage.getItem('jwt')
         }
@@ -175,7 +159,6 @@ class NewReviewModal extends Component {
             year: '',
             make: '',
             model: '',
-            edition: '',
             carImage: '',
             title: '',
             content: '',
@@ -255,18 +238,6 @@ class NewReviewModal extends Component {
                   <option>Select a Model</option>
                   {this.state.models.map(model => {
                     return <option key={model.model_id}>{model.model}</option>;
-                  })}
-                </select>
-              ) : (
-                <Fragment />
-              )}
-
-              {this.state.displayDropdowns.trim ? (
-                <select className="dropdowns" name="trim" onChange={this.handleChangeTrim}>
-                  <option>Select a Trim</option>
-
-                  {this.state.trims.map(trim => {
-                    return <option key={trim.trim_id}>{trim.trim}</option>;
                   })}
                 </select>
               ) : (

@@ -45,8 +45,6 @@ class Navbar extends Component {
                 <a className="navbar-item" href="/">
                   Home
                 </a>
-          
-                
 
                 {this.props.isLoggedIn ? 
                   <a className="navbar-item" href="/MyReviews">
