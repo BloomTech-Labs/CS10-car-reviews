@@ -84,7 +84,7 @@ All parameters are expected to be passed through the request body
 ### contentRouter
 #### General Notes:
 - contetRouter handles all requests that are seeking data
-- Made up of sub-routers `popularRouter` and `userRouter`
+- Made up of sub-routers `popularRouter`, `userRouter`, and `reviewsRouter`.
 
 ### popularRouter
 #### General Notes:
@@ -126,6 +126,9 @@ No parameters expected
 - `Body`: responds with the sorted array of featured reviews 
 - `Errors`: responds with a status of `500` and a JSON response with a key of `popRouterError`
 
+##### GET to '/api/popular/featured_reviews'
+Sends back all of the featured reviews, sorted, for the landing page
+
 ### userRouter
 #### General Notes:
 - handles all requests that deal with getting a specific user's data
@@ -157,6 +160,36 @@ No parameters expected
     - If user data was updated: Responds with new JWT with updated user data.
     - If counter or date were updated: Responds with the full user record with updated data 
 - `Errors`: responds with a status of `500` and a JSON response with a key of `databaseError`
+
+### reviewsRouter
+#### General Notes:
+- Handles all requests to create, remove, update, and delete a review.
+- Also handles requests to retrive review data aacording to the parameters received.
+- ReviewsRouter includes a provision for the functionality of the front-end review search feature.
+
+#### Endpoints:
+##### POST to '/api/reviews'
+- Creates a new review in the reviews collection.
+- Checks if the car referenced in the review already exists in the cars collection. 
+    - If the car already exists, adds the new review _id to the array of review ids in car.reviews
+    - If the car does not exists, create the car with recieved data, adds the new review _id to the array of review ids in the new car.reviews.
+- Requires a valid JWT.
+- Retrieves user data from the JWT, and updates user data with a reference to the new review.
+
+###### Parameters
+All parameters are expected to be passed through the request body
+- `title`: String, required
+- `content`: String, required, 
+- `score`: Number, required, 
+- `carImage`: String (url), not required
+- `year`: Number, required
+- `make`: String, required
+- `model`: String, required 
+
+###### Response 
+- `Status`: 200
+- `Body`: Responds with the new review created
+- `Errors`: responds with a status of `500` and a JSON response with a key of `error`
 
 ## Testing: COMPLETED
 - All testing is run through Mocha and Chai
