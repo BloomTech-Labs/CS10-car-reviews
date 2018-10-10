@@ -8,26 +8,6 @@ import './searchbar.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-// * TODO: Make colors for the Review and Search buttons match
-const styles = {
-  buttonStylesMiddle: {
-    width: '100%',
-    backgroundColor: 'white',
-    color: '#77A6F7'
-  },
-  linkStyles: {
-    textDecoration: 'none',
-    width: '8%',
-    display: 'inline-block'
-  },
-  loginContainerStyles: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginRight: 20,
-    marginTop: 10
-  }
-};
-
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
 
@@ -202,21 +182,17 @@ class Searchbar extends React.Component {
       );
     } else {
       return (
-        <div className='searchbar-buttons-container'>
-              <Link to='/login' className='searchbar-buttons-links'>
-                <Button
-                  className="searchbar-buttons"
-                  onClick={this.handleModalState('login', true)}
-                >
-                  Review
-                </Button>
-              </Link>
-              <div className='searchbar-buttons-links'>
-                <Button 
-                  className="searchbar-buttons"
-                  onClick={()=>this.searchFunction()}
-                >Search</Button>
-              </div>
+        <div className="searchbar-buttons-container">
+          <Link to="/login" className="searchbar-buttons-links">
+            <Button className="searchbar-buttons" onClick={this.handleModalState('login', true)}>
+              Review
+            </Button>
+          </Link>
+          <div className="searchbar-buttons-links">
+            <Button className="searchbar-buttons" onClick={() => this.searchFunction()}>
+              Search
+            </Button>
+          </div>
         </div>
       );
     }

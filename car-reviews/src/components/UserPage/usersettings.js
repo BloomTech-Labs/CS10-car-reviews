@@ -246,7 +246,7 @@ class UserSettings extends Component {
                             onChange={this.handleChange('passwords', 'password2')}
                           />
                         </div>
-                        <Button type="submit" className="general-button">
+                        <Button type="submit" className="save-changes">
                           Save Changes
                         </Button>
                         <Alert isOpen={this.state.alerts.password} color="danger">

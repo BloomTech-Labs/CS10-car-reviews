@@ -173,7 +173,7 @@ ShallowWrapper {
                                                                         />
                                                                 </div>
                                                                 <Button
-                                                                        className="general-button"
+                                                                        className="save-changes"
                                                                         color="secondary"
                                                                         tag="button"
                                                                         type="submit"
@@ -811,7 +811,7 @@ ShallowWrapper {
                                                                                 />
                                                                       </div>
                                                                       <Button
-                                                                                className="general-button"
+                                                                                className="save-changes"
                                                                                 color="secondary"
                                                                                 tag="button"
                                                                                 type="submit"
@@ -1444,7 +1444,7 @@ ShallowWrapper {
                                                                                     />
                                                                         </div>
                                                                         <Button
-                                                                                    className="general-button"
+                                                                                    className="save-changes"
                                                                                     color="secondary"
                                                                                     tag="button"
                                                                                     type="submit"
@@ -2063,7 +2063,7 @@ ShallowWrapper {
                                                                                                 />
                                                                                 </div>
                                                                                 <Button
-                                                                                                className="general-button"
+                                                                                                className="save-changes"
                                                                                                 color="secondary"
                                                                                                 tag="button"
                                                                                                 type="submit"
@@ -2676,7 +2676,7 @@ ShallowWrapper {
                                                                                                     />
                                                                                 </div>
                                                                                 <Button
-                                                                                                    className="general-button"
+                                                                                                    className="save-changes"
                                                                                                     color="secondary"
                                                                                                     tag="button"
                                                                                                     type="submit"
@@ -2866,7 +2866,7 @@ ShallowWrapper {
                                                                                         />
                                                                   </div>
                                                                   <Button
-                                                                                        className="general-button"
+                                                                                        className="save-changes"
                                                                                         color="secondary"
                                                                                         tag="button"
                                                                                         type="submit"
@@ -3027,7 +3027,7 @@ ShallowWrapper {
                                                                         />
                                                 </div>
                                                 <Button
-                                                                        className="general-button"
+                                                                        className="save-changes"
                                                                         color="secondary"
                                                                         tag="button"
                                                                         type="submit"
@@ -3178,7 +3178,7 @@ ShallowWrapper {
                                                         />
                             </div>
                             <Button
-                                                        className="general-button"
+                                                        className="save-changes"
                                                         color="secondary"
                                                         tag="button"
                                                         type="submit"
@@ -3328,7 +3328,7 @@ ShallowWrapper {
                                 />
 </div>,
                               <Button
-                                className="general-button"
+                                className="save-changes"
                                 color="secondary"
                                 tag="button"
                                 type="submit"
@@ -3546,7 +3546,7 @@ ShallowWrapper {
                               "nodeType": "class",
                               "props": Object {
                                 "children": "Save Changes",
-                                "className": "general-button",
+                                "className": "save-changes",
                                 "color": "secondary",
                                 "tag": "button",
                                 "type": "submit",
@@ -5930,7 +5930,7 @@ ShallowWrapper {
                                                                                           />
                                                                                 </div>
                                                                                 <Button
-                                                                                          className="general-button"
+                                                                                          className="save-changes"
                                                                                           color="secondary"
                                                                                           tag="button"
                                                                                           type="submit"
@@ -6568,7 +6568,7 @@ ShallowWrapper {
                                                                                                 />
                                                                                     </div>
                                                                                     <Button
-                                                                                                className="general-button"
+                                                                                                className="save-changes"
                                                                                                 color="secondary"
                                                                                                 tag="button"
                                                                                                 type="submit"
@@ -7201,7 +7201,7 @@ ShallowWrapper {
                                                                                                   />
                                                                                     </div>
                                                                                     <Button
-                                                                                                  className="general-button"
+                                                                                                  className="save-changes"
                                                                                                   color="secondary"
                                                                                                   tag="button"
                                                                                                   type="submit"
@@ -7820,7 +7820,7 @@ ShallowWrapper {
                                                                                                             />
                                                                                           </div>
                                                                                           <Button
-                                                                                                            className="general-button"
+                                                                                                            className="save-changes"
                                                                                                             color="secondary"
                                                                                                             tag="button"
                                                                                                             type="submit"
@@ -8433,7 +8433,7 @@ ShallowWrapper {
                                                                                                               />
                                                                                         </div>
                                                                                         <Button
-                                                                                                              className="general-button"
+                                                                                                              className="save-changes"
                                                                                                               color="secondary"
                                                                                                               tag="button"
                                                                                                               type="submit"
@@ -8623,7 +8623,7 @@ ShallowWrapper {
                                                                                                 />
                                                                         </div>
                                                                         <Button
-                                                                                                className="general-button"
+                                                                                                className="save-changes"
                                                                                                 color="secondary"
                                                                                                 tag="button"
                                                                                                 type="submit"
@@ -8784,7 +8784,7 @@ ShallowWrapper {
                                                                               />
                                                     </div>
                                                     <Button
-                                                                              className="general-button"
+                                                                              className="save-changes"
                                                                               color="secondary"
                                                                               tag="button"
                                                                               type="submit"
@@ -8935,7 +8935,7 @@ ShallowWrapper {
                                                             />
                               </div>
                               <Button
-                                                            className="general-button"
+                                                            className="save-changes"
                                                             color="secondary"
                                                             tag="button"
                                                             type="submit"
@@ -9085,7 +9085,7 @@ ShallowWrapper {
                                   />
 </div>,
                                 <Button
-                                  className="general-button"
+                                  className="save-changes"
                                   color="secondary"
                                   tag="button"
                                   type="submit"
@@ -9303,7 +9303,7 @@ ShallowWrapper {
                                 "nodeType": "class",
                                 "props": Object {
                                   "children": "Save Changes",
-                                  "className": "general-button",
+                                  "className": "save-changes",
                                   "color": "secondary",
                                   "tag": "button",
                                   "type": "submit",
