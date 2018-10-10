@@ -46,7 +46,6 @@ class ResultsSearchbar extends React.Component {
       years: [],
       makes: [],
       models: [],
-      trims: [],
       'car-years': '',
       'car-models': '',
       'car-makes': '',
@@ -133,37 +132,11 @@ class ResultsSearchbar extends React.Component {
     });
 
     newState.selectedValues.model = { model: value, modelId };
-    newState.displayDropdowns.trim = true;
-    const searchTerms = {
-      makeId: this.state.selectedValues.make.makeId,
-      modelId
-    };
-
-    axios
-      .get(
-        `https://databases.one/api/?format=json&select=trim&make_id=${
-          searchTerms.makeId
-        }&model_id=${searchTerms.modelId}&api_key=${API_KEY}`
-      )
-      .then(res => {
-        newState.trims = res.data.result;
-        this.setState(newState, () => console.log(this.state));
-      });
-  };
-
-  handleChangeTrim = e => {
-    const { value } = e.target;
-    const newState = Object.assign({}, this.state);
-    this.state.trims.map(trim => {
-      if (trim.trim === value)
-        newState.selectedValues.trim = { trimId: trim.trim_id, trim: trim.trim };
-    });
-    this.setState(newState);
   };
 
   searchFunction = () => {
     const searchCriteria = {};
-    const { year, make, model, trim } = this.state.selectedValues;
+    const { year, make, model } = this.state.selectedValues;
 
     if (this.state.selectedValues.year) {
       searchCriteria.year = this.state.selectedValues.year;
@@ -173,10 +146,7 @@ class ResultsSearchbar extends React.Component {
     }
     if (this.state.selectedValues.model) {
       searchCriteria.model = this.state.selectedValues.model.model;
-    }
-    if (this.state.selectedValues.trim) {
-      searchCriteria.edition = this.state.selectedValues.trim.trim;
-    } else if (!year && !make && !model && !trim) {
+    } else if (!year && !make && !model) {
       console.log(`There are no selected values in the search criteria`);
     }
     axios

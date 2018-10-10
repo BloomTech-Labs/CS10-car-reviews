@@ -14,8 +14,7 @@ class PopularCar extends Component {
       selectedValues: {
         year: props.year,
         make: props.make,
-        model: props.model,
-        trim: props.edition
+        model: props.model
       },
       searching: false,
       searchResults: []
@@ -23,14 +22,12 @@ class PopularCar extends Component {
   }
 
   searchFunction = () => {
-    console.log(this.state.selectedValues);
-    const { year, make, model, trim } = this.state.selectedValues;
+    const { year, make, model } = this.state.selectedValues;
     axios
       .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', {
         year,
         make,
-        model,
-        trim
+        model
       })
       .then(response => {
         this.setState({ searchResults: response.data, searching: true });

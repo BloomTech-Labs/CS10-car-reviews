@@ -17,7 +17,6 @@ class NewReviewModal extends Component {
         year: '',
         make: '',
         model: '',
-        edition: '',
         carImage: '',
         title: '',
         content: '',
@@ -26,13 +25,11 @@ class NewReviewModal extends Component {
       selectedValues: {
         year: '',
         make: '',
-        model: '',
-        trim: ''
+        model: ''
       },
       displayDropdowns: {
         year: false,
-        model: false,
-        trim: false
+        model: false
       },
       alerts: {
         carInputErr: false,
@@ -42,7 +39,6 @@ class NewReviewModal extends Component {
       years: [],
       makes: [],
       models: [],
-      trims: [],
       success: false
     };
   }
@@ -132,33 +128,6 @@ class NewReviewModal extends Component {
 
     newState.selectedValues.model = { model: value, modelId };
     newState.review.model = value;
-    newState.displayDropdowns.trim = true;
-    const searchTerms = {
-      makeId: this.state.selectedValues.make.makeId,
-      modelId
-    };
-
-    axios
-      .get(
-        `https://databases.one/api/?format=json&select=trim&make_id=${
-          searchTerms.makeId
-        }&model_id=${searchTerms.modelId}&api_key=${API_KEY}`
-      )
-      .then(res => {
-        newState.trims = res.data.result;
-        this.setState(newState);
-      });
-  };
-
-  handleChangeTrim = e => {
-    const { value } = e.target;
-    const newState = Object.assign({}, this.state);
-    this.state.trims.map(trim => {
-      if (trim.trim === value)
-        newState.selectedValues.trim = { trimId: trim.trim_id, trim: trim.trim };
-      newState.review.edition = trim.trim;
-    });
-    this.setState(newState);
   };
 
   submitNewReview = () => {
@@ -177,11 +146,15 @@ class NewReviewModal extends Component {
             year: '',
             make: '',
             model: '',
-            edition: '',
             carImage: '',
             title: '',
             content: '',
             score: ''
+          },
+          alerts: {
+            carInputErr: false,
+            reviewInputErr: false,
+            scoreInputErr: false
           },
           success: true
         });
@@ -199,9 +172,9 @@ class NewReviewModal extends Component {
   };
 
   reviewValidation = review => {
-    const { year, make, model, edition, title, content, score } = review;
+    const { year, make, model, title, content, score } = review;
 
-    if (year.length === 0 || make.length === 0 || model.length === 0 || edition.length === 0) {
+    if (year.length === 0 || make.length === 0 || model.length === 0) {
       this.setState({
         alerts: {
           ...this.state.alerts,
@@ -317,18 +290,6 @@ class NewReviewModal extends Component {
               ) : (
                 <Fragment />
               )}
-
-              {this.state.displayDropdowns.trim ? (
-                <select className="dropdowns" name="trim" onChange={this.handleChangeTrim}>
-                  <option>Select a Trim</option>
-
-                  {this.state.trims.map(trim => {
-                    return <option key={trim.trim_id}>{trim.trim}</option>;
-                  })}
-                </select>
-              ) : (
-                <Fragment />
-              )}
             </div>
           </ModalHeader>
 
@@ -379,7 +340,7 @@ class NewReviewModal extends Component {
                 />
               </p>
               <Alert isOpen={this.state.alerts.carInputErr} color="danger">
-                Please select a car make, year, model, and edition to create a car review
+                Please select a car make, year, and model to create a car review
               </Alert>
               <Alert isOpen={this.state.alerts.reviewInputErr} color="danger">
                 Please provide a title and content to create a car review
