@@ -166,7 +166,7 @@ Sends back all of the featured reviews, sorted, for the landing page
 
 ### reviewsRouter
 #### General Notes:
-- Handles all requests to create, remove, update, and delete a review.
+- Handles all requests to create, update, and delete a review.
 - Also handles requests to retrieve review data according to the parameters received.
 - ReviewsRouter includes a provision for the functionality of the front-end review search feature.
 
@@ -175,7 +175,7 @@ Sends back all of the featured reviews, sorted, for the landing page
 - Creates a new review in the reviews collection.
 - Checks if the car referenced in the review already exists in the cars collection. 
     - If the car already exists, adds the new review _id to the array of review ids in car.reviews
-    - If the car does not exists, create the car with recieved data, adds the new review _id to the array of review ids in the new car.reviews.
+    - If the car does not exist, create the car with recieved data, adds the new review _id to the array of review ids in the new car.reviews.
 - Requires a valid JWT.
 - Retrieves user data from the JWT, and updates user data with a reference to the new review.
 
@@ -253,11 +253,6 @@ All parameters are expected to be passed through the request body
 - `Status`: 200
 - `Body`: Responds with an array of reviews with review data (title, content, rating, etc.), with car data      for each review (make, model, year, trim), as well as user data (username).
 - `Errors`: responds with a status of `500` and a JSON response with a key of `error`
-
-###### Parameters
-All parameters are expected to be passed through the request body
-- `title`: String, required, 
-- `content`: String, required
 
 ### paymentRouter
 #### General Notes:

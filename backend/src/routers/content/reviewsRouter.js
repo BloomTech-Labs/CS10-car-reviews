@@ -68,7 +68,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
       })
       .catch(err => res.status(500).json({ error: err.message }));
   } else {
-    CarModel.create({ year, make, model, edition, averageScore: score, imageURL: carImage, testEntry })
+    CarModel.create({ year, make, model, averageScore: score, imageURL: carImage, testEntry })
       .then(newCar => {
         const car = newCar._id;
         carID = newCar._id;
