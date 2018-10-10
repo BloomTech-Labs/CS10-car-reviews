@@ -20,7 +20,8 @@ class NewReviewModal extends Component {
         carImage: '',
         title: '',
         content: '',
-        score: ''
+        score: '',
+        testEntry: false,
       },
       selectedValues: {
         year: '',
@@ -149,7 +150,8 @@ class NewReviewModal extends Component {
             carImage: '',
             title: '',
             content: '',
-            score: ''
+            score: '', 
+            testEntry: false,
           },
           alerts: {
             carInputErr: false,
@@ -297,7 +299,7 @@ class NewReviewModal extends Component {
             {this.state.review.carImage ? (
               <img
                 src={this.state.review.carImage}
-                style={{ height: '100%', width: '100%' }}
+                style={{ height: '100%', width: '100%', marginLeft: 'auto', marginRight: 'auto' }}
                 alt=""
               />
             ) : (
@@ -308,7 +310,7 @@ class NewReviewModal extends Component {
           </ModalBody>
 
           <ModalFooter className="new-review-footer">
-            <form>
+            <form style={{marginLeft: 'auto', marginRight: 'auto'}}>
               <ReactStars
                 type="number"
                 name="score"
@@ -324,13 +326,14 @@ class NewReviewModal extends Component {
               <input
                 type="text"
                 name="title"
+                className='content-input'
                 value={this.state.review.title}
                 onChange={this.handleChange('review', 'title')}
                 placeholder="Write the title here..."
               />
               <p>
                 <textarea
-                  className="contentInput"
+                  className="content-input"
                   row="50"
                   cols="50"
                   placeholder="Write your review here..."
