@@ -4,9 +4,7 @@ import MainContent from './maincontent';
 import axios from 'axios';
 import Navbar from './navbar';
 
-
 const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
-const localRequests = `http://localhost:3001/auth/verify`
 
 // This file contains the various components that make up the landing page
 // and search results. This file is rendered in App.
@@ -14,29 +12,29 @@ const localRequests = `http://localhost:3001/auth/verify`
 class MainPage extends Component {
   state = {
     isLoggedIn: false
-  }
+  };
 
-  componentWillMount(){
+  componentWillMount() {
     const localJWT = localStorage.getItem('jwt');
     if (!localJWT) this.handleLogin(false);
     else {
-      axios.get(dbRequests, { headers: { jwt: localJWT } })
+      axios
+        .get(dbRequests, { headers: { jwt: localJWT } })
         .then(response => {
-          const { tokenIsValid } = response.data
+          const { tokenIsValid } = response.data;
           if (tokenIsValid) this.handleLogin(tokenIsValid);
           else this.handleLogin(false);
         })
         .catch(err => {
           console.log(err);
           this.handleLogin(false);
-        })
+        });
     }
   }
 
-  handleLogin = (status) => {
-    console.log(`JWT is ${status}`)
+  handleLogin = status => {
     this.setState({ isLoggedIn: status });
-  }
+  };
 
   render() {
     const { isLoggedIn } = this.state;
@@ -44,14 +42,8 @@ class MainPage extends Component {
     return (
       <div>
         <div>
-          <Navbar 
-              isLoggedIn={isLoggedIn} 
-              handleLogin={this.handleLogin}
-            />
-          <SearchBar 
-            isLoggedIn={isLoggedIn} 
-            handleLogin={this.handleLogin}
-          />
+          <Navbar isLoggedIn={isLoggedIn} handleLogin={this.handleLogin} />
+          <SearchBar isLoggedIn={isLoggedIn} handleLogin={this.handleLogin} />
         </div>
         <MainContent isLoggedIn={isLoggedIn} />
         <div className="team-link">
@@ -59,15 +51,20 @@ class MainPage extends Component {
             href="https://lambdaschool.com"
             className="team-link"
             target="_blank"
+            rel="noopener noreferrer"
           >
             Click here to learn about The Team!
           </a>
           <div style={{ width: '10px' }} />
-          Blue Car Icon - <a 
-                          href="https://pngtree.com/freepng/blue-flat-car_1154079.html"
-                          style={{ color: 'white'}}
-                          target="_blank"
-                          >pngtree.com</a>
+          Blue Car Icon -{' '}
+          <a
+            href="https://pngtree.com/freepng/blue-flat-car_1154079.html"
+            style={{ color: 'white' }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            pngtree.com
+          </a>
         </div>
       </div>
     );

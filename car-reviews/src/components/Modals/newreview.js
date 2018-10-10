@@ -26,11 +26,11 @@ class NewReviewModal extends Component {
       selectedValues: {
         year: '',
         make: '',
-        model: '',
+        model: ''
       },
       displayDropdowns: {
         year: false,
-        model: false,
+        model: false
       },
       alerts: {
         carInputErr: false,
@@ -71,7 +71,6 @@ class NewReviewModal extends Component {
   handleChange = (type, field) => event => {
     const newState = Object.assign({}, this.state);
     newState[type][field] = event.target.value;
-    console.log(' CURRENT STATE: ', newState);
     this.setState(newState);
   };
 
@@ -116,7 +115,7 @@ class NewReviewModal extends Component {
       )
       .then(res => {
         newState.models = res.data.result;
-        this.setState(newState, () => console.log(this.state));
+        this.setState(newState);
       });
   };
 
@@ -130,18 +129,11 @@ class NewReviewModal extends Component {
 
     newState.selectedValues.model = { model: value, modelId };
     newState.review.model = value;
-    newState.displayDropdowns.trim = true;
-    const searchTerms = {
-      makeId: this.state.selectedValues.make.makeId,
-      modelId
-    };
   };
 
   submitNewReview = () => {
     const newReview = this.state['review'];
     const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
-    const localRequests = 'http://localhost:3001/api/reviews';
-
     axios
       .post(requestURL, newReview, {
         headers: {
@@ -160,6 +152,11 @@ class NewReviewModal extends Component {
             content: '',
             score: '', 
             testEntry: false,
+          },
+          alerts: {
+            carInputErr: false,
+            reviewInputErr: false,
+            scoreInputErr: false
           },
           success: true
         });
@@ -247,7 +244,6 @@ class NewReviewModal extends Component {
         .then(response => {
           const data = response.data;
           const fileURL = data.secure_url; // You should store this URL for future references in your app
-          console.log('Cloudinary URL', fileURL);
           this.setState({ review: { ...this.state.review, carImage: fileURL } });
         });
     });
@@ -321,8 +317,7 @@ class NewReviewModal extends Component {
                 edit={true}
                 half={true}
                 count={5}
-                value={this.state.review.score}
-                // this.state.review.score
+                value={Number(this.state.review.score)}
                 onChange={this.ratingChanged('review', 'score')}
                 size={30}
                 color2={'#ffd700'}

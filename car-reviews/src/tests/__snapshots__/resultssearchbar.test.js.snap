@@ -53,24 +53,11 @@ ShallowWrapper {
           </div>
           <div
                     className="searchbar-buttons-container"
-                    style={
-                              Object {
-                                        "display": "flex",
-                                        "justifyContent": "center",
-                                      }
-                    }
           >
-                    <div
+                    <Link
                               className="searchbar-buttons-links"
-                              style={
-                                        Object {
-                                                  "marginBottom": 15,
-                                                  "marginLeft": 10,
-                                                  "marginRight": 10,
-                                                  "textDecoration": "none",
-                                                  "width": "8%",
-                                                }
-                              }
+                              replace={false}
+                              to="/login"
                     >
                               <Button
                                         className="searchbar-buttons"
@@ -80,18 +67,9 @@ ShallowWrapper {
                               >
                                         Review
                               </Button>
-                    </div>
+                    </Link>
                     <div
                               className="searchbar-buttons-links"
-                              style={
-                                        Object {
-                                                  "marginBottom": 15,
-                                                  "marginLeft": 10,
-                                                  "marginRight": 10,
-                                                  "textDecoration": "none",
-                                                  "width": "8%",
-                                                }
-                              }
                     >
                               <Button
                                         className="searchbar-buttons"
@@ -152,24 +130,11 @@ ShallowWrapper {
 </div>,
             <div
               className="searchbar-buttons-container"
-              style={
-                            Object {
-                                          "display": "flex",
-                                          "justifyContent": "center",
-                                        }
-              }
 >
-              <div
+              <Link
                             className="searchbar-buttons-links"
-                            style={
-                                          Object {
-                                                        "marginBottom": 15,
-                                                        "marginLeft": 10,
-                                                        "marginRight": 10,
-                                                        "textDecoration": "none",
-                                                        "width": "8%",
-                                                      }
-                            }
+                            replace={false}
+                            to="/login"
               >
                             <Button
                                           className="searchbar-buttons"
@@ -179,18 +144,9 @@ ShallowWrapper {
                             >
                                           Review
                             </Button>
-              </div>
+              </Link>
               <div
                             className="searchbar-buttons-links"
-                            style={
-                                          Object {
-                                                        "marginBottom": 15,
-                                                        "marginLeft": 10,
-                                                        "marginRight": 10,
-                                                        "textDecoration": "none",
-                                                        "width": "8%",
-                                                      }
-                            }
               >
                             <Button
                                           className="searchbar-buttons"
@@ -311,17 +267,10 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <div
+                <Link
                   className="searchbar-buttons-links"
-                  style={
-                                    Object {
-                                                      "marginBottom": 15,
-                                                      "marginLeft": 10,
-                                                      "marginRight": 10,
-                                                      "textDecoration": "none",
-                                                      "width": "8%",
-                                                    }
-                  }
+                  replace={false}
+                  to="/login"
 >
                   <Button
                                     className="searchbar-buttons"
@@ -331,18 +280,9 @@ ShallowWrapper {
                   >
                                     Review
                   </Button>
-</div>,
+</Link>,
                 <div
                   className="searchbar-buttons-links"
-                  style={
-                                    Object {
-                                                      "marginBottom": 15,
-                                                      "marginLeft": 10,
-                                                      "marginRight": 10,
-                                                      "textDecoration": "none",
-                                                      "width": "8%",
-                                                    }
-                  }
 >
                   <Button
                                     className="searchbar-buttons"
@@ -355,17 +295,13 @@ ShallowWrapper {
 </div>,
               ],
               "className": "searchbar-buttons-container",
-              "style": Object {
-                "display": "flex",
-                "justifyContent": "center",
-              },
             },
             "ref": null,
             "rendered": Array [
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "class",
                 "props": Object {
                   "children": <Button
                     className="searchbar-buttons"
@@ -376,13 +312,8 @@ ShallowWrapper {
                     Review
 </Button>,
                   "className": "searchbar-buttons-links",
-                  "style": Object {
-                    "marginBottom": 15,
-                    "marginLeft": 10,
-                    "marginRight": 10,
-                    "textDecoration": "none",
-                    "width": "8%",
-                  },
+                  "replace": false,
+                  "to": "/login",
                 },
                 "ref": null,
                 "rendered": Object {
@@ -400,7 +331,7 @@ ShallowWrapper {
                   "rendered": "Review",
                   "type": [Function],
                 },
-                "type": "div",
+                "type": [Function],
               },
               Object {
                 "instance": null,
@@ -416,13 +347,6 @@ ShallowWrapper {
                     Search
 </Button>,
                   "className": "searchbar-buttons-links",
-                  "style": Object {
-                    "marginBottom": 15,
-                    "marginLeft": 10,
-                    "marginRight": 10,
-                    "textDecoration": "none",
-                    "width": "8%",
-                  },
                 },
                 "ref": null,
                 "rendered": Object {
@@ -493,24 +417,11 @@ ShallowWrapper {
             </div>
             <div
                         className="searchbar-buttons-container"
-                        style={
-                                    Object {
-                                                "display": "flex",
-                                                "justifyContent": "center",
-                                              }
-                        }
             >
-                        <div
+                        <Link
                                     className="searchbar-buttons-links"
-                                    style={
-                                                Object {
-                                                            "marginBottom": 15,
-                                                            "marginLeft": 10,
-                                                            "marginRight": 10,
-                                                            "textDecoration": "none",
-                                                            "width": "8%",
-                                                          }
-                                    }
+                                    replace={false}
+                                    to="/login"
                         >
                                     <Button
                                                 className="searchbar-buttons"
@@ -520,18 +431,9 @@ ShallowWrapper {
                                     >
                                                 Review
                                     </Button>
-                        </div>
+                        </Link>
                         <div
                                     className="searchbar-buttons-links"
-                                    style={
-                                                Object {
-                                                            "marginBottom": 15,
-                                                            "marginLeft": 10,
-                                                            "marginRight": 10,
-                                                            "textDecoration": "none",
-                                                            "width": "8%",
-                                                          }
-                                    }
                         >
                                     <Button
                                                 className="searchbar-buttons"
@@ -592,24 +494,11 @@ ShallowWrapper {
 </div>,
               <div
                 className="searchbar-buttons-container"
-                style={
-                                Object {
-                                                "display": "flex",
-                                                "justifyContent": "center",
-                                              }
-                }
 >
-                <div
+                <Link
                                 className="searchbar-buttons-links"
-                                style={
-                                                Object {
-                                                                "marginBottom": 15,
-                                                                "marginLeft": 10,
-                                                                "marginRight": 10,
-                                                                "textDecoration": "none",
-                                                                "width": "8%",
-                                                              }
-                                }
+                                replace={false}
+                                to="/login"
                 >
                                 <Button
                                                 className="searchbar-buttons"
@@ -619,18 +508,9 @@ ShallowWrapper {
                                 >
                                                 Review
                                 </Button>
-                </div>
+                </Link>
                 <div
                                 className="searchbar-buttons-links"
-                                style={
-                                                Object {
-                                                                "marginBottom": 15,
-                                                                "marginLeft": 10,
-                                                                "marginRight": 10,
-                                                                "textDecoration": "none",
-                                                                "width": "8%",
-                                                              }
-                                }
                 >
                                 <Button
                                                 className="searchbar-buttons"
@@ -751,17 +631,10 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": Array [
-                  <div
+                  <Link
                     className="searchbar-buttons-links"
-                    style={
-                                        Object {
-                                                            "marginBottom": 15,
-                                                            "marginLeft": 10,
-                                                            "marginRight": 10,
-                                                            "textDecoration": "none",
-                                                            "width": "8%",
-                                                          }
-                    }
+                    replace={false}
+                    to="/login"
 >
                     <Button
                                         className="searchbar-buttons"
@@ -771,18 +644,9 @@ ShallowWrapper {
                     >
                                         Review
                     </Button>
-</div>,
+</Link>,
                   <div
                     className="searchbar-buttons-links"
-                    style={
-                                        Object {
-                                                            "marginBottom": 15,
-                                                            "marginLeft": 10,
-                                                            "marginRight": 10,
-                                                            "textDecoration": "none",
-                                                            "width": "8%",
-                                                          }
-                    }
 >
                     <Button
                                         className="searchbar-buttons"
@@ -795,17 +659,13 @@ ShallowWrapper {
 </div>,
                 ],
                 "className": "searchbar-buttons-container",
-                "style": Object {
-                  "display": "flex",
-                  "justifyContent": "center",
-                },
               },
               "ref": null,
               "rendered": Array [
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "host",
+                  "nodeType": "class",
                   "props": Object {
                     "children": <Button
                       className="searchbar-buttons"
@@ -816,13 +676,8 @@ ShallowWrapper {
                       Review
 </Button>,
                     "className": "searchbar-buttons-links",
-                    "style": Object {
-                      "marginBottom": 15,
-                      "marginLeft": 10,
-                      "marginRight": 10,
-                      "textDecoration": "none",
-                      "width": "8%",
-                    },
+                    "replace": false,
+                    "to": "/login",
                   },
                   "ref": null,
                   "rendered": Object {
@@ -840,7 +695,7 @@ ShallowWrapper {
                     "rendered": "Review",
                     "type": [Function],
                   },
-                  "type": "div",
+                  "type": [Function],
                 },
                 Object {
                   "instance": null,
@@ -856,13 +711,6 @@ ShallowWrapper {
                       Search
 </Button>,
                     "className": "searchbar-buttons-links",
-                    "style": Object {
-                      "marginBottom": 15,
-                      "marginLeft": 10,
-                      "marginRight": 10,
-                      "textDecoration": "none",
-                      "width": "8%",
-                    },
                   },
                   "ref": null,
                   "rendered": Object {

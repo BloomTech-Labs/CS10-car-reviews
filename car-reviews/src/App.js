@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import MainPage from './components/MainPage/mainpage';
-import UserPage from './components/UserPage/userpage';
 import MyReviews from './components/UserPage/myreviews';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import BillingContainer from './components/UserPage/billingcontainer';
@@ -11,7 +10,6 @@ import Login from './components/MainPage/loginregister';
 import AuthService from './components/Auth/authservice';
 
 const Auth = new AuthService();
-console.log("AM I LOGGED IN? ", Auth.loggedIn())
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -29,8 +27,6 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route path="/searchpage" component={SearchResults} />
-          {/* <PrivateRoute path="/userpage" component={UserPage} /> */}
-          {/* <PrivateRoute path="/UserPage" component={()=> <UserPage isLoggedIn={isLoggedIn}/>} /> */}
           <PrivateRoute path="/Billing" component={BillingContainer} />
           <PrivateRoute path="/MyReviews" component={MyReviews} />
           <PrivateRoute path="/Settings" component={Settings} />

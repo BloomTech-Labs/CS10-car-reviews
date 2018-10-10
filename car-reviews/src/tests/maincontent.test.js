@@ -18,7 +18,6 @@ describe('MainContent', () => {
       const divs = wrapper().find('div');
       const wrappingDiv = divs.first();
 
-      // Enzyme omits the outermost node when using the .children() method on shallow(<App/>).
       expect(wrappingDiv.children()).toEqual(wrapper().children());
     });
   });
@@ -33,7 +32,6 @@ describe('MainContent', () => {
       const container = wrapper().find('Container');
       const wrappingContainer = container.first();
 
-      // Enzyme omits the outermost node when using the .children() method on shallow(<App/>).
       expect(wrappingContainer.children()).toEqual(container.children());
     });
   });

@@ -9,13 +9,12 @@ const CURRENCY = 'USD';
 
 const fromDollarToCent = amount => amount * 100;
 
-const successPayment = data => {
-  alert('Payment Successful Thank you for your buisness');
-  console.log('data is:', data);
+const successPayment = () => {
+  alert('Payment Successful: Thank you for your subscription!');
 };
 
 const errorPayment = data => {
-  alert('Payment Error, Please check your numbers and try again', data);
+  alert('Payment Error, Please check your card information and try again', data);
 };
 
 const onToken = (amount, description) => token =>
@@ -45,7 +44,6 @@ const Checkout = ({ name, description, amount }) => (
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
-    // email= {email} you could set an email to auto populate from the user here
   />
 );
 

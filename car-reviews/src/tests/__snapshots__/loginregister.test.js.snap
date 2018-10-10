@@ -100,7 +100,7 @@ ShallowWrapper {
                     <p
                               className="login-footer-text"
                     >
-                              Already have an account?
+                              Don't have an account?
                     </p>
                     <p
                               className="login-footer-link"
@@ -206,7 +206,7 @@ ShallowWrapper {
               <p
                             className="login-footer-text"
               >
-                            Already have an account?
+                            Don't have an account?
               </p>
               <p
                             className="login-footer-link"
@@ -473,7 +473,7 @@ ShallowWrapper {
                 <p
                   className="login-footer-text"
 >
-                  Already have an account?
+                  Don't have an account?
 </p>,
                 <p
                   className="login-footer-link"
@@ -492,11 +492,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Already have an account?",
+                  "children": "Don't have an account?",
                   "className": "login-footer-text",
                 },
                 "ref": null,
-                "rendered": "Already have an account?",
+                "rendered": "Don't have an account?",
                 "type": "p",
               },
               Object {
@@ -610,7 +610,7 @@ ShallowWrapper {
                         <p
                                     className="login-footer-text"
                         >
-                                    Already have an account?
+                                    Don't have an account?
                         </p>
                         <p
                                     className="login-footer-link"
@@ -716,7 +716,7 @@ ShallowWrapper {
                 <p
                                 className="login-footer-text"
                 >
-                                Already have an account?
+                                Don't have an account?
                 </p>
                 <p
                                 className="login-footer-link"
@@ -983,7 +983,7 @@ ShallowWrapper {
                   <p
                     className="login-footer-text"
 >
-                    Already have an account?
+                    Don't have an account?
 </p>,
                   <p
                     className="login-footer-link"
@@ -1002,11 +1002,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "Already have an account?",
+                    "children": "Don't have an account?",
                     "className": "login-footer-text",
                   },
                   "ref": null,
-                  "rendered": "Already have an account?",
+                  "rendered": "Don't have an account?",
                   "type": "p",
                 },
                 Object {
