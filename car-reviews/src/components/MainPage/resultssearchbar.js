@@ -227,14 +227,14 @@ class ResultsSearchbar extends React.Component {
     } else {
       return (
         <div className='searchbar-buttons-container'>
-              <div className='searchbar-buttons-links'>
+              <Link to='/login' className='searchbar-buttons-links'>
               <Button
                 className="searchbar-buttons"
                 onClick={this.handleModalState('login', true)}
               >
                 Review
               </Button>
-              </div>
+              </Link>
               <div className='searchbar-buttons-links'>
                 <Button 
                   className="searchbar-buttons"
