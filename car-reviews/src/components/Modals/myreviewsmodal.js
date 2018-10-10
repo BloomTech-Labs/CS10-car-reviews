@@ -97,11 +97,7 @@ class MyReviewsModal extends Component {
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
-            <p>
-              {`${this.props.year} ${this.props.make} ${this.props.model} ${
-                this.props.car.edition
-              }`}
-            </p>
+            <p>{`${this.props.year} ${this.props.make} ${this.props.model}`}</p>
 
             <ReactStars
               type="number"

@@ -74,7 +74,7 @@ class ResultsModal extends Component {
   };
 
   render() {
-    const { year, make, model, edition, title, content, score, user, carImage } = this.props;
+    const { year, make, model, title, content, score, user, carImage } = this.props;
     return (
       <Col lg="3" md="6">
         <Button className="modal-button" onClick={this.toggle}>
@@ -103,7 +103,7 @@ class ResultsModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>
             <div className="modal-header">
-              <h2>{`${year} ${make} ${model} ${edition}`}</h2>
+              <h2>{`${year} ${make} ${model}`}</h2>
             </div>
             <ReactStars
               type="number"

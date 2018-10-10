@@ -73,7 +73,7 @@ class ReviewModal extends Component {
 
   render() {
     const { score, title, content, carImage } = this.props;
-    const { year, make, model, edition } = this.props.car;
+    const { year, make, model } = this.props.car;
     return (
       <div className="button-container">
         <Button className="modal-button" onClick={this.toggle}>
@@ -101,7 +101,7 @@ class ReviewModal extends Component {
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle} className="modal-header">
-            <p style={{ fontSize: '1.7em' }}>{`${year} ${make} ${model} ${edition}`}</p>
+            <p style={{ fontSize: '1.7em' }}>{`${year} ${make} ${model}`}</p>
             <ReactStars
               type="number"
               name="score"
