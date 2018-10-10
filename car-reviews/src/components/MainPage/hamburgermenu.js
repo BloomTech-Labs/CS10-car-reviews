@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import AuthService from '../Auth/authservice';
 
@@ -12,21 +12,27 @@ class HamburgerMenu extends Component {
   render(){
     return (
       <Menu {...this.props}>
-        <a className="menu-item" href="/">
+        <a className="navbar-item" href="/">
           Home
         </a>
   
-        <a className="menu-item" href="/MyReviews">
+        {this.props.isLoggedIn ?
+        <a className="navbar-item" href="/MyReviews">
           My Reviews
-        </a>
-  
-        <a className="menu-item" href="/Billing">
+        </a> : <Fragment />
+        }
+
+        {this.props.isLoggedIn ?
+        <a className="navbar-item" href="/Billing">
           Billing
-        </a>
-        
-        <a className="menu-item" href="/Settings">
+        </a> : <Fragment />
+        }
+
+        {this.props.isLoggedIn ?
+        <a className="navbar-item" href="/Settings">
           Settings
-        </a>
+        </a> : <Fragment />
+        }
 
         {!this.props.isLoggedIn ?
           <a className='navbar-item' href="/login">Sign In</a> :
