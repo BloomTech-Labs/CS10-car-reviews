@@ -230,16 +230,16 @@ class Searchbar extends React.Component {
       )
     } else {
       return (
-        <div className='searchbar-buttons-container' style={styles.buttonContainerStyles}>
-              <div className='searchbar-buttons-links' style={styles.linkStyles}>
-              <Button
-                className="searchbar-buttons"
-                onClick={this.handleModalState('login', true)}
-              >
-                Review
-              </Button>
-              </div>
-              <div className='searchbar-buttons-links' style={styles.linkStyles}>
+        <div className='searchbar-buttons-container'>
+              <Link to='/login' className='searchbar-buttons-links'>
+                <Button
+                  className="searchbar-buttons"
+                  onClick={this.handleModalState('login', true)}
+                >
+                  Review
+                </Button>
+              </Link>
+              <div className='searchbar-buttons-links'>
                 <Button 
                   className="searchbar-buttons"
                   onClick={()=>this.searchFunction()}
