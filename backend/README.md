@@ -1,10 +1,10 @@
 # Backend Documentation
 
 ## Technologies Used
- - Main Technologies: NodeJS with Express
- - Database: MongoDB with Mongoose
- - Testing: Mocha, Chai, and Chai-HTTP
- - Authentication: BcryptJS, JSONWebToken
+ - Main Technologies: [Node](https://nodejs.org/en/docs/), [Express](https://expressjs.com/en/4x/api.html)
+ - Database: [MongoDB](https://docs.mongodb.com/?_ga=2.190964271.428309763.1539131858-110660816.1527959939), [Mongoose](https://mongoosejs.com/docs/guide.html)
+ - Testing: [Mocha](https://mochajs.org/#getting-started), [Chai](https://www.chaijs.com/api/), [Chai-HTTP](https://www.chaijs.com/plugins/chai-http/)
+ - Authentication: [BcryptJS](https://www.npmjs.com/package/bcryptjs), [JWT](https://github.com/auth0/node-jsonwebtoken/blob/master/README.md)
 
 ## Data Models
 - Our data is stored in three main arrays of objects: Users, Reviews, and Cars
