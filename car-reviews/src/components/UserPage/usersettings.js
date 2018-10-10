@@ -294,15 +294,9 @@ class UserSettings extends Component {
                             onChange={this.handleChange('usernames', 'username2')}
                           />
                         </div>
-                        <Button type="submit" className="general-button">
-                          Save Changes
-                        </Button>
-                        <Alert isOpen={this.state.alerts.username} color="danger">
-                          There was an issue changing your username, please try again
-                        </Alert>
-                        <Alert isOpen={this.state.alerts.usernameSuccess} color="primary">
-                          Your username has successfully been changed!
-                        </Alert>
+                        <Button type="submit" className="save-changes">Save Changes</Button>
+                        <Alert isOpen={this.state.alerts.username} color='danger'>There was an issue changing your username, please try again</Alert>
+                        <Alert isOpen={this.state.alerts.usernameSuccess} color='primary'>Your username has successfully been changed!</Alert>
                       </form>
                     </CardBody>
                   </Card>
@@ -334,29 +328,22 @@ class UserSettings extends Component {
                           />
                         </div>
 
-                        <div style={styles.inputGroupStyles}>
-                          <p style={styles.labelStyles}>Re-Enter New Email</p>
-                          <input
-                            style={styles.inputStyles}
-                            placeholder="Re-enter new email"
-                            value={this.state.password2}
-                            onChange={this.handleChange('emails', 'email2')}
-                          />
-                        </div>
-                        <Button type="submit" className="general-button">
-                          Save Changes
-                        </Button>
-                        <Alert isOpen={this.state.alerts.email} color="danger">
-                          There was an issue changing your email, please try again
-                        </Alert>
-                        <Alert isOpen={this.state.alerts.emailSuccess} color="primary">
-                          Your email has successfully been changed!
-                        </Alert>
-                      </form>
-                    </CardBody>
-                  </Card>
-                </Collapse>
-              </Col>
+                      <div style={styles.inputGroupStyles}>
+                        <p style={styles.labelStyles}>Re-Enter New Email</p>
+                        <input 
+                          style={styles.inputStyles}
+                          placeholder='Re-enter new email'
+                          value={this.state.password2}
+                          onChange={this.handleChange('emails', 'email2')}
+                        />
+                      </div>
+                      <Button type="submit" className="save-changes">Save Changes</Button>
+                      <Alert isOpen={this.state.alerts.email} color='danger'>There was an issue changing your email, please try again</Alert>
+                      <Alert isOpen={this.state.alerts.emailSuccess} color='primary'>Your email has successfully been changed!</Alert>
+                    </form>
+                  </CardBody>
+                </Card>
+              </Collapse>
             </Col>
           </Row>
         </Container>

@@ -4,8 +4,8 @@ describe('MainPage', () => {
   const shallowMainPage = () => shallow(<MainPage />);
 
   // All tests will go here
-  it('shallow renders without crashing', () => {
-    shallowMainPage();
+  it('renders MainPage component correctly', () => {
+    expect(shallowMainPage).toMatchSnapshot();
   });
 
   it('always renders a div', () => {
@@ -35,14 +35,21 @@ describe('MainPage', () => {
     expect(Object.keys(maincontent.props()).length).toBe(1);
   });
 
-  it('always renders one a tag', () => {
-    expect(shallowMainPage().find('a').length).toBe(1);
+  it('always renders two a tags', () => {
+    expect(shallowMainPage().find('a').length).toBe(2);
   });
 
-  it('href link in a tag is defined', () => {
+  it('href link in both a tags to be defined', () => {
     expect(
       shallowMainPage()
         .find('a')
+        .at(0)
+        .props().href
+    ).toBeDefined();
+    expect(
+      shallowMainPage()
+        .find('a')
+        .at(1)
         .props().href
     ).toBeDefined();
   });

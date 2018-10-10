@@ -1,8 +1,9 @@
 import App from '../App';
 
 describe('<App />', () => {
-  it('shallow renders without crashing', () => {
-    shallow(<App />);
+  it('renders App component correctly', () => {
+    const app = shallow(<App />);
+    expect(app).toMatchSnapshot();
   });
 
   it('always renders a div', () => {
@@ -50,38 +51,31 @@ describe('<App />', () => {
   });
 
   describe('PrivateRoute component', () => {
-    it('should render exactly four <PrivateRoute/> components', () => {
+    it('should render exactly three <PrivateRoute/> components', () => {
       const app = shallow(<App />);
       const privateroute = app.find('PrivateRoute');
-      expect(privateroute.length).toEqual(4);
+      expect(privateroute.length).toEqual(3);
     });
 
-    it("First PrivateRoute component's non-exact path is '/UserPage' and receives two props", () => {
+    it("First PrivateRoute component's non-exact path is '/Billing' and receives two props", () => {
       const privateroute = shallow(<App />).find('PrivateRoute');
-      expect(privateroute.at(0).props().path).toEqual('/UserPage');
+      expect(privateroute.at(0).props().path).toEqual('/Billing');
       expect(privateroute.at(0).props().exact).toBeFalsy();
       expect(Object.keys(privateroute.at(0).props()).length).toBe(2);
     });
 
-    it("Second PrivateRoute component's non-exact path is '/Billing' and receives two props", () => {
+    it("Second PrivateRoute component's non-exact path is '/MyReviews' and receives two props", () => {
       const privateroute = shallow(<App />).find('PrivateRoute');
-      expect(privateroute.at(1).props().path).toEqual('/Billing');
+      expect(privateroute.at(1).props().path).toEqual('/MyReviews');
       expect(privateroute.at(1).props().exact).toBeFalsy();
       expect(Object.keys(privateroute.at(1).props()).length).toBe(2);
     });
 
-    it("Third PrivateRoute component's non-exact path is '/MyReviews' and receives two props", () => {
+    it("Third PrivateRoute component's non-exact path is '/Settings' and receives two props", () => {
       const privateroute = shallow(<App />).find('PrivateRoute');
-      expect(privateroute.at(2).props().path).toEqual('/MyReviews');
+      expect(privateroute.at(2).props().path).toEqual('/Settings');
       expect(privateroute.at(2).props().exact).toBeFalsy();
       expect(Object.keys(privateroute.at(2).props()).length).toBe(2);
-    });
-
-    it("Fourth PrivateRoute component's non-exact path is '/Settings' and receives two props", () => {
-      const privateroute = shallow(<App />).find('PrivateRoute');
-      expect(privateroute.at(3).props().path).toEqual('/Settings');
-      expect(privateroute.at(3).props().exact).toBeFalsy();
-      expect(Object.keys(privateroute.at(3).props()).length).toBe(2);
     });
   });
 });

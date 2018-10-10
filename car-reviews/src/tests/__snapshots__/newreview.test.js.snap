@@ -1,0 +1,2165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders NewReviewModal component correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <NewReviewModal />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <button
+          className={undefined}
+          onClick={[Function]}
+/>,
+        <Modal
+          autoFocus={true}
+          backdrop={true}
+          backdropTransition={
+                    Object {
+                              "mountOnEnter": true,
+                              "timeout": 150,
+                            }
+          }
+          centered={false}
+          fade={true}
+          isOpen={false}
+          keyboard={true}
+          modalTransition={
+                    Object {
+                              "timeout": 300,
+                            }
+          }
+          onClosed={[Function]}
+          onOpened={[Function]}
+          role="dialog"
+          toggle={[Function]}
+          zIndex={1050}
+>
+          <ModalHeader
+                    charCode={215}
+                    closeAriaLabel="Close"
+                    tag="h5"
+                    toggle={[Function]}
+                    wrapTag="div"
+          >
+                    <div
+                              style={Object {}}
+                    >
+                              <select
+                                        className="dropdowns"
+                                        name="make"
+                                        onChange={[Function]}
+                              >
+                                        <option>
+                                                  Select a Make
+                                        </option>
+                              </select>
+                              <Unknown />
+                              <Unknown />
+                              <Unknown />
+                    </div>
+          </ModalHeader>
+          <ModalBody
+                    className="drop-zone"
+                    tag="div"
+          >
+                    <n
+                              accept="image/*"
+                              disableClick={false}
+                              disablePreview={false}
+                              disabled={false}
+                              getDataTransferItems={[Function]}
+                              inputProps={Object {}}
+                              maxSize={Infinity}
+                              minSize={0}
+                              multiple={true}
+                              onDrop={[Function]}
+                              preventDropOnDocument={true}
+                    >
+                              <p>
+                                        Click a picture to upload for your review
+                              </p>
+                    </n>
+          </ModalBody>
+          <ModalFooter
+                    className="new-review-footer"
+                    tag="div"
+          >
+                    <form>
+                              <ReactStars
+                                        char="★"
+                                        color1="gray"
+                                        color2="#ffd700"
+                                        count={5}
+                                        edit={true}
+                                        half={true}
+                                        name="score"
+                                        onChange={[Function]}
+                                        size={30}
+                                        type="number"
+                                        value=""
+                              />
+                              <input
+                                        name="title"
+                                        onChange={[Function]}
+                                        placeholder="Write the title here..."
+                                        type="text"
+                                        value=""
+                              />
+                              <p>
+                                        <textarea
+                                                  className="contentInput"
+                                                  cols="50"
+                                                  name="content"
+                                                  onChange={[Function]}
+                                                  placeholder="Write your review here..."
+                                                  row="50"
+                                                  value=""
+                                        />
+                              </p>
+                              <Alert
+                                        closeAriaLabel="Close"
+                                        color="danger"
+                                        fade={true}
+                                        isOpen={false}
+                                        tag="div"
+                                        transition={
+                                                  Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                                        }
+                              >
+                                        Please select a car make, year, model, and edition to create a car review
+                              </Alert>
+                              <Alert
+                                        closeAriaLabel="Close"
+                                        color="danger"
+                                        fade={true}
+                                        isOpen={false}
+                                        tag="div"
+                                        transition={
+                                                  Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                                        }
+                              >
+                                        Please provide a title and content to create a car review
+                              </Alert>
+                              <Alert
+                                        closeAriaLabel="Close"
+                                        color="danger"
+                                        fade={true}
+                                        isOpen={false}
+                                        tag="div"
+                                        transition={
+                                                  Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                                        }
+                              >
+                                        Please provide a rating for the car you are reviewing
+                              </Alert>
+                    </form>
+          </ModalFooter>
+          <button
+                    className="submit-button"
+                    onClick={[Function]}
+          >
+                    Submit
+          </button>
+</Modal>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": undefined,
+          "className": undefined,
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "autoFocus": true,
+          "backdrop": true,
+          "backdropTransition": Object {
+            "mountOnEnter": true,
+            "timeout": 150,
+          },
+          "centered": false,
+          "children": Array [
+            <ModalHeader
+              charCode={215}
+              closeAriaLabel="Close"
+              tag="h5"
+              toggle={[Function]}
+              wrapTag="div"
+>
+              <div
+                            style={Object {}}
+              >
+                            <select
+                                          className="dropdowns"
+                                          name="make"
+                                          onChange={[Function]}
+                            >
+                                          <option>
+                                                        Select a Make
+                                          </option>
+                            </select>
+                            <Unknown />
+                            <Unknown />
+                            <Unknown />
+              </div>
+</ModalHeader>,
+            <ModalBody
+              className="drop-zone"
+              tag="div"
+>
+              <n
+                            accept="image/*"
+                            disableClick={false}
+                            disablePreview={false}
+                            disabled={false}
+                            getDataTransferItems={[Function]}
+                            inputProps={Object {}}
+                            maxSize={Infinity}
+                            minSize={0}
+                            multiple={true}
+                            onDrop={[Function]}
+                            preventDropOnDocument={true}
+              >
+                            <p>
+                                          Click a picture to upload for your review
+                            </p>
+              </n>
+</ModalBody>,
+            <ModalFooter
+              className="new-review-footer"
+              tag="div"
+>
+              <form>
+                            <ReactStars
+                                          char="★"
+                                          color1="gray"
+                                          color2="#ffd700"
+                                          count={5}
+                                          edit={true}
+                                          half={true}
+                                          name="score"
+                                          onChange={[Function]}
+                                          size={30}
+                                          type="number"
+                                          value=""
+                            />
+                            <input
+                                          name="title"
+                                          onChange={[Function]}
+                                          placeholder="Write the title here..."
+                                          type="text"
+                                          value=""
+                            />
+                            <p>
+                                          <textarea
+                                                        className="contentInput"
+                                                        cols="50"
+                                                        name="content"
+                                                        onChange={[Function]}
+                                                        placeholder="Write your review here..."
+                                                        row="50"
+                                                        value=""
+                                          />
+                            </p>
+                            <Alert
+                                          closeAriaLabel="Close"
+                                          color="danger"
+                                          fade={true}
+                                          isOpen={false}
+                                          tag="div"
+                                          transition={
+                                                        Object {
+                                                                      "appear": true,
+                                                                      "baseClass": "fade",
+                                                                      "baseClassActive": "show",
+                                                                      "enter": true,
+                                                                      "exit": true,
+                                                                      "in": true,
+                                                                      "mountOnEnter": false,
+                                                                      "onEnter": [Function],
+                                                                      "onEntered": [Function],
+                                                                      "onEntering": [Function],
+                                                                      "onExit": [Function],
+                                                                      "onExited": [Function],
+                                                                      "onExiting": [Function],
+                                                                      "tag": "div",
+                                                                      "timeout": 150,
+                                                                      "unmountOnExit": true,
+                                                                    }
+                                          }
+                            >
+                                          Please select a car make, year, model, and edition to create a car review
+                            </Alert>
+                            <Alert
+                                          closeAriaLabel="Close"
+                                          color="danger"
+                                          fade={true}
+                                          isOpen={false}
+                                          tag="div"
+                                          transition={
+                                                        Object {
+                                                                      "appear": true,
+                                                                      "baseClass": "fade",
+                                                                      "baseClassActive": "show",
+                                                                      "enter": true,
+                                                                      "exit": true,
+                                                                      "in": true,
+                                                                      "mountOnEnter": false,
+                                                                      "onEnter": [Function],
+                                                                      "onEntered": [Function],
+                                                                      "onEntering": [Function],
+                                                                      "onExit": [Function],
+                                                                      "onExited": [Function],
+                                                                      "onExiting": [Function],
+                                                                      "tag": "div",
+                                                                      "timeout": 150,
+                                                                      "unmountOnExit": true,
+                                                                    }
+                                          }
+                            >
+                                          Please provide a title and content to create a car review
+                            </Alert>
+                            <Alert
+                                          closeAriaLabel="Close"
+                                          color="danger"
+                                          fade={true}
+                                          isOpen={false}
+                                          tag="div"
+                                          transition={
+                                                        Object {
+                                                                      "appear": true,
+                                                                      "baseClass": "fade",
+                                                                      "baseClassActive": "show",
+                                                                      "enter": true,
+                                                                      "exit": true,
+                                                                      "in": true,
+                                                                      "mountOnEnter": false,
+                                                                      "onEnter": [Function],
+                                                                      "onEntered": [Function],
+                                                                      "onEntering": [Function],
+                                                                      "onExit": [Function],
+                                                                      "onExited": [Function],
+                                                                      "onExiting": [Function],
+                                                                      "tag": "div",
+                                                                      "timeout": 150,
+                                                                      "unmountOnExit": true,
+                                                                    }
+                                          }
+                            >
+                                          Please provide a rating for the car you are reviewing
+                            </Alert>
+              </form>
+</ModalFooter>,
+            <button
+              className="submit-button"
+              onClick={[Function]}
+>
+              Submit
+</button>,
+          ],
+          "fade": true,
+          "isOpen": false,
+          "keyboard": true,
+          "modalTransition": Object {
+            "timeout": 300,
+          },
+          "onClosed": [Function],
+          "onOpened": [Function],
+          "role": "dialog",
+          "toggle": [Function],
+          "zIndex": 1050,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "charCode": 215,
+              "children": <div
+                style={Object {}}
+>
+                <select
+                                className="dropdowns"
+                                name="make"
+                                onChange={[Function]}
+                >
+                                <option>
+                                                Select a Make
+                                </option>
+                </select>
+                <Unknown />
+                <Unknown />
+                <Unknown />
+</div>,
+              "closeAriaLabel": "Close",
+              "tag": "h5",
+              "toggle": [Function],
+              "wrapTag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <select
+                    className="dropdowns"
+                    name="make"
+                    onChange={[Function]}
+>
+                    <option>
+                                        Select a Make
+                    </option>
+</select>,
+                  <Unknown />,
+                  <Unknown />,
+                  <Unknown />,
+                ],
+                "style": Object {},
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <option>
+                        Select a Make
+</option>,
+                      Array [],
+                    ],
+                    "className": "dropdowns",
+                    "name": "make",
+                    "onChange": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Select a Make",
+                      },
+                      "ref": null,
+                      "rendered": "Select a Make",
+                      "type": "option",
+                    },
+                  ],
+                  "type": "select",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": Symbol(react.fragment),
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": Symbol(react.fragment),
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": Symbol(react.fragment),
+                },
+              ],
+              "type": "div",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <n
+                accept="image/*"
+                disableClick={false}
+                disablePreview={false}
+                disabled={false}
+                getDataTransferItems={[Function]}
+                inputProps={Object {}}
+                maxSize={Infinity}
+                minSize={0}
+                multiple={true}
+                onDrop={[Function]}
+                preventDropOnDocument={true}
+>
+                <p>
+                                Click a picture to upload for your review
+                </p>
+</n>,
+              "className": "drop-zone",
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "accept": "image/*",
+                "children": <p>
+                  Click a picture to upload for your review
+</p>,
+                "disableClick": false,
+                "disablePreview": false,
+                "disabled": false,
+                "getDataTransferItems": [Function],
+                "inputProps": Object {},
+                "maxSize": Infinity,
+                "minSize": 0,
+                "multiple": true,
+                "onDrop": [Function],
+                "preventDropOnDocument": true,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Click a picture to upload for your review",
+                },
+                "ref": null,
+                "rendered": "Click a picture to upload for your review",
+                "type": "p",
+              },
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <form>
+                <ReactStars
+                                char="★"
+                                color1="gray"
+                                color2="#ffd700"
+                                count={5}
+                                edit={true}
+                                half={true}
+                                name="score"
+                                onChange={[Function]}
+                                size={30}
+                                type="number"
+                                value=""
+                />
+                <input
+                                name="title"
+                                onChange={[Function]}
+                                placeholder="Write the title here..."
+                                type="text"
+                                value=""
+                />
+                <p>
+                                <textarea
+                                                className="contentInput"
+                                                cols="50"
+                                                name="content"
+                                                onChange={[Function]}
+                                                placeholder="Write your review here..."
+                                                row="50"
+                                                value=""
+                                />
+                </p>
+                <Alert
+                                closeAriaLabel="Close"
+                                color="danger"
+                                fade={true}
+                                isOpen={false}
+                                tag="div"
+                                transition={
+                                                Object {
+                                                                "appear": true,
+                                                                "baseClass": "fade",
+                                                                "baseClassActive": "show",
+                                                                "enter": true,
+                                                                "exit": true,
+                                                                "in": true,
+                                                                "mountOnEnter": false,
+                                                                "onEnter": [Function],
+                                                                "onEntered": [Function],
+                                                                "onEntering": [Function],
+                                                                "onExit": [Function],
+                                                                "onExited": [Function],
+                                                                "onExiting": [Function],
+                                                                "tag": "div",
+                                                                "timeout": 150,
+                                                                "unmountOnExit": true,
+                                                              }
+                                }
+                >
+                                Please select a car make, year, model, and edition to create a car review
+                </Alert>
+                <Alert
+                                closeAriaLabel="Close"
+                                color="danger"
+                                fade={true}
+                                isOpen={false}
+                                tag="div"
+                                transition={
+                                                Object {
+                                                                "appear": true,
+                                                                "baseClass": "fade",
+                                                                "baseClassActive": "show",
+                                                                "enter": true,
+                                                                "exit": true,
+                                                                "in": true,
+                                                                "mountOnEnter": false,
+                                                                "onEnter": [Function],
+                                                                "onEntered": [Function],
+                                                                "onEntering": [Function],
+                                                                "onExit": [Function],
+                                                                "onExited": [Function],
+                                                                "onExiting": [Function],
+                                                                "tag": "div",
+                                                                "timeout": 150,
+                                                                "unmountOnExit": true,
+                                                              }
+                                }
+                >
+                                Please provide a title and content to create a car review
+                </Alert>
+                <Alert
+                                closeAriaLabel="Close"
+                                color="danger"
+                                fade={true}
+                                isOpen={false}
+                                tag="div"
+                                transition={
+                                                Object {
+                                                                "appear": true,
+                                                                "baseClass": "fade",
+                                                                "baseClassActive": "show",
+                                                                "enter": true,
+                                                                "exit": true,
+                                                                "in": true,
+                                                                "mountOnEnter": false,
+                                                                "onEnter": [Function],
+                                                                "onEntered": [Function],
+                                                                "onEntering": [Function],
+                                                                "onExit": [Function],
+                                                                "onExited": [Function],
+                                                                "onExiting": [Function],
+                                                                "tag": "div",
+                                                                "timeout": 150,
+                                                                "unmountOnExit": true,
+                                                              }
+                                }
+                >
+                                Please provide a rating for the car you are reviewing
+                </Alert>
+</form>,
+              "className": "new-review-footer",
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <ReactStars
+                    char="★"
+                    color1="gray"
+                    color2="#ffd700"
+                    count={5}
+                    edit={true}
+                    half={true}
+                    name="score"
+                    onChange={[Function]}
+                    size={30}
+                    type="number"
+                    value=""
+/>,
+                  <input
+                    name="title"
+                    onChange={[Function]}
+                    placeholder="Write the title here..."
+                    type="text"
+                    value=""
+/>,
+                  <p>
+                    <textarea
+                                        className="contentInput"
+                                        cols="50"
+                                        name="content"
+                                        onChange={[Function]}
+                                        placeholder="Write your review here..."
+                                        row="50"
+                                        value=""
+                    />
+</p>,
+                  <Alert
+                    closeAriaLabel="Close"
+                    color="danger"
+                    fade={true}
+                    isOpen={false}
+                    tag="div"
+                    transition={
+                                        Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                    }
+>
+                    Please select a car make, year, model, and edition to create a car review
+</Alert>,
+                  <Alert
+                    closeAriaLabel="Close"
+                    color="danger"
+                    fade={true}
+                    isOpen={false}
+                    tag="div"
+                    transition={
+                                        Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                    }
+>
+                    Please provide a title and content to create a car review
+</Alert>,
+                  <Alert
+                    closeAriaLabel="Close"
+                    color="danger"
+                    fade={true}
+                    isOpen={false}
+                    tag="div"
+                    transition={
+                                        Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                    }
+>
+                    Please provide a rating for the car you are reviewing
+</Alert>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "char": "★",
+                    "color1": "gray",
+                    "color2": "#ffd700",
+                    "count": 5,
+                    "edit": true,
+                    "half": true,
+                    "name": "score",
+                    "onChange": [Function],
+                    "size": 30,
+                    "type": "number",
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "name": "title",
+                    "onChange": [Function],
+                    "placeholder": "Write the title here...",
+                    "type": "text",
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "input",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <textarea
+                      className="contentInput"
+                      cols="50"
+                      name="content"
+                      onChange={[Function]}
+                      placeholder="Write your review here..."
+                      row="50"
+                      value=""
+/>,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "contentInput",
+                      "cols": "50",
+                      "name": "content",
+                      "onChange": [Function],
+                      "placeholder": "Write your review here...",
+                      "row": "50",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "textarea",
+                  },
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Please select a car make, year, model, and edition to create a car review",
+                    "closeAriaLabel": "Close",
+                    "color": "danger",
+                    "fade": true,
+                    "isOpen": false,
+                    "tag": "div",
+                    "transition": Object {
+                      "appear": true,
+                      "baseClass": "fade",
+                      "baseClassActive": "show",
+                      "enter": true,
+                      "exit": true,
+                      "in": true,
+                      "mountOnEnter": false,
+                      "onEnter": [Function],
+                      "onEntered": [Function],
+                      "onEntering": [Function],
+                      "onExit": [Function],
+                      "onExited": [Function],
+                      "onExiting": [Function],
+                      "tag": "div",
+                      "timeout": 150,
+                      "unmountOnExit": true,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Please select a car make, year, model, and edition to create a car review",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Please provide a title and content to create a car review",
+                    "closeAriaLabel": "Close",
+                    "color": "danger",
+                    "fade": true,
+                    "isOpen": false,
+                    "tag": "div",
+                    "transition": Object {
+                      "appear": true,
+                      "baseClass": "fade",
+                      "baseClassActive": "show",
+                      "enter": true,
+                      "exit": true,
+                      "in": true,
+                      "mountOnEnter": false,
+                      "onEnter": [Function],
+                      "onEntered": [Function],
+                      "onEntering": [Function],
+                      "onExit": [Function],
+                      "onExited": [Function],
+                      "onExiting": [Function],
+                      "tag": "div",
+                      "timeout": 150,
+                      "unmountOnExit": true,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Please provide a title and content to create a car review",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Please provide a rating for the car you are reviewing",
+                    "closeAriaLabel": "Close",
+                    "color": "danger",
+                    "fade": true,
+                    "isOpen": false,
+                    "tag": "div",
+                    "transition": Object {
+                      "appear": true,
+                      "baseClass": "fade",
+                      "baseClassActive": "show",
+                      "enter": true,
+                      "exit": true,
+                      "in": true,
+                      "mountOnEnter": false,
+                      "onEnter": [Function],
+                      "onEntered": [Function],
+                      "onEntering": [Function],
+                      "onExit": [Function],
+                      "onExited": [Function],
+                      "onExiting": [Function],
+                      "tag": "div",
+                      "timeout": 150,
+                      "unmountOnExit": true,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Please provide a rating for the car you are reviewing",
+                  "type": [Function],
+                },
+              ],
+              "type": "form",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Submit",
+              "className": "submit-button",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "Submit",
+            "type": "button",
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <button
+            className={undefined}
+            onClick={[Function]}
+/>,
+          <Modal
+            autoFocus={true}
+            backdrop={true}
+            backdropTransition={
+                        Object {
+                                    "mountOnEnter": true,
+                                    "timeout": 150,
+                                  }
+            }
+            centered={false}
+            fade={true}
+            isOpen={false}
+            keyboard={true}
+            modalTransition={
+                        Object {
+                                    "timeout": 300,
+                                  }
+            }
+            onClosed={[Function]}
+            onOpened={[Function]}
+            role="dialog"
+            toggle={[Function]}
+            zIndex={1050}
+>
+            <ModalHeader
+                        charCode={215}
+                        closeAriaLabel="Close"
+                        tag="h5"
+                        toggle={[Function]}
+                        wrapTag="div"
+            >
+                        <div
+                                    style={Object {}}
+                        >
+                                    <select
+                                                className="dropdowns"
+                                                name="make"
+                                                onChange={[Function]}
+                                    >
+                                                <option>
+                                                            Select a Make
+                                                </option>
+                                    </select>
+                                    <Unknown />
+                                    <Unknown />
+                                    <Unknown />
+                        </div>
+            </ModalHeader>
+            <ModalBody
+                        className="drop-zone"
+                        tag="div"
+            >
+                        <n
+                                    accept="image/*"
+                                    disableClick={false}
+                                    disablePreview={false}
+                                    disabled={false}
+                                    getDataTransferItems={[Function]}
+                                    inputProps={Object {}}
+                                    maxSize={Infinity}
+                                    minSize={0}
+                                    multiple={true}
+                                    onDrop={[Function]}
+                                    preventDropOnDocument={true}
+                        >
+                                    <p>
+                                                Click a picture to upload for your review
+                                    </p>
+                        </n>
+            </ModalBody>
+            <ModalFooter
+                        className="new-review-footer"
+                        tag="div"
+            >
+                        <form>
+                                    <ReactStars
+                                                char="★"
+                                                color1="gray"
+                                                color2="#ffd700"
+                                                count={5}
+                                                edit={true}
+                                                half={true}
+                                                name="score"
+                                                onChange={[Function]}
+                                                size={30}
+                                                type="number"
+                                                value=""
+                                    />
+                                    <input
+                                                name="title"
+                                                onChange={[Function]}
+                                                placeholder="Write the title here..."
+                                                type="text"
+                                                value=""
+                                    />
+                                    <p>
+                                                <textarea
+                                                            className="contentInput"
+                                                            cols="50"
+                                                            name="content"
+                                                            onChange={[Function]}
+                                                            placeholder="Write your review here..."
+                                                            row="50"
+                                                            value=""
+                                                />
+                                    </p>
+                                    <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                            Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                                }
+                                    >
+                                                Please select a car make, year, model, and edition to create a car review
+                                    </Alert>
+                                    <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                            Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                                }
+                                    >
+                                                Please provide a title and content to create a car review
+                                    </Alert>
+                                    <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                            Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                                }
+                                    >
+                                                Please provide a rating for the car you are reviewing
+                                    </Alert>
+                        </form>
+            </ModalFooter>
+            <button
+                        className="submit-button"
+                        onClick={[Function]}
+            >
+                        Submit
+            </button>
+</Modal>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": undefined,
+            "className": undefined,
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "autoFocus": true,
+            "backdrop": true,
+            "backdropTransition": Object {
+              "mountOnEnter": true,
+              "timeout": 150,
+            },
+            "centered": false,
+            "children": Array [
+              <ModalHeader
+                charCode={215}
+                closeAriaLabel="Close"
+                tag="h5"
+                toggle={[Function]}
+                wrapTag="div"
+>
+                <div
+                                style={Object {}}
+                >
+                                <select
+                                                className="dropdowns"
+                                                name="make"
+                                                onChange={[Function]}
+                                >
+                                                <option>
+                                                                Select a Make
+                                                </option>
+                                </select>
+                                <Unknown />
+                                <Unknown />
+                                <Unknown />
+                </div>
+</ModalHeader>,
+              <ModalBody
+                className="drop-zone"
+                tag="div"
+>
+                <n
+                                accept="image/*"
+                                disableClick={false}
+                                disablePreview={false}
+                                disabled={false}
+                                getDataTransferItems={[Function]}
+                                inputProps={Object {}}
+                                maxSize={Infinity}
+                                minSize={0}
+                                multiple={true}
+                                onDrop={[Function]}
+                                preventDropOnDocument={true}
+                >
+                                <p>
+                                                Click a picture to upload for your review
+                                </p>
+                </n>
+</ModalBody>,
+              <ModalFooter
+                className="new-review-footer"
+                tag="div"
+>
+                <form>
+                                <ReactStars
+                                                char="★"
+                                                color1="gray"
+                                                color2="#ffd700"
+                                                count={5}
+                                                edit={true}
+                                                half={true}
+                                                name="score"
+                                                onChange={[Function]}
+                                                size={30}
+                                                type="number"
+                                                value=""
+                                />
+                                <input
+                                                name="title"
+                                                onChange={[Function]}
+                                                placeholder="Write the title here..."
+                                                type="text"
+                                                value=""
+                                />
+                                <p>
+                                                <textarea
+                                                                className="contentInput"
+                                                                cols="50"
+                                                                name="content"
+                                                                onChange={[Function]}
+                                                                placeholder="Write your review here..."
+                                                                row="50"
+                                                                value=""
+                                                />
+                                </p>
+                                <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                                Object {
+                                                                                "appear": true,
+                                                                                "baseClass": "fade",
+                                                                                "baseClassActive": "show",
+                                                                                "enter": true,
+                                                                                "exit": true,
+                                                                                "in": true,
+                                                                                "mountOnEnter": false,
+                                                                                "onEnter": [Function],
+                                                                                "onEntered": [Function],
+                                                                                "onEntering": [Function],
+                                                                                "onExit": [Function],
+                                                                                "onExited": [Function],
+                                                                                "onExiting": [Function],
+                                                                                "tag": "div",
+                                                                                "timeout": 150,
+                                                                                "unmountOnExit": true,
+                                                                              }
+                                                }
+                                >
+                                                Please select a car make, year, model, and edition to create a car review
+                                </Alert>
+                                <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                                Object {
+                                                                                "appear": true,
+                                                                                "baseClass": "fade",
+                                                                                "baseClassActive": "show",
+                                                                                "enter": true,
+                                                                                "exit": true,
+                                                                                "in": true,
+                                                                                "mountOnEnter": false,
+                                                                                "onEnter": [Function],
+                                                                                "onEntered": [Function],
+                                                                                "onEntering": [Function],
+                                                                                "onExit": [Function],
+                                                                                "onExited": [Function],
+                                                                                "onExiting": [Function],
+                                                                                "tag": "div",
+                                                                                "timeout": 150,
+                                                                                "unmountOnExit": true,
+                                                                              }
+                                                }
+                                >
+                                                Please provide a title and content to create a car review
+                                </Alert>
+                                <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                                Object {
+                                                                                "appear": true,
+                                                                                "baseClass": "fade",
+                                                                                "baseClassActive": "show",
+                                                                                "enter": true,
+                                                                                "exit": true,
+                                                                                "in": true,
+                                                                                "mountOnEnter": false,
+                                                                                "onEnter": [Function],
+                                                                                "onEntered": [Function],
+                                                                                "onEntering": [Function],
+                                                                                "onExit": [Function],
+                                                                                "onExited": [Function],
+                                                                                "onExiting": [Function],
+                                                                                "tag": "div",
+                                                                                "timeout": 150,
+                                                                                "unmountOnExit": true,
+                                                                              }
+                                                }
+                                >
+                                                Please provide a rating for the car you are reviewing
+                                </Alert>
+                </form>
+</ModalFooter>,
+              <button
+                className="submit-button"
+                onClick={[Function]}
+>
+                Submit
+</button>,
+            ],
+            "fade": true,
+            "isOpen": false,
+            "keyboard": true,
+            "modalTransition": Object {
+              "timeout": 300,
+            },
+            "onClosed": [Function],
+            "onOpened": [Function],
+            "role": "dialog",
+            "toggle": [Function],
+            "zIndex": 1050,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "charCode": 215,
+                "children": <div
+                  style={Object {}}
+>
+                  <select
+                                    className="dropdowns"
+                                    name="make"
+                                    onChange={[Function]}
+                  >
+                                    <option>
+                                                      Select a Make
+                                    </option>
+                  </select>
+                  <Unknown />
+                  <Unknown />
+                  <Unknown />
+</div>,
+                "closeAriaLabel": "Close",
+                "tag": "h5",
+                "toggle": [Function],
+                "wrapTag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <select
+                      className="dropdowns"
+                      name="make"
+                      onChange={[Function]}
+>
+                      <option>
+                                            Select a Make
+                      </option>
+</select>,
+                    <Unknown />,
+                    <Unknown />,
+                    <Unknown />,
+                  ],
+                  "style": Object {},
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <option>
+                          Select a Make
+</option>,
+                        Array [],
+                      ],
+                      "className": "dropdowns",
+                      "name": "make",
+                      "onChange": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Select a Make",
+                        },
+                        "ref": null,
+                        "rendered": "Select a Make",
+                        "type": "option",
+                      },
+                    ],
+                    "type": "select",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": Symbol(react.fragment),
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": Symbol(react.fragment),
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": Symbol(react.fragment),
+                  },
+                ],
+                "type": "div",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <n
+                  accept="image/*"
+                  disableClick={false}
+                  disablePreview={false}
+                  disabled={false}
+                  getDataTransferItems={[Function]}
+                  inputProps={Object {}}
+                  maxSize={Infinity}
+                  minSize={0}
+                  multiple={true}
+                  onDrop={[Function]}
+                  preventDropOnDocument={true}
+>
+                  <p>
+                                    Click a picture to upload for your review
+                  </p>
+</n>,
+                "className": "drop-zone",
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "accept": "image/*",
+                  "children": <p>
+                    Click a picture to upload for your review
+</p>,
+                  "disableClick": false,
+                  "disablePreview": false,
+                  "disabled": false,
+                  "getDataTransferItems": [Function],
+                  "inputProps": Object {},
+                  "maxSize": Infinity,
+                  "minSize": 0,
+                  "multiple": true,
+                  "onDrop": [Function],
+                  "preventDropOnDocument": true,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Click a picture to upload for your review",
+                  },
+                  "ref": null,
+                  "rendered": "Click a picture to upload for your review",
+                  "type": "p",
+                },
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <form>
+                  <ReactStars
+                                    char="★"
+                                    color1="gray"
+                                    color2="#ffd700"
+                                    count={5}
+                                    edit={true}
+                                    half={true}
+                                    name="score"
+                                    onChange={[Function]}
+                                    size={30}
+                                    type="number"
+                                    value=""
+                  />
+                  <input
+                                    name="title"
+                                    onChange={[Function]}
+                                    placeholder="Write the title here..."
+                                    type="text"
+                                    value=""
+                  />
+                  <p>
+                                    <textarea
+                                                      className="contentInput"
+                                                      cols="50"
+                                                      name="content"
+                                                      onChange={[Function]}
+                                                      placeholder="Write your review here..."
+                                                      row="50"
+                                                      value=""
+                                    />
+                  </p>
+                  <Alert
+                                    closeAriaLabel="Close"
+                                    color="danger"
+                                    fade={true}
+                                    isOpen={false}
+                                    tag="div"
+                                    transition={
+                                                      Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                    }
+                  >
+                                    Please select a car make, year, model, and edition to create a car review
+                  </Alert>
+                  <Alert
+                                    closeAriaLabel="Close"
+                                    color="danger"
+                                    fade={true}
+                                    isOpen={false}
+                                    tag="div"
+                                    transition={
+                                                      Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                    }
+                  >
+                                    Please provide a title and content to create a car review
+                  </Alert>
+                  <Alert
+                                    closeAriaLabel="Close"
+                                    color="danger"
+                                    fade={true}
+                                    isOpen={false}
+                                    tag="div"
+                                    transition={
+                                                      Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                    }
+                  >
+                                    Please provide a rating for the car you are reviewing
+                  </Alert>
+</form>,
+                "className": "new-review-footer",
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <ReactStars
+                      char="★"
+                      color1="gray"
+                      color2="#ffd700"
+                      count={5}
+                      edit={true}
+                      half={true}
+                      name="score"
+                      onChange={[Function]}
+                      size={30}
+                      type="number"
+                      value=""
+/>,
+                    <input
+                      name="title"
+                      onChange={[Function]}
+                      placeholder="Write the title here..."
+                      type="text"
+                      value=""
+/>,
+                    <p>
+                      <textarea
+                                            className="contentInput"
+                                            cols="50"
+                                            name="content"
+                                            onChange={[Function]}
+                                            placeholder="Write your review here..."
+                                            row="50"
+                                            value=""
+                      />
+</p>,
+                    <Alert
+                      closeAriaLabel="Close"
+                      color="danger"
+                      fade={true}
+                      isOpen={false}
+                      tag="div"
+                      transition={
+                                            Object {
+                                                                  "appear": true,
+                                                                  "baseClass": "fade",
+                                                                  "baseClassActive": "show",
+                                                                  "enter": true,
+                                                                  "exit": true,
+                                                                  "in": true,
+                                                                  "mountOnEnter": false,
+                                                                  "onEnter": [Function],
+                                                                  "onEntered": [Function],
+                                                                  "onEntering": [Function],
+                                                                  "onExit": [Function],
+                                                                  "onExited": [Function],
+                                                                  "onExiting": [Function],
+                                                                  "tag": "div",
+                                                                  "timeout": 150,
+                                                                  "unmountOnExit": true,
+                                                                }
+                      }
+>
+                      Please select a car make, year, model, and edition to create a car review
+</Alert>,
+                    <Alert
+                      closeAriaLabel="Close"
+                      color="danger"
+                      fade={true}
+                      isOpen={false}
+                      tag="div"
+                      transition={
+                                            Object {
+                                                                  "appear": true,
+                                                                  "baseClass": "fade",
+                                                                  "baseClassActive": "show",
+                                                                  "enter": true,
+                                                                  "exit": true,
+                                                                  "in": true,
+                                                                  "mountOnEnter": false,
+                                                                  "onEnter": [Function],
+                                                                  "onEntered": [Function],
+                                                                  "onEntering": [Function],
+                                                                  "onExit": [Function],
+                                                                  "onExited": [Function],
+                                                                  "onExiting": [Function],
+                                                                  "tag": "div",
+                                                                  "timeout": 150,
+                                                                  "unmountOnExit": true,
+                                                                }
+                      }
+>
+                      Please provide a title and content to create a car review
+</Alert>,
+                    <Alert
+                      closeAriaLabel="Close"
+                      color="danger"
+                      fade={true}
+                      isOpen={false}
+                      tag="div"
+                      transition={
+                                            Object {
+                                                                  "appear": true,
+                                                                  "baseClass": "fade",
+                                                                  "baseClassActive": "show",
+                                                                  "enter": true,
+                                                                  "exit": true,
+                                                                  "in": true,
+                                                                  "mountOnEnter": false,
+                                                                  "onEnter": [Function],
+                                                                  "onEntered": [Function],
+                                                                  "onEntering": [Function],
+                                                                  "onExit": [Function],
+                                                                  "onExited": [Function],
+                                                                  "onExiting": [Function],
+                                                                  "tag": "div",
+                                                                  "timeout": 150,
+                                                                  "unmountOnExit": true,
+                                                                }
+                      }
+>
+                      Please provide a rating for the car you are reviewing
+</Alert>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "char": "★",
+                      "color1": "gray",
+                      "color2": "#ffd700",
+                      "count": 5,
+                      "edit": true,
+                      "half": true,
+                      "name": "score",
+                      "onChange": [Function],
+                      "size": 30,
+                      "type": "number",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "name": "title",
+                      "onChange": [Function],
+                      "placeholder": "Write the title here...",
+                      "type": "text",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <textarea
+                        className="contentInput"
+                        cols="50"
+                        name="content"
+                        onChange={[Function]}
+                        placeholder="Write your review here..."
+                        row="50"
+                        value=""
+/>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "contentInput",
+                        "cols": "50",
+                        "name": "content",
+                        "onChange": [Function],
+                        "placeholder": "Write your review here...",
+                        "row": "50",
+                        "value": "",
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "textarea",
+                    },
+                    "type": "p",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Please select a car make, year, model, and edition to create a car review",
+                      "closeAriaLabel": "Close",
+                      "color": "danger",
+                      "fade": true,
+                      "isOpen": false,
+                      "tag": "div",
+                      "transition": Object {
+                        "appear": true,
+                        "baseClass": "fade",
+                        "baseClassActive": "show",
+                        "enter": true,
+                        "exit": true,
+                        "in": true,
+                        "mountOnEnter": false,
+                        "onEnter": [Function],
+                        "onEntered": [Function],
+                        "onEntering": [Function],
+                        "onExit": [Function],
+                        "onExited": [Function],
+                        "onExiting": [Function],
+                        "tag": "div",
+                        "timeout": 150,
+                        "unmountOnExit": true,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Please select a car make, year, model, and edition to create a car review",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Please provide a title and content to create a car review",
+                      "closeAriaLabel": "Close",
+                      "color": "danger",
+                      "fade": true,
+                      "isOpen": false,
+                      "tag": "div",
+                      "transition": Object {
+                        "appear": true,
+                        "baseClass": "fade",
+                        "baseClassActive": "show",
+                        "enter": true,
+                        "exit": true,
+                        "in": true,
+                        "mountOnEnter": false,
+                        "onEnter": [Function],
+                        "onEntered": [Function],
+                        "onEntering": [Function],
+                        "onExit": [Function],
+                        "onExited": [Function],
+                        "onExiting": [Function],
+                        "tag": "div",
+                        "timeout": 150,
+                        "unmountOnExit": true,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Please provide a title and content to create a car review",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Please provide a rating for the car you are reviewing",
+                      "closeAriaLabel": "Close",
+                      "color": "danger",
+                      "fade": true,
+                      "isOpen": false,
+                      "tag": "div",
+                      "transition": Object {
+                        "appear": true,
+                        "baseClass": "fade",
+                        "baseClassActive": "show",
+                        "enter": true,
+                        "exit": true,
+                        "in": true,
+                        "mountOnEnter": false,
+                        "onEnter": [Function],
+                        "onEntered": [Function],
+                        "onEntering": [Function],
+                        "onExit": [Function],
+                        "onExited": [Function],
+                        "onExiting": [Function],
+                        "tag": "div",
+                        "timeout": 150,
+                        "unmountOnExit": true,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Please provide a rating for the car you are reviewing",
+                    "type": [Function],
+                  },
+                ],
+                "type": "form",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Submit",
+                "className": "submit-button",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Submit",
+              "type": "button",
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
