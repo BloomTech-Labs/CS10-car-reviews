@@ -6,7 +6,7 @@ const Auth = new AuthService();
 
 class HamburgerMenu extends Component {
   handleSignOut = () => {
-    Auth.signOut();
+    Auth.logout();
   }
 
   render(){
@@ -36,7 +36,7 @@ class HamburgerMenu extends Component {
 
         {!this.props.isLoggedIn ?
           <a className='navbar-item' href="/login">Sign In</a> :
-          <a className="navbar-item" href="/" onClick={this.signOut}>Sign Out</a>
+          <a className="navbar-item" href="/" onClick={this.handleSignOut}>Sign Out</a>
         }
       </Menu>
     );
