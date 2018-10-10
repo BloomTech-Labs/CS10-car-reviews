@@ -67,7 +67,6 @@ ShallowWrapper {
                               </select>
                               <Unknown />
                               <Unknown />
-                              <Unknown />
                     </div>
           </ModalHeader>
           <ModalBody
@@ -108,7 +107,7 @@ ShallowWrapper {
                                         onChange={[Function]}
                                         size={30}
                                         type="number"
-                                        value=""
+                                        value={0}
                               />
                               <input
                                         name="title"
@@ -155,7 +154,7 @@ ShallowWrapper {
                                                           }
                                         }
                               >
-                                        Please select a car make, year, model, and edition to create a car review
+                                        Please select a car make, year, and model to create a car review
                               </Alert>
                               <Alert
                                         closeAriaLabel="Close"
@@ -275,7 +274,6 @@ ShallowWrapper {
                             </select>
                             <Unknown />
                             <Unknown />
-                            <Unknown />
               </div>
 </ModalHeader>,
             <ModalBody
@@ -316,7 +314,7 @@ ShallowWrapper {
                                           onChange={[Function]}
                                           size={30}
                                           type="number"
-                                          value=""
+                                          value={0}
                             />
                             <input
                                           name="title"
@@ -363,7 +361,7 @@ ShallowWrapper {
                                                                     }
                                           }
                             >
-                                          Please select a car make, year, model, and edition to create a car review
+                                          Please select a car make, year, and model to create a car review
                             </Alert>
                             <Alert
                                           closeAriaLabel="Close"
@@ -466,7 +464,6 @@ ShallowWrapper {
                 </select>
                 <Unknown />
                 <Unknown />
-                <Unknown />
 </div>,
               "closeAriaLabel": "Close",
               "tag": "h5",
@@ -489,7 +486,6 @@ ShallowWrapper {
                                         Select a Make
                     </option>
 </select>,
-                  <Unknown />,
                   <Unknown />,
                   <Unknown />,
                 ],
@@ -527,15 +523,6 @@ ShallowWrapper {
                     },
                   ],
                   "type": "select",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {},
-                  "ref": null,
-                  "rendered": null,
-                  "type": Symbol(react.fragment),
                 },
                 Object {
                   "instance": null,
@@ -639,7 +626,7 @@ ShallowWrapper {
                                 onChange={[Function]}
                                 size={30}
                                 type="number"
-                                value=""
+                                value={0}
                 />
                 <input
                                 name="title"
@@ -686,7 +673,7 @@ ShallowWrapper {
                                                               }
                                 }
                 >
-                                Please select a car make, year, model, and edition to create a car review
+                                Please select a car make, year, and model to create a car review
                 </Alert>
                 <Alert
                                 closeAriaLabel="Close"
@@ -768,7 +755,7 @@ ShallowWrapper {
                     onChange={[Function]}
                     size={30}
                     type="number"
-                    value=""
+                    value={0}
 />,
                   <input
                     name="title"
@@ -815,7 +802,7 @@ ShallowWrapper {
                                                           }
                     }
 >
-                    Please select a car make, year, model, and edition to create a car review
+                    Please select a car make, year, and model to create a car review
 </Alert>,
                   <Alert
                     closeAriaLabel="Close"
@@ -894,7 +881,7 @@ ShallowWrapper {
                     "onChange": [Function],
                     "size": 30,
                     "type": "number",
-                    "value": "",
+                    "value": 0,
                   },
                   "ref": null,
                   "rendered": null,
@@ -955,7 +942,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "children": "Please select a car make, year, model, and edition to create a car review",
+                    "children": "Please select a car make, year, and model to create a car review",
                     "closeAriaLabel": "Close",
                     "color": "danger",
                     "fade": true,
@@ -981,7 +968,7 @@ ShallowWrapper {
                     },
                   },
                   "ref": null,
-                  "rendered": "Please select a car make, year, model, and edition to create a car review",
+                  "rendered": "Please select a car make, year, and model to create a car review",
                   "type": [Function],
                 },
                 Object {
@@ -1132,7 +1119,6 @@ ShallowWrapper {
                                     </select>
                                     <Unknown />
                                     <Unknown />
-                                    <Unknown />
                         </div>
             </ModalHeader>
             <ModalBody
@@ -1173,7 +1159,7 @@ ShallowWrapper {
                                                 onChange={[Function]}
                                                 size={30}
                                                 type="number"
-                                                value=""
+                                                value={0}
                                     />
                                     <input
                                                 name="title"
@@ -1220,7 +1206,7 @@ ShallowWrapper {
                                                                       }
                                                 }
                                     >
-                                                Please select a car make, year, model, and edition to create a car review
+                                                Please select a car make, year, and model to create a car review
                                     </Alert>
                                     <Alert
                                                 closeAriaLabel="Close"
@@ -1340,7 +1326,6 @@ ShallowWrapper {
                                 </select>
                                 <Unknown />
                                 <Unknown />
-                                <Unknown />
                 </div>
 </ModalHeader>,
               <ModalBody
@@ -1381,7 +1366,7 @@ ShallowWrapper {
                                                 onChange={[Function]}
                                                 size={30}
                                                 type="number"
-                                                value=""
+                                                value={0}
                                 />
                                 <input
                                                 name="title"
@@ -1428,7 +1413,7 @@ ShallowWrapper {
                                                                               }
                                                 }
                                 >
-                                                Please select a car make, year, model, and edition to create a car review
+                                                Please select a car make, year, and model to create a car review
                                 </Alert>
                                 <Alert
                                                 closeAriaLabel="Close"
@@ -1531,7 +1516,6 @@ ShallowWrapper {
                   </select>
                   <Unknown />
                   <Unknown />
-                  <Unknown />
 </div>,
                 "closeAriaLabel": "Close",
                 "tag": "h5",
@@ -1554,7 +1538,6 @@ ShallowWrapper {
                                             Select a Make
                       </option>
 </select>,
-                    <Unknown />,
                     <Unknown />,
                     <Unknown />,
                   ],
@@ -1592,15 +1575,6 @@ ShallowWrapper {
                       },
                     ],
                     "type": "select",
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "function",
-                    "props": Object {},
-                    "ref": null,
-                    "rendered": null,
-                    "type": Symbol(react.fragment),
                   },
                   Object {
                     "instance": null,
@@ -1704,7 +1678,7 @@ ShallowWrapper {
                                     onChange={[Function]}
                                     size={30}
                                     type="number"
-                                    value=""
+                                    value={0}
                   />
                   <input
                                     name="title"
@@ -1751,7 +1725,7 @@ ShallowWrapper {
                                                                       }
                                     }
                   >
-                                    Please select a car make, year, model, and edition to create a car review
+                                    Please select a car make, year, and model to create a car review
                   </Alert>
                   <Alert
                                     closeAriaLabel="Close"
@@ -1833,7 +1807,7 @@ ShallowWrapper {
                       onChange={[Function]}
                       size={30}
                       type="number"
-                      value=""
+                      value={0}
 />,
                     <input
                       name="title"
@@ -1880,7 +1854,7 @@ ShallowWrapper {
                                                                 }
                       }
 >
-                      Please select a car make, year, model, and edition to create a car review
+                      Please select a car make, year, and model to create a car review
 </Alert>,
                     <Alert
                       closeAriaLabel="Close"
@@ -1959,7 +1933,7 @@ ShallowWrapper {
                       "onChange": [Function],
                       "size": 30,
                       "type": "number",
-                      "value": "",
+                      "value": 0,
                     },
                     "ref": null,
                     "rendered": null,
@@ -2020,7 +1994,7 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "children": "Please select a car make, year, model, and edition to create a car review",
+                      "children": "Please select a car make, year, and model to create a car review",
                       "closeAriaLabel": "Close",
                       "color": "danger",
                       "fade": true,
@@ -2046,7 +2020,7 @@ ShallowWrapper {
                       },
                     },
                     "ref": null,
-                    "rendered": "Please select a car make, year, model, and edition to create a car review",
+                    "rendered": "Please select a car make, year, and model to create a car review",
                     "type": [Function],
                   },
                   Object {

@@ -58,7 +58,6 @@ ShallowWrapper {
           </div>
           <div
                     className="searchbar-buttons-container"
-                    style={Object {}}
           >
                     <div
                               className="searchbar-buttons-links"
@@ -153,7 +152,6 @@ ShallowWrapper {
 </div>,
             <div
               className="searchbar-buttons-container"
-              style={Object {}}
 >
               <div
                             className="searchbar-buttons-links"
@@ -355,7 +353,6 @@ ShallowWrapper {
 </div>,
               ],
               "className": "searchbar-buttons-container",
-              "style": Object {},
             },
             "ref": null,
             "rendered": Array [
@@ -491,7 +488,6 @@ ShallowWrapper {
             </div>
             <div
                         className="searchbar-buttons-container"
-                        style={Object {}}
             >
                         <div
                                     className="searchbar-buttons-links"
@@ -586,7 +582,6 @@ ShallowWrapper {
 </div>,
               <div
                 className="searchbar-buttons-container"
-                style={Object {}}
 >
                 <div
                                 className="searchbar-buttons-links"
@@ -788,7 +783,6 @@ ShallowWrapper {
 </div>,
                 ],
                 "className": "searchbar-buttons-container",
-                "style": Object {},
               },
               "ref": null,
               "rendered": Array [
