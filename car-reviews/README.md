@@ -1,30 +1,28 @@
-# Frontend Documentation
+# UX/UI
 
 # Technologies Used
-- Main Tech: React.js
-- HTTP Client: Axios
-- CSS: Reactstrap
-- Routing: React Router
-- Testing: TBD(we will probably go with Jest)
-- State Management: TBD
+- [reactstrap](https://reactstrap.github.io)
+- [React Stars](https://www.npmjs.com/package/react-stars)
+- [React Burger Menu](https://github.com/negomi/react-burger-menu)
 
-# Styles
-![Image of Color Scheme](http://blog.visme.co/wp-content/uploads/2016/09/website42-1024x512.jpg)
-After doing research, we decided to use the color scheme above because the standard Blue, Gray, and White scheme is a standard that works. This particular comination of colors is useful for what is called 'flat-design', meaning very minimal and subtle 3D effects. 
+# Why the App looks like it does:
+Blue and white is a standard scheme you see across the web nowadays, from Facebook to Twitter, blue and white is a color that works. It works because blue evokes calm, credibility, neatness, while white compliments it perfectly. While researching different color schemes, we came to our decision based on the choice to go with a Flat design, meaning very subtle, minimal 3D effects, no borders, clean layout. Flat design is also very popular these days.
+Our app also utilizes Minimalist design. Minimalism can be most easily defined as stripped to it's essentials. We originally choose a more robust flat design with use of graphics and icons, but the UI quickly became cluttered, and since minimalism is inherent with Flat design, it seemed like a natural pivot. 
+
+http://blog.visme.co/website-color-schemes/ (#42)
 
 * Color Scheme:
+    - ![darker blue](https://www.beautycolorcode.com/2F77F3.png)
+    - #2F77F3 / rgb(47,119,243) - darker blue
+    - https://www.color-hex.com/color/2f77f3
+        - This color is used when a darker shade of blue is neccessary to make something stand out against a white background, like fonts.
+
+    
 
     - ![light blue](https://www.beautycolorcode.com/77a6f7.png)
     - #77A6F7 / rgb(119,166,247) - light blue
     - https://www.color-hex.com/color/77a6f7
         - This, in combination with white, will be our 'dominant color', used for backgrounds of the search bar, nav bar, and other backgrounds. Blue evokes trust, security, and calmness, which are feelings we want our Users to feel when reading reviews.
-
-    
-
-    - ![darker blue](https://www.beautycolorcode.com/2F77F3.png)
-    - #2F77F3 / rgb(47,119,243) - darker blue
-    - https://www.color-hex.com/color/2f77f3
-        - This color is used when a darker shade of blue is neccessary to make something stand out against a white background, like fonts.
 
 
 
@@ -54,42 +52,9 @@ After doing research, we decided to use the color scheme above because the stand
     - https://www.color-hex.com/color/00887a
         - This color will be our main go-to for Buttons and Components that need to "pop" or have attention drawn to it without standing out in 'loud' way. 
 
-* Fonts:
+# Fonts:
     - Julius Sans One - headers
     - Montserrat - body
 
-* Photo Credits:
+# Image Credits:
     - default car image by Rubén Oro
-    - traffic light icon Copyright (C) <2016>  <Nick Roach>
-
-# Component Structure
-- src/App.js
-    - /MainPage
-        - SearchBar
-        - MainContent
-        - Search Results
-    - /UserPage
-        - Header
-        - /Settings
-            - LeftNavBar
-            - UserSettings
-    - Signin/Signup Modals.
-    - Review Modals
-
-# Main Page
-- The main page consists of the landing page as well as the search results. It is made up of a searchbar component which includes sign-up/sign-in buttons, search filters, and a review button.
-- The Main Content component is a display of featured reviews, featured cars, and featured reviewers. We decided on "featured" being the most popular, being ranked according to their view counter.
-- The Search Results content will replace the Main Content on the page when someone does a search. It displays a list of results matching the search filter criteria.
-
-# User Page
-- The User Page is a collection of several components that make up various parts of a user's profile, such as their reviews, a button to create a new review, billing information, and settings.
-
-# Modals
-- The core feature of the app are it's modals. The sign-up/sign-in modal is self explainatory, however it is the Review modal that is the true core of the app. Much of the app consists of buttons representing reviews, cars, or reviwers, which will open a modal with the corresponding data.
-
-# AXIOS ENDPOINTS
-TBD
-
-# Naming Conventions
-- Class names and React Components are named (within their files) using PascalCasing.
-- Filenames of all JS and CSS files are lowercase.

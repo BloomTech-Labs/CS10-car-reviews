@@ -4,8 +4,8 @@ describe('MainContent', () => {
   const wrapper = () => shallow(<MainContent />);
 
   // All tests will go here
-  it('shallow renders without crashing', () => {
-    wrapper();
+  it('renders MainContent component correctly', () => {
+    expect(wrapper()).toMatchSnapshot();
   });
 
   it('always renders a div', () => {

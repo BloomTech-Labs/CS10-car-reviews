@@ -241,7 +241,7 @@ class UserSettings extends Component {
                           onChange={this.handleChange('passwords', 'password2')}
                         />
                       </div>
-                      <Button type="submit" className="general-button">Save Changes</Button>
+                      <Button type="submit" className="save-changes">Save Changes</Button>
                       <Alert isOpen={this.state.alerts.password} color='danger'>There was an issue changing your password, please try again</Alert>
                       <Alert isOpen={this.state.alerts.passwordSuccess} color='primary'>Your password has successfully been changed!</Alert>
                     </form>
@@ -279,7 +279,7 @@ class UserSettings extends Component {
                             onChange={this.handleChange('usernames', 'username2')}
                           />
                         </div>
-                        <Button type="submit" className="general-button">Save Changes</Button>
+                        <Button type="submit" className="save-changes">Save Changes</Button>
                         <Alert isOpen={this.state.alerts.username} color='danger'>There was an issue changing your username, please try again</Alert>
                         <Alert isOpen={this.state.alerts.usernameSuccess} color='primary'>Your username has successfully been changed!</Alert>
                       </form>
@@ -317,7 +317,7 @@ class UserSettings extends Component {
                           onChange={this.handleChange('emails', 'email2')}
                         />
                       </div>
-                      <Button type="submit" className="general-button">Save Changes</Button>
+                      <Button type="submit" className="save-changes">Save Changes</Button>
                       <Alert isOpen={this.state.alerts.email} color='danger'>There was an issue changing your email, please try again</Alert>
                       <Alert isOpen={this.state.alerts.emailSuccess} color='primary'>Your email has successfully been changed!</Alert>
                     </form>

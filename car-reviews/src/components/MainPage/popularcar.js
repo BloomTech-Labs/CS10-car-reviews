@@ -28,7 +28,7 @@ class PopularCar extends Component {
         const { year, make, model, trim } = this.state.selectedValues
         axios
             .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', 
-                {year, make, model, trim})
+                {year, make, model})
             .then(response => {
                 this.setState({ searchResults: response.data, searching: true });
             })

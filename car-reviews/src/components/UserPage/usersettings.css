@@ -52,4 +52,17 @@
   color: #2f77f3;
 }
 
+.save-changes {
+  width: 248.615px; 
+  text-align: center;
+  background-color: white;
+  color: #2f77f3;
+  border: none;
+}
+
+.save-changes:hover {
+  background-color: #00887A; 
+  color: white;
+}
+
 /* general-button styling in /MainPage/loginregister.css */
