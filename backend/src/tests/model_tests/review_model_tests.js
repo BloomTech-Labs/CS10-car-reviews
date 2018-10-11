@@ -42,7 +42,7 @@ describe('Testing the ReviewModel', () => {
     it('adds a new review to the database', (done) => {
         Promise.all([ newReview.save(), newUser.save(), newCar.save() ])
             .then(() => {
-                ReviewModel.findOne({ score: 5 })
+                ReviewModel.findOne({ testEntry: true })
                     .then(reviewRecord => {
                         assert(reviewRecord.content === 'some content');
                         done();
@@ -56,7 +56,7 @@ describe('Testing the ReviewModel', () => {
             .then(() => {
                 newReview.remove()
                     .then(({ content }) => { // destructuring the username prop off of the deleted record
-                        ReviewModel.find({ content })
+                        ReviewModel.find({ testEntry: true })
                             .then(response => {
                                 assert(response.length === 0);
                                 done();
