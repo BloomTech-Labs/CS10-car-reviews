@@ -35,7 +35,7 @@ router.post("/", verifyJWTMiddleware, checkIfCar, (req, res) => {
   if (req.carID != null) {
     console.log("looking for CAR IMAGE URL: ", req.body)
     const car = req.carID;
-    ReviewModel.create({ title, user, content, score, car, carImage })
+    ReviewModel.create({ title, user, content, score, car, carImage, testEntry })
       .then(newReview => {
         // adds review id to the user document of the author
         const id = newReview.user;
