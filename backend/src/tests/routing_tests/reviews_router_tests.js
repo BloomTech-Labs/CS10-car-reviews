@@ -59,7 +59,7 @@ describe('Tests the reviews router', () => {
             .then(() => done())
     })
 
-    it.only(`POST to '/auth/register' registers a user and returns a JWT through the response body`, (done) => {
+    it(`POST to '/auth/register' registers a user and returns a JWT through the response body`, (done) => {
         chai.request(server)
             .post('/auth/register')
             .send(newUser)
@@ -72,7 +72,7 @@ describe('Tests the reviews router', () => {
             })
     })
 
-    it.only(`POST to '/auth/login' authenticates a user and returns a JWT through the response body`, (done) => {
+    it(`POST to '/auth/login' authenticates a user and returns a JWT through the response body`, (done) => {
         chai.request(server)
             .post('/auth/login')
             .send(newUser)
@@ -86,7 +86,7 @@ describe('Tests the reviews router', () => {
             })
     })
 
-    it.only(`POST to '/api/reviews' and sends back a successful create statement`, done => {
+    it(`POST to '/api/reviews' and sends back a successful create statement`, done => {
         chai.request(server)
             .post('/api/reviews')
             .send(reviewPost)
