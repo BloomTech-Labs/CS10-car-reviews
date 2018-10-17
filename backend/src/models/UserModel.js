@@ -34,7 +34,7 @@ const UserModel = mongoose.Schema({
         minlength: 4,
     },
     date: {
-      type: Date,
+      type: String,
       default: oldDateString,
       index: true
     },
