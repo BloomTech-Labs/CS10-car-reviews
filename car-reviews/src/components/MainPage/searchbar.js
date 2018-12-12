@@ -210,7 +210,7 @@ class Searchbar extends React.Component {
         {/* <div style={{ height: '65px' }} /> */}
         <div className="searchbar">
           {this.handleRedirect()}
-          <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
+          <div className="auto-logo">AUTO REVIEW FOR YOU</div>
           <LoginRegisterModal
             isOpen={this.state.modalState.isOpen}
             type={this.state.modalState.type}

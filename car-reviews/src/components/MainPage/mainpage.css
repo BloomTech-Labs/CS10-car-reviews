@@ -10,12 +10,16 @@
 }
 
 .auto-logo {
-    margin-top: 30px;
+    margin-top: 5px;
     color: #2F77F3;
     font-size: 3em;
-    font-family: 'Julius Sans One', sans-serif;
-    font-weight: bold;
-    text-decoration-line: underline;
+    font-family: sans-serif;
+    font-weight: 100;
+    text-transform: lowercase;
+    border-bottom: 1px solid #2F77F3;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .searchfields {
