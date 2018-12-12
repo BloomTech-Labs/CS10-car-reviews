@@ -1,4 +1,4 @@
-.navbar-container {
+/* .navbar-container {
     position: fixed;
     top: 0;
     width: 100%;
@@ -25,4 +25,28 @@
 .icon {
     height: 30px;
     width: 30px;
+} */
+
+header {
+    color: #fff;
+}
+
+.main-navbar {
+    /* height: 8vh; */
+    background-color: rgb(97, 151, 243); /* lighter shade than originally used */
+} 
+
+.main-navbar__title {
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.main-navbar__links {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.navbar-toggler-icon {
+    color: #fff !important;
 }

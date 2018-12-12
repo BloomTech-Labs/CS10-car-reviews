@@ -207,7 +207,7 @@ class Searchbar extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ height: '65px' }} />
+        {/* <div style={{ height: '65px' }} /> */}
         <div className="searchbar">
           {this.handleRedirect()}
           <div className="auto-logo">AUTO REVIEW FOR YOU!</div>
