@@ -84,7 +84,7 @@ class MainNavbar extends Component {
       <header>
         <Navbar className="main-navbar" dark expand="lg">
             <NavbarBrand className="text-white" href="/"><span className="main-navbar__title">Auto Review For You</span></NavbarBrand>
-            <NavbarToggler onClick={this.navToggle} />
+            <NavbarToggler className="mr-1" onClick={this.navToggle} />
             <Collapse isOpen={this.state.isNavOpen} navbar>
                     {!this.props.isLoggedIn ? 
                     <Nav navbar className="ml-auto">
