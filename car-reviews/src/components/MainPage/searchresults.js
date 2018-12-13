@@ -144,12 +144,11 @@ class SearchResults extends Component {
     );
     return (
       <div>
-        {this.handleRedirect()}
         <Navbar isLoggedIn={this.props.location.state.isLoggedIn} handleLogin={this.handleLogin} />
-        <div className="filter-row">
-          <div className="filters">
-            <UncontrolledDropdown className="dropdowns">
-              <DropdownToggle caret className="searchbar-buttons">
+        {this.handleRedirect()}
+        <div style={{textAlign: "center"}} className="searchbar--container">
+            <UncontrolledDropdown style={{display: "inline"}}>
+              <DropdownToggle caret color="primary" className="searchbar--buttons" >
                 Filter By:
               </DropdownToggle>
               <DropdownMenu>
@@ -166,10 +165,8 @@ class SearchResults extends Component {
                 })}
               </DropdownMenu>
             </UncontrolledDropdown>
-          </div>
-          <div className="sort-by">
-            <UncontrolledDropdown className="dropdowns">
-              <DropdownToggle caret className="searchbar-buttons">
+            <UncontrolledDropdown style={{display: "inline"}}>
+              <DropdownToggle caret color="primary" className="searchbar--buttons">
                 Sort By:
               </DropdownToggle>
               <DropdownMenu>
@@ -187,7 +184,6 @@ class SearchResults extends Component {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-          </div>
         </div>
         <Container style={{ marginBottom: '100px' }}>
           <Row style={{ marginTop: '20px' }}>

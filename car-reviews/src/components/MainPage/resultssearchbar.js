@@ -168,35 +168,19 @@ class ResultsSearchbar extends React.Component {
   };
 
   handleReviewButton = () => {
-    if (this.props.isLoggedIn) {
+    if (this.props.isLoggedIn){
       return (
-        <div className="searchbar-buttons-container">
-          <Link className="searchbar-buttons-links" to="/MyReviews">
-            <Button className="searchbar-buttons">Review</Button>
-          </Link>
-          <div className="searchbar-buttons-links">
-            <Button className="searchbar-buttons" onClick={() => this.searchFunction()}>
-              Search
-            </Button>
-          </div>
+        <div className="searchbar--container">
+          <Button className="searchbar--buttons" color="primary"><a className="searchbar--links" href="/MyReviews">Reviews</a></Button>
+          <Button className="searchbar--buttons" onClick={this.searchFunction} color="primary">Search</Button>
         </div>
-      );
-    } else {
-      return (
-        <div className="searchbar-buttons-container">
-          <Link to="/login" className="searchbar-buttons-links">
-            <Button className="searchbar-buttons" onClick={this.handleModalState('login', true)}>
-              Review
-            </Button>
-          </Link>
-          <div className="searchbar-buttons-links">
-            <Button className="searchbar-buttons" onClick={() => this.searchFunction()}>
-              Search
-            </Button>
-          </div>
-        </div>
-      );
-    }
+      )
+    } else return (
+      <div className="searchbar--container">
+        <Button className="searchbar--buttons" onClick={this.handleModalState('login', true)} color="primary">Reviews</Button>
+        <Button className="searchbar--buttons" onClick={this.searchFunction} color="primary">Search</Button>
+      </div>
+    )
   };
 
   handleSetJwtState = (type, jwt) => {
@@ -208,7 +192,6 @@ class ResultsSearchbar extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ height: '65px' }} />
         <div className="searchbar">
           {this.handleRedirect()}
           <LoginRegisterModal
@@ -218,6 +201,7 @@ class ResultsSearchbar extends React.Component {
             handleChangeModalType={this.handleChangeModalType}
             handleSetJwtState={this.handleSetJwtState}
           />
+          
           <div className="searchfields">
             <select className="dropdowns" name="make" onChange={this.handleChangeMake}>
               <option>Select a Make</option>
@@ -236,6 +220,7 @@ class ResultsSearchbar extends React.Component {
             ) : (
               <Fragment />
             )}
+            
 
             {this.state.displayDropdowns.model ? (
               <select className="dropdowns" name="model" onChange={this.handleChangeModels}>
@@ -247,8 +232,8 @@ class ResultsSearchbar extends React.Component {
             ) : (
               <Fragment />
             )}
+            
           </div>
-
           {this.handleReviewButton()}
         </div>
       </div>
