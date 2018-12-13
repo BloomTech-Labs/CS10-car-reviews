@@ -1,33 +1,55 @@
-.searchbar-buttons {
-    margin-bottom: 10px;
+.searchbar--buttons {
+    margin-top: 50px !important;
 }
 
-@media (min-width: 450px){
-    .searchbar-buttons-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+.searchbar--links:link,
+.searchbar--links:visited,
+.searchbar--links:active {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+
+@media (min-width: 1201px){
+    .searchbar--buttons{
+        width: 15%;
     }
 }
 
-@media (max-width: 700px) {
-    .searchfields {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+@media (min-width: 300px){
+    .searchbar--buttons {
         width: 40%;
-        margin-left: auto;
-        margin-right: auto;
+        margin-bottom: 0 !important;
+        margin-top: 15px !important;
     }
 }
 
-@media (max-width: 525px){
-    .searchfields {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 70%;
-        margin-left: auto;
-        margin-right: auto;
+@media (min-width: 400px){
+    .searchbar--buttons {
+        width: 30%;
     }
 }
+
+@media (min-width: 700px){
+    .searchbar--buttons {
+        width: 20%;
+    }
+}
+
+
+@media (min-width: 1200px){
+    .searchbar--buttons{
+        width: 15%;
+    }
+}
+
+@media (min-width: 1400px){
+    .searchbar--buttons{
+        width: 10%;
+    }
+}
+
+
+
+

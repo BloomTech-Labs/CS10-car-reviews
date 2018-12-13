@@ -167,35 +167,49 @@ class Searchbar extends React.Component {
   };
 
   handleReviewButton = () => {
-    if (this.props.isLoggedIn) {
+    // if (this.props.isLoggedIn) {
+    //   return (
+    //     <div className="searchbar-buttons-container">
+    //       <Link className="searchbar-buttons-links" to="/MyReviews">
+    //         <Button className="searchbar-buttons">Review</Button>
+    //       </Link>
+    //       <div className="searchbar-buttons-links">
+    //         <Button className="searchbar-buttons" onClick={() => this.searchFunction()}>
+    //           Search
+    //         </Button>
+    //       </div>
+    //     </div>
+    //   );
+    // } else {
+    //   return (
+    //     <div className="searchbar-buttons-container">
+    //       <Link to="/login" className="searchbar-buttons-links">
+    //         <Button className="searchbar-buttons" onClick={this.handleModalState('login', true)}>
+    //           Review
+    //         </Button>
+    //       </Link>
+    //       <div className="searchbar-buttons-links">
+    //         <Button className="searchbar-buttons" onClick={() => this.searchFunction()}>
+    //           Search
+    //         </Button>
+    //       </div>
+    //     </div>
+    //   );
+    // }
+
+    if (this.props.isLoggedIn){
       return (
-        <div className="searchbar-buttons-container">
-          <Link className="searchbar-buttons-links" to="/MyReviews">
-            <Button className="searchbar-buttons">Review</Button>
-          </Link>
-          <div className="searchbar-buttons-links">
-            <Button className="searchbar-buttons" onClick={() => this.searchFunction()}>
-              Search
-            </Button>
-          </div>
+        <div>
+          <Button className="searchbar--buttons" color="primary"><a className="searchbar--links" href="/MyReviews">Reviews</a></Button>
+          <Button className="searchbar--buttons" onClick={this.searchFunction} color="primary">Search</Button>
         </div>
-      );
-    } else {
-      return (
-        <div className="searchbar-buttons-container">
-          <Link to="/login" className="searchbar-buttons-links">
-            <Button className="searchbar-buttons" onClick={this.handleModalState('login', true)}>
-              Review
-            </Button>
-          </Link>
-          <div className="searchbar-buttons-links">
-            <Button className="searchbar-buttons" onClick={() => this.searchFunction()}>
-              Search
-            </Button>
-          </div>
-        </div>
-      );
-    }
+      )
+    } else return (
+      <div>
+        <Button className="searchbar--buttons" onClick={this.handleModalState('login', true)} color="primary">Reviews</Button>
+        <Button className="searchbar--buttons" onClick={this.searchFunction} color="primary">Search</Button>
+      </div>
+    )
   };
 
   handleSetJwtState = (type, jwt) => {
@@ -218,6 +232,7 @@ class Searchbar extends React.Component {
             handleChangeModalType={this.handleChangeModalType}
             handleSetJwtState={this.handleSetJwtState}
           />
+          {this.handleReviewButton()}
           <div className="searchfields">
             <select className="dropdowns" name="make" onChange={this.handleChangeMake}>
               <option>Select a Make</option>
@@ -248,8 +263,6 @@ class Searchbar extends React.Component {
               <Fragment />
             )}
           </div>
-
-          {this.handleReviewButton()}
         </div>
       </div>
     );
