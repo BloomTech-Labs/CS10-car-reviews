@@ -199,13 +199,13 @@ class Searchbar extends React.Component {
 
     if (this.props.isLoggedIn){
       return (
-        <div>
+        <div className="searchbar--container">
           <Button className="searchbar--buttons" color="primary"><a className="searchbar--links" href="/MyReviews">Reviews</a></Button>
           <Button className="searchbar--buttons" onClick={this.searchFunction} color="primary">Search</Button>
         </div>
       )
     } else return (
-      <div>
+      <div className="searchbar--container">
         <Button className="searchbar--buttons" onClick={this.handleModalState('login', true)} color="primary">Reviews</Button>
         <Button className="searchbar--buttons" onClick={this.searchFunction} color="primary">Search</Button>
       </div>

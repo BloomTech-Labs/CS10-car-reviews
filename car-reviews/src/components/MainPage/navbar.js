@@ -34,6 +34,9 @@ class MainNavbar extends Component {
     Auth.logout();
   };
 
+  navToggle =  () => {
+      this.setState({ isNavOpen: !this.state.isNavOpen });
+  }
 
   render() { 
     console.log(this.props);
@@ -79,7 +82,7 @@ class MainNavbar extends Component {
       // </div>
 
       <header>
-        <Navbar className="main-navbar" dark expand="xl">
+        <Navbar className="main-navbar" dark expand="lg">
             <NavbarBrand className="text-white" href="/"><span className="main-navbar__title">Auto Review For You</span></NavbarBrand>
             <NavbarToggler onClick={this.navToggle} />
             <Collapse isOpen={this.state.isNavOpen} navbar>
