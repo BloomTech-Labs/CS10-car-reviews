@@ -110,6 +110,7 @@ class ResultsSearchbar extends React.Component {
   };
 
   searchFunction = () => {
+    console.log('searching');
     const searchCriteria = {};
     const { year, make, model } = this.state.selectedValues;
 
@@ -194,6 +195,7 @@ class ResultsSearchbar extends React.Component {
       <div>
         <div className="searchbar">
           {this.handleRedirect()}
+          <div className="auto-logo">AUTO REVIEW FOR YOU</div>
           <LoginRegisterModal
             isOpen={this.state.modalState.isOpen}
             type={this.state.modalState.type}
@@ -202,7 +204,7 @@ class ResultsSearchbar extends React.Component {
             handleSetJwtState={this.handleSetJwtState}
           />
           
-          <div className="searchfields">
+          {/* <div className="searchfields">
             <select className="dropdowns" name="make" onChange={this.handleChangeMake}>
               <option>Select a Make</option>
               {this.state.makes.map(make => {
@@ -233,8 +235,8 @@ class ResultsSearchbar extends React.Component {
               <Fragment />
             )}
             
-          </div>
-          {this.handleReviewButton()}
+          </div> */}
+          {/* {this.handleReviewButton()} */}
         </div>
       </div>
     );
