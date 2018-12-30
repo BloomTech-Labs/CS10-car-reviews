@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
 const CarModel = mongoose.Schema({
-    make: {
+    makers: {
         type: String,
         required: true,
     },
