@@ -47,7 +47,7 @@ class ResultsSearchbar extends React.Component {
     axios
       .get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
       .then(res => {
-        this.setState({ makes: res.data.result });
+        this.setState({ makes: res.data.result || this.state.makes });
       })
       .catch(err => {
         console.warn(err);
@@ -71,9 +71,7 @@ class ResultsSearchbar extends React.Component {
 
     axios
       .get(
-        `https://databases.one/api/?format=json&select=year&make_id=${
-          newState.selectedValues.make.makeId
-        }&api_key=${API_KEY}`
+        `https://databases.one/api/?format=json&select=year&make_id=${newState.selectedValues.make.makeId}&api_key=${API_KEY}`
       )
       .then(res => {
         newState.years = res.data.result.reverse();
