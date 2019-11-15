@@ -1,6 +1,10 @@
 {
   "name": "cs10-car-reviews",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.10.0",
+    "yarn": "1.19.1"
+  },
   "description": "Backend for the Car Reviews Capstone project.",
   "main": "server.js",
   "scripts": {
