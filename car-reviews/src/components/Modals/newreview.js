@@ -21,7 +21,7 @@ class NewReviewModal extends Component {
         title: '',
         content: '',
         score: '',
-        testEntry: false,
+        testEntry: false
       },
       selectedValues: {
         year: '',
@@ -48,7 +48,7 @@ class NewReviewModal extends Component {
     axios
       .get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
       .then(res => {
-        this.setState({ makes: res.data.result });
+        this.setState({ makes: res.data.result || this.state.makes });
       })
       .catch(err => {
         console.warn(err);
@@ -91,9 +91,7 @@ class NewReviewModal extends Component {
 
     axios
       .get(
-        `https://databases.one/api/?format=json&select=year&make_id=${
-          newState.selectedValues.make.makeId
-        }&api_key=${API_KEY}`
+        `https://databases.one/api/?format=json&select=year&make_id=${newState.selectedValues.make.makeId}&api_key=${API_KEY}`
       )
       .then(res => {
         newState.years = res.data.result.reverse();
@@ -150,8 +148,8 @@ class NewReviewModal extends Component {
             carImage: '',
             title: '',
             content: '',
-            score: '', 
-            testEntry: false,
+            score: '',
+            testEntry: false
           },
           alerts: {
             carInputErr: false,
@@ -310,7 +308,7 @@ class NewReviewModal extends Component {
           </ModalBody>
 
           <ModalFooter className="new-review-footer">
-            <form style={{marginLeft: 'auto', marginRight: 'auto'}}>
+            <form style={{ marginLeft: 'auto', marginRight: 'auto' }}>
               <ReactStars
                 type="number"
                 name="score"
@@ -326,7 +324,7 @@ class NewReviewModal extends Component {
               <input
                 type="text"
                 name="title"
-                className='content-input'
+                className="content-input"
                 value={this.state.review.title}
                 onChange={this.handleChange('review', 'title')}
                 placeholder="Write the title here..."
