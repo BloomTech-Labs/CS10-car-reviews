@@ -1,0 +1,51 @@
+.billing-container {
+    position: absolute;
+    bottom: 0;
+    top: 73px;
+    width: 100% !important;
+}
+
+.element {
+    color: white;
+}
+
+.card {
+    opacity: 0.9;
+}
+
+
+.PurchaseCard {
+    border: 1px solid black;
+    display: flex;
+    height: 80%;
+}
+
+.BillingContainer {
+    text-align: left;
+}
+
+.BuyButton {
+    text-align: center;
+}
+
+.billing-button {
+    height: 32px;
+    margin-right: 10px;
+    background-color: #2F77F3;
+    color: white;
+    border: none !important;
+}
+
+.billing-button:hover {
+    background-color: white;
+    color: #2F77F3;
+}
+
+.billing-button:focus {
+    background-color: #00887A;
+    color: white;
+}
+
+.btn-primary {
+    margin: 20px;
+}

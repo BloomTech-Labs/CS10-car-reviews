@@ -1,0 +1,16 @@
+.mrb-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.my-review-buttons {
+    background-color: #2f77f3;
+    color: white;
+    border: none !important;
+    margin-top: 5px;
+}
+
+.my-review-buttons:hover {
+    color: #2f77f3;
+    background-color: white;
+}
