@@ -1,0 +1,66 @@
+.user-settings-container {
+  position: absolute;
+  bottom: 0;
+  top: 72px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.userinfoContainer {
+  width: 75%;
+  margin-top: 25px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.inputBox1 {
+  margin-left: 80px;
+}
+
+.inputBox2 {
+  margin-left: 24px;
+}
+
+.inputBox3 {
+  margin-left: 18px;
+}
+
+.inputBox4 {
+  margin-left: 84px;
+}
+
+.saveButton {
+  background-color: white;
+  margin: 40px auto;
+}
+
+.accordion-button {
+  width: 248.615px;
+  text-align: center;
+  background-color: #2f77f3;
+  color: white;
+  border: none;
+}
+
+.accordion-button:hover {
+  background-color: white;
+  color: #2f77f3;
+}
+
+.save-changes {
+  width: 248.615px; 
+  text-align: center;
+  background-color: white;
+  color: #2f77f3;
+  border: none;
+}
+
+.save-changes:hover {
+  background-color: #00887A; 
+  color: white;
+}

@@ -1,0 +1,1055 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly LoginRegister component 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LoginRegister />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Navbar />,
+        <Card
+          className="login-card"
+          tag="div"
+>
+          <CardHeader
+                    className="login-header"
+                    tag="div"
+          >
+                    <p>
+                              Login
+                    </p>
+          </CardHeader>
+          <CardBody
+                    tag="div"
+          >
+                    <form
+                              className="login-form"
+                    >
+                              <input
+                                        className="login-input"
+                                        name="email"
+                                        onChange={[Function]}
+                                        placeholder="Enter your email..."
+                                        type="text"
+                                        value=""
+                              />
+                              <input
+                                        className="login-input"
+                                        name="password"
+                                        onChange={[Function]}
+                                        placeholder="Enter your password..."
+                                        type="password"
+                                        value=""
+                              />
+                              <Button
+                                        className="login-button"
+                                        color="primary"
+                                        onClick={[Function]}
+                                        tag="button"
+                                        type="submit"
+                              >
+                                        Submit
+                              </Button>
+                              <Alert
+                                        closeAriaLabel="Close"
+                                        color="danger"
+                                        fade={true}
+                                        isOpen={false}
+                                        tag="div"
+                                        transition={
+                                                  Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                                        }
+                              >
+                                        Incorrect email and/or password, please try again
+                              </Alert>
+                    </form>
+          </CardBody>
+          <CardFooter
+                    className="login-footer"
+                    tag="div"
+          >
+                    <p
+                              className="login-footer-text"
+                    >
+                              Don't have an account?
+                    </p>
+                    <p
+                              className="login-footer-link"
+                              onClick={[Function]}
+                    >
+                              Click here
+                    </p>
+          </CardFooter>
+</Card>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <CardHeader
+              className="login-header"
+              tag="div"
+>
+              <p>
+                            Login
+              </p>
+</CardHeader>,
+            <CardBody
+              tag="div"
+>
+              <form
+                            className="login-form"
+              >
+                            <input
+                                          className="login-input"
+                                          name="email"
+                                          onChange={[Function]}
+                                          placeholder="Enter your email..."
+                                          type="text"
+                                          value=""
+                            />
+                            <input
+                                          className="login-input"
+                                          name="password"
+                                          onChange={[Function]}
+                                          placeholder="Enter your password..."
+                                          type="password"
+                                          value=""
+                            />
+                            <Button
+                                          className="login-button"
+                                          color="primary"
+                                          onClick={[Function]}
+                                          tag="button"
+                                          type="submit"
+                            >
+                                          Submit
+                            </Button>
+                            <Alert
+                                          closeAriaLabel="Close"
+                                          color="danger"
+                                          fade={true}
+                                          isOpen={false}
+                                          tag="div"
+                                          transition={
+                                                        Object {
+                                                                      "appear": true,
+                                                                      "baseClass": "fade",
+                                                                      "baseClassActive": "show",
+                                                                      "enter": true,
+                                                                      "exit": true,
+                                                                      "in": true,
+                                                                      "mountOnEnter": false,
+                                                                      "onEnter": [Function],
+                                                                      "onEntered": [Function],
+                                                                      "onEntering": [Function],
+                                                                      "onExit": [Function],
+                                                                      "onExited": [Function],
+                                                                      "onExiting": [Function],
+                                                                      "tag": "div",
+                                                                      "timeout": 150,
+                                                                      "unmountOnExit": true,
+                                                                    }
+                                          }
+                            >
+                                          Incorrect email and/or password, please try again
+                            </Alert>
+              </form>
+</CardBody>,
+            <CardFooter
+              className="login-footer"
+              tag="div"
+>
+              <p
+                            className="login-footer-text"
+              >
+                            Don't have an account?
+              </p>
+              <p
+                            className="login-footer-link"
+                            onClick={[Function]}
+              >
+                            Click here
+              </p>
+</CardFooter>,
+          ],
+          "className": "login-card",
+          "tag": "div",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <p>
+                Login
+</p>,
+              "className": "login-header",
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Login",
+              },
+              "ref": null,
+              "rendered": "Login",
+              "type": "p",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <form
+                className="login-form"
+>
+                <input
+                                className="login-input"
+                                name="email"
+                                onChange={[Function]}
+                                placeholder="Enter your email..."
+                                type="text"
+                                value=""
+                />
+                <input
+                                className="login-input"
+                                name="password"
+                                onChange={[Function]}
+                                placeholder="Enter your password..."
+                                type="password"
+                                value=""
+                />
+                <Button
+                                className="login-button"
+                                color="primary"
+                                onClick={[Function]}
+                                tag="button"
+                                type="submit"
+                >
+                                Submit
+                </Button>
+                <Alert
+                                closeAriaLabel="Close"
+                                color="danger"
+                                fade={true}
+                                isOpen={false}
+                                tag="div"
+                                transition={
+                                                Object {
+                                                                "appear": true,
+                                                                "baseClass": "fade",
+                                                                "baseClassActive": "show",
+                                                                "enter": true,
+                                                                "exit": true,
+                                                                "in": true,
+                                                                "mountOnEnter": false,
+                                                                "onEnter": [Function],
+                                                                "onEntered": [Function],
+                                                                "onEntering": [Function],
+                                                                "onExit": [Function],
+                                                                "onExited": [Function],
+                                                                "onExiting": [Function],
+                                                                "tag": "div",
+                                                                "timeout": 150,
+                                                                "unmountOnExit": true,
+                                                              }
+                                }
+                >
+                                Incorrect email and/or password, please try again
+                </Alert>
+</form>,
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <input
+                    className="login-input"
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Enter your email..."
+                    type="text"
+                    value=""
+/>,
+                  <input
+                    className="login-input"
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Enter your password..."
+                    type="password"
+                    value=""
+/>,
+                  <Button
+                    className="login-button"
+                    color="primary"
+                    onClick={[Function]}
+                    tag="button"
+                    type="submit"
+>
+                    Submit
+</Button>,
+                  <Alert
+                    closeAriaLabel="Close"
+                    color="danger"
+                    fade={true}
+                    isOpen={false}
+                    tag="div"
+                    transition={
+                                        Object {
+                                                            "appear": true,
+                                                            "baseClass": "fade",
+                                                            "baseClassActive": "show",
+                                                            "enter": true,
+                                                            "exit": true,
+                                                            "in": true,
+                                                            "mountOnEnter": false,
+                                                            "onEnter": [Function],
+                                                            "onEntered": [Function],
+                                                            "onEntering": [Function],
+                                                            "onExit": [Function],
+                                                            "onExited": [Function],
+                                                            "onExiting": [Function],
+                                                            "tag": "div",
+                                                            "timeout": 150,
+                                                            "unmountOnExit": true,
+                                                          }
+                    }
+>
+                    Incorrect email and/or password, please try again
+</Alert>,
+                ],
+                "className": "login-form",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "login-input",
+                    "name": "email",
+                    "onChange": [Function],
+                    "placeholder": "Enter your email...",
+                    "type": "text",
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "input",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "login-input",
+                    "name": "password",
+                    "onChange": [Function],
+                    "placeholder": "Enter your password...",
+                    "type": "password",
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "input",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Submit",
+                    "className": "login-button",
+                    "color": "primary",
+                    "onClick": [Function],
+                    "tag": "button",
+                    "type": "submit",
+                  },
+                  "ref": null,
+                  "rendered": "Submit",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Incorrect email and/or password, please try again",
+                    "closeAriaLabel": "Close",
+                    "color": "danger",
+                    "fade": true,
+                    "isOpen": false,
+                    "tag": "div",
+                    "transition": Object {
+                      "appear": true,
+                      "baseClass": "fade",
+                      "baseClassActive": "show",
+                      "enter": true,
+                      "exit": true,
+                      "in": true,
+                      "mountOnEnter": false,
+                      "onEnter": [Function],
+                      "onEntered": [Function],
+                      "onEntering": [Function],
+                      "onExit": [Function],
+                      "onExited": [Function],
+                      "onExiting": [Function],
+                      "tag": "div",
+                      "timeout": 150,
+                      "unmountOnExit": true,
+                    },
+                  },
+                  "ref": null,
+                  "rendered": "Incorrect email and/or password, please try again",
+                  "type": [Function],
+                },
+              ],
+              "type": "form",
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <p
+                  className="login-footer-text"
+>
+                  Don't have an account?
+</p>,
+                <p
+                  className="login-footer-link"
+                  onClick={[Function]}
+>
+                  Click here
+</p>,
+              ],
+              "className": "login-footer",
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Don't have an account?",
+                  "className": "login-footer-text",
+                },
+                "ref": null,
+                "rendered": "Don't have an account?",
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Click here",
+                  "className": "login-footer-link",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "Click here",
+                "type": "p",
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Navbar />,
+          <Card
+            className="login-card"
+            tag="div"
+>
+            <CardHeader
+                        className="login-header"
+                        tag="div"
+            >
+                        <p>
+                                    Login
+                        </p>
+            </CardHeader>
+            <CardBody
+                        tag="div"
+            >
+                        <form
+                                    className="login-form"
+                        >
+                                    <input
+                                                className="login-input"
+                                                name="email"
+                                                onChange={[Function]}
+                                                placeholder="Enter your email..."
+                                                type="text"
+                                                value=""
+                                    />
+                                    <input
+                                                className="login-input"
+                                                name="password"
+                                                onChange={[Function]}
+                                                placeholder="Enter your password..."
+                                                type="password"
+                                                value=""
+                                    />
+                                    <Button
+                                                className="login-button"
+                                                color="primary"
+                                                onClick={[Function]}
+                                                tag="button"
+                                                type="submit"
+                                    >
+                                                Submit
+                                    </Button>
+                                    <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                            Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                                }
+                                    >
+                                                Incorrect email and/or password, please try again
+                                    </Alert>
+                        </form>
+            </CardBody>
+            <CardFooter
+                        className="login-footer"
+                        tag="div"
+            >
+                        <p
+                                    className="login-footer-text"
+                        >
+                                    Don't have an account?
+                        </p>
+                        <p
+                                    className="login-footer-link"
+                                    onClick={[Function]}
+                        >
+                                    Click here
+                        </p>
+            </CardFooter>
+</Card>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <CardHeader
+                className="login-header"
+                tag="div"
+>
+                <p>
+                                Login
+                </p>
+</CardHeader>,
+              <CardBody
+                tag="div"
+>
+                <form
+                                className="login-form"
+                >
+                                <input
+                                                className="login-input"
+                                                name="email"
+                                                onChange={[Function]}
+                                                placeholder="Enter your email..."
+                                                type="text"
+                                                value=""
+                                />
+                                <input
+                                                className="login-input"
+                                                name="password"
+                                                onChange={[Function]}
+                                                placeholder="Enter your password..."
+                                                type="password"
+                                                value=""
+                                />
+                                <Button
+                                                className="login-button"
+                                                color="primary"
+                                                onClick={[Function]}
+                                                tag="button"
+                                                type="submit"
+                                >
+                                                Submit
+                                </Button>
+                                <Alert
+                                                closeAriaLabel="Close"
+                                                color="danger"
+                                                fade={true}
+                                                isOpen={false}
+                                                tag="div"
+                                                transition={
+                                                                Object {
+                                                                                "appear": true,
+                                                                                "baseClass": "fade",
+                                                                                "baseClassActive": "show",
+                                                                                "enter": true,
+                                                                                "exit": true,
+                                                                                "in": true,
+                                                                                "mountOnEnter": false,
+                                                                                "onEnter": [Function],
+                                                                                "onEntered": [Function],
+                                                                                "onEntering": [Function],
+                                                                                "onExit": [Function],
+                                                                                "onExited": [Function],
+                                                                                "onExiting": [Function],
+                                                                                "tag": "div",
+                                                                                "timeout": 150,
+                                                                                "unmountOnExit": true,
+                                                                              }
+                                                }
+                                >
+                                                Incorrect email and/or password, please try again
+                                </Alert>
+                </form>
+</CardBody>,
+              <CardFooter
+                className="login-footer"
+                tag="div"
+>
+                <p
+                                className="login-footer-text"
+                >
+                                Don't have an account?
+                </p>
+                <p
+                                className="login-footer-link"
+                                onClick={[Function]}
+                >
+                                Click here
+                </p>
+</CardFooter>,
+            ],
+            "className": "login-card",
+            "tag": "div",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <p>
+                  Login
+</p>,
+                "className": "login-header",
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Login",
+                },
+                "ref": null,
+                "rendered": "Login",
+                "type": "p",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <form
+                  className="login-form"
+>
+                  <input
+                                    className="login-input"
+                                    name="email"
+                                    onChange={[Function]}
+                                    placeholder="Enter your email..."
+                                    type="text"
+                                    value=""
+                  />
+                  <input
+                                    className="login-input"
+                                    name="password"
+                                    onChange={[Function]}
+                                    placeholder="Enter your password..."
+                                    type="password"
+                                    value=""
+                  />
+                  <Button
+                                    className="login-button"
+                                    color="primary"
+                                    onClick={[Function]}
+                                    tag="button"
+                                    type="submit"
+                  >
+                                    Submit
+                  </Button>
+                  <Alert
+                                    closeAriaLabel="Close"
+                                    color="danger"
+                                    fade={true}
+                                    isOpen={false}
+                                    tag="div"
+                                    transition={
+                                                      Object {
+                                                                        "appear": true,
+                                                                        "baseClass": "fade",
+                                                                        "baseClassActive": "show",
+                                                                        "enter": true,
+                                                                        "exit": true,
+                                                                        "in": true,
+                                                                        "mountOnEnter": false,
+                                                                        "onEnter": [Function],
+                                                                        "onEntered": [Function],
+                                                                        "onEntering": [Function],
+                                                                        "onExit": [Function],
+                                                                        "onExited": [Function],
+                                                                        "onExiting": [Function],
+                                                                        "tag": "div",
+                                                                        "timeout": 150,
+                                                                        "unmountOnExit": true,
+                                                                      }
+                                    }
+                  >
+                                    Incorrect email and/or password, please try again
+                  </Alert>
+</form>,
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <input
+                      className="login-input"
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="Enter your email..."
+                      type="text"
+                      value=""
+/>,
+                    <input
+                      className="login-input"
+                      name="password"
+                      onChange={[Function]}
+                      placeholder="Enter your password..."
+                      type="password"
+                      value=""
+/>,
+                    <Button
+                      className="login-button"
+                      color="primary"
+                      onClick={[Function]}
+                      tag="button"
+                      type="submit"
+>
+                      Submit
+</Button>,
+                    <Alert
+                      closeAriaLabel="Close"
+                      color="danger"
+                      fade={true}
+                      isOpen={false}
+                      tag="div"
+                      transition={
+                                            Object {
+                                                                  "appear": true,
+                                                                  "baseClass": "fade",
+                                                                  "baseClassActive": "show",
+                                                                  "enter": true,
+                                                                  "exit": true,
+                                                                  "in": true,
+                                                                  "mountOnEnter": false,
+                                                                  "onEnter": [Function],
+                                                                  "onEntered": [Function],
+                                                                  "onEntering": [Function],
+                                                                  "onExit": [Function],
+                                                                  "onExited": [Function],
+                                                                  "onExiting": [Function],
+                                                                  "tag": "div",
+                                                                  "timeout": 150,
+                                                                  "unmountOnExit": true,
+                                                                }
+                      }
+>
+                      Incorrect email and/or password, please try again
+</Alert>,
+                  ],
+                  "className": "login-form",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "login-input",
+                      "name": "email",
+                      "onChange": [Function],
+                      "placeholder": "Enter your email...",
+                      "type": "text",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "login-input",
+                      "name": "password",
+                      "onChange": [Function],
+                      "placeholder": "Enter your password...",
+                      "type": "password",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "input",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Submit",
+                      "className": "login-button",
+                      "color": "primary",
+                      "onClick": [Function],
+                      "tag": "button",
+                      "type": "submit",
+                    },
+                    "ref": null,
+                    "rendered": "Submit",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "children": "Incorrect email and/or password, please try again",
+                      "closeAriaLabel": "Close",
+                      "color": "danger",
+                      "fade": true,
+                      "isOpen": false,
+                      "tag": "div",
+                      "transition": Object {
+                        "appear": true,
+                        "baseClass": "fade",
+                        "baseClassActive": "show",
+                        "enter": true,
+                        "exit": true,
+                        "in": true,
+                        "mountOnEnter": false,
+                        "onEnter": [Function],
+                        "onEntered": [Function],
+                        "onEntering": [Function],
+                        "onExit": [Function],
+                        "onExited": [Function],
+                        "onExiting": [Function],
+                        "tag": "div",
+                        "timeout": 150,
+                        "unmountOnExit": true,
+                      },
+                    },
+                    "ref": null,
+                    "rendered": "Incorrect email and/or password, please try again",
+                    "type": [Function],
+                  },
+                ],
+                "type": "form",
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": Array [
+                  <p
+                    className="login-footer-text"
+>
+                    Don't have an account?
+</p>,
+                  <p
+                    className="login-footer-link"
+                    onClick={[Function]}
+>
+                    Click here
+</p>,
+                ],
+                "className": "login-footer",
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Don't have an account?",
+                    "className": "login-footer-text",
+                  },
+                  "ref": null,
+                  "rendered": "Don't have an account?",
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Click here",
+                    "className": "login-footer-link",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Click here",
+                  "type": "p",
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

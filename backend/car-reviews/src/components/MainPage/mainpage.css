@@ -1,0 +1,132 @@
+/* Search Bar Styles */
+
+.login {
+    display: flex;
+    justify-content: center;
+}
+
+.signup {
+    margin-right: 25px;
+}
+
+.auto-logo {
+    margin-top: 30px;
+    color: #2F77F3;
+    font-size: 3em;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: bold;
+    text-decoration-line: underline;
+}
+
+.searchfields {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.dropdowns {
+    margin-right: 35px;
+    margin-left: 35px;
+}
+
+.results-searchbar {
+    background-color: #77A6F7;
+}
+
+.searchbar-buttons {
+    width: 120px;
+    background-color: #2F77F3;
+    color: white;
+    border: none !important;
+    font-size: 1.1em;
+    height: 40px;
+    z-index: 2;
+}
+
+.searchbar-buttons:hover {
+    background-color: white;
+    color: #2F77F3;
+}
+
+/* End of Search Bar Styles */
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/* Main Content Styles */
+
+.main-content {
+    margin-bottom: 45px;
+    text-align: left;
+    height: 100%;
+}
+
+
+.header {
+    background-color: white;
+    color: #2F77F3;
+    font-size: 2.2em;
+    font-weight: bold;
+    border-radius: 15px;
+    padding-left: 10px;
+}
+
+.main-card {
+    background-color: white;
+    color: #2F77F3;
+    border: none !important;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 10px;
+}
+
+.main-card:hover {
+    background-color: #77A6F7;
+}
+
+/* End of Main Content Styles */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Search Results Styles */
+
+.search-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.filter-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.filters {
+    display: flex;
+}
+
+.sort-by {
+    display: flex;
+}
+
+.review-results {
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+}
+
+/* End of Search Results Styles */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.team-link {
+    width: 100%;
+    background-color: #2F77F3;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.team-link:hover {
+    color: white;
+}
