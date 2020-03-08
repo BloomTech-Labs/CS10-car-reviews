@@ -131,9 +131,13 @@ class Navbar extends Component {
                   <Fragment />
                 )}
 
-                <a className="navbar-item" href="/" onClick={this.guestSignIn('login')}>
-                  Guest Sign In
-                </a>
+                {this.props.isLoggedIn ? (
+                  <Fragment />
+                ) : (
+                  <a className="navbar-item" href="/" onClick={this.guestSignIn('login')}>
+                    Guest Sign In
+                  </a>
+                )}
 
                 {!this.props.isLoggedIn ? (
                   <a className="navbar-item" href="/login">
