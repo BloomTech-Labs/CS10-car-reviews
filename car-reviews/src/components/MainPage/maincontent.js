@@ -7,6 +7,10 @@ import ReviewModal from '../Modals/reviewmodal';
 import PopularCar from './popularcar';
 import './mainpage.css';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
+console.log('backend url is : ', backendURL);
+
 // This component generates Review and Reviewer cards. I chose to make the cards using buttons
 // because they will need to be clicked on to open the review page. This is rendered in MainPage.
 
@@ -31,12 +35,9 @@ class MainContent extends Component {
 
   componentDidMount() {
     this.getUserCounter();
-    const deployedPopCars =
-      'https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_cars';
-    const deployedFeatReviews =
-      'https://back-lambda-car-reviews.herokuapp.com/api/popular/featured_reviews';
-    const deployedPopReviewers =
-      'https://back-lambda-car-reviews.herokuapp.com/api/popular/popular_reviewers';
+    const deployedPopCars = `${backendURL}/api/popular/popular_cars`;
+    const deployedFeatReviews = `${backendURL}/api/popular/featured_reviews`;
+    const deployedPopReviewers = `${backendURL}/api/popular/popular_reviewers`;
     axios
       .all([
         axios.get(deployedPopCars),
@@ -67,11 +68,7 @@ class MainContent extends Component {
       headers: { jwt: localStorage.getItem('jwt') }
     };
     axios
-      .put(
-        'https://back-lambda-car-reviews.herokuapp.com/api/users/data',
-        { counter, newDate },
-        config
-      )
+      .put(`${backendURL}/api/users/data`, { counter, newDate }, config)
       .then(response => {
         const newstate = { counter: counter + 1 };
         this.setState(newstate);
@@ -93,7 +90,7 @@ class MainContent extends Component {
 
   getUserCounter = () => {
     axios
-      .get('https://back-lambda-car-reviews.herokuapp.com/api/users/data', {
+      .get(`${backendURL}/api/users/data`, {
         headers: {
           JWT: localStorage.getItem('jwt')
         }
@@ -113,7 +110,7 @@ class MainContent extends Component {
 
   userToSearch = reviewer => {
     axios
-      .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', { reviewer })
+      .post(`${backendURL}/api/reviews/search`, { reviewer })
       .then(response => {
         this.setState({ searchResults: response.data }, () => this.setState({ searching: true }));
       })

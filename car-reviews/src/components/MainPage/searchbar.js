@@ -3,10 +3,12 @@ import './mainpage.css';
 import { Button } from 'reactstrap';
 import { Link, Redirect } from 'react-router-dom';
 import LoginRegisterModal from '../Modals/loginregistermodal';
+import { years } from '../../data';
 import axios from 'axios';
 import './searchbar.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
@@ -42,11 +44,26 @@ class Searchbar extends React.Component {
     };
   }
 
+  convertCSVToMakesArray(csv) {
+    let lines = csv.split('\n');
+
+    let answer = [];
+
+    for (let i = 1; i < lines.length; i++) {
+      let currentline = lines[i].split(',');
+
+      answer.push(currentline[1]);
+    }
+
+    return answer;
+  }
+
   componentDidMount() {
     axios
-      .get(`https://databases.one/api/?format=json&select=make&api_key=${API_KEY}`)
+      .get(`https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=csv`)
       .then(res => {
-        this.setState({ makes: res.data.result || this.state.makes });
+        let responseData = this.convertCSVToMakesArray(res.data);
+        this.setState({ makes: responseData || this.state.makes });
       })
       .catch(err => {
         console.warn(err);
@@ -61,7 +78,8 @@ class Searchbar extends React.Component {
       makeId: ''
     };
     this.state.makes.map(make => {
-      if (make.make === value) newMake.makeId = make.make_id;
+      if (make === value) newMake.make = make;
+      return newMake;
     });
 
     const newState = Object.assign({}, this.state);
@@ -69,10 +87,9 @@ class Searchbar extends React.Component {
     newState.displayDropdowns.year = true;
 
     axios
-      .get(
-        `https://databases.one/api/?format=json&select=year&make_id=${newState.selectedValues.make.makeId}&api_key=${API_KEY}`
-      )
+      .get(years)
       .then(res => {
+        console.log(' years is running ', res);
         newState.years = res.data.result.reverse();
         this.setState(newState);
       })
@@ -101,6 +118,7 @@ class Searchbar extends React.Component {
     let modelId;
     this.state.models.map(model => {
       if (value === model.model) modelId = model.model_id;
+      return modelId;
     });
 
     newState.selectedValues.model = { model: value, modelId };
@@ -122,7 +140,7 @@ class Searchbar extends React.Component {
       console.log(`There are no selected values in the search criteria`);
     }
     axios
-      .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', searchCriteria)
+      .post(`${backendURL}/api/reviews/search`, searchCriteria)
       .then(response => {
         this.setState({ searchResults: response.data, searching: true });
       })
@@ -220,7 +238,7 @@ class Searchbar extends React.Component {
             <select className="dropdowns" name="make" onChange={this.handleChangeMake}>
               <option>Select a Make</option>
               {this.state.makes.map(make => {
-                return <option key={make.make_id}>{make.make}</option>;
+                return <option key={make}>{make}</option>;
               })}
             </select>
 

@@ -8,6 +8,8 @@ import defaultImg from '../Assets/default_img.png';
 
 // This component is the review modal. It is rendered in maincontent.js
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 class ResultsModal extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +45,7 @@ class ResultsModal extends Component {
 
   getUserCounter = () => {
     axios
-      .get('https://back-lambda-car-reviews.herokuapp.com/api/users/data', {
+      .get(`${backendURL}/api/users/data`, {
         headers: {
           JWT: localStorage.getItem('jwt')
         }
@@ -62,7 +64,7 @@ class ResultsModal extends Component {
       headers: { jwt: localStorage.getItem('jwt') }
     };
     axios
-      .put('https://back-lambda-car-reviews.herokuapp.com/api/users/data', { counter }, config)
+      .put(`${backendURL}/api/users/data`, { counter }, config)
       .then(response => {
         console.log(response);
         const newstate = { counter: counter + 1, paid: response.data.paid };

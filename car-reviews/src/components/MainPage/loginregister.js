@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Card, CardHeader, CardBody, CardFooter, Button, Alert } from 'reactstrap';
 import './loginregister.css';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 class LoginRegister extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +55,7 @@ class LoginRegister extends Component {
 
   handleSubmittal = formType => event => {
     event.preventDefault();
-    const deployedURL = `https://back-lambda-car-reviews.herokuapp.com/auth/${formType}`;
+    const deployedURL = `${backendURL}/auth/${formType}`;
     const userState = Object.assign({}, this.state[formType]);
 
     // ** OPTIONAL: Externalize logic to a helper method

@@ -3,10 +3,10 @@ import AuthService from '../Auth/authservice';
 import axios from 'axios';
 import './navbar.css';
 import Media from 'react-media';
-import { Link } from 'react-router-dom';
 import HamburgerMenu from './hamburgermenu';
 
 const Auth = new AuthService();
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 const styles = {
   hamburgerStyles: {
@@ -25,7 +25,7 @@ class Navbar extends Component {
         type: 'login'
       },
       login: {
-        email: 'Guest@guest.com',
+        email: 'guest@guest.com',
         password: 'guest123!'
       },
       register: {
@@ -58,7 +58,7 @@ class Navbar extends Component {
 
   guestSignIn = formType => event => {
     event.preventDefault();
-    const deployedURL = `https://back-lambda-car-reviews.herokuapp.com/auth/${formType}`;
+    const deployedURL = `${backendURL}/auth/${formType}`;
     const userState = Object.assign({}, this.state[formType]);
 
     axios

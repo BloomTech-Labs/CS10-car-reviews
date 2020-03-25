@@ -4,8 +4,9 @@ import Navbar from '../MainPage/navbar';
 import axios from 'axios';
 import './settings.css';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 // This Settings component is a wrapper that contains the Header, LeftNavBar, and UserSettings components within it and when rendered in App presents the Settings view for a user to change name, email, or password.
-const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
+const dbRequests = `${backendURL}/auth/verify`;
 
 class Settings extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Settings extends Component {
       isLoggedIn: false
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     const localJWT = localStorage.getItem('jwt');
     if (!localJWT) this.handleLogin(false);
     else {

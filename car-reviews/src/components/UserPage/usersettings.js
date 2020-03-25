@@ -13,6 +13,8 @@ import {
 import axios from 'axios';
 import './usersettings.css';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const styles = {
   cardStyles: {
     margin: '1%',
@@ -101,7 +103,7 @@ class UserSettings extends Component {
       headers: { jwt: localStorage.getItem('jwt') }
     };
 
-    const deployedRequests = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+    const deployedRequests = `${backendURL}/api/users/data`;
 
     if (password2 !== password || !password || !password2) {
       if (!this.state.alerts.password) this.handleAlerts('password');
@@ -135,7 +137,7 @@ class UserSettings extends Component {
       headers: { jwt: localStorage.getItem('jwt') }
     };
 
-    const deployedRequests = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+    const deployedRequests = `${backendURL}/api/users/data`;
 
     if (username2 !== username || !username || !username2) {
       if (!this.state.alerts.username) this.handleAlerts('username');
@@ -169,7 +171,7 @@ class UserSettings extends Component {
       headers: { jwt: localStorage.getItem('jwt') }
     };
 
-    const deployedRequests = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
+    const deployedRequests = `${backendURL}/api/users/data`;
 
     if (email2 !== email || !email || !email2) {
       if (!this.state.alerts.email) this.handleAlerts('email');

@@ -15,11 +15,13 @@ import Navbar from './navbar';
 import memoize from 'memoize-one';
 import axios from 'axios';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 // This is our Search Results page. Users will be brought here after clicking the 'search' button
 // from the Search Bar. There are 'filter by' dropdowns and a 'sort-by' dropdown, followed by the
 // search results. As with the main content, I chose to represent the result cards as Buttons.
 // This is rendered in MainPage.
-const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
+const dbRequests = `${backendURL}/auth/verify`;
 
 class SearchResults extends Component {
   constructor(props) {

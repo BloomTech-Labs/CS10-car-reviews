@@ -4,7 +4,9 @@ import Navbar from '../MainPage/navbar';
 import axios from 'axios';
 import './settings.css';
 
-const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
+const dbRequests = `${backendURL}/auth/verify`;
 
 class BillingContainer extends Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class BillingContainer extends Component {
       isLoggedIn: false
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     const localJWT = localStorage.getItem('jwt');
     if (!localJWT) this.handleLogin(false);
     else {

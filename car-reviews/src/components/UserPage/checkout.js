@@ -2,8 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import StripeCheckout from 'react-stripe-checkout';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const STRIPE_PUBLISHABLE = `pk_test_gyGeHhPwsQ6mp7K1lSleMa4c`;
-const PAYMENT_SERVER_URL = 'https://back-lambda-car-reviews.herokuapp.com/payment';
+const PAYMENT_SERVER_URL = `${backendURL}/payment`;
 
 const CURRENCY = 'USD';
 

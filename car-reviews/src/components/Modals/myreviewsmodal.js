@@ -6,6 +6,8 @@ import './reviewmodal.css';
 import './myreviewsmodal.css';
 import ReactStars from 'react-stars';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 class MyReviewsModal extends Component {
   constructor(props) {
     super(props);
@@ -53,11 +55,7 @@ class MyReviewsModal extends Component {
     };
 
     axios
-      .put(
-        `https://back-lambda-car-reviews.herokuapp.com/api/reviews/${this.props._id}`,
-        editedContent,
-        config
-      )
+      .put(`${backendURL}/api/reviews/${this.props._id}`, editedContent, config)
       .then(response => {
         console.log('editNote:', response);
       })

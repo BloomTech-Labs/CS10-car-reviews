@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Alert } from 'reactstrap';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const styles = {
   modalStyles: {
     width: '20%',
@@ -81,7 +83,7 @@ class LoginRegisterModal extends Component {
 
   handleSubmittal = formType => event => {
     event.preventDefault();
-    const deployedURL = `https://back-lambda-car-reviews.herokuapp.com/auth/${formType}`;
+    const deployedURL = `${backendURL}/auth/${formType}`;
     const userState = Object.assign({}, this.state[formType]);
 
     // ** OPTIONAL: Externalize logic to a helper method

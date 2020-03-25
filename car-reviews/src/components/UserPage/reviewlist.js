@@ -5,13 +5,15 @@ import MyReviewsModal from '../Modals/myreviewsmodal';
 import NewReviewModal from '../Modals/newreview';
 import axios from 'axios';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 const config = {
   headers: {
     JWT: localStorage.getItem('jwt')
   }
 };
-const requestUserURL = 'https://back-lambda-car-reviews.herokuapp.com/api/users/data';
-const requestReviewsURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+const requestUserURL = `${backendURL}/api/users/data`;
+const requestReviewsURL = `${backendURL}/api/reviews`;
 
 class ReviewList extends Component {
   constructor(props) {
@@ -51,7 +53,7 @@ class ReviewList extends Component {
     };
 
     axios
-      .delete(`https://back-lambda-car-reviews.herokuapp.com/api/reviews/${id}`, config)
+      .delete(`${backendURL}/api/reviews/${id}`, config)
       .then(response => {
         console.log('deleteNote:', response);
       })
@@ -94,17 +96,18 @@ class ReviewList extends Component {
           />
         </div>
         <Container style={{ marginBottom: '100px' }}>
-          <Row style = {{ marginTop: '20px' }}>
-          {this.state.data.reviews.map(review => {
-            return (
-              <MyReviewsModal
-                key={review._id}
-                className={'review'}
-                {...review} {...review.car}
-                removeReview={this.handleRemove}
-              />
-            );
-          })}
+          <Row style={{ marginTop: '20px' }}>
+            {this.state.data.reviews.map(review => {
+              return (
+                <MyReviewsModal
+                  key={review._id}
+                  className={'review'}
+                  {...review}
+                  {...review.car}
+                  removeReview={this.handleRemove}
+                />
+              );
+            })}
           </Row>
         </Container>
       </div>

@@ -6,6 +6,8 @@ import axios from 'axios';
 import './mainpage.css';
 import defaultImg from '../Assets/default_img.png';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 class PopularCar extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class PopularCar extends Component {
   searchFunction = () => {
     const { year, make, model } = this.state.selectedValues;
     axios
-      .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', {
+      .post(`${backendURL}/api/reviews/search`, {
         year,
         make,
         model

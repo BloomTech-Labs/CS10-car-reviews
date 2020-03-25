@@ -8,6 +8,7 @@ import axios from 'axios';
 import './searchbar.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
 // for search, and a review button. This file is rendered in MainPage.
@@ -63,6 +64,7 @@ class ResultsSearchbar extends React.Component {
     };
     this.state.makes.map(make => {
       if (make.make === value) newMake.makeId = make.make_id;
+      return newMake.makeId;
     });
 
     const newState = Object.assign({}, this.state);
@@ -102,6 +104,7 @@ class ResultsSearchbar extends React.Component {
     let modelId;
     this.state.models.map(model => {
       if (value === model.model) modelId = model.model_id;
+      return modelId;
     });
 
     newState.selectedValues.model = { model: value, modelId };
@@ -123,7 +126,7 @@ class ResultsSearchbar extends React.Component {
       console.log(`There are no selected values in the search criteria`);
     }
     axios
-      .post('https://back-lambda-car-reviews.herokuapp.com/api/reviews/search', searchCriteria)
+      .post(`${backendURL}/api/reviews/search`, searchCriteria)
       .then(response => {
         this.setState({ searchResults: response.data, searching: true });
       })

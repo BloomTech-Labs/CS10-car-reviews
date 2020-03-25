@@ -3,9 +3,11 @@ import { Alert, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import ReactStars from 'react-stars';
+import { years, makes, models } from '../../data';
 import './newreview.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 class NewReviewModal extends Component {
   constructor(props) {
@@ -37,9 +39,9 @@ class NewReviewModal extends Component {
         reviewInputErr: false,
         scoreInputErr: false
       },
-      years: [],
-      makes: [],
-      models: [],
+      years: years,
+      makes: makes,
+      models: models,
       success: false
     };
   }
@@ -81,7 +83,8 @@ class NewReviewModal extends Component {
       makeId: ''
     };
     this.state.makes.map(make => {
-      if (make.make === value) newMake.makeId = make.make_id;
+      if (make === value) newMake.makeId = make;
+      return newMake.makeId;
     });
 
     const newState = Object.assign({}, this.state);
@@ -122,7 +125,8 @@ class NewReviewModal extends Component {
     const newState = Object.assign({}, this.state);
     let modelId;
     this.state.models.map(model => {
-      if (value === model.model) modelId = model.model_id;
+      if (value === model) modelId = model;
+      return modelId;
     });
 
     newState.selectedValues.model = { model: value, modelId };
@@ -131,7 +135,7 @@ class NewReviewModal extends Component {
 
   submitNewReview = () => {
     const newReview = this.state['review'];
-    const requestURL = 'https://back-lambda-car-reviews.herokuapp.com/api/reviews';
+    const requestURL = `${backendURL}/api/reviews`;
     axios
       .post(requestURL, newReview, {
         headers: {
@@ -265,7 +269,7 @@ class NewReviewModal extends Component {
               <select className="dropdowns" name="make" onChange={this.handleChangeMake}>
                 <option>Select a Make</option>
                 {this.state.makes.map(make => {
-                  return <option key={make.make_id}>{make.make}</option>;
+                  return <option key={make}>{make}</option>;
                 })}
               </select>
 
@@ -273,7 +277,7 @@ class NewReviewModal extends Component {
                 <select className="dropdowns" name="year" onChange={this.handleChangeYear}>
                   <option>Select a Year</option>
                   {this.state.years.map(year => {
-                    return <option key={year.year}>{year.year}</option>;
+                    return <option key={year}>{year}</option>;
                   })}
                 </select>
               ) : (
@@ -284,7 +288,7 @@ class NewReviewModal extends Component {
                 <select className="dropdowns" name="model" onChange={this.handleChangeModels}>
                   <option>Select a Model</option>
                   {this.state.models.map(model => {
-                    return <option key={model.model_id}>{model.model}</option>;
+                    return <option key={model}>{model}</option>;
                   })}
                 </select>
               ) : (

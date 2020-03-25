@@ -4,7 +4,9 @@ import MainContent from './maincontent';
 import axios from 'axios';
 import Navbar from './navbar';
 
-const dbRequests = `https://back-lambda-car-reviews.herokuapp.com/auth/verify`;
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
+const dbRequests = `${backendURL}/auth/verify`;
 
 // This file contains the various components that make up the landing page
 // and search results. This file is rendered in App.
@@ -14,7 +16,7 @@ class MainPage extends Component {
     isLoggedIn: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const localJWT = localStorage.getItem('jwt');
     if (!localJWT) this.handleLogin(false);
     else {
