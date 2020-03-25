@@ -7,7 +7,6 @@ import { years } from '../../data';
 import axios from 'axios';
 import './searchbar.css';
 
-const API_KEY = process.env.REACT_APP_API_KEY;
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
 // This is the Search Bar component, made up of sign-up/sign-in buttons, dropdown filters
@@ -86,28 +85,22 @@ class Searchbar extends React.Component {
     newState.selectedValues.make = newMake;
     newState.displayDropdowns.year = true;
 
-    axios
-      .get(years)
-      .then(res => {
-        console.log(' years is running ', res);
-        newState.years = res.data.result.reverse();
-        this.setState(newState);
-      })
-      .catch(err => console.warn(`There was an error getting the years for that make: \n${err}`));
+    newState.years = years.reverse();
+    this.setState(newState);
   };
 
   handleChangeYear = e => {
     const value = parseInt(e.target.value, 10);
-    const { makeId } = this.state.selectedValues.make;
+    const { make } = this.state.selectedValues.make;
     const newState = Object.assign({}, this.state);
     newState.selectedValues.year = value;
     newState.displayDropdowns.model = true;
     axios
       .get(
-        `https://databases.one/api/?format=json&select=model&make_id=${makeId}&api_key=${API_KEY}`
+        `https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/${make}/modelyear/${value}?format=json`
       )
       .then(res => {
-        newState.models = res.data.result;
+        newState.models = res.data.Results;
         this.setState(newState, () => console.log(this.state));
       });
   };
@@ -246,7 +239,7 @@ class Searchbar extends React.Component {
               <select className="dropdowns" name="year" onChange={this.handleChangeYear}>
                 <option>Select a Year</option>
                 {this.state.years.map(year => {
-                  return <option key={year.year}>{year.year}</option>;
+                  return <option key={year}>{year}</option>;
                 })}
               </select>
             ) : (
@@ -257,7 +250,7 @@ class Searchbar extends React.Component {
               <select className="dropdowns" name="model" onChange={this.handleChangeModels}>
                 <option>Select a Model</option>
                 {this.state.models.map(model => {
-                  return <option key={model.model_id}>{model.model}</option>;
+                  return <option key={model.Model_Name}>{model.Model_Name}</option>;
                 })}
               </select>
             ) : (

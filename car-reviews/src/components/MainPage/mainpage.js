@@ -58,7 +58,7 @@ class MainPage extends Component {
             Click here to learn about The Team!
           </a>
           <div style={{ width: '10px' }} />
-          Blue Car Icon -{' '}
+          Blue Car Icon -
           <a
             href="https://pngtree.com/freepng/blue-flat-car_1154079.html"
             style={{ color: 'white' }}
